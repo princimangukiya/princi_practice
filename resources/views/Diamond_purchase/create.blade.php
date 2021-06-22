@@ -9,7 +9,7 @@
 <!--Page header-->
 <div class="page-header">
     <div class="page-leftheader">
-        <h4 class="page-title mb-0">Add User</h4>
+        <h4 class="page-title mb-0">Add Diamond Packate</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="#">User List</a></li>
@@ -41,41 +41,13 @@
 
 <div id="result"></div>
 -->
-<form  action="#" method="POST" enctype="multipart/form-data">
+<form  action="{{ route('diamond.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
 <div class="row">
     <div class="col-xl-3 col-lg-4">
             
             <div id="camera"></div>
-        {{--
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Edit Password</div>
-            </div>
-            <div class="card-body">
-                <div class="text-center mb-5">
-                    <div class="widget-user-image">
-                        <img alt="User Avatar" class="rounded-circle  mr-3" src="assets/images/users/2.jpg">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Change Password</label>
-                    <input type="password" class="form-control" value="password">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">New Password</label>
-                    <input type="password" class="form-control" value="password">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" value="password">
-                </div>
-            </div>
-            <div class="card-footer text-right">
-                <a href="#" class="btn btn-primary">Updated</a>
-                <a href="#" class="btn btn-danger">Cancle</a>
-            </div>
-        </div>--}}
+        
     </div>
     <div class="col-xl-9 col-lg-8">
         <div class="card">
@@ -113,9 +85,9 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-4">
                         <div class="form-group">
-                            <label class="form-label">Packate wt :-</label>
+                            <label class="form-label">Packate Wt :-</label>
                             <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text" name="d_wt"  value="{{ old('d_wt') }}"  required>
                             @error('d_wt')
                             <small class="errorTxt1">
@@ -126,7 +98,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Packate Col :-</label>
                             <input type="text" id="d_col" class="form-control" placeholder="Enter Packate Col "  name="d_col"  value="{{ old('d_col') }}"  required>
@@ -139,7 +111,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Packate Pc</label>
                             <input id="d_pc" type="text" name="d_pc" class="form-control"  value="{{ old('d_pc') }}" placeholder="Enter Packate Pc"   required>
@@ -168,9 +140,35 @@
                     
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
-                            <label class="form-label">Password</label>
-                            <input id="password" type="password" name="password" class="form-control" placeholder="Enter Password"  required>
-                            @error('password')
+                            <label class="form-label">Packate Cla</label>
+                            <input id="d_cla" type="text" name="d_cla" class="form-control" placeholder="Enter Packate Cla"  required>
+                            @error('d_cla')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Packate Exp in Percentage</label>
+                            <input id="d_exp_pr" type="text" name="d_exp_pr" class="form-control" placeholder="Enter Packate Exp in Percentage"  required>
+                            @error('d_exp_pr')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Packate Exp</label>
+                            <input id="d_exp" type="text" name="d_exp" class="form-control" placeholder="Enter Packate Exp"  required>
+                            @error('d_exp')
                                 <small class="errorTxt1">
                                     <div id="title-error" class="error" style="margin-left:3rem">
                                         {{ $message }}

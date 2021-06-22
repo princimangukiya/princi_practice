@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/diamond', function () {
-    return view('diamond');
-});
+
 
 Route::get('/check', function () {
     return view('check');
 });
+
+Route::get('/diamond','App\Http\Controllers\DiamondController@index')->name('diamond');
+Route::get('/diamond/create','App\Http\Controllers\DiamondController@create')->name('diamond.create');
+Route::post('/diamond/store','App\Http\Controllers\DiamondController@store')->name('diamond.store');
