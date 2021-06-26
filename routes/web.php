@@ -34,3 +34,11 @@ Route::post('/supplier/store','App\Http\Controllers\SupplierController@store')->
 Route::get('/supplier/edit/{id}','App\Http\Controllers\SupplierController@edit')->name('supplier.edit');
 Route::post('/supplier/update/{id}','App\Http\Controllers\SupplierController@update')->name('supplier.update');
 Route::post('/supplier/{id}/destroy','App\Http\Controllers\SupplierController@destroy')->name('supplier.destroy');
+
+//manager
+Route::get('/manager','App\Http\Controllers\ManagerController@index')->name('manager');
+Route::get('/manager/create','App\Http\Controllers\ManagerController@create')->name('manager.create');
+Route::post('/manager/store','App\Http\Controllers\ManagerController@store')->name('manager.store');
+Route::get('/manager/edit/{id}','App\Http\Controllers\ManagerController@edit')->name('manager.edit');
+Route::post('/manager/update/{id}','App\Http\Controllers\ManagerController@update')->name('manager.update');
+Route::post('/manager/{id}/destroy','App\Http\Controllers\ManagerController@destroy')->name('manager.destroy');
