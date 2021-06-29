@@ -27,27 +27,35 @@
     --}}
 </div>
 <!--End Page header-->
-<!--
-<table id="tblItems" class="table-responsive">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Packet Name</th>
-            <th>Weight</th>
 
-        </tr>
-    </thead>
-</table>
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Diamond Purchase Data</div>
+    </div>
+    <div class="card-body">
+            <div class="table-responsive">
+                <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
+                    <thead>
+                        <tr>
+                            <th class="border-bottom-0">Bar Code</th>
+                            <th class="border-bottom-0">Weight</th>
+                            {{-- <th>Package</th>--}}\
+                            <th class="border-bottom-0">Shape</th>
 
-<div id="result"></div>
--->
-<form  action="{{ route('diamond.store') }}" method="POST" enctype="multipart/form-data">
-@csrf
+                            
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+    </div>
+</div>
+<!--/div-->
+
+
 <div class="row">
     <div class="col-xl-3 col-lg-4">
             
             <div id="camera"></div>
-        
     </div>
     <div class="col-xl-9 col-lg-8">
         <div class="card">
@@ -72,6 +80,7 @@
                             @enderror
                         </div>
                     </div>
+                    {{--
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Diamond Packate Name</label>
@@ -85,9 +94,10 @@
                             @enderror
                         </div>
                     </div>
+                    --}}
                     <div class="col-sm-6 col-md-4">
                         <div class="form-group">
-                            <label class="form-label">Packate Wt :-</label>
+                            <label class="form-label">Packate Weight :-</label>
                             <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text" name="d_wt"  value="{{ old('d_wt') }}"  required>
                             @error('d_wt')
                             <small class="errorTxt1">
@@ -98,6 +108,7 @@
                             @enderror
                         </div>
                     </div>
+                    {{--
                     <div class="col-sm-6 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Packate Col :-</label>
@@ -124,11 +135,24 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-6">
+                    --}}
+                    @php
+                        $shape = App\Models\diamond_shape::get();
+                    @endphp
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Packate Shape</label>
-                            <input id="d_shape" type="text" name="d_shape" class="form-control" value="{{ old('d_shape') }}" placeholder="Enter Packate Shape"  required>
-                            @error('phone')
+                            <select id="d_shape"  name="d_shape" required class="form-control select2">
+                                <optgroup label="Shapes">
+                                    <option value="" disabled selected>Choose Diamond Shape</option>
+                                    @if (count($shape) > 0)
+                                        @foreach ($shape as $shapevalue)
+                                            <option value="{{ $shapevalue->shape_id }}">{{ $shapevalue->shape_name }}</option>
+                                        @endforeach
+                                    @endif
+                                </optgroup>
+                            </select>
+                            @error('d_shape')
                                 <small class="errorTxt1">
                                     <div id="title-error" class="error" style="margin-left:3rem">
                                         {{ $message }}
@@ -137,7 +161,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+                    {{--
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Packate Cla</label>
@@ -179,6 +203,7 @@
                     </div>
                                        
                 </div>
+                --}}
                 {{--
                 <div class="card-title font-weight-bold mt-5">External Links:</div>
                 <div class="row">
@@ -219,18 +244,67 @@
                 --}}
             </div>
             <div class="card-footer text-right">
-                <button type="submit" name="action" class="btn  btn-primary" >Submit</button>
+                <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary" >Submit</button>
                 <a href="#" class="btn btn-danger">Cancle</a>
             </div>
             
         </div>
+        
     </div>
+    <h4 class="page-title mb-0">Demo Table</h4>
+<table id="tblItems" class="table-responsive">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Packet Name</th>
+            <th>Weight</th>
+
+        </tr>
+    </thead>
+</table>
+
+<div id="result"></div>
+
 </div>
 <!-- End Row-->
-</form>
+
+
 <script src="{{asset('T3_Admin_Design/assets/js/quagga.min.js')}}"></script>
 <script src="{{asset('T3_Admin_Design/assets/js/jquery.js')}}"></script>
 
+<script>
+    function addData() {
+        var barcode = $('#bar_code').val();
+        var weight = $('#d_wt').val();
+        var shape = $('#d_shape').val();
+        alert(barcode);
+        alert(weight);
+        alert(shape);
+        mytable.row.add([barcode, weight, shape]);
+        mytable.draw();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:'{{route('diamond.store')}}',
+                data:{'bar_code':barcode,'d_wt':weight,'d_shape':shape},
+                dataType: 'json',
+                success:function(response_msg){
+                    if(response_msg == true){
+                        mytable.row.add([barcode, weight, shape]);
+                        mytable.draw();
+                    }
+                    else{
+                        window.location.reload();
+                    }
+                    
+                }
+            });
+    }
+</script>
 <script>
     var id;
     var mytable
@@ -263,10 +337,23 @@
     });
 
     $(document).ready(function() {
+        mytable = $('#tblItemShow').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "sDom": 'lfrtip'
+        });
+        // mytable.row.add([id, 'pkt1', '10.5']);
+        // mytable.draw();
+    });
+    $(document).ready(function() {
         mytable = $('#tblItems').DataTable({
             "paging": true,
             "lengthChange": false,
-            "searching": false,
+            "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,
