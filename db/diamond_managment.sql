@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 02:06 PM
+-- Generation Time: Jun 30, 2021 at 08:40 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -61,6 +61,8 @@ CREATE TABLE `d_purchase` (
   `d_exp` varchar(50) DEFAULT NULL,
   `d_cla` varchar(50) DEFAULT NULL,
   `shape_id` int(20) NOT NULL,
+  `doReady` int(15) DEFAULT NULL,
+  `isReady` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -69,19 +71,19 @@ CREATE TABLE `d_purchase` (
 -- Dumping data for table `d_purchase`
 --
 
-INSERT INTO `d_purchase` (`d_id`, `d_barcode`, `d_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `created_at`, `updated_at`) VALUES
-(2, '121212', '222', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 04:43:41', '2021-06-30 04:43:41'),
-(5, '5555', '8888', NULL, NULL, NULL, NULL, NULL, 4, '2021-06-30 05:07:03', '2021-06-30 05:07:03'),
-(6, '121212111', '8548', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 05:08:31', '2021-06-30 05:08:31'),
-(7, '11111111', '8888888', NULL, NULL, NULL, NULL, NULL, 4, '2021-06-30 05:54:18', '2021-06-30 05:54:18'),
-(8, '55555', '888', NULL, NULL, NULL, NULL, NULL, 5, '2021-06-30 05:59:32', '2021-06-30 05:59:32'),
-(9, '1212121', '22', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 06:00:54', '2021-06-30 06:00:54'),
-(10, '8755', '65', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-30 06:01:09', '2021-06-30 06:01:09'),
-(12, '2525', '52', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 06:14:25', '2021-06-30 06:14:25'),
-(13, '3232', '32', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 06:15:43', '2021-06-30 06:15:43'),
-(14, '5554', '54', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-30 06:16:49', '2021-06-30 06:16:49'),
-(17, '87968', '96', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-30 06:24:11', '2021-06-30 06:24:11'),
-(18, '87969', '96', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-30 06:25:00', '2021-06-30 06:25:00');
+INSERT INTO `d_purchase` (`d_id`, `d_barcode`, `d_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `doReady`, `isReady`, `created_at`, `updated_at`) VALUES
+(2, '121212', '222', NULL, NULL, NULL, NULL, NULL, 1, 2, 1, '2021-06-30 04:43:41', '2021-06-30 13:01:58'),
+(5, '5555', '8888', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2021-06-30 05:07:03', '2021-06-30 05:07:03'),
+(6, '121212111', '8548', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 05:08:31', '2021-06-30 05:08:31'),
+(7, '11111111', '8888888', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2021-06-30 05:54:18', '2021-06-30 05:54:18'),
+(8, '55555', '888', NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, '2021-06-30 05:59:32', '2021-06-30 05:59:32'),
+(9, '1212121', '22', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:00:54', '2021-06-30 06:00:54'),
+(10, '8755', '65', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:01:09', '2021-06-30 06:01:09'),
+(12, '2525', '52', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:14:25', '2021-06-30 06:14:25'),
+(13, '3232', '32', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:15:43', '2021-06-30 06:15:43'),
+(14, '5554', '54', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:16:49', '2021-06-30 06:16:49'),
+(17, '87968', '96', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:24:11', '2021-06-30 06:24:11'),
+(18, '87969', '96', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:25:00', '2021-06-30 06:25:00');
 
 -- --------------------------------------------------------
 
@@ -163,8 +165,9 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `ready_stock` (
   `r_id` int(15) NOT NULL,
-  `c_id` int(15) NOT NULL,
-  `d_id` int(11) NOT NULL,
+  `m_id` int(15) NOT NULL,
+  `d_id` int(15) NOT NULL,
+  `d_barcode` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -216,8 +219,9 @@ CREATE TABLE `users` (
 
 CREATE TABLE `working_stock` (
   `w_id` int(15) NOT NULL,
-  `c_id` int(15) NOT NULL,
-  `diamond_array` longtext NOT NULL,
+  `m_id` int(15) NOT NULL,
+  `d_id` int(15) NOT NULL,
+  `d_barcode` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -286,6 +290,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `working_stock`
+--
+ALTER TABLE `working_stock`
+  ADD PRIMARY KEY (`w_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -336,6 +346,12 @@ ALTER TABLE `supplier_details`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `working_stock`
+--
+ALTER TABLE `working_stock`
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
