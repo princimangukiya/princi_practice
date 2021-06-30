@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class d_purchase extends Model
+class D_Purchase extends Model
 {
     
     protected $table = "d_purchase";
@@ -15,7 +15,7 @@ class d_purchase extends Model
 
     public function Shape_Date()
     {
-        return $this->belongsTo('App\Models\diamond_shape', 'shape_id');
+        return $this->belongsTo('App\Models\Diamond_Shape', 'shape_id');
     }
 }
 

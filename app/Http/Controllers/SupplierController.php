@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\d_purchase;
-use App\Models\supplier_details;
+use App\Models\D_Purchase;
+use App\Models\Supplier_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function index()
     {
         $data = array();
-        $data['supplier'] = supplier_details::get();
+        $data['supplier'] = Supplier_Details::get();
         return view('supplier_details.index',$data);
     }
 
@@ -32,7 +32,7 @@ class SupplierController extends Controller
             $validator = Validator::make($request->all(), [
                 's_name' => 'required',
                 's_address' => 'required',
-                's_gst' => 'required|unique:supplier_details,s_gst',
+                's_gst' => 'required|unique:Supplier_Details,s_gst',
 
             ]);
             //dd($request);
@@ -40,7 +40,7 @@ class SupplierController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
-            $newitem = new supplier_details();
+            $newitem = new Supplier_Details();
             $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
             $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
             $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
@@ -62,7 +62,7 @@ class SupplierController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['supplier']=supplier_details::findOrFail($id);
+        $data['supplier']=Supplier_Details::findOrFail($id);
         return view('supplier_details.edit', $data);
     }
 
@@ -87,7 +87,7 @@ class SupplierController extends Controller
             $newitem['s_address'] = !empty($request->s_address) ? $request->s_address : '';
             $newitem['s_gst'] = !empty($request->s_gst) ? $request->s_gst : '';
 
-            supplier_details::where('s_id',$id)->update($newitem);
+            Supplier_Details::where('s_id',$id)->update($newitem);
 
             return Redirect::to('/supplier')->with($notification);
         
@@ -105,7 +105,7 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
-        $suplier = supplier_details::find($id);
+        $suplier = Supplier_Details::find($id);
         $suplier->delete();
         $notification = array(
             'message' => 'User Deleted!',

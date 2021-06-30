@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\d_purchase;
-use App\Models\supplier_details;
-use App\Models\manager_details;
+use App\Models\D_Purchase;
+use App\Models\Supplier_Details;
+use App\Models\Manager_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -16,7 +16,7 @@ class ManagerController extends Controller
     public function index()
     {
         $data = array();
-        $data['manager'] = manager_details::get();
+        $data['manager'] = Manager_Details::get();
         return view('manager_details.index',$data);
     }
 
@@ -33,7 +33,7 @@ class ManagerController extends Controller
                 'm_name' => 'required',
                 'm_address' => 'required',
                 'm_email' => 'required|email',
-                'm_phone' => 'required|unique:manager_details,m_phone',
+                'm_phone' => 'required|unique:Manager_Details,m_phone',
 
             ]);
             //dd($request);
@@ -41,7 +41,7 @@ class ManagerController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
-            $newitem = new manager_details();
+            $newitem = new Manager_Details();
             $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
             $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
             $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
@@ -64,7 +64,7 @@ class ManagerController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['manager']=manager_details::findOrFail($id);
+        $data['manager']=Manager_Details::findOrFail($id);
         return view('manager_details.edit', $data);
     }
 
@@ -90,7 +90,7 @@ class ManagerController extends Controller
             $newitem['m_email'] = !empty($request->m_email) ? $request->m_email : '';
             $newitem['m_phone'] = !empty($request->m_phone) ? $request->m_phone : '';
 
-            manager_details::where('m_id',$id)->update($newitem);
+            Manager_Details::where('m_id',$id)->update($newitem);
 
             return Redirect::to('/manager')->with($notification);
         
@@ -108,7 +108,7 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //
-        $suplier = manager_details::find($id);
+        $suplier = Manager_Details::find($id);
         $suplier->delete();
         $notification = array(
             'message' => 'User Deleted!',

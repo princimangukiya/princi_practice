@@ -277,7 +277,7 @@
         var barcode = $('#bar_code').val();
         var weight = $('#d_wt').val();
         var shape = $('#shape_id').val();
-        var shapevalue = $('#shape_id').find(":selected").text();;
+        var shapevalue = $('#shape_id').find(":selected").text();
         //alert(barcode);
         //alert(weight);
         //alert(shapevalue);

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <form  action="{{ route('diamond.store') }}" method="POST" enctype="multipart/form-data">
+    <form  action="{{ route('ready_stock.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
     <div class="row">
         <div class="col-xl-3 col-lg-4">
@@ -28,14 +28,39 @@
                 
                 <div class="card-body">
                     
-                    <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
                     <div class="card-title font-weight-bold">Packate info:</div>
                     <div class="row">
-                        <div class="col-sm-6 col-md-6">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">BarCode Value </label>
+                                    <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code">
+                                    @error('bar_code')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            @php
+                        $manager = App\Models\Manager_Details::get();
+                    @endphp
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">BarCode Value </label>
-                                <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code">
-                                @error('bar_code')
+                                <h4><label class="form-label">Select Manager :-</label></h4>
+                                <select id="m_id"  name="m_id" required class="form-control select2">
+                                    <optgroup label="Managers">
+                                        <option value="" disabled selected>Choose Manager</option>
+                                        @if (count($manager) > 0)
+                                            @foreach ($manager as $value)
+                                                <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('m_id')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
                                             {{ $message }}
@@ -44,6 +69,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <button type="submit" name="button"  class="btn  btn-primary" >Submit</button>
+                   
                         {{--
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
@@ -58,7 +85,7 @@
                                 @enderror
                             </div>
                         </div>
-                        --}}
+                        
                         <div class="col-sm-6 col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Packate Weight :-</label>
@@ -72,6 +99,7 @@
                                 @enderror
                             </div>
                         </div>
+                        --}}
                         {{--
                         <div class="col-sm-6 col-md-4">
                             <div class="form-group">
@@ -99,7 +127,7 @@
                                 @enderror
                             </div>
                         </div>
-                        --}}
+                        
                         @php
                             $shape = App\Models\diamond_shape::get();
                         @endphp

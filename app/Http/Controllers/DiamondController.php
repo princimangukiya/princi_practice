@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\d_purchase;
+use App\Models\D_Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -18,7 +18,7 @@ class DiamondController extends Controller
     public function index()
     {
         $data = array();
-        $data['diamond'] = d_purchase::with('Shape_Date')->get();
+        $data['diamond'] = D_Purchase::with('Shape_Date')->get();
         return view('Diamond_purchase.index',$data);
     }
 
@@ -32,7 +32,7 @@ class DiamondController extends Controller
         
         try {
             $validator = Validator::make($request->all(), [
-                'bar_code' => 'required|unique:d_purchase,d_barcode',
+                'bar_code' => 'required|unique:D_Purchase,d_barcode',
                 'd_wt' => 'required',
                 'shape_id' => 'required'
 
@@ -41,7 +41,7 @@ class DiamondController extends Controller
                 return Response::json(array('success' => false));
             }
             //dd($request);
-            $newitem = new d_purchase();
+            $newitem = new D_Purchase();
             $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
             $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
             //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
