@@ -39,7 +39,7 @@
                         <tr>
                             <th class="border-bottom-0">Bar Code</th>
                             <th class="border-bottom-0">Weight</th>
-                            {{-- <th>Package</th>--}}\
+                            {{-- <th>Package</th>--}}
                             <th class="border-bottom-0">Shape</th>
 
                             
@@ -142,7 +142,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Packate Shape</label>
-                            <select id="d_shape"  name="d_shape" required class="form-control select2">
+                            <select id="shape_id"  name="shape_id" required class="form-control select2">
                                 <optgroup label="Shapes">
                                     <option value="" disabled selected>Choose Diamond Shape</option>
                                     @if (count($shape) > 0)
@@ -152,7 +152,7 @@
                                     @endif
                                 </optgroup>
                             </select>
-                            @error('d_shape')
+                            @error('shape_id')
                                 <small class="errorTxt1">
                                     <div id="title-error" class="error" style="margin-left:3rem">
                                         {{ $message }}
@@ -276,33 +276,38 @@
     function addData() {
         var barcode = $('#bar_code').val();
         var weight = $('#d_wt').val();
-        var shape = $('#d_shape').val();
-        alert(barcode);
-        alert(weight);
-        alert(shape);
-        mytable.row.add([barcode, weight, shape]);
+        var shape = $('#shape_id').val();
+        var shapevalue = $('#shape_id').find(":selected").text();;
+        //alert(barcode);
+        //alert(weight);
+        //alert(shapevalue);
+        mytable.row.add([barcode, weight, shapevalue]);
         mytable.draw();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+        var token = $('meta[name="csrf-token"]').attr('content');
+        alert(token);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
             $.ajax({
                 type:'POST',
                 url:'{{route('diamond.store')}}',
-                data:{'bar_code':barcode,'d_wt':weight,'d_shape':shape},
+                data:{
+                    'bar_code':barcode,
+                    'd_wt':weight,
+                    'shape_id':shape,
+                },
                 dataType: 'json',
                 success:function(response_msg){
-                    if(response_msg == true){
-                        mytable.row.add([barcode, weight, shape]);
-                        mytable.draw();
+                    alert(response_msg);
+                    if(response_msg.success != true){
+                        alert("Something goes Wrong");
+                        location.reload();
                     }
-                    else{
-                        window.location.reload();
-                    }
-                    
                 }
             });
+          
     }
 </script>
 <script>
@@ -349,19 +354,7 @@
         // mytable.row.add([id, 'pkt1', '10.5']);
         // mytable.draw();
     });
-    $(document).ready(function() {
-        mytable = $('#tblItems').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "sDom": 'lfrtip'
-        });
-        // mytable.row.add([id, 'pkt1', '10.5']);
-        // mytable.draw();
-    });
+    
 </script>
 @endsection
 @include('app')

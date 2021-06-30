@@ -36,15 +36,9 @@ Diamond Purchase
                                 <tr>
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">Bar Code</th>
-                                    <th class="border-bottom-0">Wt</th>
+                                    <th class="border-bottom-0">Weight</th>
                                     {{-- <th>Package</th>--}}
-                                    <th class="border-bottom-0">Col</th>
-                                    <th class="border-bottom-0">Pc</th>
-                                    <th class="border-bottom-0">Shape</th>
-                                    <th class="border-bottom-0">Cla</th>
-                                    <th class="border-bottom-0">Exp pr</th>
-                                    <th class="border-bottom-0">Exp</th>
-                                    
+                                    <th class="border-bottom-0">Shape</th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,22 +55,7 @@ Diamond Purchase
                                                     {{ $value->d_wt }}
                                                 </td>
                                                 <td>
-                                                    {{ $value->d_col }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->d_pc }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->d_shape }}
-                                                </td>
-                                                <td>
-                                                   $ {{ $value->d_cla }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->d_exp_pr }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->d_exp }}
+                                                    {{ $value->Shape_Date->shape_name }}
                                                 </td>
                                                 
                                                {{-- <td>
