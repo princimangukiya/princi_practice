@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 08:40 PM
+-- Generation Time: Jul 01, 2021 at 09:49 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `diamond_managment`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_details`
+--
+
+CREATE TABLE `company_details` (
+  `c_id` int(15) NOT NULL,
+  `c_name` varchar(250) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company_details`
+--
+
+INSERT INTO `company_details` (`c_id`, `c_name`, `created_at`, `updated_at`) VALUES
+(1, 'VM JEWEL', NULL, NULL),
+(2, 'EKLINGJI', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53,6 +74,8 @@ INSERT INTO `diamond_shape` (`shape_id`, `shape_name`, `created_at`, `updated_at
 
 CREATE TABLE `d_purchase` (
   `d_id` int(15) NOT NULL,
+  `c_id` int(15) NOT NULL,
+  `s_id` int(15) NOT NULL,
   `d_barcode` varchar(150) NOT NULL,
   `d_wt` varchar(50) NOT NULL,
   `d_col` varchar(100) DEFAULT NULL,
@@ -71,19 +94,9 @@ CREATE TABLE `d_purchase` (
 -- Dumping data for table `d_purchase`
 --
 
-INSERT INTO `d_purchase` (`d_id`, `d_barcode`, `d_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `doReady`, `isReady`, `created_at`, `updated_at`) VALUES
-(2, '121212', '222', NULL, NULL, NULL, NULL, NULL, 1, 2, 1, '2021-06-30 04:43:41', '2021-06-30 13:01:58'),
-(5, '5555', '8888', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2021-06-30 05:07:03', '2021-06-30 05:07:03'),
-(6, '121212111', '8548', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 05:08:31', '2021-06-30 05:08:31'),
-(7, '11111111', '8888888', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2021-06-30 05:54:18', '2021-06-30 05:54:18'),
-(8, '55555', '888', NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, '2021-06-30 05:59:32', '2021-06-30 05:59:32'),
-(9, '1212121', '22', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:00:54', '2021-06-30 06:00:54'),
-(10, '8755', '65', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:01:09', '2021-06-30 06:01:09'),
-(12, '2525', '52', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:14:25', '2021-06-30 06:14:25'),
-(13, '3232', '32', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:15:43', '2021-06-30 06:15:43'),
-(14, '5554', '54', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2021-06-30 06:16:49', '2021-06-30 06:16:49'),
-(17, '87968', '96', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:24:11', '2021-06-30 06:24:11'),
-(18, '87969', '96', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-06-30 06:25:00', '2021-06-30 06:25:00');
+INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `doReady`, `isReady`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '121212', '25', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2021-07-01 14:11:50', '2021-07-01 14:17:15'),
+(2, 2, 2, 'hdhddh', '12', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2021-07-01 14:14:01', '2021-07-01 14:17:26');
 
 -- --------------------------------------------------------
 
@@ -109,6 +122,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `manager_details` (
   `m_id` int(10) NOT NULL,
+  `c_id` int(15) DEFAULT NULL,
   `m_name` varchar(50) NOT NULL,
   `m_address` varchar(500) NOT NULL,
   `m_phone` varchar(10) NOT NULL,
@@ -121,8 +135,8 @@ CREATE TABLE `manager_details` (
 -- Dumping data for table `manager_details`
 --
 
-INSERT INTO `manager_details` (`m_id`, `m_name`, `m_address`, `m_phone`, `m_email`, `created_at`, `updated_at`) VALUES
-(2, 'pk', 'pk', '8320576969', 'pk@gmail.com', '2021-06-26 03:08:37', '2021-06-26 03:10:20');
+INSERT INTO `manager_details` (`m_id`, `c_id`, `m_name`, `m_address`, `m_phone`, `m_email`, `created_at`, `updated_at`) VALUES
+(1, 2, 'pk', 'pk', '987458265', 'pk@gmail.com', '2021-07-01 13:39:10', '2021-07-01 13:39:10');
 
 -- --------------------------------------------------------
 
@@ -165,12 +179,21 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `ready_stock` (
   `r_id` int(15) NOT NULL,
+  `c_id` int(15) DEFAULT NULL,
   `m_id` int(15) NOT NULL,
   `d_id` int(15) NOT NULL,
   `d_barcode` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ready_stock`
+--
+
+INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '121212', '2021-07-01 14:17:15', '2021-07-01 14:17:15'),
+(2, 2, 1, 2, 'hdhddh', '2021-07-01 14:17:26', '2021-07-01 14:17:26');
 
 -- --------------------------------------------------------
 
@@ -180,6 +203,7 @@ CREATE TABLE `ready_stock` (
 
 CREATE TABLE `supplier_details` (
   `s_id` int(15) NOT NULL,
+  `c_id` int(15) DEFAULT NULL,
   `s_name` varchar(150) NOT NULL,
   `s_address` varchar(200) DEFAULT NULL,
   `s_gst` varchar(150) DEFAULT NULL,
@@ -191,8 +215,9 @@ CREATE TABLE `supplier_details` (
 -- Dumping data for table `supplier_details`
 --
 
-INSERT INTO `supplier_details` (`s_id`, `s_name`, `s_address`, `s_gst`, `created_at`, `updated_at`) VALUES
-(2, 'PARTH ENTERPRISE', 'MORBI', 'DERS659875WWER', '2021-06-23 01:17:11', '2021-06-23 02:35:54');
+INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `created_at`, `updated_at`) VALUES
+(1, 1, 'PARTH', 'MORBI', 'DERS659875WWER', '2021-07-01 13:33:56', '2021-07-01 13:35:10'),
+(2, 2, 'pk', 'pk', '784897rfgtg6498', '2021-07-01 14:09:22', '2021-07-01 14:09:22');
 
 -- --------------------------------------------------------
 
@@ -211,6 +236,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$UciKUhn6HK3fGVx1/d..o.ZkMop7iWyJjNTqjPYOaHcLIsf3okEFO', NULL, '2021-07-01 12:40:38', '2021-07-01 12:40:38');
+
 -- --------------------------------------------------------
 
 --
@@ -219,6 +251,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `working_stock` (
   `w_id` int(15) NOT NULL,
+  `c_id` int(15) DEFAULT NULL,
   `m_id` int(15) NOT NULL,
   `d_id` int(15) NOT NULL,
   `d_barcode` varchar(250) NOT NULL,
@@ -229,6 +262,12 @@ CREATE TABLE `working_stock` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `company_details`
+--
+ALTER TABLE `company_details`
+  ADD PRIMARY KEY (`c_id`);
 
 --
 -- Indexes for table `diamond_shape`
@@ -242,7 +281,8 @@ ALTER TABLE `diamond_shape`
 ALTER TABLE `d_purchase`
   ADD PRIMARY KEY (`d_id`),
   ADD UNIQUE KEY `diamond_barcode_unique` (`d_barcode`),
-  ADD KEY `shape_id` (`shape_id`);
+  ADD KEY `shape_id` (`shape_id`),
+  ADD KEY `c_id` (`c_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -256,7 +296,8 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `manager_details`
   ADD PRIMARY KEY (`m_id`),
-  ADD UNIQUE KEY `m_phone` (`m_phone`);
+  ADD UNIQUE KEY `m_phone` (`m_phone`),
+  ADD KEY `company_id` (`c_id`);
 
 --
 -- Indexes for table `migrations`
@@ -274,13 +315,15 @@ ALTER TABLE `password_resets`
 -- Indexes for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  ADD PRIMARY KEY (`r_id`);
+  ADD PRIMARY KEY (`r_id`),
+  ADD KEY `c_id` (`c_id`);
 
 --
 -- Indexes for table `supplier_details`
 --
 ALTER TABLE `supplier_details`
-  ADD PRIMARY KEY (`s_id`);
+  ADD PRIMARY KEY (`s_id`),
+  ADD KEY `c_id` (`c_id`);
 
 --
 -- Indexes for table `users`
@@ -293,11 +336,18 @@ ALTER TABLE `users`
 -- Indexes for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  ADD PRIMARY KEY (`w_id`);
+  ADD PRIMARY KEY (`w_id`),
+  ADD KEY `c_id` (`c_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `company_details`
+--
+ALTER TABLE `company_details`
+  MODIFY `c_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `diamond_shape`
@@ -309,7 +359,7 @@ ALTER TABLE `diamond_shape`
 -- AUTO_INCREMENT for table `d_purchase`
 --
 ALTER TABLE `d_purchase`
-  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -321,7 +371,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `manager_details`
 --
 ALTER TABLE `manager_details`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -333,7 +383,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `supplier_details`
@@ -345,13 +395,47 @@ ALTER TABLE `supplier_details`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `d_purchase`
+--
+ALTER TABLE `d_purchase`
+  ADD CONSTRAINT `d_purchase_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `manager_details`
+--
+ALTER TABLE `manager_details`
+  ADD CONSTRAINT `manager_details_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ready_stock`
+--
+ALTER TABLE `ready_stock`
+  ADD CONSTRAINT `ready_stock_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`);
+
+--
+-- Constraints for table `supplier_details`
+--
+ALTER TABLE `supplier_details`
+  ADD CONSTRAINT `supplier_details_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`);
+
+--
+-- Constraints for table `working_stock`
+--
+ALTER TABLE `working_stock`
+  ADD CONSTRAINT `working_stock_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
