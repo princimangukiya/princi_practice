@@ -273,20 +273,7 @@
         </div>
         
     </div>
-    <h4 class="page-title mb-0">Demo Table</h4>
-<table id="tblItems" class="table-responsive">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Packet Name</th>
-            <th>Weight</th>
-
-        </tr>
-    </thead>
-</table>
-
-<div id="result"></div>
-
+    
 </div>
 <!-- End Row-->
 
