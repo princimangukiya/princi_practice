@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('welcome');
+        // return view('home');
+    }
+    public function firstUser()
+    {
+        session(['c_id' => '1']);
+        return view('home');
+    }
+    public function SecondUser()
+    {
+        session(['c_id' => '2']);
         return view('home');
     }
 }

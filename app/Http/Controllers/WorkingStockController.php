@@ -17,17 +17,20 @@ use Illuminate\Validation\Rule;
 
 class WorkingStockController extends Controller
 {
+    
     public function index()
     {
         $data = array();
-        $data['working_stock'] = Working_Stock::with('Manager','Diamond')->get();
+        $c_id = session()->get('c_id');
+        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->with('Manager','Diamond')->get();
         return view('working_stock.index',$data);
     }
 
     public function create()
     {
+        $c_id =  session()->get('c_id');
         $data = array();
-        $data['manager'] = Manager_Details::get();
+        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
         return view('working_stock.given',$data);
     }
 
@@ -44,7 +47,8 @@ class WorkingStockController extends Controller
                 return Response::json(array('success' => false));
             }
             //dd($request);
-            $DiamondData = D_Purchase::where('d_barcode',$request->bar_code)->first();
+            $c_id = session()->get('c_id');
+            $DiamondData = D_Purchase::where('d_barcode',$request->bar_code)->where('c_id', $c_id)->first();
 
             if($DiamondData == null){
                 return Response::json(array('success' => 200));
@@ -53,6 +57,7 @@ class WorkingStockController extends Controller
                 $newitem = new Working_Stock();
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
+                $newitem->c_id = $c_id;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
     

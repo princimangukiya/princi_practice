@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 class ManagerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = array();
-        $data['manager'] = Manager_Details::get();
+        $c_id = session()->get('c_id');
+        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
         return view('manager_details.index',$data);
     }
 
@@ -40,22 +45,23 @@ class ManagerController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
-
+            $c_id = session()->get('c_id');
             $newitem = new Manager_Details();
+            $newitem->c_id = $c_id;
             $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
             $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
             $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
             $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
             $newitem->save();
 
-            return Redirect::to('/manager')->with($notification);
+            return Redirect::to('/manager');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Add!',
                 'alert-type' => 'success'
             );
 
-            return Redirect::to('/manager')->with($notification);
+            return Redirect::to('/manager');
         }
     }
 

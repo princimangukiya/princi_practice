@@ -67,6 +67,28 @@
                 
                 <div class="card-title font-weight-bold">Packate info:</div>
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Packate Supplier</label>
+                            <select id="s_id"  name="s_id" required class="form-control select2">
+                                <optgroup label="Supplier">
+                                    <option value="" disabled selected>Choose Supplier</option>
+                                    @if (count($supplier) > 0)
+                                        @foreach ($supplier as $value)
+                                            <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                        @endforeach
+                                    @endif
+                                </optgroup>
+                            </select>
+                            @error('s_id')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">BarCode Value </label>
@@ -95,7 +117,7 @@
                         </div>
                     </div>
                     --}}
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Packate Weight :-</label>
                             <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text" name="d_wt"  value="{{ old('d_wt') }}"  required>
@@ -277,6 +299,7 @@
         var barcode = $('#bar_code').val();
         var weight = $('#d_wt').val();
         var shape = $('#shape_id').val();
+        var s_id = $('#s_id').val();
         var shapevalue = $('#shape_id').find(":selected").text();
         //alert(barcode);
         //alert(weight);
@@ -297,13 +320,19 @@
                     'bar_code':barcode,
                     'd_wt':weight,
                     'shape_id':shape,
+                    's_id':s_id
                 },
                 dataType: 'json',
                 success:function(response_msg){
-                    alert(response_msg);
+                    //alert(response_msg.success);
                     if(response_msg.success != true){
                         alert("Something goes Wrong");
                         location.reload();
+                    }
+                    else{
+                        $('#bar_code').val('');
+                        $('#d_wt').val('');
+                        $('#shape_id').val('');
                     }
                 }
             });

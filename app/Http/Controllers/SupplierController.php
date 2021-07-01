@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = array();
-        $data['supplier'] = Supplier_Details::get();
+        $c_id = session()->get('c_id');
+        //dd($c_id);
+        $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
         return view('supplier_details.index',$data);
     }
 
@@ -40,20 +46,23 @@ class SupplierController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
+            
+            $c_id = session()->get('c_id');
             $newitem = new Supplier_Details();
             $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
+            $newitem->c_id = $c_id;
             $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
             $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
             $newitem->save();
 
-            return Redirect::to('/supplier')->with($notification);
+            return Redirect::to('/supplier');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Add!',
                 'alert-type' => 'success'
             );
 
-            return Redirect::to('/supplier')->with($notification);
+            return Redirect::to('/supplier');
         }
     }
 

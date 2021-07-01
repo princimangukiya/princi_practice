@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <form  action="{{ route('ready_stock.store') }}" method="POST" enctype="multipart/form-data">
+    <form  action="{{ route('diamond.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
     <div class="row">
         <div class="col-xl-3 col-lg-4">
@@ -44,6 +44,7 @@
                                     @enderror
                                 </div>
                             </div>
+                            {{--
                             @php
                         $manager = App\Models\Manager_Details::get();
                     @endphp
@@ -66,6 +67,45 @@
                                             {{ $message }}
                                         </div>
                                     </small>
+                                @enderror
+                            </div>
+                        </div>
+                        --}}
+                        @php
+                            $supplier = App\Models\Supplier_Details::get();
+                        @endphp
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Packate Supplier</label>
+                                <select id="s_id"  name="s_id" required class="form-control select2">
+                                    <optgroup label="Supplier">
+                                        <option value="" disabled selected>Choose Supplier</option>
+                                        @if (count($supplier) > 0)
+                                            @foreach ($supplier as $value)
+                                                <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('s_id')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Packate Weight :-</label>
+                                <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text" name="d_wt"  value="{{ old('d_wt') }}"  required>
+                                @error('d_wt')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
                                 @enderror
                             </div>
                         </div>
@@ -127,7 +167,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+                        --}}
                         @php
                             $shape = App\Models\diamond_shape::get();
                         @endphp

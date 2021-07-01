@@ -1,23 +1,25 @@
-@extends('layouts.app')
+
+@section('page-title')
+Dashboard
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title mb-0">Dashboard</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Dashboard</a></li>
+        </ol>
     </div>
+    
 </div>
+<!--End Page header-->
+                        <!-- Row -->
+
+<script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js')}}"></script>
+
+
 @endsection
+@include('app')
+

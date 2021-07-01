@@ -21,14 +21,16 @@ class ReadyStockController extends Controller
     public function index()
     {
         $data = array();
-        $data['ready_stock'] = Ready_Stock::with('Manager','Diamond')->get();
+        $c_id = session()->get('c_id');
+        $data['ready_stock'] = Ready_Stock::where('c_id', $c_id)->with('Manager','Diamond')->get();
         return view('ready_stock.index',$data);
     }
 
     public function create()
     {
         $data = array();
-        $data['manager'] = Manager_Details::get();
+        $c_id = session()->get('c_id');
+        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
         return view('ready_stock.return',$data);
     }
 
@@ -51,9 +53,11 @@ class ReadyStockController extends Controller
                 return Response::json(array('success' => 200));
             }
             else{
+                $c_id = session()->get('c_id');
                 $newitem = new Ready_Stock();
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
+                $newitem->c_id = $c_id;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
     
