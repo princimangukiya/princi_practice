@@ -14,7 +14,7 @@ Diamond Purchase
     </div>
     <div class="page-rightheader">
         <div class="btn btn-list">
-            <a href="{{ route('diamond.create') }}" class="btn btn-info"><i class="fa fa-user-plus mr-1"></i> Add New User </a>
+            <a href="{{ route('diamond.create') }}" class="btn btn-info"><i class="fa fa-user-plus mr-1"></i> Add New Diamond </a>
             
         </div>
     </div>
