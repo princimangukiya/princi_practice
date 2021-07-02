@@ -2,53 +2,109 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta content="VM Jewels Billing & Inventory Management System" name="description">
+    <meta content="VM Jewels Private Limited" name="author">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="keywords"
+        content="vm jewels, eklingji jewels, VM JEWELS, EKLINGJI JEWELS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Title -->
+    <title>VM Jewels Billing & Inventory Management System</title>
+
+    <!--Favicon -->
+    <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
+    <!--Bootstrap css -->
+    <link href="{{ asset('T3_Admin_Design/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .c_main {
+            margin: 160px auto;
+        }
+
+        .c_child {
+            display: flex;
+            justify-content: center;
+            margin: 0px 20px;
+        }
+
+        .leftCard,
+        .rightCard {
+            margin: 0px 20px;
+        }
+
+        .card-title111 {
+            color: darkcyan;
+        }
+
+        .btn111 {
+            background: #aa07fe;
+            color: white;
+        }
+
+        .fa-arrow-right111 {
+            padding-left: 10px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .c_main {
+                margin: 40px 40px;
+            }
+
+            .c_child {
+                display: block;
+            }
+
+            .leftCard,
+            .rightCard {
+                margin: 20px auto;
+            }
+
+        }
+
+    </style>
 </head>
 
-<body>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="card mx-auto" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="/VMJEWEL" class="btn btn-primary">Go somewhere</a>
+<body style="background: lavenderblush;">
+
+    <div class="c_main">
+        <div class="c_child">
+            <a href="/VMJEWEL">
+                <div class="leftCard">
+                    <div class="card" style="width: 18rem;">
+                        <img src="assets\images\company_logo\vmjewels.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <center>
+                                <h5 class="card-title card-title111">VM JEWELS</h5>
+                            </center>
+
+                            <center> <a href="/VMJEWEL" class="btn btn111">Explore<i
+                                        class="fa fa-arrow-right fa-arrow-right111" aria-hidden="true"></i></a></center>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card mx-auto" style="width: 18rem;">
-                <img class=" card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="/EKLINGJI" class="btn btn-primary">Go somewhere</a>
+            </a>
+            <a href="/EKLINGJI">
+                <div class="rightCard">
+                    <div class="card" style="width: 18rem;">
+                        <img src="assets\images\company_logo\eklingji_jewels.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <center>
+                                <h5 class="card-title card-title111 ">EKLINGJI JEWELS</h5>
+                            </center>
+
+                            <center><a href="/EKLINGJI" class="btn btn111">Explore<i
+                                        class="fa fa-arrow-right fa-arrow-right111" aria-hidden="true"></i></a>
+                            </center>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>
