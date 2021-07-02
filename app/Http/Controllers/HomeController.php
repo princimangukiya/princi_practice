@@ -28,12 +28,12 @@ class HomeController extends Controller
     }
     public function firstUser()
     {
-        session(['c_id' => '1']);
+        session(['c_id' => '1', 'c_name' => 'VMJEWELS', 'c_img_url' => 'assets/images/company_logo/vmjewels.jpeg']);
         return view('home');
     }
     public function SecondUser()
     {
-        session(['c_id' => '2']);
+        session(['c_id' => '2', 'c_name' => 'EKLINGJI JEWELS', 'c_img_url' => 'assets/images/company_logo/eklingji_jewels.png']);
         return view('home');
     }
 }
