@@ -2,20 +2,20 @@
 <aside class="app-sidebar">
     <div class="app-sidebar__logo">
         <a class="header-brand" href="index.html">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo.jpg')}}" class="header-brand-img desktop-lgo" alt="Admintro logo">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo1.jpg')}}" class="header-brand-img dark-logo" alt="Admintro logo">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="Admintro logo">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="Admintro logo">
+            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo.jpg')}}" class="header-brand-img desktop-lgo" alt="{{session('c_name')}}">
+            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo1.jpg')}}" class="header-brand-img dark-logo" alt="{{session('c_name')}}">
+            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="{{session('c_name')}}">
+            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="{{session('c_name')}}">
         </a>
     </div>
     <div class="app-sidebar__user">
         <div class="dropdown user-pro-body text-center">
             <div class="user-pic">
-                <img src="" alt="user-img" class="avatar-xl rounded-circle mb-1">
+                <img src="{{ asset(session("c_img_url")) }}" alt="user-img" class="avatar-xl rounded-circle mb-1">
             </div>
             <div class="user-info">
                 <h5 class=" mb-1"> <i class="ion-checkmark-circled  text-success fs-12"></i></h5>
-                <span class="text-muted app-sidebar__user-name text-sm">Web Designer</span>
+                <span class="text-muted app-sidebar__user-name text-sm">{{session('c_name')}}</span>
             </div>
         </div>
         <div class="sidebar-navs">
