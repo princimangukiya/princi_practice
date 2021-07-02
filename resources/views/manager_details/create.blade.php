@@ -59,7 +59,7 @@
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Manager Name </label>
-                            <input id="m_name" type="text" name="m_name" class="form-control" value="{{ old('m_name') }}" placeholder="Enter Manager Name">
+                            <input id="m_name" type="text" name="m_name" class="form-control" value="{{ old('m_name') }}" placeholder="Enter Manager Name" autofocus>
                             @error('m_name')
                                 <small class="errorTxt1">
                                     <div id="title-error" class="error" style="margin-left:3rem">
