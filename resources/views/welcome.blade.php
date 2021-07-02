@@ -37,11 +37,21 @@
 
         .card-title111 {
             color: darkcyan;
+            font-weight: 700;
         }
 
+        .card-title111:hover {}
+
         .btn111 {
-            background: #aa07fe;
+            background: #0c4d7b;
             color: white;
+        }
+
+        .btn111:hover {
+            background: #ffffff;
+            color: #0c4d7b;
+            text-decoration: none;
+            border: 2px #0c4d7b solid;
         }
 
         .fa-arrow-right111 {
