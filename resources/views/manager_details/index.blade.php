@@ -1,6 +1,5 @@
-
 @section('page-title')
-Supplier Details
+Manager Details
 @endsection
 
 @section('content')
@@ -15,12 +14,12 @@ Supplier Details
     <div class="page-rightheader">
         <div class="btn btn-list">
             <a href="{{ route('manager.create') }}" class="btn btn-info"><i class="fa fa-user-plus mr-1"></i> Add Manager </a>
-            
+
         </div>
     </div>
 </div>
 <!--End Page header-->
-                        <!-- Row -->
+<!-- Row -->
 <div class="row">
     <div class="col-12">
         <!--div-->
@@ -37,54 +36,53 @@ Supplier Details
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">Manager Name</th>
                                     <th class="border-bottom-0">Manager Address</th>
-                                    {{-- <th>Package</th>--}}
-                                    <th class="border-bottom-0">Manager Phone No.</th>                                    
-                                    <th class="border-bottom-0">Manager EmailID</th>                                    
-                                    <th class="border-bottom-0">Action</th>                                    
+                                    <th class="border-bottom-0">Manager Phone No.</th>
+                                    <th class="border-bottom-0">Manager EmailID</th>
+                                    <th class="border-bottom-0">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($manager as $key=>$value)
-                                            <tr>
-                                                
-                                                <td>
-                                                    {{ $key+1 }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->m_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->m_address }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->m_phone }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->m_email }}
-                                                </td>
-                                                <td class="align-middle">
-                                                    <a href="{{ route('manager.edit',['id'=>$value->m_id]) }}">
-                                                    <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
-                                                        <button class="btn btn-sm btn-success" type="button"><i class="fe fe-edit-2"></i></button>
-                                                    </div>
-                                                    </a>
-                                                    
-                                                    <form action="{{ route('manager.destroy', $value->m_id)}}" method="post">
-                                                        @csrf
-                                                        <div class="btn-group align-top">
-                                                            <button class="btn btn-sm btn-danger" >Delete</button>
-                                                            <button class="btn btn-sm btn-danger"><i class="fe fe-trash-2"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                               {{-- <td>
+                                <tr>
+
+                                    <td>
+                                        {{ $key+1 }}
+                                    </td>
+                                    <td>
+                                        {{ $value->m_name }}
+                                    </td>
+                                    <td>
+                                        {{ $value->m_address }}
+                                    </td>
+                                    <td>
+                                        {{ $value->m_phone }}
+                                    </td>
+                                    <td>
+                                        {{ $value->m_email }}
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="{{ route('manager.edit',['id'=>$value->m_id]) }}">
+                                            <div class="btn-group align-top">
+                                                <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                                                <button class="btn btn-sm btn-success" type="button"><i class="fe fe-edit-2"></i></button>
+                                            </div>
+                                        </a>
+
+                                        <form action="{{ route('manager.destroy', $value->m_id)}}" method="post">
+                                            @csrf
+                                            <div class="btn-group align-top">
+                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                                <button class="btn btn-sm btn-danger"><i class="fe fe-trash-2"></i></button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    {{-- <td>
                                                     <a href="{{ route('user.edit',['id'=>$user->id]) }}"><i class="fa fa-pencil">Edit</i></a>
-                                                    <a href="{{ route('user.view',['id'=>$user->id]) }}"><i class="zmdi zmdi-eye">View</i></a>
-                                                </td>--}}
-                                            </tr>
+                                    <a href="{{ route('user.view',['id'=>$user->id]) }}"><i class="zmdi zmdi-eye">View</i></a>
+                                    </td>--}}
+                                </tr>
                                 @endforeach
-                                        
+
                             </tbody>
                         </table>
                     </div>
@@ -93,7 +91,7 @@ Supplier Details
         </div>
         <!--/div-->
 
-        
+
     </div>
 </div>
 <!-- /Row -->
@@ -108,4 +106,3 @@ Supplier Details
 
 @endsection
 @include('app')
-
