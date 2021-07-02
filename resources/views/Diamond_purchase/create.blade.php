@@ -46,11 +46,13 @@
         {{-- <div class="col-xl-3 col-lg-4">
 
             <div id="camera"></div>
+
         </div> --}}
         <div class="col-xl-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Add New Diamond packet</div>
+
                 </div>
 
                 <div class="card-body">

@@ -25,10 +25,12 @@
         @csrf
         <div class="row">
 
+
             <div class="col-xl-9 col-lg-8">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Add New Supplier Details</div>
+
                     </div>
 
                     <div class="card-body">
