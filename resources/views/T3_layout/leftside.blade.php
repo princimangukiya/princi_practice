@@ -1,12 +1,12 @@
 
 <aside class="app-sidebar">
     <div class="app-sidebar__logo">
-        <a class="header-brand" href="index.html">
+        <!-- <a class="header-brand" href="index.html">
             <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img desktop-logo" alt="{{session('c_name')}}">
             <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img dark-logo" alt="{{session('c_name')}}">
             <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img mobile-logo" alt="{{session('c_name')}}">
             <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img darkmobile-logo" alt="{{session('c_name')}}">
-        </a>
+        </a> -->
     </div>
     <div class="app-sidebar__user">
         <div class="dropdown user-pro-body text-center">
