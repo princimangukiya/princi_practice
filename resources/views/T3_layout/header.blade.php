@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="d-flex">
             <a class="header-brand" href="index.html">
-                <img src="assets/images/brand/logo.png" class="header-brand-img desktop-lgo" alt="Admintro logo">
+                <img src="assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="Admintro logo">
                 <img src="assets/images/brand/logo1.png" class="header-brand-img dark-logo" alt="Admintro logo">
                 <img src="assets/images/brand/favicon.png" class="header-brand-img mobile-logo" alt="Admintro logo">
                 <img src="assets/images/brand/favicon1.png" class="header-brand-img darkmobile-logo" alt="Admintro logo">
@@ -40,7 +40,7 @@
                 <div class="dropdown profile-dropdown">
                     <a href="index-2.html#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                         <span>
-                            <img src="#" alt="img" class="avatar avatar-md brround">
+                            <img src="{{ asset(session("c_img_url")) }}" alt="img" class="avatar avatar-md brround">
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">

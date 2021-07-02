@@ -2,10 +2,10 @@
 <aside class="app-sidebar">
     <div class="app-sidebar__logo">
         <a class="header-brand" href="index.html">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo.jpg')}}" class="header-brand-img desktop-lgo" alt="{{session('c_name')}}">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/logo1.jpg')}}" class="header-brand-img dark-logo" alt="{{session('c_name')}}">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="{{session('c_name')}}">
-            <img src="{{asset('T3_Admin_Design/assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="{{session('c_name')}}">
+            <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img desktop-logo" alt="{{session('c_name')}}">
+            <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img dark-logo" alt="{{session('c_name')}}">
+            <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img mobile-logo" alt="{{session('c_name')}}">
+            <img src="{{ asset(session("c_img_url")) }}" class="header-brand-img darkmobile-logo" alt="{{session('c_name')}}">
         </a>
     </div>
     <div class="app-sidebar__user">
