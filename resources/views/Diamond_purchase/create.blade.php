@@ -92,7 +92,7 @@
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">BarCode Value </label>
-                            <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code">
+                            <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
                             @error('bar_code')
                                 <small class="errorTxt1">
                                     <div id="title-error" class="error" style="margin-left:3rem">
