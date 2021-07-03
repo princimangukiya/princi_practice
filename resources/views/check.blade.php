@@ -5,75 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="{{asset('T3_Admin_Design/assets/js/jquery.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('T3_Admin_Design/media/css/jquery.dataTables.min.css')}}">
-    <script src="{{asset('T3_Admin_Design/media/js/jquery.dataTables.min.js')}}"></script>
-
+    <meta content="VM Jewels Billing & Inventory Management System" name="description">
+    <meta content="VM Jewels Private Limited" name="author">
+    <meta name="keywords"
+        content="vm jewels, eklingji jewels, VM JEWELS, EKLINGJI JEWELS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
     <title> Barcode Scanning </title>
+    <!--Favicon -->
+    <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
+
+    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/media/css/jquery.dataTables.min.css') }}">
+    <script src="{{ asset('T3_Admin_Design/media/js/jquery.dataTables.min.js') }}"></script>
+
+
 </head>
 
 <body>
+    <form action="{{ route('diamond.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-xl-3 col-lg-4">
 
-    <table id="tblItems" class="table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Packet Name</th>
-                <th>Weight</th>
+                {{-- <div id="camera"></div> --}}
+            </div>
+            <div class="col-xl-9 col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Add New Diamond Packate</div>
+                    </div>
 
-            </tr>
-        </thead>
-    </table>
+                    <div class="card-body">
 
-    <div id="result"></div>
-    <div id="camera"></div>
+                        <div class="card-title font-weight-bold">Packate info:</div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">BarCode Value </label>
+                                        <input id="bar_code" type="text" name="bar_code" class="form-control"
+                                            value="{{ old('bar_code') }}" placeholder="Enter Bar Code">
+                                        @error('bar_code')
+                                            <small class="errorTxt1">
+                                                <div id="title-error" class="error" style="margin-left:3rem">
+                                                    {{ $message }}
+                                                </div>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @php
+                                    $supplier = App\Models\Supplier_Details::get();
+                                @endphp
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Packate Supplier</label>
+                                        <select id="s_id" name="s_id" required class="form-control select2">
+                                            <optgroup label="Supplier">
+                                                <option value="" disabled selected>Choose Supplier</option>
+                                                @if (count($supplier) > 0)
+                                                    @foreach ($supplier as $value)
+                                                        <option value="{{ $value->s_id }}">{{ $value->s_name }}
+                                                        </option>
+                                                    @endforeach
+                                                @endif
+                                            </optgroup>
+                                        </select>
+                                        @error('s_id')
+                                            <small class="errorTxt1">
+                                                <div id="title-error" class="error" style="margin-left:3rem">
+                                                    {{ $message }}
+                                                </div>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Packate Weight :-</label>
+                                        <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text"
+                                            name="d_wt" value="{{ old('d_wt') }}" required>
+                                        @error('d_wt')
+                                            <small class="errorTxt1">
+                                                <div id="title-error" class="error" style="margin-left:3rem">
+                                                    {{ $message }}
+                                                </div>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <button type="submit" name="button" class="btn  btn-primary">Submit</button>
 
-    <script src="{{asset('T3_Admin_Design/assets/js/quagga.min.js')}}"></script>
 
-    <script>
-        var id;
-        var mytable
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera') // Or '#yourElement' (optional)
-            },
-            decoder: {
-                readers: ["code_128_reader"]
-            }
-        }, function(err) {
-            if (err) {
-                console.log(err);
-                return
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-        });
+                                @php
+                                    $shape = App\Models\diamond_shape::get();
+                                @endphp
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Packate Shape</label>
+                                        <select id="shape_id" name="shape_id" required class="form-control select2">
+                                            <optgroup label="Shapes">
+                                                <option value="" disabled selected>Choose Diamond Shape</option>
+                                                @if (count($shape) > 0)
+                                                    @foreach ($shape as $shapevalue)
+                                                        <option value="{{ $shapevalue->shape_id }}">
+                                                            {{ $shapevalue->shape_name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </optgroup>
+                                        </select>
+                                        @error('shape_id')
+                                            <small class="errorTxt1">
+                                                <div id="title-error" class="error" style="margin-left:3rem">
+                                                    {{ $message }}
+                                                </div>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                                <a href="#" class="btn btn-danger">Cancle</a>
+                            </div>
 
-        Quagga.onDetected(function(data) {
-            console.log(data.codeResult.code);
-            id = data.codeResult.code;
-            document.querySelector('#result').innerText = data.codeResult.code;
+                        </div>
 
-            mytable.row.add([id, 'pkt1', '10.5']);
-            mytable.draw();
-        });
-
-        $(document).ready(function() {
-            mytable = $('#tblItems').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip'
-            });
-            // mytable.row.add([id, 'pkt1', '10.5']);
-            // mytable.draw();
-        });
-    </script>
+                    </div>
 
 </body>
 
