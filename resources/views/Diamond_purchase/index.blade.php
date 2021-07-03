@@ -35,6 +35,7 @@
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
+                                        <th class="border-bottom-0">Party Name</th>
                                         <th class="border-bottom-0">Bar Code</th>
                                         <th class="border-bottom-0">Weight</th>
                                         {{-- <th>Package</th> --}}
@@ -49,13 +50,16 @@
                                                 {{ $key + 1 }}
                                             </td>
                                             <td>
+                                                {{ $value->supplier->s_name }}
+                                            </td>
+                                            <td>
                                                 {{ $value->d_barcode }}
                                             </td>
                                             <td>
                                                 {{ $value->d_wt }}
                                             </td>
                                             <td>
-                                                {{ $value->Shape_Date->shape_name }}
+                                                {{ $value->shapeDate->shape_name }}
                                             </td>
 
                                         </tr>
