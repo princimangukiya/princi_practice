@@ -108,34 +108,6 @@
     <script>
         var id;
         var mytable
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera') // Or '#yourElement' (optional)
-            },
-            decoder: {
-                readers: ["code_128_reader"]
-            }
-        }, function(err) {
-            if (err) {
-                console.log(err);
-                return
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-        });
-
-        Quagga.onDetected(function(data) {
-            console.log(data.codeResult.code);
-            id = data.codeResult.code;
-            $('#bar_code').val(id);
-            document.querySelector('#result').innerText = data.codeResult.code;
-
-            mytable.row.add([id, 'pkt1', '10.5']);
-            mytable.draw();
-        });
-
         $(document).ready(function() {
             mytable = $('#tblItems').DataTable({
                 "paging": true,
