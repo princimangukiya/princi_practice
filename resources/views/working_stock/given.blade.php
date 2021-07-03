@@ -21,7 +21,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <h4><label class="form-label">Select Manager :-</label></h4>
-                <select id="m_id" name="m_id" required class="form-control select2">
+                <select id="m_id" name="m_id" required class="form-control select2" required>
                     <optgroup label="Managers">
                         <option value="" disabled selected>Choose Manager</option>
                         @if (count($manager) > 0)
@@ -93,6 +93,7 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
+    var id, mytable;
         $(document).ready(function() {
             mytable = $('#tblItemShow').DataTable({
                 "paging": true,
@@ -109,12 +110,13 @@
     </script>
     <script>
         function addTOManager(id) {
-            alert(id);
+            // alert(id);
             var barcode = $('#bar_code').val();
             var m_id = $('#m_id').val();
             var manager_name = $('#m_id').find(":selected").text();
-            alert(barcode);
-            alert(m_id);
+
+            // alert(barcode);
+            // alert(m_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -129,7 +131,7 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    alert(response_msg);
+                    // alert(response_msg);
                     if (response_msg.success == 200) {
                         alert("Barcode Is Not Valid");
                         //location.reload();
@@ -138,58 +140,12 @@
                         mytable.draw();
 
                     } else {
-                        alert('Enter Valid Data');
+                        alert('Please, Fill all the fields!');
                     }
 
                 }
             });
         }
-    </script>
-    <script>
-        var id;
-        var mytable
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera') // Or '#yourElement' (optional)
-            },
-            decoder: {
-                readers: ["code_128_reader"]
-            }
-        }, function(err) {
-            if (err) {
-                console.log(err);
-                return
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-        });
-
-        Quagga.onDetected(function(data) {
-            console.log(data.codeResult.code);
-            id = data.codeResult.code;
-            $('#bar_code').val(id);
-            document.querySelector('#result').innerText = data.codeResult.code;
-
-            AddToManager(id);
-            // mytable.row.add([id, 'pkt1', '10.5']);
-            //mytable.draw();
-        });
-
-        $(document).ready(function() {
-            mytable = $('#tblItemShow').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip'
-            });
-            // mytable.row.add([id, 'pkt1', '10.5']);
-            // mytable.draw();
-        });
     </script>
 
 @endsection
