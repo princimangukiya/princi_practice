@@ -96,12 +96,12 @@ Diamond Return
 </script>
 <script>
     function addTOManager(id){
-        alert(id);
+        // alert(id);
         var barcode = $('#bar_code').val();
         var m_id = $('#m_id').val();
         var manager_name = $('#m_id').find(":selected").text();
-        alert(barcode);
-        alert(m_id);
+        // alert(barcode);
+        // alert(m_id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

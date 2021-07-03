@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Supplier Name </label>
                                     <input id="s_name" type="text" name="s_name" class="form-control"
-                                        value="{{ old('s_name') }}" placeholder="Enter Supplier Name">
+                                        value="{{ old('s_name') }}" placeholder="Enter Supplier Name" autofocus>
                                     @error('s_name')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">

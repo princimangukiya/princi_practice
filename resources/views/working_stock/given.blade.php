@@ -65,7 +65,7 @@
                 <div style="display: flex;">
                     <div class="col-8">
                         <input id="bar_code" type="text" name="bar_code" class="form-control"
-                            value="{{ old('bar_code') }}" placeholder="Enter Bar Code">
+                            value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
                         @error('bar_code')
                             <small class="errorTxt1">
                                 <div id="title-error" class="error" style="margin-left:3rem">
