@@ -117,13 +117,17 @@ Diamond Return
                 success: function(response_msg) {
                     // alert(response_msg.success);
                     if (response_msg.success == 200) {
-                        alert("Barcode or Manager Is Not Valid");
+                        alert("Please, choose the right manager!");
                         //location.reload();
                     } else if (response_msg.success == true) {
                         mytable.row.add([manager_name, barcode]);
                         mytable.draw();
-                    } else if(response_msg.success == 200){
-                        alert('not valid');
+                        $('#bar_code').val('');
+                        $('#bar_code').focus();
+                    } else if(response_msg.success == 403){
+                        alert('Something Went Wrong!');
+                    }else if(response_msg.success == 404){
+                        alert('Your Barcode is not valid!');
                     }
                      else {
                         alert('Please, Fill all the fields!');
