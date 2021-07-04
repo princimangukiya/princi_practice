@@ -37,43 +37,43 @@ class ReadyStockController extends Controller
     public function store(Request $request)
     {
 
-        // try {
-        $validator = Validator::make($request->all(), [
-            'bar_code' => 'required|unique:Ready_Stock,d_barcode',
-            'm_id' => 'required',
+        try {
+            $validator = Validator::make($request->all(), [
+                'bar_code' => 'required',
+                'm_id' => 'required',
 
-        ]);            //dd($request);
-        if ($validator->fails()) {
-            return Response::json(array('success' => false));
-        }
-        //dd($request);
-        $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
-
-        if ($DiamondData == null) {
-            return Response::json(array('success' => 200));
-        } else if ($DiamondData->m_id != $request->m_id) {
-            return Response::json(array('success' => 200));
-        } else {
-            $c_id = session()->get('c_id');
-            $newitem = new Ready_Stock();
-            $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
-            $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
-            $newitem->c_id = $c_id;
-            $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
-            $newitem->save();
-
-            $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['doReady' => $request->m_id, 'isReady' => 1]);
-            if ($dPurchaseData != null) {
-                $stockdelete = Working_Stock::find($DiamondData->w_id);
-                $stockdelete->delete();
-                return Response::json(array('success' => true));
-            } else {
-                return Response::json(array('success' => 404));
+            ]);            //dd($request);
+            if ($validator->fails()) {
+                return Response::json(array('success' => false));
             }
-        }
-        /* } catch (\Throwable $th) {
+            //dd($request);
+            $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
+
+            if ($DiamondData == null) {
+                return Response::json(array('success' => 404));
+            } else if ($DiamondData->m_id != $request->m_id) {
+                return Response::json(array('success' => 200));
+            } else {
+                $c_id = session()->get('c_id');
+                $newitem = new Ready_Stock();
+                $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
+                $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
+                $newitem->c_id = $c_id;
+                $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
+                $newitem->save();
+
+                $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1]);
+                if ($dPurchaseData != null) {
+                    $stockdelete = Working_Stock::find($DiamondData->w_id);
+                    $stockdelete->delete();
+                    return Response::json(array('success' => true));
+                } else {
+                    return Response::json(array('success' => 403));
+                }
+            }
+        } catch (\Throwable $th) {
             return Response::json(array('success' => false));
-        }*/
+        }
     }
 
     // supplier delete
