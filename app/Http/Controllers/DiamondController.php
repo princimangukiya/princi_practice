@@ -21,8 +21,6 @@ class DiamondController extends Controller
         $c_id = session()->get('c_id');
         $data = array();
         $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate', 'supplier')->get();
-        $data['shapeDate'] = [];
-        $data['supplier'] = [];
         return view('Diamond_purchase.index', $data);
     }
 
