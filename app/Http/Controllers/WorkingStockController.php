@@ -17,13 +17,13 @@ use Illuminate\Validation\Rule;
 
 class WorkingStockController extends Controller
 {
-    
+
     public function index()
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->with('Manager','Diamond')->get();
-        return view('working_stock.index',$data);
+        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->with('Manager', 'Diamond')->get();
+        return view('working_stock.index', $data);
     }
 
     public function create()
@@ -31,15 +31,15 @@ class WorkingStockController extends Controller
         $c_id =  session()->get('c_id');
         $data = array();
         $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
-        return view('working_stock.given',$data);
+        return view('working_stock.given', $data);
     }
 
     public function store(Request $request)
     {
-        
+
         try {
             $validator = Validator::make($request->all(), [
-                'bar_code' => 'required|unique:Working_Stock,d_barcode',
+                'bar_code' => 'required',
                 'm_id' => 'required',
 
             ]);            //dd($request);
@@ -48,21 +48,23 @@ class WorkingStockController extends Controller
             }
             //dd($request);
             $c_id = session()->get('c_id');
-            $DiamondData = D_Purchase::where('d_barcode',$request->bar_code)->where('c_id', $c_id)->first();
+            $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
 
-            if($DiamondData == null){
+            if ($DiamondData == null) {
+                return Response::json(array('success' => 404));
+            } else if ($DiamondData->doReady != null) {
                 return Response::json(array('success' => 200));
-            }
-            else{
+            } else {
                 $newitem = new Working_Stock();
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
                 $newitem->c_id = $c_id;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
-    
+
+                D_Purchase::where('d_id', $DiamondData->d_id)->update(['doReady' => $request->m_id]);
                 return Response::json(array('success' => true));
-            }   
+            }
         } catch (\Throwable $th) {
             return Response::json(array('success' => false));
         }
@@ -80,6 +82,5 @@ class WorkingStockController extends Controller
         );
 
         return Redirect::to('/working_stock')->with($notification);
-
     }
 }
