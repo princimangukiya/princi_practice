@@ -208,6 +208,8 @@
                             $('#bar_code').val('');
                             $('#d_wt').val('');
                             $('#shape_id').val('');
+                            $('#bar_code').focus();
+
                         } else if (response_msg.success == 200) {
                             alert("Barcode already exist!");
                             // $('#bar_code').val('');
