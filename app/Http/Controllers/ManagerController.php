@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+
 class ManagerController extends Controller
 {
     public function __construct()
@@ -22,7 +24,7 @@ class ManagerController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
-        return view('manager_details.index',$data);
+        return view('manager_details.index', $data);
     }
 
     public function create()
@@ -32,36 +34,46 @@ class ManagerController extends Controller
 
     public function store(Request $request)
     {
-        
         try {
             $validator = Validator::make($request->all(), [
                 'm_name' => 'required',
                 'm_address' => 'required',
-                'm_email' => 'required|email',
-                'm_phone' => 'required|unique:Manager_Details,m_phone',
+                'm_email' => 'required|email|unique:Manager_Details,m_email',
+                'm_phone' => 'required',
 
             ]);
-            //dd($request);
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
-            $c_id = session()->get('c_id');
-            $newitem = new Manager_Details();
-            $newitem->c_id = $c_id;
-            $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
-            $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
-            $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
-            $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
-            $newitem->save();
+            //dd($request);
+            // if ($validator->fails()) {
+            //     return Response::json(array('success' => false));
+            // }
+            // $managerData = Manager_Details::where('m_phone', $request->m_phone)->first();
 
-            return Redirect::to('/manager');
+            // if ($managerData == null) {
+                $c_id = session()->get('c_id');
+                $newitem = new Manager_Details();
+                $newitem->c_id = $c_id;
+                $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
+                $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
+                $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
+                $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
+                $newitem->save();
+
+                // return Response::json(array('success' => true));
+                return Redirect::to('/manager');
+            // } else {
+            //     return Response::json(array('success' => 200));
+            // }
         } catch (\Throwable $th) {
             $notification = array(
-                'message' => 'User can`t Add!',
+                'message' => 'Suppiler can`t Add!',
                 'alert-type' => 'success'
             );
 
             return Redirect::to('/manager');
+            // return Response::json(array('success' => false));
         }
     }
 
@@ -70,7 +82,7 @@ class ManagerController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['manager']=Manager_Details::findOrFail($id);
+        $data['manager'] = Manager_Details::findOrFail($id);
         return view('manager_details.edit', $data);
     }
 
@@ -96,10 +108,9 @@ class ManagerController extends Controller
             $newitem['m_email'] = !empty($request->m_email) ? $request->m_email : '';
             $newitem['m_phone'] = !empty($request->m_phone) ? $request->m_phone : '';
 
-            Manager_Details::where('m_id',$id)->update($newitem);
+            Manager_Details::where('m_id', $id)->update($newitem);
 
             return Redirect::to('/manager')->with($notification);
-        
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
@@ -122,6 +133,5 @@ class ManagerController extends Controller
         );
 
         return Redirect::to('/manager')->with($notification);
-
     }
 }

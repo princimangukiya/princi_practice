@@ -18,7 +18,7 @@
         </div>
     </div>
     <!--End Page header-->
-    <form action="{{ route('manager.store') }}" method="POST" enctype="multipart/form-data">
+    <form id="addManagerForm" action="{{ route('manager.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Manager Name </label>
                                     <input id="m_name" type="text" name="m_name" class="form-control"
-                                        value="{{ old('m_name') }}" placeholder="Enter Manager Name" autofocus>
+                                        value="{{ old('m_name') }}" placeholder="Enter Manager Name" autofocus required>
                                     @error('m_name')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -93,10 +93,9 @@
 
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                        <button name="action" class="btn  btn-primary">Submit</button>
                         <a href="#" class="btn btn-danger">Cancle</a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -121,6 +120,43 @@
             // mytable.row.add([id, 'pkt1', '10.5']);
             // mytable.draw();
         });
+
+    //     $("#addManagerForm").submit(function(e) {
+    //       alert("calling");
+    //       var mName = $('#m_name').val();
+    //       var mAddress = $('#m_address').val();
+    //       var mPhone = $('#m_phone').val();
+    //       var mEmail = $('#m_email').val();
+         
+    //       $.ajaxSetup({
+    //           headers: {
+    //               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //           }
+    //       });
+    //       $.ajax({
+    //           type: 'POST',
+    //           url: '{{route('manager.store')}}',
+    //           data: {
+    //               'm_name': mName,
+    //               'm_address': mAddress,
+    //               'm_phone': mPhone,
+    //               'm_email': mEmail
+    //           },
+    //           dataType: 'json',
+    //           success: function(response_msg) {
+    //               // alert(response_msg.success);
+    //               if (response_msg.success == 200) {
+    //                   alert("Phone Number Already Exist!");
+    //                   //location.reload();
+    //               } else if (response_msg.success == true) {
+    //                   window.location.replace('/manager');
+    //               } else {
+    //                   alert('Please, Fill all the fields!');
+    //               }
+
+    //           }
+    //       });
+    //   });
     </script>
 @endsection
 @include('app')
