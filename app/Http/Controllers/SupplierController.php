@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class SupplierController extends Controller
 {
@@ -23,7 +24,7 @@ class SupplierController extends Controller
         $c_id = session()->get('c_id');
         //dd($c_id);
         $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
-        return view('supplier_details.index',$data);
+        return view('supplier_details.index', $data);
     }
 
     public function create()
@@ -33,29 +34,38 @@ class SupplierController extends Controller
 
     public function store(Request $request)
     {
-        
+
         try {
             $validator = Validator::make($request->all(), [
                 's_name' => 'required',
                 's_address' => 'required',
-                's_gst' => 'required|unique:Supplier_Details,s_gst',
-
+                's_gst' => 'required|unique:Supplier_Details,s_gst'
             ]);
             //dd($request);
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
-            
-            $c_id = session()->get('c_id');
-            $newitem = new Supplier_Details();
-            $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
-            $newitem->c_id = $c_id;
-            $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
-            $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
-            $newitem->save();
+            // if ($validator->fails()) {
+            //     return Response::json(array('success' => false));
+            // }
 
-            return Redirect::to('/supplier');
+            // $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
+
+            // if ($suppilerData == null) {
+                $c_id = session()->get('c_id');
+                $newitem = new Supplier_Details();
+                $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
+                $newitem->c_id = $c_id;
+                $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
+                $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
+                $newitem->save();
+
+                return Redirect::to('/supplier');
+                // return Response::json(array('success' => true));
+            // } else {
+            //     return Response::json(array('success' => 200));
+            // }
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Add!',
@@ -63,6 +73,7 @@ class SupplierController extends Controller
             );
 
             return Redirect::to('/supplier');
+            // return Response::json(array('success' => false));
         }
     }
 
@@ -71,7 +82,7 @@ class SupplierController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['supplier']=Supplier_Details::findOrFail($id);
+        $data['supplier'] = Supplier_Details::findOrFail($id);
         return view('supplier_details.edit', $data);
     }
 
@@ -96,10 +107,9 @@ class SupplierController extends Controller
             $newitem['s_address'] = !empty($request->s_address) ? $request->s_address : '';
             $newitem['s_gst'] = !empty($request->s_gst) ? $request->s_gst : '';
 
-            Supplier_Details::where('s_id',$id)->update($newitem);
+            Supplier_Details::where('s_id', $id)->update($newitem);
 
             return Redirect::to('/supplier')->with($notification);
-        
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
@@ -122,6 +132,5 @@ class SupplierController extends Controller
         );
 
         return Redirect::to('/supplier')->with($notification);
-
     }
 }
