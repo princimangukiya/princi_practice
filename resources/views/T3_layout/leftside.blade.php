@@ -49,7 +49,11 @@
     <ul class="side-menu app-sidebar3">
         <li class="side-item side-item-category mt-4">Main</li>
         <li class="slide">
-            <a class="side-menu__item" href="#">
+            @php
+                $company = trim(Session::get('dashboard'));
+                
+            @endphp
+            <a class="side-menu__item" href="/{{ $company }}">
 
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">

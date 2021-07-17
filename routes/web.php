@@ -44,7 +44,6 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/working_stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
     Route::get('/working_stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
     Route::post('/working_stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
-    Route::post('/working_stock/getWeight', 'App\Http\Controllers\WorkingStockController@getWeight')->name('working_stock.getWeight');
     Route::post('/working_stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
 
     //ready_stock
