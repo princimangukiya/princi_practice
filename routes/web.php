@@ -44,6 +44,7 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/working_stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
     Route::get('/working_stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
     Route::post('/working_stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
+    Route::post('/working_stock/getWeight', 'App\Http\Controllers\WorkingStockController@getWeight')->name('working_stock.getWeight');
     Route::post('/working_stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
 
     //ready_stock
@@ -52,7 +53,13 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/ready_stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
     Route::post('/ready_stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
 
-    
+
+    //sell_stock
+    Route::get('/sell_stock', 'App\Http\Controllers\SellStockController@index')->name('sell_stock');
+    Route::get('/sell_stock/create', 'App\Http\Controllers\SellStockController@create')->name('sell_stock.create');
+    Route::post('/sell_stock/store', 'App\Http\Controllers\SellStockController@store')->name('sell_stock.store');
+    Route::post('/sell_stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
+
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
