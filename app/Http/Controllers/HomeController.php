@@ -42,7 +42,7 @@ class HomeController extends Controller
     }
     public function firstUser()
     {
-        session(['c_id' => '1', 'c_name' => 'VMJEWELS', 'dashboard' => 'VMJEWELS', 'c_img_url' => 'assets/images/company_logo/vmjewels.jpeg']);
+        session(['c_id' => '1', 'c_name' => 'VMJEWELS', 'dashboard' => 'VMJEWEL', 'c_img_url' => 'assets/images/company_logo/vmjewels.jpeg']);
         $data = array();
         $data['totalManager'] = Count(Manager_Details::where('c_id','1')->get());
         $data['totalSupplier'] = Count(Supplier_Details::where('c_id','1')->get());
