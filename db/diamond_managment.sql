@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2021 at 09:49 PM
+-- Generation Time: Jul 19, 2021 at 11:32 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -78,6 +78,7 @@ CREATE TABLE `d_purchase` (
   `s_id` int(15) NOT NULL,
   `d_barcode` varchar(150) NOT NULL,
   `d_wt` varchar(50) NOT NULL,
+  `d_n_wt` varchar(50) DEFAULT NULL,
   `d_col` varchar(100) DEFAULT NULL,
   `d_pc` varchar(50) DEFAULT NULL,
   `d_exp_pr` varchar(50) DEFAULT NULL,
@@ -86,6 +87,7 @@ CREATE TABLE `d_purchase` (
   `shape_id` int(20) NOT NULL,
   `doReady` int(15) DEFAULT NULL,
   `isReady` tinyint(1) DEFAULT NULL,
+  `isReturn` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,9 +96,9 @@ CREATE TABLE `d_purchase` (
 -- Dumping data for table `d_purchase`
 --
 
-INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `doReady`, `isReady`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, '121212', '25', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2021-07-01 14:11:50', '2021-07-01 14:17:15'),
-(2, 2, 2, 'hdhddh', '12', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, '2021-07-01 14:14:01', '2021-07-01 14:17:26');
+INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `doReady`, `isReady`, `isReturn`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '121212', '25', '25', NULL, NULL, NULL, NULL, NULL, 1, 1, 0, NULL, '2021-07-01 14:11:50', '2021-07-17 12:03:52'),
+(2, 2, 2, 'hdhddh', '12', '25.62', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, '2021-07-01 14:14:01', '2021-07-17 12:10:42');
 
 -- --------------------------------------------------------
 
@@ -171,6 +173,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('admin@gmail.com', '$2y$10$iu9w73RXoYdIiBcAlFtnluB5Qv718FQm7yaRw.rW0pkyIsvSPtPA2', '2021-07-17 05:37:15');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +191,7 @@ CREATE TABLE `ready_stock` (
   `c_id` int(15) DEFAULT NULL,
   `m_id` int(15) NOT NULL,
   `d_id` int(15) NOT NULL,
+  `d_n_wt` varchar(50) DEFAULT NULL,
   `d_barcode` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -191,9 +201,31 @@ CREATE TABLE `ready_stock` (
 -- Dumping data for table `ready_stock`
 --
 
-INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, '121212', '2021-07-01 14:17:15', '2021-07-01 14:17:15'),
-(2, 2, 1, 2, 'hdhddh', '2021-07-01 14:17:26', '2021-07-01 14:17:26');
+INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(3, 2, 1, 2, '25.62', 'hdhddh', '2021-07-17 12:10:42', '2021-07-17 12:10:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sell_stock`
+--
+
+CREATE TABLE `sell_stock` (
+  `sell_id` int(15) NOT NULL,
+  `c_id` int(15) DEFAULT NULL,
+  `s_id` int(15) NOT NULL,
+  `d_id` int(15) NOT NULL,
+  `d_barcode` varchar(250) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sell_stock`
+--
+
+INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 1, '121212', '2021-07-17 11:23:42', '2021-07-17 11:23:42');
 
 -- --------------------------------------------------------
 
@@ -260,6 +292,13 @@ CREATE TABLE `working_stock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `working_stock`
+--
+
+INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(3, 2, 1, 1, '121212', '2021-07-17 12:03:52', '2021-07-17 12:03:52');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -316,6 +355,13 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `ready_stock`
   ADD PRIMARY KEY (`r_id`),
+  ADD KEY `c_id` (`c_id`);
+
+--
+-- Indexes for table `sell_stock`
+--
+ALTER TABLE `sell_stock`
+  ADD PRIMARY KEY (`sell_id`),
   ADD KEY `c_id` (`c_id`);
 
 --
@@ -383,7 +429,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `sell_stock`
+--
+ALTER TABLE `sell_stock`
+  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier_details`
@@ -401,7 +453,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -424,6 +476,12 @@ ALTER TABLE `manager_details`
 --
 ALTER TABLE `ready_stock`
   ADD CONSTRAINT `ready_stock_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`);
+
+--
+-- Constraints for table `sell_stock`
+--
+ALTER TABLE `sell_stock`
+  ADD CONSTRAINT `sell_stock_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`);
 
 --
 -- Constraints for table `supplier_details`
