@@ -95,12 +95,12 @@ Sell Diamond
     </script>
     <script>
         function addTOManager(id) {
-             alert(id);
+            //  alert(id);
             var barcode = $('#bar_code').val();
             var s_id = $('#s_id').val();
             var manager_name = $('#s_id').find(":selected").text();
             // alert(barcode);
-             alert(s_id);
+            //  alert(s_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
