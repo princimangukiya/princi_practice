@@ -207,7 +207,7 @@
                             mytable.draw();
                             $('#bar_code').val('');
                             $('#d_wt').val('');
-                            $('#shape_id').val('');
+                            // $('#shape_id').val('');
                             $('#bar_code').focus();
 
                         } else if (response_msg.success == 200) {

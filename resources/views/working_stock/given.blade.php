@@ -18,6 +18,7 @@ Diamond Give
     <div class="card-header">
         <div class="card-title">Give To Manager</div>
     </div>
+    <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <h4><label class="form-label">Select Manager :-</label></h4>
@@ -39,8 +40,9 @@ Diamond Give
             </small>
             @enderror
         </div>
+        
     </div>
-
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
@@ -59,9 +61,9 @@ Diamond Give
 
 <!-- /Row -->
 <div class="row">
-    <div class="col-sm-8 col-md-8">
+    <div class="col-sm-6 col-md-6">
         <div class="form-group">
-            <label class="form-label">BarCode Value </label>
+            <label class="form-label"> &nbsp &nbsp BarCode Value </label>
             <div style="display: flex;">
                 <div class="col-8">
                     <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
@@ -79,9 +81,7 @@ Diamond Give
             </div>
         </div>
     </div>
-    <div class="col-sm-4 col-md-4">
-
-    </div>
+    
 
 
 
@@ -106,6 +106,7 @@ Diamond Give
         // mytable.draw();
     });
 </script>
+
 <script>
     function addTOManager(id) {
         // alert(id);
@@ -113,7 +114,7 @@ Diamond Give
         var m_id = $('#m_id').val();
         var manager_name = $('#m_id').find(":selected").text();
 
-        // alert(barcode);
+        
         // alert(m_id);
         $.ajaxSetup({
             headers: {

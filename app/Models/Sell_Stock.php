@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Sell_Stock extends Model
+{
+    protected $table = "sell_stock";
+    protected $primaryKey = "sell_id";
+    protected $fillable=['s_id', 'd_id', 'd_barcode'];
+
+    public function Supplier()
+    {
+        return $this->belongsTo('App\Models\supplier_details', 's_id');
+    }
+
+    public function Diamond()
+    {
+        return $this->belongsTo('App\Models\D_Purchase', 'd_id');
+    }
+}

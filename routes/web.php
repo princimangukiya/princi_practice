@@ -51,7 +51,13 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/ready_stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
     Route::post('/ready_stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
 
-    
+
+    //sell_stock
+    Route::get('/sell_stock', 'App\Http\Controllers\SellStockController@index')->name('sell_stock');
+    Route::get('/sell_stock/create', 'App\Http\Controllers\SellStockController@create')->name('sell_stock.create');
+    Route::post('/sell_stock/store', 'App\Http\Controllers\SellStockController@store')->name('sell_stock.store');
+    Route::post('/sell_stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
+
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

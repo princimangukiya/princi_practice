@@ -1,14 +1,14 @@
 @section('page-title')
-Diamond Return
+Sell Diamond
 @endsection
 
 @section('content')
 <div class="page-header">
     <div class="page-leftheader">
-        <h4 class="page-title mb-0">Diamond Return From Manager</h4>
+        <h4 class="page-title mb-0">Sell Diamond </h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Return From Manager List</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Sell Diamond List</a></li>
         </ol>
     </div>
 </div>
@@ -16,23 +16,22 @@ Diamond Return
 <!-- Row -->
 <div class="card">
     <div class="card-header">
-        <div class="card-title">Return From Manager</div>
+        <div class="card-title">Sell Diamond</div>
     </div>
-    <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <h4><label class="form-label">Select Manager :-</label></h4>
-            <select id="m_id" name="m_id" required class="form-control select2">
-                <optgroup label="Managers">
-                    <option value="" disabled selected>Choose Manager</option>
-                    @if (count($manager) > 0)
-                    @foreach ($manager as $value)
-                    <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+            <h4><label class="form-label">Select Company :-</label></h4>
+            <select id="s_id" name="s_id" required class="form-control select2">
+                <optgroup label="Company">
+                    <option value="" disabled selected>Choose Company</option>
+                    @if (count($supplier) > 0)
+                    @foreach ($supplier as $value)
+                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                     @endforeach
                     @endif
                 </optgroup>
             </select>
-            @error('m_id')
+            @error('s_id')
             <small class="errorTxt1">
                 <div id="title-error" class="error" style="margin-left:3rem">
                     {{ $message }}
@@ -41,31 +40,13 @@ Diamond Return
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label class="form-label">Enter New Weight </label>
-            <div style="display: flex;">
-                <div class="col-8">
-                    <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}" placeholder="Enter New Weight">
-                    @error('bar_code')
-                    <small class="errorTxt1">
-                        <div id="title-error" class="error" style="margin-left:3rem">
-                            {{ $message }}
-                        </div>
-                    </small>
-                    @enderror
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    </div>
+
     <div class="card-body">
         <div class="table-responsive">
             <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
                 <thead>
                     <tr>
-                        <th class="border-bottom-0">Manager Name</th>
+                        <th class="border-bottom-0">Company Name</th>
                         <th class="border-bottom-0">Bar Code</th>
                     </tr>
                 </thead>
@@ -114,13 +95,12 @@ Diamond Return
     </script>
     <script>
         function addTOManager(id) {
-            // alert(id);
+            //  alert(id);
             var barcode = $('#bar_code').val();
-            var m_id = $('#m_id').val();
-            var d_n_wt = $('#d_n_wt').val();
-            var manager_name = $('#m_id').find(":selected").text();
+            var s_id = $('#s_id').val();
+            var manager_name = $('#s_id').find(":selected").text();
             // alert(barcode);
-            // alert(m_id);
+            //  alert(s_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -128,17 +108,16 @@ Diamond Return
             });
             $.ajax({
                 type: 'POST',
-                url: '{{route('ready_stock.store')}}',
+                url: '{{route('sell_stock.store')}}',
                 data: {
                     'bar_code': barcode,
-                    'm_id': m_id,
-                    'd_n_wt':d_n_wt
+                    's_id': s_id
                 },
                 dataType: 'json',
                 success: function(response_msg) {
                     // alert(response_msg.success);
                     if (response_msg.success == 200) {
-                        alert("Please, choose the right manager!");
+                        alert("Please, choose the right company!");
                         //location.reload();
                     } else if (response_msg.success == true) {
                         mytable.row.add([manager_name, barcode]);

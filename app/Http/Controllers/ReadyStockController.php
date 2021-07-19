@@ -41,6 +41,7 @@ class ReadyStockController extends Controller
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
                 'm_id' => 'required',
+                'd_n_wt' => 'required',
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -58,11 +59,12 @@ class ReadyStockController extends Controller
                 $newitem = new Ready_Stock();
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
+                $newitem->d_n_wt = !empty($request->d_n_wt) ? $request->d_n_wt : '';
                 $newitem->c_id = $c_id;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
-                $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1]);
+                $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1, 'd_n_wt' => $request->d_n_wt]);
                 if ($dPurchaseData != null) {
                     $stockdelete = Working_Stock::find($DiamondData->w_id);
                     $stockdelete->delete();

@@ -1,20 +1,20 @@
 @section('page-title')
-    Ready Stock
+    Sell Stock
 @endsection
 
 @section('content')
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Ready Stock</h4>
+            <h4 class="page-title mb-0">Sell Stock</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Ready Stock List</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Sell Stock List</a></li>
             </ol>
         </div>
         <div class="page-rightheader">
             <div class="btn btn-list">
-                <a href="{{ route('ready_stock.create') }}" class="btn btn-info"><i class="fa fa-user-plus mr-1"></i>
-                    Return Diamond From Manager </a>
+                <a href="{{ route('sell_stock.create') }}" class="btn btn-info"><i class="fa fa-user-plus mr-1"></i>
+                    Sell Diamond </a>
 
             </div>
         </div>
@@ -26,7 +26,7 @@
             <!--div-->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Ready Stock Data</div>
+                    <div class="card-title">Sell Stock Data</div>
                 </div>
                 <div class="card-body">
                     <div class="">
@@ -35,28 +35,28 @@
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Manager Name</th>
+                                        <th class="border-bottom-0">Supplier Name</th>
                                         <th class="border-bottom-0">Bar Code</th>
-                                        <th class="border-bottom-0">New Weight</th>
+                                        <th class="border-bottom-0">Weight</th>
                                         {{-- <th>Package</th> --}}
                                         <th class="border-bottom-0">Shape</th>
                                         <th class="border-bottom-0">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($ready_stock as $key => $value)
+                                    @foreach ($sell_stock as $key => $value)
                                         <tr>
                                             <td>
                                                 {{ $key + 1 }}
                                             </td>
                                             <td>
-                                                {{ $value->Manager->m_name }}
+                                                {{ $value->Supplier->s_name }}
                                             </td>
                                             <td>
                                                 {{ $value->Diamond->d_barcode }}
                                             </td>
                                             <td>
-                                                {{ $value->Diamond->d_n_wt }}
+                                                {{ $value->Diamond->d_wt }}
                                             </td>
                                             @php
                                                 $shape = App\Models\Diamond_Shape::where('shape_id', $value->Diamond->shape_id)->first();
@@ -65,7 +65,7 @@
                                                 {{ $shape->shape_name }}
                                             </td>
                                             <td>
-                                                <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
+                                                <form action="{{ route('sell_stock.destroy', $value->sell_id) }}"
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
