@@ -50,7 +50,7 @@ class SellStockController extends Controller
             }
             //dd($request);
             $DiamondData = Ready_Stock::where('d_barcode', $request->bar_code)->first();
-            $d_purchse = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            $d_purchse = D_Purchase::where('d_barcode', $request->bar_code)->where('isReady', 1)->first();
             if ($DiamondData == null && $d_purchse == null) {
                 return Response::json(array('success' => 404));
             } else if ($d_purchse->s_id != $request->s_id) {
