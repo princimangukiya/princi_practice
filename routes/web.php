@@ -13,7 +13,6 @@ use App\Http\Controllers as Controllers;
 |
 */
 
-
 Route::get('/check', function () {
     return view('check');
 });

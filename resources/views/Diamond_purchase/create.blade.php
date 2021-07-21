@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         @php
-                            $shape = App\Models\diamond_shape::get();
+                            $shape = App\Models\Diamond_Shape::get();
                         @endphp
                         <div class="col-md-6">
                             <div class="form-group">
