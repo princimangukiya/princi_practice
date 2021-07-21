@@ -81,7 +81,7 @@
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                        <a href="#" class="btn btn-danger">Cancle</a>
+                        <a href="/supplier" class="btn btn-danger">Cancle</a>
                     </div>
 
                 </div>
