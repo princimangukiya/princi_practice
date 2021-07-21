@@ -7,7 +7,7 @@ use App\Models\Working_Stock;
 use App\Models\Ready_Stock;
 use App\Models\Sell_Stock;
 use App\Models\Manager_Details;
-use App\Models\supplier_details;
+use App\Models\Supplier_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
