@@ -39,7 +39,7 @@ class DiamondController extends Controller
                 'bar_code' => 'required',
                 'd_wt' => 'required',
                 'shape_id' => 'required',
-                's_id' => 'required'
+                's_id' => 'required' 
 
             ]);            //dd($request);
             if ($validator->fails()) {

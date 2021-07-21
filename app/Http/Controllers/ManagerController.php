@@ -95,7 +95,7 @@ class ManagerController extends Controller
                 'm_name' => 'required',
                 'm_address' => 'required',
                 'm_email' => 'required|email',
-                'm_phone' => 'required',
+                'm_phone' => 'required|unique:manager_details,m_phone',
 
             ]);            //dd($request);
             if ($validator->fails()) {
