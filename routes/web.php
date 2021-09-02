@@ -58,6 +58,14 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/sell_stock/store', 'App\Http\Controllers\SellStockController@store')->name('sell_stock.store');
     Route::post('/sell_stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
 
+    //rate_master 
+    Route::get('/rate_master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
+    Route::get('/rate_master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
+    Route::post('/rate_master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
+    Route::get('/rate_master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
+    Route::post('/rate_master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
+    Route::post('/rate_master/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

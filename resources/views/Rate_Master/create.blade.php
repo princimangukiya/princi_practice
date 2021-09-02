@@ -9,18 +9,18 @@
 
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Add Supplier Details</h4>
+            <h4 class="page-title mb-0">Add Rate Details</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Supplier List</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Add Supplier</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Rate List</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Add Rate</a></li>
             </ol>
         </div>
     </div>
     <!--End Page header-->
 
     <div id="result"></div>
-    <form action="{{ route('supplier.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('rate_master.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -28,20 +28,48 @@
             <div class="col-xl-9 col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Add New Supplier Details</div>
+                        <div class="card-title">Add New Rate Details</div>
 
                     </div>
 
                     <div class="card-body">
 
-                        <div class="card-title font-weight-bold">Supplier info:</div>
+                        <div class="card-title font-weight-bold">Rate info:</div>
                         <div class="row">
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Supplier Name </label>
-                                    <input id="s_name" type="text" name="s_name" class="form-control"
-                                        value="{{ old('s_name') }}" placeholder="Enter Supplier Name" autofocus>
-                                    @error('s_name')
+                                    <h4><label class="form-label">Select Company :-</label></h4>
+                                    <select id="c_id" name="c_id" required class="form-control select2">
+                                        <optgroup label="Company">
+                                            <option value="" disabled selected>Choose Company</option>
+                                            {{-- @if (count($supplier) > 0) --}}
+                                            {{-- @foreach ($supplier as $value) --}}
+                                            <option value="ALOKEMPEX">ALOKEMPEX</option>
+                                            {{-- @endforeach --}}
+                                            {{-- @endif --}}
+                                        </optgroup>
+                                    </select>
+                                    @error('s_id')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4><label class="form-label">Select Rate :-</label></h4>
+                                    <select id="Rate" name="Rate1" required class="form-control select2">
+                                        <optgroup label="Rate">
+                                            <option value="" disabled selected>Choose Rate</option>
+                                            <option value="0.010-0.209">0.010-0.209</option>
+                                            <option value="0.210-0.409">0.210-0.409</option>
+                                            <option value="0.410-5.000">0.410-5.000</option>
+                                        </optgroup>
+                                    </select>
+                                    @error('s_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
@@ -52,24 +80,10 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Supplier Address</label>
-                                    <input id="s_address" type="text" name="s_address" class="form-control"
-                                        value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required>
-                                    @error('s_address')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Supplier Gst :-</label>
-                                    <input placeholder="Enter Supplier Gst" class="form-control" id="s_gst" type="text"
-                                        name="s_gst" value="{{ old('s_gst') }}" required>
-                                    @error('s_gst')
+                                    <label class="form-label">Labour :-</label>
+                                    <input placeholder="Enter Your price" class="form-control" id="price" type="text"
+                                        name="price" value="{{ old('price') }}" required>
+                                    @error('price')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}

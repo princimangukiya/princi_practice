@@ -109,7 +109,11 @@ class SupplierController extends Controller
             $newitem['s_gst'] = !empty($request->s_gst) ? $request->s_gst : '';
 
             Supplier_Details::where('s_id', $id)->update($newitem);
-
+            $notification = array(
+                'message' => 'User Updated!',
+                'alert-type' => 'success'
+            );
+    
             return Redirect::to('/supplier')->with($notification);
         } catch (\Throwable $th) {
             $notification = array(
