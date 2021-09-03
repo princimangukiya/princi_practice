@@ -36,12 +36,12 @@
                                     <tr>
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">0.010-0.209</th>
+                                        <th class="border-bottom-0">Rate</th>
                                         {{-- <th>Package</th> --}}
-                                        <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th>
+                                        {{-- <th class="border-bottom-0">0.210-0.409</th>
+                                        <th class="border-bottom-0">0.410-5.000</th> --}}
 
-                                        <th class="border-bottom-0">Labour</th>
+                                        <th class="border-bottom-0">Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,14 +55,14 @@
                                                 {{ $value->company_name }}
                                             </td>
                                             <td>
-                                                {{ $value->c_id }}
+                                                {{ $value->Rate }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $value->Price }}
                                             </td>
                                             <td>
                                                 {{ $value->Price }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{ $value->Price }}
                                             </td>
