@@ -64,7 +64,19 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/rate_master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
     Route::get('/rate_master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
     Route::post('/rate_master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
-    Route::post('/rate_master/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+    Route::post('/rate_master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+
+    //Report 
+    Route::get('/Report', 'App\Http\Controllers\ReportController@index')->name('Report');
+
+        //All Report
+    Route::get('/Inward_Outward', 'App\Http\Controllers\ReportController@Inward_Outward')->name('Inward_Outward');
+    Route::get('/Inward_Outward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF')->name('Inward_Outward.genratePDF');
+    Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
+    Route::get('/Party_Labour/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Party_Labour')->name('Party_Labour.genratePDF');
+
+    //Daimond Trecker
+    Route::get('/Daimond_tracker', 'App\Http\Controllers\Daimond_tacker_Controller@index')->name('Daimond_tracker');
 
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);

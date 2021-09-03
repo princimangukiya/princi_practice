@@ -36,20 +36,25 @@
 
                         <div class="card-title font-weight-bold">Rate info:</div>
                         <div class="row">
+                            @php
+                                $rate = App\Models\supplier_details::get();
+                            @endphp
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <h4><label class="form-label">Select Company :-</label></h4>
-                                    <select id="c_id" name="c_id" required class="form-control select2">
-                                        <optgroup label="Company">
-                                            <option value="" disabled selected>Choose Company</option>
-                                            {{-- @if (count($supplier) > 0) --}}
-                                            {{-- @foreach ($supplier as $value) --}}
-                                            <option value="ALOKEMPEX">ALOKEMPEX</option>
-                                            {{-- @endforeach --}}
-                                            {{-- @endif --}}
+                                    <label class="form-label">packet Supplier</label>
+                                    <select id="s_id" name="s_id" required class="form-control select2">
+                                        <optgroup label="Supplier">
+                                            <option value="" disabled selected>Choose Supplier</option>
+                                            @if (count($rate) > 0)
+                                                @foreach ($rate as $value)
+                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                                    {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
+
+                                                @endforeach
+                                            @endif
                                         </optgroup>
                                     </select>
-                                    @error('s_id')
+                                    @error('Rate_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
@@ -61,7 +66,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h4><label class="form-label">Select Rate :-</label></h4>
-                                    <select id="Rate" name="Rate1" required class="form-control select2">
+                                    <select id="Rate" name="Rate" required class="form-control select2">
                                         <optgroup label="Rate">
                                             <option value="" disabled selected>Choose Rate</option>
                                             <option value="0.010-0.209">0.010-0.209</option>
@@ -69,7 +74,7 @@
                                             <option value="0.410-5.000">0.410-5.000</option>
                                         </optgroup>
                                     </select>
-                                    @error('s_id')
+                                    @error('Rate_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
@@ -78,31 +83,32 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Labour :-</label>
-                                    <input placeholder="Enter Your price" class="form-control" id="price" type="text"
-                                        name="price" value="{{ old('price') }}" required>
-                                    @error('price')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Labour :-</label>
+                                <input placeholder="Enter Your price" class="form-control" id="price" type="text"
+                                    name="price" value="{{ old('price') }}" required>
+                                @error('price')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
                             </div>
-
                         </div>
 
                     </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                        <a href="/supplier" class="btn btn-danger">Cancle</a>
-                    </div>
 
                 </div>
+                <div class="card-footer text-right">
+                    <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                    <a href="/supplier" class="btn btn-danger">Cancle</a>
+                </div>
+
             </div>
+        </div>
         </div>
         <!-- End Row-->
     </form>

@@ -136,6 +136,6 @@ class SupplierController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect::to('/supplier')->with($notification);
+        return Redirect::to('/rate_master')->with($notification);
     }
 }

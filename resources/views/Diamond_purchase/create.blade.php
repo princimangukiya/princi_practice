@@ -99,8 +99,8 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">packet Weight :-</label>
-                                <input placeholder="Enter packet Wt" class="form-control" id="d_wt" type="text" name="d_wt"
-                                    value="{{ old('d_wt') }}" required>
+                                <input placeholder="Enter packet Wt" class="form-control" id="d_wt" type="text"
+                                    name="d_wt" value="{{ old('d_wt') }}" required>
                                 @error('d_wt')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">

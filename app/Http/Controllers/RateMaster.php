@@ -18,7 +18,7 @@ class RateMaster extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['supplier'] = rate_master::where('c_id', $c_id)->get();
+        $data['supplier'] = rate_master::where('s_id', $c_id)->get();
         return view('Rate_Master.index', $data);
     }
     public function create()
@@ -46,10 +46,10 @@ class RateMaster extends Controller
         //     // $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
 
         //     // if ($suppilerData == null) {
-                $c_id = session()->get('c_id');
+                $s_id = session()->get('s_id');
                 $newrate = new rate_master();
-                $newrate->c_id = $c_id;
-                $newrate->Rate = !empty($request->Rate1) ? $request->Rate1 : '';
+                $newrate->s_id = !empty($request->s_id) ? $request->s_id : '';
+                $newrate->Rate = !empty($request->Rate) ? $request->Rate : '';
                 $newrate->price = !empty($request->price) ? $request->price : '';
                 $newrate->save();
                 // echo $newrate;

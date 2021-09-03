@@ -44,7 +44,7 @@
                                         <th class="border-bottom-0">Price</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @foreach ($supplier as $key => $value)
                                         <tr>
 
@@ -62,7 +62,7 @@
                                             </td>
                                             <td>
                                                 {{ $value->Price }}
-                                            </td> --}}
+                                            </td> --}
                                             <td>
                                                 {{ $value->Price }}
                                             </td>
@@ -90,7 +90,7 @@
                                         </tr>
                                     @endforeach
 
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>
