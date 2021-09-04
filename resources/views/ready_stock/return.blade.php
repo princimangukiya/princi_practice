@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-4">
-                    <div class="form-group">
+                    <div class="form-group" style="padding: 36px">
                         <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
                             class="btn  btn-primary">Submit</button>
                     </div>
@@ -69,7 +69,6 @@
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
-                        {{-- <div class="col-10"> --}}
                         <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
                             placeholder="Enter New Weight">
                         @error('bar_code')
@@ -79,7 +78,6 @@
                                 </div>
                             </small>
                         @enderror
-                        {{-- </div> --}}
 
                     </div>
                 </div>
@@ -88,7 +86,6 @@
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
-                        {{-- <div class="col-10"> --}}
                         <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
                             placeholder="Enter New Weight">
                         @error('bar_code')
@@ -98,7 +95,6 @@
                                 </div>
                             </small>
                         @enderror
-                        {{-- </div> --}}
 
                     </div>
                 </div>
@@ -109,7 +105,6 @@
                 <div class="form-group">
                     <label class="form-label">Enter New Weight :- </label>
                     <div style="display: flex;">
-                        {{-- <div class="col-10"> --}}
                         <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
                             placeholder="Enter New Weight">
                         @error('bar_code')
@@ -119,7 +114,6 @@
                                 </div>
                             </small>
                         @enderror
-                        {{-- </div> --}}
 
                     </div>
                 </div>
