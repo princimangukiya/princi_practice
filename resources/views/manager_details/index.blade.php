@@ -29,7 +29,7 @@
                     <div class="card-title">Manager Details</div>
                 </div>
                 <div class="card-body">
-                    <div class="">
+                    <div class="___class_+?17___">
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Party LabourReport</title>
+    <title>Outward Report</title>
 </head>
 
 <body>

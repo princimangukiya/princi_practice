@@ -63,15 +63,22 @@
                                     @enderror
                                 </div>
                             </div>
+                            @php
+                                $rates = App\Models\rate::get();
+                            @endphp
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <h4><label class="form-label">Select Rate :-</label></h4>
-                                    <select id="Rate" name="Rate" required class="form-control select2">
+                                    <select id="r_id" name="r_id" required class="form-control select2">
                                         <optgroup label="Rate">
                                             <option value="" disabled selected>Choose Rate</option>
-                                            <option value="0.010-0.209">0.010-0.209</option>
-                                            <option value="0.210-0.409">0.210-0.409</option>
-                                            <option value="0.410-5.000">0.410-5.000</option>
+                                            @if (count($rates) > 0)
+                                                @foreach ($rates as $value)
+                                                    <option value="{{ $value->r_id }}">{{ $value->Rates }}</option>
+                                                    {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
+
+                                                @endforeach
+                                            @endif
                                         </optgroup>
                                     </select>
                                     @error('Rate_id')
@@ -104,7 +111,7 @@
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                    <a href="/supplier" class="btn btn-danger">Cancle</a>
+                    <a href="/rate_master" class="btn btn-danger">Cancle</a>
                 </div>
 
             </div>

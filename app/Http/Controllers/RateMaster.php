@@ -17,8 +17,8 @@ class RateMaster extends Controller
     {
 
         $data = array();
-        $c_id = session()->get('c_id');
-        $data['supplier'] = rate_master::where('s_id', $c_id)->get();
+        $r_id = session()->get('c_id');
+        $data['supplier'] = rate_master::where('s_id', $r_id)->get();
         return view('Rate_Master.index', $data);
     }
     public function create()
@@ -34,39 +34,37 @@ class RateMaster extends Controller
         //         'price' => 'required|unique:supplier_details,price',
 
         //     ]);
-        //     //dd($request);
+        //     dd($request);
         //     if ($validator->fails()) {
         //         return redirect()->back()->withErrors($validator)->withInput($request->all());
         //     }
 
-        //     // if ($validator->fails()) {
-        //     //     return Response::json(array('success' => false));
-        //     // }
+        //     if ($validator->fails()) {
+        //         return Response::json(array('success' => false));
+        //     }
 
-        //     // $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
+        //     $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
 
-        //     // if ($suppilerData == null) {
+        //     if ($suppilerData == null) {
                 $s_id = session()->get('s_id');
                 $newrate = new rate_master();
                 $newrate->s_id = !empty($request->s_id) ? $request->s_id : '';
-                $newrate->Rate = !empty($request->Rate) ? $request->Rate : '';
+                $newrate->r_id = !empty($request->r_id) ? $request->r_id : '';
                 $newrate->price = !empty($request->price) ? $request->price : '';
                 $newrate->save();
                 // echo $newrate;
-
                 return Redirect::to('/rate_master');
-        //         // return Response::json(array('success' => true));
-        //     // } else {
-        //     //     return Response::json(array('success' => 200));
-        //     // }
+        //         return Response::json(array('success' => true));
+        //     } else {
+        //         return Response::json(array('success' => 200));
+        //     }
         // } catch (\Throwable $th) {
         //     $notification = array(
         //         'message' => 'Rate can`t Add!',
         //         'alert-type' => 'success'
         //     );
-
             // return Redirect::to('/rate_master');
-        //     // return Response::json(array('success' => false));
+            // return Response::json(array('success' => false));
         // }
     }
     public function edit($id)
@@ -93,7 +91,7 @@ class RateMaster extends Controller
 
             $newitem = array();
             // $newitem['s_name'] = !empty($request->C_name) ? $request->s_name : '';
-            $newitem['Rate'] = !empty($request->Rate) ? $request->Rate : '';
+            $newitem['r_id'] = !empty($request->r_id) ? $request->r_id : '';
             $newitem['Price'] = !empty($request->Price) ? $request->Price : '';
 
             rate_master::where('Rate_id', $id)->update($newitem);

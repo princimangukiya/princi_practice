@@ -20,13 +20,12 @@
         </div>
     </div>
     <!--End Page header-->
-    <!-- Row -->
     <div class="row">
         <div class="col-12">
             <!--div-->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Rate Details</div>
+                    <div class="card-title">Rates Details</div>
                 </div>
                 <div class="card-body">
                     <div class="___class_+?17___">
@@ -36,12 +35,10 @@
                                     <tr>
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">Rate</th>
-                                        {{-- <th>Package</th> --}}
-                                        {{-- <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
-
-                                        <th class="border-bottom-0">Price</th>
+                                        <th class="border-bottom-0">0.010-0.209</th>
+                                        <th class="border-bottom-0">0.210-0.409</th>
+                                        <th class="border-bottom-0">0.410-5.000</th>
+                                        <th class="border-bottom-0"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,14 +52,11 @@
                                                 {{ $value->s_id }}
                                             </td>
                                             <td>
-                                                {{ $value->Rate }}
-                                            </td>
-                                            {{-- <td>
-                                                {{ $value->Price }}
+                                                {{ $value->r_id }}
                                             </td>
                                             <td>
-                                                {{ $value->Price }}
-                                            </td> --}}
+                                                {{ $value->r_id }}
+                                            </td>
                                             <td>
                                                 {{ $value->Price }}
                                             </td>

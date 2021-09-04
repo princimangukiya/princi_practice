@@ -29,17 +29,20 @@
                     <div class="card-title">Ready Stock Data</div>
                 </div>
                 <div class="card-body">
-                    <div class="">
+                    <div class="___class_+?17___">
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Manager Name</th>
+                                        <th class="border-bottom-0">Party Supplier</th>
                                         <th class="border-bottom-0">Bar Code</th>
+                                        <th class="border-bottom-0">Old Weight</th>
                                         <th class="border-bottom-0">New Weight</th>
                                         {{-- <th>Package</th> --}}
                                         <th class="border-bottom-0">Shape</th>
+                                        <th class="border-bottom-0">Price</th>
                                         <th class="border-bottom-0">Delete</th>
                                     </tr>
                                 </thead>

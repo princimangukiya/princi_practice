@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Report</title>
+    <title>Inward Report</title>
 </head>
 
 <body>

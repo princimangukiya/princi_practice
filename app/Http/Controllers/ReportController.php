@@ -23,23 +23,40 @@ class ReportController extends Controller
     }
 
     //Genrate PDF
-    //All Report genrate PDF
-    public function Inward_Outward()
+    //Inward genrate PDF
+    public function Inward()
     {
-        return view('Report.Inward_Outward');
+        return view('Report.Inward');
     }
-    public function genratePDF()
+    public function genratePDF_Inward()
    {
        $data = [
-           'title' => 'Inward_Outward Report',
+           'title' => 'Inward Report',
            'date' => date('m/d/Y')
        ];
          
-       $pdf = PDF::loadView('Report.Inward_Outward_Formatte', $data);
+       $pdf = PDF::loadView('Report.Inward_Formatte', $data);
    
-       return $pdf->download('Inward_Outward.pdf');
+       return $pdf->download('Inward.pdf');
        
    }
+//Outward PDF Genratte
+   public function Outward()
+   {
+       return view('Report.Outward');
+   }
+   public function genratePDF_Outward()
+  {
+      $data = [
+          'title' => 'Outward Report',
+          'date' => date('m/d/Y')
+      ];
+        
+      $pdf = PDF::loadView('Report.Outward_Formatte', $data);
+  
+      return $pdf->download('Outward.pdf');
+      
+  }
 
    //Party_Labour Genrate PDF
    public function Party_Labour()

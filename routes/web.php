@@ -69,9 +69,15 @@ Route::group(['middleware'=>'auth'], function () {
     //Report 
     Route::get('/Report', 'App\Http\Controllers\ReportController@index')->name('Report');
 
-        //All Report
-    Route::get('/Inward_Outward', 'App\Http\Controllers\ReportController@Inward_Outward')->name('Inward_Outward');
-    Route::get('/Inward_Outward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF')->name('Inward_Outward.genratePDF');
+    //Inword
+    Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
+    Route::get('/Inward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Inward')->name('Inward.genratePDF');
+
+    //OutWard
+    Route::get('/Outward', 'App\Http\Controllers\ReportController@Outward')->name('Inward_Outward');
+    Route::get('/Outward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Outward')->name('Outward.genratePDF');
+
+    //Party Labour
     Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
     Route::get('/Party_Labour/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Party_Labour')->name('Party_Labour.genratePDF');
 

@@ -13,8 +13,7 @@
         </div>
         <div class="page-rightheader">
             <div class="btn btn-list">
-                <a href="{{ route('Inward_Outward.genratePDF') }}" class="btn btn-info"><i
-                        class="fa fa-download mr-1"></i>
+                <a href="{{ route('Outward.genratePDF') }}" class="btn btn-info"><i class="fa fa-download mr-1"></i>
                     Downloade PDF </a>
 
             </div>
