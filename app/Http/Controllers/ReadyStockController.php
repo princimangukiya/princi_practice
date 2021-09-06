@@ -31,6 +31,8 @@ class ReadyStockController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
+        // $data['manager']= Ready_Stock::join('d_purchase', 'ready_stock.d_barcode', '=', 'd_purchase.d_barcode')
+        //         ->get(['ready_stock.*', 'd_purchase.*']);
         return view('ready_stock.return', $data);
     }
 

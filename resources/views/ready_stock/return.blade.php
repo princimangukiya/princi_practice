@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
-                        <input id="d_wt" type="text" name="d_wt" class="form-control" value="{{ $value->d_wt }}"
+                        <input id="d_wt" type="text" name="d_wt" class="form-control" value=""
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
-                        <input id="Price" type="text" name="Price" class="form-control" value="{{ $value->d_wt }}"
+                        <input id="Price" type="text" name="Price" class="form-control" value=""
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -118,8 +118,24 @@
                     </div>
                 </div>
             </div>
-        </div>
+            {{-- <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Date :- </label>
+                    <div style="display: flex;">
+                        <input id="date" type="text" name="date" class="form-control" value="{{ old('date') }}"
+                            placeholder="Date">
+                        @error('bar_code')
+                            <small class="errorTxt1">
+                                <div id="title-error" class="error" style="margin-left:3rem">
+                                    {{ $message }}
+                                </div>
+                            </small>
+                        @enderror
 
+                    </div>
+                </div>
+            </div> --}}
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">

@@ -28,7 +28,7 @@
                     <div class="card-title">Rates Details</div>
                 </div>
                 <div class="card-body">
-                    <div class="___class_+?17___">
+                    <div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
@@ -41,16 +41,18 @@
                                         @foreach ($rate as $value)
                                             <th class="border-bottom-0">{{ $value->Rates }}</th>
                                         @endforeach
-
-
                                         {{-- <th class="border-bottom-0">0.010-0.209</th>
                                         <th class="border-bottom-0">0.210-0.409</th>
                                         <th class="border-bottom-0">0.410-5.000</th> --}}
-                                        <th class="border-bottom-0"></th>
+                                        <th class="border-bottom-0">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        echo $supplier;
+                                    @endphp
                                     @foreach ($supplier as $key => $value)
+
                                         <tr>
 
                                             <td>
