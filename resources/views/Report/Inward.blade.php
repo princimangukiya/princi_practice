@@ -12,39 +12,6 @@
             </ol>
         </div>
 
-        <div class="mt-1">
-            <form class="form-inline">
-                <div class="search-element">
-                    <input type="search" class="form-control header-search" placeholder="Search…" aria-label="Search"
-                        tabindex="1">
-                    <button class="btn btn-primary-color" type="submit">
-                        <svg class="header-icon search-icon" x="1008" y="1248" viewBox="0 0 24 24" height="100%"
-                            width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
-                            <path d="M0 0h24v24H0V0z" fill="none"></path>
-                            <path
-                                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="mt-1">
-            <form class="form-inline">
-                <div class="search-element">
-                    <label for="Start_Date">Start_date:</label>
-                    <input type="date" id="Start_date" name="Start_date">
-                </div>
-            </form>
-        </div>
-        <div class="mt-1">
-            <form class="form-inline">
-                <div class="search-element">
-                    <label for="End_Date">End_Date:</label>
-                    <input type="date" id="End_date" name="End_date">
-                </div>
-            </form>
-        </div>
 
 
         <div class="page-rightheader">
@@ -66,21 +33,107 @@
                     <div class="card-title">Inward Details</div>
                 </div>
                 <div class="card-body">
-                    <div class="___class_+?17___">
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 50px;">
+                            @php
+                                $rate = App\Models\supplier_details::get();
+                            @endphp
+                            <div class="form-group">
+                                <h4><label class="form-label">Select Company :-</label></h4>
+                                <select id="s_id" name="s_id" required class="form-control select2">
+                                    <optgroup label="Company">
+                                        <option value="" disabled selected>Choose Company</option>
+                                        @if (count($rate) > 0)
+                                            @foreach ($rate as $value)
+                                                <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('s_id')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="display: flex;">
+                            <div class="col-md-6">
+                                <form class="form-inline" style="padding-right: 50px;">
+                                    <div class="col">
+                                        <h4><label class="form-label" style="display: flex; justify-content: end;">Start
+                                                Date:- </label></h4>
+                                        <input type="date" id="Start_date" name="Start_date">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form class="form-inline" style="padding-left: 50px;">
+                                    <div class="col">
+                                        <h4><label class="form-label" style="display: flex; justify-content: end;">End
+                                                Date:- </label></h4>
+                                        <input type="date" id="End_date" name="End_date">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">Rate</th>
+                                        <th class="border-bottom-0">Barcode_Id</th>
+                                        <th class="border-bottom-0">Shape</th>
+                                        <th class="border-bottom-0">Old_Weight</th>
+                                        <th class="border-bottom-0">New_Weight</th>
+                                        <th class="border-bottom-0">Price</th>
+                                        <th class="border-bottom-0">Buy_date</th>
                                         {{-- <th>Package</th> --}}
                                         {{-- <th class="border-bottom-0">0.210-0.409</th>
                                         <th class="border-bottom-0">0.410-5.000</th> --}}
 
-                                        <th class="border-bottom-0">Price</th>
+                                        <th class="border-bottom-0">Sell_Date</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            ALOK IMPEX
+                                        </td>
+                                        <td>
+                                            1008894
+                                        </td>
+                                        <td>
+                                            એમરલ
+                                        </td>
+                                        <td>
+                                            0.194
+                                        </td>
+                                        <td>
+                                            0.180
+                                        </td>
+                                        <td>
+                                            23
+                                        </td>
+                                        <td>
+                                            2021-08-29
+                                        </td>
+                                        <td>
+                                            2021-09-05
+                                        </td>
+
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>

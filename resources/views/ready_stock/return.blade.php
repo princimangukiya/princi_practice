@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
-                        <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
+                        <input id="d_wt" type="text" name="d_wt" class="form-control" value="{{ $value->d_wt }}"
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
-                        <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
+                        <input id="Price" type="text" name="Price" class="form-control" value="{{ $value->d_wt }}"
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -127,6 +127,9 @@
                         <tr>
                             <th class="border-bottom-0">Manager Name</th>
                             <th class="border-bottom-0">Bar Code</th>
+                            <th class="border-bottom-0">Old Weight</th>
+                            <th class="border-bottom-0">Price</th>
+                            <th class="border-bottom-0">New Weight</th>
                         </tr>
                     </thead>
                 </table>

@@ -33,11 +33,19 @@
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
+                                        @php
+                                            $rate = App\Models\rate::get();
+                                        @endphp
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">0.010-0.209</th>
+                                        @foreach ($rate as $value)
+                                            <th class="border-bottom-0">{{ $value->Rates }}</th>
+                                        @endforeach
+
+
+                                        {{-- <th class="border-bottom-0">0.010-0.209</th>
                                         <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th>
+                                        <th class="border-bottom-0">0.410-5.000</th> --}}
                                         <th class="border-bottom-0"></th>
                                     </tr>
                                 </thead>
@@ -49,17 +57,33 @@
                                                 {{ $key + 1 }}
                                             </td>
                                             <td>
-                                                {{ $value->s_id }}
+                                                {{ $value->s_name }}
                                             </td>
-                                            <td>
-                                                {{ $value->r_id }}
-                                            </td>
-                                            <td>
-                                                {{ $value->r_id }}
-                                            </td>
-                                            <td>
-                                                {{ $value->Price }}
-                                            </td>
+                                            @if ($value->r_id == 1)
+                                                <td>
+                                                    {{ $value->Price }}
+                                                </td>
+                                                <td> - </td>
+                                                <td> - </td>
+                                            @endif
+                                            @if ($value->r_id == 2)
+                                                <td> - </td>
+                                                <td>
+                                                    {{ $value->Price }}
+                                                </td>
+                                                <td> - </td>
+                                            @endif
+                                            @if ($value->r_id == 3)
+                                                <td> - </td>
+                                                <td> - </td>
+                                                <td>
+                                                    {{ $value->Price }}
+                                                </td>
+                                            @endif
+
+                                            {{-- <td>
+                                                {{ $value->r_name }}
+                                            </td> --}}
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
                                                 <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
