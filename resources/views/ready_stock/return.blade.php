@@ -41,31 +41,24 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6" style="display: flex;">
-                <div class="col-sm-8 col-sm-8">
-                    <div class="form-group">
-                        <label class="form-label" style="padding-top: 10px">BarCode Value </label>
-                        <input id="bar_code" type="text" name="bar_code" class="form-control"
-                            value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
-                        @error('bar_code')
-                            <small class="errorTxt1">
-                                <div id="title-error" class="error" style="margin-left:3rem">
-                                    {{ $message }}
-                                </div>
-                            </small>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <div class="form-group" style="padding: 36px">
-                        <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
-                            class="btn  btn-primary">Submit</button>
-                    </div>
+            <div class="col-sm-6 col-md-6">
+                <div class=" form-group">
+                    <label class="form-label" style="padding-top: 10px">BarCode Value </label>
+                    <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
+                        value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
+                    @error('bar_code')
+                        <small class="errorTxt1">
+                            <div id="title-error" class="error" style="margin-left:3rem">
+                                {{ $message }}
+                            </div>
+                        </small>
+                    @enderror
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
@@ -82,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6  col-md-6">
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
@@ -100,13 +93,14 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <label class="form-label">Enter New Weight :- </label>
                     <div style="display: flex;">
-                        <input id="d_n_wt" type="text" name="d_n_wt" class="form-control" value="{{ old('d_n_wt') }}"
-                            placeholder="Enter New Weight">
+                        <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField"
+                            value="{{ old('d_n_wt') }}" placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
                                 <div id="title-error" class="error" style="margin-left:3rem">
@@ -133,6 +127,12 @@
                         @enderror
 
                     </div>
+                </div>
+            </div> --}}
+            {{-- <div class="col-sm-4 col-md-4">
+                <div class="form-group" style="padding: 25px">
+                    <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
+                        class="btn  btn-primary">Save</button>
                 </div>
             </div> --}}
         </div>
@@ -179,6 +179,24 @@
             });
         </script>
         <script>
+            var currentBoxNumber = 0;
+            $(".inputField").keyup(function(event) {
+                if (event.keyCode == 13) {
+                    textboxes = $("input.inputField");
+                    currentBoxNumber = textboxes.index(this);
+                    console.log(textboxes.index(this));
+                    if (textboxes[currentBoxNumber + 1] != null) {
+                        nextBox = textboxes[currentBoxNumber + 1];
+                        nextBox.focus();
+                        nextBox.select();
+                        event.preventDefault();
+                        return false;
+                    } else {
+                        addTOManager();
+                    }
+                }
+            });
+
             function addTOManager(id) {
                 // alert(id);
                 var barcode = $('#bar_code').val();

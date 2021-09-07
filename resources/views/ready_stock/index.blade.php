@@ -47,6 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ($ready_stock as $key => $value)
                                         <tr>
                                             <td>
@@ -56,16 +57,22 @@
                                                 {{ $value->Manager->m_name }}
                                             </td>
                                             <td>
+                                                {{ $value->Manager->s_name }}
+                                            </td>
+                                            <td>
                                                 {{ $value->Diamond->d_barcode }}
                                             </td>
                                             <td>
-                                                {{ $value->Diamond->d_n_wt }}
+                                                {{ $value->Diamond->d_wt }}
                                             </td>
-                                            @php
-                                                $shape = App\Models\Diamond_Shape::where('shape_id', $value->Diamond->shape_id)->first();
-                                            @endphp
                                             <td>
-                                                {{ $shape->shape_name }}
+                                                {{ $value->d_n_wt }}
+                                            </td>
+                                            <td>
+                                                {{ $value->shape_name }}
+                                            </td>
+                                            <td>
+                                                {{ $value->Price }}
                                             </td>
                                             <td>
                                                 <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
