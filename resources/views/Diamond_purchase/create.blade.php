@@ -52,17 +52,17 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Add New Diamond packet</div>
+                    <div class="card-title">Add New Diamond Packet</div>
 
                 </div>
 
                 <div class="card-body">
 
-                    <div class="card-title font-weight-bold">packet info:</div>
+                    <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">packet Supplier</label>
+                                <label class="form-label">Packet Supplier</label>
                                 <select id="s_id" name="s_id" required class="form-control select2">
                                     <optgroup label="Supplier">
                                         <option value="" disabled selected>Choose Supplier</option>
@@ -85,7 +85,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">BarCode Value </label>
-                                <input id="bar_code" type="text" name="bar_code" class="form-control"
+                                <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                                     value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
                                 @error('bar_code')
                                     <small class="errorTxt1">
@@ -98,9 +98,9 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label class="form-label">packet Weight :-</label>
-                                <input placeholder="Enter packet Wt" class="form-control" id="d_wt" type="text"
-                                    name="d_wt" value="{{ old('d_wt') }}" required>
+                                <label class="form-label">Packet Weight :-</label>
+                                <input placeholder="Enter Packet Wt" class="form-control inputField" id="d_wt" type="text"
+                                    name="d_wt" value="0." required>
                                 @error('d_wt')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
@@ -115,7 +115,7 @@
                         @endphp
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">packet Shape</label>
+                                <label class="form-label">Packet Shape</label>
                                 <select id="shape_id" name="shape_id" required class="form-control select2">
                                     <optgroup label="Shapes">
                                         <option value="" disabled selected>Choose Diamond Shape</option>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Submit</button>
+                        <button type="submit" id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Submit</button>
                         <a href="#" class="btn btn-danger">Cancle</a>
                     </div>
 
@@ -168,6 +168,24 @@
                 });
                 // mytable.row.add([id, 'pkt1', '10.5']);
                 // mytable.draw();
+            }); 
+
+            var currentBoxNumber = 0;
+            $(".inputField").keyup(function (event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 1] != null) {
+                    nextBox = textboxes[currentBoxNumber + 1];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                }else{
+                    addData();
+                }
+            }
             });
 
             function addData() {
