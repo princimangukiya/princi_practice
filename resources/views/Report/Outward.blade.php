@@ -105,36 +105,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            ALOK IMPEX
-                                        </td>
-                                        <td>
-                                            1008894
-                                        </td>
-                                        <td>
-                                            એમરલ
-                                        </td>
-                                        <td>
-                                            0.194
-                                        </td>
-                                        <td>
-                                            0.180
-                                        </td>
-                                        <td>
-                                            23
-                                        </td>
-                                        <td>
-                                            2021-08-29
-                                        </td>
-                                        <td>
-                                            2021-09-05
-                                        </td>
+                                    @foreach ($inward as $key => $value)
 
-                                    </tr>
+
+                                        <tr>
+                                            <td>
+                                                {{ $key + 1 }}
+                                            </td>
+                                            <td>
+                                                {{ $value->s_name }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_barcode }}
+                                            </td>
+                                            <td>
+                                                {{ $value->shape_name }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_wt }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_n_wt }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_col }}
+                                            </td>
+                                            <td>
+                                                {{ $value->created_at }}
+                                            </td>
+                                            <td>
+                                                {{ $value->created_at }}
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

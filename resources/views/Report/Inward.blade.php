@@ -106,36 +106,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($inward as $key => $value)
+                                        
+                                   
                                     <tr>
                                         <td>
-                                            1
+                                            {{$key+1}}
                                         </td>
                                         <td>
-                                            ALOK IMPEX
+                                           {{$value -> s_name}}
                                         </td>
                                         <td>
-                                            1008894
+                                            {{$value -> d_barcode }}
                                         </td>
                                         <td>
-                                            એમરલ
+                                            {{$value -> shape_name}}
                                         </td>
                                         <td>
-                                            0.194
+                                            {{$value -> d_wt}}
                                         </td>
                                         <td>
-                                            0.180
+                                            {{$value -> d_n_wt}}
                                         </td>
                                         <td>
-                                            23
+                                            {{$value -> d_col}}
                                         </td>
                                         <td>
-                                            2021-08-29
+                                            {{$value -> created_at}}
                                         </td>
                                         <td>
-                                            2021-09-05
+                                            {{$value -> created_at}}
                                         </td>
 
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
