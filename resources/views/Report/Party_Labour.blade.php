@@ -89,29 +89,26 @@
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
-                                        <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">Barcode_Id</th>
-                                        <th class="border-bottom-0">Shape</th>
-                                        <th class="border-bottom-0">Old_Weight</th>
-                                        <th class="border-bottom-0">New_Weight</th>
-                                        <th class="border-bottom-0">Price</th>
-                                        <th class="border-bottom-0">Party_Labour</th>
-                                        <th class="border-bottom-0">Buy_date</th>
-                                        {{-- <th>Package</th> --}}
-                                        {{-- <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
-
-                                        <th class="border-bottom-0">Sell_Date</th>
+                                        <th class="border-bottom-0">Sizedesc</th>
+                                        <th class="border-bottom-0">Pcs</th>
+                                        <th class="border-bottom-0">Issue Cts.</th>
+                                        <th class="border-bottom-0">Out Cts.</th>
+                                        <th class="border-bottom-0">Type</th>
+                                        <th class="border-bottom-0">Rate</th>
+                                        <th class="border-bottom-0">Labour</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            1
+                                            Alok Impex <br>
+                                            0.010-0.209<br>
+                                            0.210-0.409 <br>
+                                            0.410-5.000
                                         </td>
+
                                         <td>
-                                            ALOK IMPEX
+                                            425
                                         </td>
                                         <td>
                                             1008894
@@ -127,15 +124,6 @@
                                         </td>
                                         <td>
                                             23
-                                        </td>
-                                        <td>
-                                            123
-                                        </td>
-                                        <td>
-                                            2021-08-29
-                                        </td>
-                                        <td>
-                                            2021-09-05
                                         </td>
 
                                     </tr>
