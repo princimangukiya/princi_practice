@@ -17,8 +17,7 @@
         </div>
     </div>
     <!--End Page header-->
-
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header">
             <div class="card-title">Diamond Purchase Data</div>
         </div>
@@ -31,7 +30,7 @@
                             <th class="border-bottom-0">Party Name</th>
                             <th class="border-bottom-0">Bar Code</th>
                             <th class="border-bottom-0">Weight</th>
-                            {{-- <th>Package</th> --}}
+                            {{-- <th>Package</th> --}
                             <th class="border-bottom-0">Shape</th>
                             <th class="border-bottom-0">Action</th>
 
@@ -43,7 +42,7 @@
                         @foreach ($supplier as $key => $value)
                             <tr>
                                 <td>
-                                    {{ $value->d_id }}
+                                    {{ $key + 1 }}
                                 </td>
                                 <td>
                                     {{ $value->s_name }}
@@ -83,7 +82,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--/div-->
 
 
@@ -96,7 +95,7 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Add New Diamond packet</div>
+                    <div class="card-title">Update Diamond packet</div>
 
                 </div>
 
@@ -132,7 +131,7 @@
                             <div class="form-group">
                                 <label class="form-label">BarCode Value </label>
                                 <input id="bar_code" type="text" name="bar_code" class="form-control"
-                                    value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
+                                    value="{{ $supplier->d_barcode }}" placeholder="Enter Bar Code" autofocus>
                                 @error('bar_code')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
@@ -146,7 +145,7 @@
                             <div class="form-group">
                                 <label class="form-label">packet Weight :-</label>
                                 <input placeholder="Enter packet Wt" class="form-control" id="d_wt" type="text"
-                                    name="d_wt" value="{{ old('d_wt') }}" required>
+                                    name="d_wt" value="{{ $supplier->d_wt }}" required>
                                 @error('d_wt')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
@@ -186,10 +185,13 @@
                     </div>
                     <div class="card-footer text-right">
                         <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Submit</button>
-                        <a href="/diamond" class="btn btn-danger">Cancle</a>
+                        <a href="/diamond/create" class="btn btn-danger">Cancle</a>
                     </div>
+
                 </div>
+
             </div>
+
         </div>
         <!-- End Row-->
 

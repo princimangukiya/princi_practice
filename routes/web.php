@@ -22,7 +22,9 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/diamond', 'App\Http\Controllers\DiamondController@index')->name('diamond');
     Route::get('/diamond/create', 'App\Http\Controllers\DiamondController@create')->name('diamond.create');
     Route::post('/diamond/store', 'App\Http\Controllers\DiamondController@store')->name('diamond.store');
-
+    Route::get('/diamond/edit/{id}', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
+    Route::post('/diamond/update/{id}', 'App\Http\Controllers\DiamondController@update')->name('diamond.update');
+    Route::post('/diamond/{id}/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
     //supplier
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
     Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier.create');
@@ -69,7 +71,7 @@ Route::group(['middleware'=>'auth'], function () {
     //Report 
     Route::get('/Report', 'App\Http\Controllers\ReportController@index')->name('Report');
 
-    //Inword
+    //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Inward')->name('Inward.genratePDF');
 
