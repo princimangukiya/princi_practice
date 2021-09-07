@@ -27,7 +27,7 @@
                 <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
                     <thead>
                         <tr>
-                            <th class="border-bottom-0">#</th>
+                            {{-- <th class="border-bottom-0">#</th> --}}
                             <th class="border-bottom-0">Party Name</th>
                             <th class="border-bottom-0">Bar Code</th>
                             <th class="border-bottom-0">Weight</th>
@@ -38,7 +38,8 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+
+                    {{-- <tbody>
 
                         @foreach ($supplier as $key => $value)
                             <tr>
@@ -79,7 +80,7 @@
                             </tr>
                         @endforeach
 
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
         </div>
@@ -208,8 +209,35 @@
                     "ordering": true,
                     "info": true,
                     "autoWidth": false,
-                    "sDom": 'lfrtip'
+                    "sDom": 'lfrtip',
+                    "columns": [{
+                            "data": "id",
+                            "searchable": false
+                        },
+                        {
+                            "data": "name",
+                            "searchable": true
+                        },
+                        {
+                            "data": "pid",
+                            "searchable": true
+                        },
+                        {
+                            "data": "destination",
+                            "searchable": true
+                        }, {
+                            "mRender": function(data, type, row) {
+                                return '<a href=add.html?id="' + row[0] + '">Edit</a>';
+                            }
+                        }
+                    ]
                 });
+
+                // function fnCreatedRow(nRow) {
+                //     $('td:eq(0)', nRow).append(
+                //         "<div class='col1d'><button class='editBut'><img >src=''></button></div>"
+                //     );
+                // }
                 // mytable.row.add([id, 'pkt1', '10.5']);
                 // mytable.draw();
             });
@@ -267,6 +295,10 @@
 
                             mytable.row.add([partyName, barcode, weight, shapevalue]);
                             mytable.draw();
+
+                            fnCreatedRow(0);
+
+
                             $('#bar_code').val('');
                             $('#d_wt').val('');
                             // $('#shape_id').val('');
