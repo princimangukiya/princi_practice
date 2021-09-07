@@ -26,7 +26,13 @@ class ReportController extends Controller
     //Inward genrate PDF
     public function Inward()
     {
-        return view('Report.Inward');
+        $data = array();
+        $c_id = session()->get('c_id');
+        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['inward']= D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+        ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+        ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        return view('Report.Inward',$data);
     }
     public function genratePDF_Inward()
    {
@@ -43,7 +49,14 @@ class ReportController extends Controller
 //Outward PDF Genratte
    public function Outward()
    {
-       return view('Report.Outward');
+    $data = array();
+    $c_id = session()->get('c_id');
+    $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+    $data['inward']= D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+    ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+    ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+       return view('Report.Outward', $data);
+      
    }
    public function genratePDF_Outward()
   {
