@@ -107,6 +107,20 @@
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Enter Date :-</label>
+                                <input placeholder="Enter Date:-" class="form-control" id="bill_date" type="date"
+                                    name="bill_date" value="" required>
+                                @error('bill_date')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Packet Supplier</label>
@@ -198,7 +212,10 @@
 
         <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
         <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
-
+        <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
+        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
+        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script>
         <script>
             var id, mytable;
             $(document).ready(function() {
@@ -265,6 +282,7 @@
                 var weight = $('#d_wt').val();
                 var shape = $('#shape_id').val();
                 var s_id = $('#s_id').val();
+                var bill_date = ('#bill_date').datepicker();
                 var shapevalue = $('#shape_id').find(":selected").text();
                 var partyName = $('#s_id').find(":selected").text();
                 //alert(barcode);
@@ -273,49 +291,52 @@
 
                 // var token = $('meta[name="csrf-token"]').attr('content');
                 // alert(token);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('diamond.store') }}',
-                    data: {
-                        'bar_code': barcode,
-                        'd_wt': weight,
-                        'shape_id': shape,
-                        's_id': s_id
+                // $.ajaxSetup({
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                //     }
+                // });
+                // $.ajax({
+                //     type: 'POST',
+                //     url: '{{ route('diamond.store') }}',
+                //     data: {
+                //         'bar_code': barcode,
+                //         'd_wt': weight,
+                //         'shape_id': shape,
+                //         's_id': s_id,
+                //         'bill_date': bill_date
 
-                    },
-                    dataType: 'json',
-                    success: function(response_msg) {
-                        // alert(response_msg.success);
-                        if (response_msg.success == true) {
+                //     },
+                //     dataType: 'json',
+                //     success: function(response_msg) {
+                //         // alert(response_msg.success);
+                //         if (response_msg.success == true) {
 
-                            mytable.row.add([partyName, barcode, weight, shapevalue]);
-                            mytable.draw();
+                //             mytable.row.add([partyName, barcode, weight, shapevalue]);
+                //             mytable.draw();
 
-                            fnCreatedRow(0);
+                //             fnCreatedRow(0);
 
 
-                            $('#bar_code').val('');
-                            $('#d_wt').val('');
-                            // $('#shape_id').val('');
-                            $('#bar_code').focus();
+                //             $('#bar_code').val('');
+                //             $('#d_wt').val('');
+                //             $('#bill_date').val('');
+                //             // $('#shape_id').val('');
+                //             $('#bar_code').focus();
 
-                        } else if (response_msg.success == 200) {
-                            alert("Barcode already exist!");
-                            // $('#bar_code').val('');
-                            // $('#d_wt').val('');
-                            // $('#shape_id').val('');
-                        } else {
-                            alert("Please, Fill all the fields!");
-                        }
-                    }
-                });
-
+                //         } else if (response_msg.success == 200) {
+                //             alert("Barcode already exist!");
+                //             // $('#bar_code').val('');
+                //             // $('#d_wt').val('');
+                //             // $('#shape_id').val('');
+                //         } else {
+                //             alert("Please, Fill all the fields!");
+                //         }
+                //     }
+                // });
+                alert(bill_date);
             }
         </script>
+
     @endsection
     @include('app')
