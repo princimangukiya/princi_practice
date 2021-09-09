@@ -96,49 +96,41 @@
                                         <th class="border-bottom-0">Shape</th>
                                         <th class="border-bottom-0">Old_Weight</th>
                                         <th class="border-bottom-0">New_Weight</th>
-                                        <th class="border-bottom-0">Price</th>
                                         <th class="border-bottom-0">Buy_date</th>
                                         {{-- <th>Package</th> --}}
                                         {{-- <th class="border-bottom-0">0.210-0.409</th>
                                         <th class="border-bottom-0">0.410-5.000</th> --}}
 
-                                        <th class="border-bottom-0">Sell_Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($inward as $key => $value)
-                                        
-                                   
-                                    <tr>
-                                        <td>
-                                            {{$key+1}}
-                                        </td>
-                                        <td>
-                                           {{$value -> s_name}}
-                                        </td>
-                                        <td>
-                                            {{$value -> d_barcode }}
-                                        </td>
-                                        <td>
-                                            {{$value -> shape_name}}
-                                        </td>
-                                        <td>
-                                            {{$value -> d_wt}}
-                                        </td>
-                                        <td>
-                                            {{$value -> d_n_wt}}
-                                        </td>
-                                        <td>
-                                            {{$value -> d_col}}
-                                        </td>
-                                        <td>
-                                            {{$value -> created_at}}
-                                        </td>
-                                        <td>
-                                            {{$value -> created_at}}
-                                        </td>
 
-                                    </tr>
+
+                                        <tr>
+                                            <td>
+                                                {{ $key + 1 }}
+                                            </td>
+                                            <td>
+                                                {{ $value->s_name }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_barcode }}
+                                            </td>
+                                            <td>
+                                                {{ $value->shape_name }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_wt }}
+                                            </td>
+                                            <td>
+                                                {{ $value->d_n_wt }}
+                                            </td>
+                                            <td>
+                                                {{ $value->bill_date }}
+                                            </td>
+
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

@@ -131,7 +131,7 @@
                                                 {{ $value->d_col }}
                                             </td>
                                             <td>
-                                                {{ $value->created_at }}
+                                                {{ $value->bill_date }}
                                             </td>
                                             <td>
                                                 {{ $value->created_at }}
