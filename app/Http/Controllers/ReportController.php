@@ -74,7 +74,14 @@ class ReportController extends Controller
    //Party_Labour Genrate PDF
    public function Party_Labour()
     {
-        return view('Report.Party_Labour');
+        $data = array();
+        $c_id = session()->get('c_id');
+        $data['Pay_Labour'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['Pay_Labour'] = Supplier_Details::join('rate_masters', 'rate_masters.s_id', '=', 'supplier_details.s_id')
+        ->get(['rate_masters.*', 'supplier_details.*']);
+        $data['Pay_labour'] = rate_master::join('rates', 'rates.r_id', '=', 'rate_masters.r_id')
+        ->get(['rate_masters.*', 'rates.*']);
+        return view('Report.Party_Labour', $data);
     }
    public function genratePDF_Party_Labour()
    {
