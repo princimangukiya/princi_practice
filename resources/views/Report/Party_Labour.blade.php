@@ -103,16 +103,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <tr>
                                         @foreach ($Pay_Labour as $d)
                                         <td>
-                                            <b>{{$d->s_name}}</b> 
+                                            <b>{{$d->s_name}}</b>
                                             @foreach ($Pay_labour as $r)
-                                                <tr>
-                                                    <td>
+                                                <td>
+                                                    {{-- <td> --}}
                                                         {{$r->Rates}}
-                                                    </td>
-                                                </tr>
+                                                    {{-- </td> --}}
+                                                </td>
                                                 {{-- <td>
                                                     {{$r->pcs}}
                                                 </td>
@@ -135,9 +135,9 @@
                                                     {{$r->pcs}}
                                                 </td> --}}
                                             @endforeach
-                                        @endforeach
+                                            
                                         </td>
-
+                                        @endforeach
                                         {{-- <td>
                                             425
                                         </td>
