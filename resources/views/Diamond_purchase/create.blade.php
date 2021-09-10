@@ -124,6 +124,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Packet Supplier</label>
+                                @php
+                                $supplier = App\Models\supplier_details::get();
+                                @endphp
                                 <select id="s_id" name="s_id" required class="form-control select2">
                                     <optgroup label="Supplier">
                                         <option value="" disabled selected>Choose Supplier</option>
@@ -282,58 +285,58 @@
                 var weight = $('#d_wt').val();
                 var shape = $('#shape_id').val();
                 var s_id = $('#s_id').val();
-                var bill_date = ('#bill_date').datepicker();
+                var bill_date = $('#bill_date').val();
                 var shapevalue = $('#shape_id').find(":selected").text();
                 var partyName = $('#s_id').find(":selected").text();
                 //alert(barcode);
                 //alert(weight);
                 //alert(shapevalue);
 
-                // var token = $('meta[name="csrf-token"]').attr('content');
-                // alert(token);
-                // $.ajaxSetup({
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //     }
-                // });
-                // $.ajax({
-                //     type: 'POST',
-                //     url: '{{ route('diamond.store') }}',
-                //     data: {
-                //         'bar_code': barcode,
-                //         'd_wt': weight,
-                //         'shape_id': shape,
-                //         's_id': s_id,
-                //         'bill_date': bill_date
+                var token = $('meta[name="csrf-token"]').attr('content');
+                alert(token);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('diamond.store') }}',
+                    data: {
+                        'bar_code': barcode,
+                        'd_wt': weight,
+                        'shape_id': shape,
+                        's_id': s_id,
+                        'bill_date': bill_date
 
-                //     },
-                //     dataType: 'json',
-                //     success: function(response_msg) {
-                //         // alert(response_msg.success);
-                //         if (response_msg.success == true) {
+                    },
+                    dataType: 'json',
+                    success: function(response_msg) {
+                        // alert(response_msg.success);
+                        if (response_msg.success == true) {
 
-                //             mytable.row.add([partyName, barcode, weight, shapevalue]);
-                //             mytable.draw();
+                            mytable.row.add([partyName, barcode, weight, shapevalue]);
+                            mytable.draw();
 
-                //             fnCreatedRow(0);
+                            fnCreatedRow(0);
 
 
-                //             $('#bar_code').val('');
-                //             $('#d_wt').val('');
-                //             $('#bill_date').val('');
-                //             // $('#shape_id').val('');
-                //             $('#bar_code').focus();
+                            $('#bar_code').val('');
+                            $('#d_wt').val('');
+                            $('#bill_date').val('');
+                            // $('#shape_id').val('');
+                            $('#bar_code').focus();
 
-                //         } else if (response_msg.success == 200) {
-                //             alert("Barcode already exist!");
-                //             // $('#bar_code').val('');
-                //             // $('#d_wt').val('');
-                //             // $('#shape_id').val('');
-                //         } else {
-                //             alert("Please, Fill all the fields!");
-                //         }
-                //     }
-                // });
+                        } else if (response_msg.success == 200) {
+                            alert("Barcode already exist!");
+                            // $('#bar_code').val('');
+                            // $('#d_wt').val('');
+                            // $('#shape_id').val('');
+                        } else {
+                            alert("Please, Fill all the fields!");
+                        }
+                    }
+                });
                 alert(bill_date);
             }
         </script>
