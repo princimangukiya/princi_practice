@@ -57,7 +57,7 @@
                                                 {{ $value->Manager->m_name }}
                                             </td>
                                             <td>
-                                                {{ $value->Manager->s_name }}
+                                                {{ $value->s_name }}
                                             </td>
                                             <td>
                                                 {{ $value->Diamond->d_barcode }}
