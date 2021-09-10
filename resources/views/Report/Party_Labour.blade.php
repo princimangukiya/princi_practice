@@ -103,7 +103,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    
                                         @foreach ($Pay_Labour as $d)
                                         <td>
                                             <b>{{$d->s_name}}</b> 
