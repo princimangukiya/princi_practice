@@ -288,12 +288,16 @@
                 var bill_date = $('#bill_date').val();
                 var shapevalue = $('#shape_id').find(":selected").text();
                 var partyName = $('#s_id').find(":selected").text();
-                //alert(barcode);
-                //alert(weight);
-                //alert(shapevalue);
+                // alert(barcode);
+                // alert(weight);
+                // alert(shapevalue);
 
                 var token = $('meta[name="csrf-token"]').attr('content');
+<<<<<<< Updated upstream
                 alert(token);
+=======
+                // alert(token);
+>>>>>>> Stashed changes
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -315,7 +319,11 @@
                         // alert(response_msg.success);
                         if (response_msg.success == true) {
 
+<<<<<<< Updated upstream
                             mytable.row.add([partyName, barcode, weight, shapevalue]);
+=======
+                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
+>>>>>>> Stashed changes
                             mytable.draw();
 
                             fnCreatedRow(0);
@@ -337,7 +345,11 @@
                         }
                     }
                 });
+<<<<<<< Updated upstream
                 alert(bill_date);
+=======
+                // alert(bill_date);
+>>>>>>> Stashed changes
             }
         </script>
 
