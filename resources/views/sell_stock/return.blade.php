@@ -18,6 +18,9 @@ Sell Diamond
     <div class="card-header">
         <div class="card-title">Sell Diamond</div>
     </div>
+    @php
+    $supplier = App\Models\supplier_details::get();
+@endphp
     <div class="col-md-6">
         <div class="form-group">
             <h4><label class="form-label">Select Company :-</label></h4>
