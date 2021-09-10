@@ -83,8 +83,12 @@
                         </div>
                     </div>
                 </div>
+                {{-- @php
+                    echo $Pay_Labour;
+                @endphp --}}
                 <div class="card-body">
                     <div>
+
                         <div class="table-responsive">
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
@@ -100,14 +104,41 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        @foreach ($Pay_Labour as $d)
                                         <td>
-                                            Alok Impex <br>
-                                            0.010-0.209<br>
-                                            0.210-0.409 <br>
-                                            0.410-5.000
+                                            <b>{{$d->s_name}}</b> 
+                                            @foreach ($Pay_labour as $r)
+                                                <tr>
+                                                    <td>
+                                                        {{$r->Rates}}
+                                                    </td>
+                                                </tr>
+                                                {{-- <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td>
+                                                <td>
+                                                    {{$r->pcs}}
+                                                </td> --}}
+                                            @endforeach
+                                        @endforeach
                                         </td>
 
-                                        <td>
+                                        {{-- <td>
                                             425
                                         </td>
                                         <td>
@@ -124,9 +155,10 @@
                                         </td>
                                         <td>
                                             23
-                                        </td>
+                                        </td> --}}
 
                                     </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>
