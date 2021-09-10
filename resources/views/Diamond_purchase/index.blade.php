@@ -40,7 +40,7 @@
                                     <th class="border-bottom-0">Weight</th>
 
                                     <th class="border-bottom-0">Shape</th>
-                                    <th class="border-bottom-0">Purchase Date</th>
+                                    <th class="border-bottom-0">Bill_Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +82,7 @@
                                             {{ $value->shapeDate->shape_name }}
                                         </td>
                                         <td>
-                                            {{ $value->created_at }}
+                                            {{ $value->bill_date }}
                                         </td>
 
                                     </tr>
