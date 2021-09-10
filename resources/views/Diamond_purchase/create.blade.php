@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 <label class="form-label">Enter Date :-</label>
                                 <input placeholder="Enter Date:-" class="form-control" id="bill_date" type="date"
-                                    name="bill_date" value="" required>
+                                    name="bill_date" value="bill_date" required>
                                 @error('bill_date')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
@@ -299,7 +299,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $.ajax({
+                    $.ajax({
                     type: 'POST',
                     url: '{{ route('diamond.store') }}',
                     data: {
