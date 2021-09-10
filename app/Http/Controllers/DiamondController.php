@@ -62,11 +62,11 @@ class DiamondController extends Controller
                 $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
-                $new_date= $request->bill_date;
-                $newDate = \Carbon\Carbon::createFromFormat('Y-m-d', $new_date)
-                ->format('d/m/Y');
-                dd($newDate);
-                $newitem->bill_date = $newDate;
+                // $new_date= $request->bill_date;
+                // $newDate = \Carbon\Carbon::createFromFormat('Y-m-d', $new_date)
+                // ->format('d/m/Y');
+                // dd($newDate);
+                $newitem->bill_date = $request->bill_date;
                 //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
                 //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
                 $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
@@ -111,6 +111,8 @@ class DiamondController extends Controller
         $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
         $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
         $newitem->c_id = $c_id;
+        $newitem->bill_date = $request->bill_date;
+
         //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
         //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
         $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
