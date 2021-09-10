@@ -64,7 +64,7 @@
                                 <form class="form-inline" style="padding-right: 50px;">
                                     <div class="col">
                                         <h4><label class="form-label"
-                                                style="display: flex; justify-content: end;">Select Start
+                                                style="display: flex; justify-content:start;">Select Start
                                                 Date:- </label></h4>
                                         <input type="date" id="Start_date" name="Start_date">
                                     </div>
@@ -74,7 +74,7 @@
                                 <form class="form-inline" style="padding-left: 50px;">
                                     <div class="col">
                                         <h4><label class="form-label"
-                                                style="display: flex; justify-content: end;">Select
+                                                style="display: flex; justify-content:start;">Select
                                                 End
                                                 Date:- </label></h4>
                                         <input type="date" id="End_date" name="End_date">
