@@ -6,6 +6,7 @@ use App\Models\D_Purchase;
 use App\Models\Working_Stock;
 use App\Models\Ready_Stock;
 use App\Models\Manager_Details;
+use App\Models\Supplier_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -23,6 +24,13 @@ class ReadyStockController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         $data['ready_stock'] = Ready_Stock::where('c_id', $c_id)->with('Manager', 'Diamond')->get();
+        // $data['ready_stock'] = D_Purchase::where('c_id', $c_id)->with('Supplier_Details')->get();
+        
+        // $data['ready_stock1']= D_Purchase::join('supplier_details','d_purchase.s_id','=','supplier_details.s_id')
+        // // ->join('supplier_details','d_purchase.s_id','=','supplier_details.s_id')
+        // // ->where("ready_stock.d_id","=","d_purchase.d_id" && "d_purchase.s_id","=","supplier_details.s_id")
+        // ->get('supplier_details.*');
+        // echo $data['ready_stock'];
         return view('ready_stock.index', $data);
     }
 
