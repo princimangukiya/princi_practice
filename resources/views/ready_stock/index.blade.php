@@ -47,7 +47,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+{{-- @php
+    echo count($ready_stock1);
+@endphp --}}
                                     @foreach ($ready_stock as $key => $value)
                                         <tr>
                                             <td>
@@ -57,7 +59,7 @@
                                                 {{ $value->Manager->m_name }}
                                             </td>
                                             <td>
-                                                {{ $value->s_name }}
+                                                {{ $value->Diamond->s_id }}
                                             </td>
                                             <td>
                                                 {{ $value->Diamond->d_barcode }}
@@ -69,7 +71,7 @@
                                                 {{ $value->d_n_wt }}
                                             </td>
                                             <td>
-                                                {{ $value->shape_name }}
+                                                {{ $value->Diamond->shape_id }}
                                             </td>
                                             <td>
                                                 {{ $value->Price }}

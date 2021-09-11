@@ -82,7 +82,7 @@
                                             {{ $value->shapeDate->shape_name }}
                                         </td>
                                         <td>
-                                            {{ $value->bill_date }}
+                                            {{date('d-m-Y', strtotime($value->bill_date)) }}
                                         </td>
 
                                     </tr>
