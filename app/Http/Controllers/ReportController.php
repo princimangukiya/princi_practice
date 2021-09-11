@@ -32,19 +32,44 @@ class ReportController extends Controller
         $data['inward']= D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
         ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
         ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        
+
         return view('Report.Inward',$data);
     }
+    
     public function genratePDF_Inward()
    {
        $data = [
            'title' => 'Inward Report',
-           'date' => date('m/d/Y')
+           'date' => date('d/m/Y')
        ];
          
        $pdf = PDF::loadView('Report.Inward_Formatte', $data);
    
        return $pdf->download('Inward.pdf');
        
+   }
+   public function searchdata_Inward(Request $request)
+   {
+    $data = array();
+    $c_id = session()->get('c_id');
+    $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+    $data['inward']= D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+    ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+    ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+    
+    $s_id = $request->s_id;
+    $start_date= $request->Start_date;
+    $end_date = $request->End_date;    
+    echo $s_id;
+    echo "<br>";
+    echo $start_date;
+    echo "<br>";
+    echo $end_date;
+
+    $data['inward'] = D_Purchase::where('s_id' , $s_id )->get();
+    $data['inward'] = D_Purchase::where('bill_date',$start_date)->get();
+    return view('Report.Inward',$data);
    }
 //Outward PDF Genratte
    public function Outward()
@@ -62,12 +87,27 @@ class ReportController extends Controller
   {
       $data = [
           'title' => 'Outward Report',
-          'date' => date('m/d/Y')
+          'date' => date('d/m/Y')
       ];
         
       $pdf = PDF::loadView('Report.Outward_Formatte', $data);
   
       return $pdf->download('Outward.pdf');
+      
+  }
+  public function searchdata_Outward(Request $request)
+  {
+    $s_id = $request->s_id;
+    $start_date= $request->Start_date;
+    $end_date = $request->End_date;    
+    echo $s_id;
+    echo "<br>";
+    echo $start_date;
+    echo "<br>";
+    echo $end_date;
+    $data['inward'] = D_Purchase::where('s_id' , $s_id )->get();
+    $data['inward'] = D_Purchase::where('bill_date',$start_date)->get();
+    return view('Report.Outward', $data);
       
   }
 
@@ -87,12 +127,27 @@ class ReportController extends Controller
    {
        $data = [
            'title' => 'Party Labour Report',
-           'date' => date('m/d/Y')
+           'date' => date('d/m/Y')
        ];
          
        $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
    
        return $pdf->download('Party Labour.pdf');
+       
+   }
+   public function searchdata_Party_Labour(Request $request)
+   {
+    $s_id = $request->s_id;
+    $start_date= $request->Start_date;
+    $end_date = $request->End_date;    
+    echo $s_id;
+    echo "<br>";
+    echo $start_date;
+    echo "<br>";
+    echo $end_date;
+    $data['inward'] = D_Purchase::where('s_id' , $s_id )->get();
+    $data['inward'] = D_Purchase::where('bill_date',$start_date)->get();
+    return view('Report.Party_Labour', $data);
        
    }
 }
