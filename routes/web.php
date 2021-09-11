@@ -74,14 +74,20 @@ Route::group(['middleware'=>'auth'], function () {
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Inward')->name('Inward.genratePDF');
+    Route::post('/search_inward_data', 'App\Http\Controllers\ReportController@searchdata_Inward')->name('Inward.searchdata');
+
 
     //OutWard
     Route::get('/Outward', 'App\Http\Controllers\ReportController@Outward')->name('Inward_Outward');
     Route::get('/Outward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Outward')->name('Outward.genratePDF');
+    Route::post('/search_outward_data', 'App\Http\Controllers\ReportController@searchdata_Outward')->name('Outward.searchdata');
+
 
     //Party Labour
     Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
     Route::get('/Party_Labour/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Party_Labour')->name('Party_Labour.genratePDF');
+    Route::post('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@searchdata_Party_Labour')->name('Party_Labour.searchdata');
+
 
     //Daimond Trecker
     Route::get('/Daimond_tracker', 'App\Http\Controllers\Daimond_tacker_Controller@index')->name('Daimond_tracker');
