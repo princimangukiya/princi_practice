@@ -33,6 +33,8 @@
                     <div class="card-title">Inward Details</div>
                 </div>
                 <div class="card-body">
+                    <form action="/search_inward_data" method="post">
+                        @csrf
                     <div class="row">
                         <div class="col-md-5" style="padding-right: 50px;">
                             @php
@@ -59,30 +61,29 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6" style="display: flex;">
+                        <div class="col-md-5" style="display: flex;">
                             <div class="col-md-6">
-                                <form class="form-inline" style="padding-right: 50px;">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select Start
-                                                Date:- </label></h4>
-                                        <input type="date" id="Start_date" name="Start_date">
-                                    </div>
-                                </form>
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            Start
+                                            Date:- </label></h4>
+                                    <input type="date" id="Start_date" name="Start_date">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <form class="form-inline" style="padding-left: 50px;">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                End
-                                                Date:- </label></h4>
-                                        <input type="date" id="End_date" name="End_date">
-                                    </div>
-                                </form>
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            End
+                                            Date:- </label></h4>
+                                    <input type="date" id="End_date" name="End_date">
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-2" style="padding: 15px;">
+                            <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Serch</button>
+                        </div>
                     </div>
+                </form>
                 </div>
                 <div class="card-body">
                     <div>
@@ -127,9 +128,8 @@
                                                 {{ $value->d_n_wt }}
                                             </td>
                                             <td>
-                                                {{ $value->bill_date }}
+                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>

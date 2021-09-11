@@ -33,6 +33,8 @@
                     <div class="card-title">Party_Labour Details</div>
                 </div>
                 <div class="card-body">
+                    <form action="/search_PartyLabour_data" method="post">
+                        @csrf
                     <div class="row">
                         <div class="col-md-5" style="padding-right: 50px;">
                             @php
@@ -59,12 +61,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6" style="display: flex;">
+                        <div class="col-md-5" style="display: flex;">
                             <div class="col-md-6">
                                 <form class="form-inline" style="padding-right: 50px;">
                                     <div class="col">
                                         <h4><label class="form-label"
-                                                style="display: flex; justify-content: end;">Select Start
+                                                style="display: flex; justify-content: start;">Select Start
                                                 Date:- </label></h4>
                                         <input type="date" id="Start_date" name="Start_date">
                                     </div>
@@ -74,14 +76,18 @@
                                 <form class="form-inline" style="padding-left: 50px;">
                                     <div class="col">
                                         <h4><label class="form-label"
-                                                style="display: flex; justify-content: end;">Select End
+                                                style="display: flex; justify-content: start;">Select End
                                                 Date:- </label></h4>
                                         <input type="date" id="End_date" name="End_date">
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <div class="col-md-2" style="padding: 15px;">
+                            <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Serch</button>
+                        </div>
                     </div>
+                </form>
                 </div>
                 {{-- @php
                     echo $Pay_Labour;
