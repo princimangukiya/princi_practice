@@ -38,9 +38,9 @@
                                         @endphp
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        @foreach ($rate as $value)
+                                        {{-- @foreach ($rate as $value)
                                             <th class="border-bottom-0">{{ $value->Rates }}</th>
-                                        @endforeach
+                                        @endforeach --}}
                                         {{-- <th class="border-bottom-0">0.010-0.209</th>
                                         <th class="border-bottom-0">0.210-0.409</th>
                                         <th class="border-bottom-0">0.410-5.000</th> --}}
@@ -97,7 +97,7 @@
                                                     </div>
                                                 </a>
 
-                                                <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
+                                                {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
@@ -105,7 +105,7 @@
                                                         <button class="btn btn-sm btn-danger"><i
                                                                 class="fe fe-trash-2"></i></button>
                                                     </div>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach
