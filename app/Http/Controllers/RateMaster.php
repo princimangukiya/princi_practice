@@ -53,17 +53,19 @@ class RateMaster extends Controller
         $s_id = session()->get('s_id');
         $data['supplier'] = rate_master::where('s_id', $s_id)->get();
         $new_rate = new rate_master();
+      
+        $new_rate->s_id = !empty($request->s_id) ? $request->s_id : '';
         $supplier_id = $request->s_id;
         $data_s_id = $new_rate->s_id;
-        // $data_s_id = $new_rate->s_id;
         $data = $request->only('r_id', 'price');
-        $data_json = rate_master::find($supplier_id)->get('rate_masters.json_price');
+        // $data_json = rate_master::find($supplier_id)->get('rate_masters.json_price');
         $data = $request->only('r_id', 'price');
+        
         if ($supplier_id == $data_s_id) 
         {
             $r_id = rate_master::where('s_id', $supplier_id)->select('Rate_id')->get();
-            $data_json = rate_master::where('s_id', $supplier_id)->select('json_price')->get();
-            $json_data = json_decode($data_json);
+            $json_data = rate_master::where('s_id', $supplier_id)->select('json_price')->get();
+            $json_data = json_decode($json_data);
             array_push($json_data, $data);
             $json_data = json_encode($json_data);
             //        echo '<br>';
