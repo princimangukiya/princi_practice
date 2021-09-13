@@ -64,9 +64,12 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/rate_master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
     Route::get('/rate_master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
     Route::post('/rate_master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
+
+    Route::post('/rates/rates_store', 'App\Http\Controllers\RateMaster@rates_store')->name('rate_master.rates_store');
+
     Route::get('/rate_master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
     Route::post('/rate_master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
-    Route::post('/rate_master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+    // Route::post('/rate_master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
 
     //Report 
     Route::get('/Report', 'App\Http\Controllers\ReportController@index')->name('Report');
