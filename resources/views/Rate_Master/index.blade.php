@@ -39,7 +39,7 @@
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
                                         {{-- @foreach ($rate as $value)
-                                            <th class="border-bottom-0">{{ $value->Rates }}</th>
+                                            <th class="border-bottom-0">{{ $value->wt_category }}</th>
                                         @endforeach --}}
                                         {{-- <th class="border-bottom-0">0.010-0.209</th>
                                         <th class="border-bottom-0">0.210-0.409</th>
