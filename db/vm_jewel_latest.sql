@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2021 at 11:53 AM
+-- Generation Time: Sep 14, 2021 at 03:30 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vm`
+-- Database: `vm_jewel`
 --
 
 -- --------------------------------------------------------
@@ -221,19 +221,20 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 
 CREATE TABLE `rates` (
   `r_id` int(11) NOT NULL,
-  `Rates` varchar(255) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL
+  `wt_category` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rates`
 --
 
-INSERT INTO `rates` (`r_id`, `Rates`, `created_at`, `updated_at`) VALUES
-(1, '0.010-0.209', 0, 0),
-(2, '0.210-0.409', 0, 0),
-(3, '0.410-5.000', 0, 0);
+INSERT INTO `rates` (`r_id`, `wt_category`, `created_at`, `updated_at`) VALUES
+(1, '0.010-0.209', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, '0.210-0.409', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '0.410-5.000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, '0.510-0.699', '2021-09-13 23:06:51', '2021-09-13 23:06:51');
 
 -- --------------------------------------------------------
 
@@ -243,9 +244,9 @@ INSERT INTO `rates` (`r_id`, `Rates`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `rate_masters` (
   `Rate_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
   `s_id` int(11) NOT NULL,
-  `r_id` int(11) NOT NULL,
-  `Price` int(15) NOT NULL,
+  `json_price` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -254,10 +255,9 @@ CREATE TABLE `rate_masters` (
 -- Dumping data for table `rate_masters`
 --
 
-INSERT INTO `rate_masters` (`Rate_id`, `s_id`, `r_id`, `Price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 50, '2021-09-04 03:43:06', '2021-09-06 08:03:46'),
-(2, 1, 2, 23, '2021-09-04 03:43:17', '2021-09-04 03:43:17'),
-(3, 1, 3, 25, '2021-09-04 03:43:29', '2021-09-04 03:43:29');
+INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '[{\"1\":\"20\",\"2\":\"30\",\"4\":\"50\"}]', '2021-09-14 06:52:59', '2021-09-14 07:12:30'),
+(2, 1, 7, '[{\"1\":\"50\"},{\"3\":\"100\"},{\"2\":\"150\"},{\"4\":\"200\"}]', '2021-09-14 07:12:43', '2021-09-14 07:14:02');
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$UciKUhn6HK3fGVx1/d..o.ZkMop7iWyJjNTqjPYOaHcLIsf3okEFO', NULL, '2021-07-01 12:40:38', '2021-07-01 12:40:38'),
-(2, 'gbm', 'gbm@gmail.com', NULL, '$2y$10$Q5bZdekXn6LdU/FkOb7BrOn39Z4TJ5GsxHIjGVDIW29M/t1k6tsCa', 'aE5LUQzaAsehp9EeuRJmLhGgemCuOaUjyw42C7Q8Ft5qTlyE4F6UORTLl7Ue', '2021-07-19 16:56:33', '2021-07-19 16:56:33');
+(2, 'gbm', 'gbm@gmail.com', NULL, '$2y$10$Q5bZdekXn6LdU/FkOb7BrOn39Z4TJ5GsxHIjGVDIW29M/t1k6tsCa', 'DtCKsZ4KaU2Jd24NuRf2tfpAH4Iahmzcdki1HO2E7UhODreB6ULPrsSYb9Qj', '2021-07-19 16:56:33', '2021-07-19 16:56:33');
 
 -- --------------------------------------------------------
 
@@ -421,8 +421,7 @@ ALTER TABLE `rates`
 --
 ALTER TABLE `rate_masters`
   ADD PRIMARY KEY (`Rate_id`),
-  ADD KEY `s_id` (`s_id`,`r_id`),
-  ADD KEY `r_id` (`r_id`);
+  ADD KEY `s_id` (`s_id`);
 
 --
 -- Indexes for table `ready_stock`
@@ -512,13 +511,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rate_masters`
 --
 ALTER TABLE `rate_masters`
-  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ready_stock`
@@ -572,8 +571,7 @@ ALTER TABLE `manager_details`
 -- Constraints for table `rate_masters`
 --
 ALTER TABLE `rate_masters`
-  ADD CONSTRAINT `rate_masters_ibfk_1` FOREIGN KEY (`s_id`) REFERENCES `supplier_details` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rate_masters_ibfk_2` FOREIGN KEY (`r_id`) REFERENCES `rates` (`r_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rate_masters_ibfk_1` FOREIGN KEY (`s_id`) REFERENCES `supplier_details` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ready_stock`
