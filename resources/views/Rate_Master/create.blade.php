@@ -30,19 +30,19 @@
                     <div class="card-title">Add New Rate Details</div>
                     <div class="text-right">
                         <button type="button" style="float: right;" name="action" class="btn  btn-primary"
-                            onclick="myFunction()">Add Rates</button>
+                            onclick="myFunction()">Add Weight Category</button>
                     </div>
                 </div>
                 <form action="{{ route('rate_master.rates_store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body" style="display: none;" id="myDIV">
-                        <div class="card-title font-weight-bold">Rates info:</div>
+                        <div class="card-title font-weight-bold">Weight Category info:</div>
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Add Rates :-</label>
-                                    <input placeholder="Enter Your price" class="form-control" id="price" type="text"
-                                        name="Rates" value="{{ old('Rates') }}" required>
+                                    <label class="form-label">Add Weight Category :-</label>
+                                    <input placeholder="Enter Your Weight Category" class="form-control" id="price"
+                                        type="text" name="Rates" value="{{ old('Rates') }}" required>
                                     @error('price')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -61,75 +61,32 @@
                 </form>
 
 
-                    <form action="{{ route('rate_master.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body">
+                <form action="{{ route('rate_master.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body">
 
-                            <div class="card-title font-weight-bold">Rate info:</div>
-                            <div class="row">
-                                @php
-                                    $rate = App\Models\supplier_details::get();
-                                @endphp
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">packet Supplier</label>
-                                        <select id="s_id" name="s_id" required class="form-control select2">
-                                            <optgroup label="Supplier">
-                                                <option value="" disabled selected>Choose Supplier</option>
-                                                @if (count($rate) > 0)
-                                                    @foreach ($rate as $value)
-                                                        <option value="{{ $value->s_id }}">{{ $value->s_name }}
-                                                        </option>
-                                                        {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
-
-                                                    @endforeach
-                                                @endif
-                                            </optgroup>
-                                        </select>
-                                        @error('Rate_id')
-                                            <small class="errorTxt1">
-                                                <div id="title-error" class="error" style="margin-left:3rem">
-                                                    {{ $message }}
-                                                </div>
-                                            </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                @php
-                                    $rates = App\Models\rate::get();
-                                @endphp
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <h4><label class="form-label">Select Rate :-</label></h4>
-                                        <select id="r_id" name="r_id" required class="form-control select2">
-                                            <optgroup label="Rate">
-                                                <option value="" disabled selected>Choose Rate</option>
-                                                @if (count($rates) > 0)
-                                                    @foreach ($rates as $value)
-                                                        <option value="{{ $value->r_id }}">{{ $value->Rates }}
-                                                        </option>
-                                                        {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
-
-                                                    @endforeach
-                                                @endif
-                                            </optgroup>
-                                        </select>
-                                        @error('Rate_id')
-                                            <small class="errorTxt1">
-                                                <div id="title-error" class="error" style="margin-left:3rem">
-                                                    {{ $message }}
-                                                </div>
-                                            </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
+                        <div class="card-title font-weight-bold">Rate info:</div>
+                        <div class="row">
+                            @php
+                                $rate = App\Models\supplier_details::get();
+                            @endphp
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Labour :-</label>
-                                    <input placeholder="Enter Your price" class="form-control" id="price" type="text"
-                                        name="price" value="{{ old('price') }}" required>
-                                    @error('price')
+                                    <label class="form-label">packet Supplier</label>
+                                    <select id="s_id" name="s_id" required class="form-control select2">
+                                        <optgroup label="Supplier">
+                                            <option value="" disabled selected>Choose Supplier</option>
+                                            @if (count($rate) > 0)
+                                                @foreach ($rate as $value)
+                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}
+                                                    </option>
+                                                    {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
+
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                    @error('Rate_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
@@ -138,13 +95,56 @@
                                     @enderror
                                 </div>
                             </div>
+                            @php
+                                $rates = App\Models\rate::get();
+                            @endphp
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4><label class="form-label">Select Rate :-</label></h4>
+                                    <select id="r_id" name="r_id" required class="form-control select2">
+                                        <optgroup label="Rate">
+                                            <option value="" disabled selected>Choose Rate</option>
+                                            @if (count($rates) > 0)
+                                                @foreach ($rates as $value)
+                                                    <option value="{{ $value->r_id }}">{{ $value->wt_category }}
+                                                    </option>
+                                                    {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
 
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                    @error('Rate_id')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                            <a href="/rate_master" class="btn btn-danger">Cancle</a>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Labour :-</label>
+                                <input placeholder="Enter Your price" class="form-control" id="price" type="text"
+                                    name="price" value="{{ old('price') }}" required>
+                                @error('price')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
                         </div>
-                    </form>
+
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                        <a href="/rate_master" class="btn btn-danger">Cancle</a>
+                    </div>
+                </form>
             </div>
 
 
