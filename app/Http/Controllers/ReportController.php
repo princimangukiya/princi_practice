@@ -76,11 +76,13 @@ class ReportController extends Controller
    {
     $data = array();
     $c_id = session()->get('c_id');
-    $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
-    $data['inward']= D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-    ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-    ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
-       return view('Report.Outward', $data);
+    $data = Ready_Stock::where('c_id', $c_id)->get();
+    $d_id = $data[0]['d_id'];
+    $data= D_Purchase::where('d_id', $d_id)->get();
+    // join('ready_stock', 'd_purchase.d_id', '=', 'ready_stock.d_id')
+    // ->get(['d_purchase.*', 'ready_stock.*']);
+    echo $data;
+    //    return view('Report.Outward', $data);
       
    }
    public function genratePDF_Outward()
