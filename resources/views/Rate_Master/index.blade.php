@@ -35,23 +35,21 @@
                                     <tr>
                                         @php
                                             $rate = App\Models\rate::get();
+                                            // echo $rate;
                                         @endphp
                                         <th class="border-bottom-0">#</th>
                                         <th class="border-bottom-0">Company Name</th>
-                                        {{-- @foreach ($rate as $value)
+                                        @foreach ($rate as $value)
                                             <th class="border-bottom-0">{{ $value->wt_category }}</th>
-                                        @endforeach --}}
-                                        {{-- <th class="border-bottom-0">0.010-0.209</th>
-                                        <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
+                                        @endforeach
                                         <th class="border-bottom-0">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
-                                        echo $supplier;
+                                        // echo $rates;
                                     @endphp
-                                    @foreach ($supplier as $key => $value)
+                                    @foreach ($rates as $key => $value)
 
                                         <tr>
 
@@ -61,31 +59,59 @@
                                             <td>
                                                 {{ $value->s_name }}
                                             </td>
-                                            @if ($value->r_id == 1)
+                                            @php
+                                                $decoded_data = json_decode($value['json_price'], true);
+                                                $decoded_data = $decoded_data[0];
+                                                // echo count($decoded_data);*-
+                                            @endphp
+
+
+                                            @php
+                                                $data = json_decode(showData($decoded_data, $rate));
+                                                // echo json_encode($data) . '================';
+                                                // var_dump($data);
+                                            @endphp
+
+                                            {{-- @for ($i = 0; $i < count($data); $i++)
+
+                                            @endfor --}}
+                                            @foreach ($data as $item)
+                                                <td>{{ $item }}</td>
+                                            @endforeach
+                                            {{-- <td>
+                                                {{ $value['json_price'] }}
+                                            </td>
+                                            <td>
+                                                {{ $value['json_price'] }}
+                                            </td>
+                                            <td>
+                                                {{ $value['json_price'] }}
+                                            </td>
+                                            <td>
+                                                {{ $value['json_price'] }}
+                                            </td> --}}
+                                            {{-- @if ($value['json_price']['1'] == 1)
                                                 <td>
-                                                    {{ $value->Price }}
+                                                    {{ $value['json_price']['price']}}
                                                 </td>
-                                                <td> - </td>
-                                                <td> - </td>
                                             @endif
                                             @if ($value->r_id == 2)
-                                                <td> - </td>
+                                               
                                                 <td>
                                                     {{ $value->Price }}
                                                 </td>
-                                                <td> - </td>
                                             @endif
                                             @if ($value->r_id == 3)
-                                                <td> - </td>
-                                                <td> - </td>
+                                               
                                                 <td>
                                                     {{ $value->Price }}
                                                 </td>
                                             @endif
-
-                                            {{-- <td>
-                                                {{ $value->r_name }}
-                                            </td> --}}
+                                            @if ($value->r_id == 4)
+                                            <td>
+                                                    {{$value->price}}
+                                            </td>
+                                            @endif --}}
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
                                                 <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
@@ -126,9 +152,31 @@
     </div>
     </div><!-- end app-content-->
     </div>
+    @php
+    function showData($decoded_data, $p_rate)
+    {
+        $price = [];
+        for ($i = 1; $i <= count($p_rate); $i++) {
+            $token =0;
+            foreach ($decoded_data as $key => $rate) {
+                if ($i == $key) {
+                    array_push($price, $rate);
+                    $token = 1;
+                }
+            }
 
+            if ($token == 0) {
+                array_push($price, '-');
+            }
+        }
+
+        return json_encode($price);
+    }
+    @endphp
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+
+
 
 @endsection
 @include('app')
