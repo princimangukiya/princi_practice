@@ -74,7 +74,7 @@
                                                     <option value="" disabled selected>Choose Rate</option>
                                                     @if (count($rates) > 0)
                                                         @foreach ($rates as $value)
-                                                            <option value="{{ $value->r_id }}">{{ $value->Rates }}
+                                                            <option value="{{ $value->r_id }}">{{ $value->wt_category }}
                                                             </option>
                                                             {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
 
