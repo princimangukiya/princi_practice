@@ -13,9 +13,9 @@ class RateMaster extends Controller
     {
 
         $data = array();
-        $r_id = session()->get('c_id');
-        $data['supplier'] = rate_master::where('s_id', $r_id)->get();
-        $data['supplier'] = rate_master::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
+        $c_id = session()->get('c_id');
+        $data['rates'] = rate_master::where('c_id', $c_id)->get();
+        $data['rates'] = rate_master::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
             ->get(['rate_masters.*', 'supplier_details.s_name']);
         // $data_json =rate_master::where('s_id',$r_id)
         //         ->select('json_price')
@@ -32,28 +32,16 @@ class RateMaster extends Controller
     public function store(Request $request)
     {
         $r_id = $request->r_id;
-        // echo $r_id;
         $price = $request->price;
         $data1 = [$r_id => $price];
         $firstTimeData = ["1"=>[$r_id => $price]];
-        // var_dump($data1);
         
         $c_id = session()->get('c_id');
-        // echo $c_id;
         $s_id = $request->s_id;
         $data = rate_master::where([['c_id', $c_id] , ['s_id', $s_id]])->get();
-        // echo $data;
-        // echo "-=======";
         $new_rate = new rate_master();
-       
-        // $arr = ["2"=>"100", "5"=>"400"];
-        // $arr2 = ["3"=>"500"];
-        // array_push($arr, $arr2);
-        // $bb = array_values($arr);
-        // echo json_encode($bb);
     if($data->isEmpty())
     {
-        echo "coming if";
         $new_rate->c_id  = $c_id;
         $new_rate->s_id = $s_id;
         $arrValuesJson = array_values($firstTimeData);
@@ -63,41 +51,23 @@ class RateMaster extends Controller
     }      
     else{
         foreach($data as $rateData){
-        
-        $json_data= $rateData['json_price'];
-        // $json_data1 = json_decode($json_data , true);
-        // echo json_encode($json_data1);
-        $someArray = json_decode($json_data, true);
-        print_r($someArray);        // Dump all data of the Array
-        echo "<br>";
-        // $find_price = ;
-        // echo "===================<br>";
-        // echo $find_price;
-        if($someArray[0][$r_id]->isEmpty())
-        {
-            echo "Welcome If Condition";
-        }
-        else{
-            echo "Welcome else";
-            // var_dump($json_data1);
-            array_push($json_data1, $data1);
-            $arrValuesJson = array_values($json_data1);
-            $json_data2 = json_encode($arrValuesJson);
-            // var_dump($json_data1);
-            $new_rate->json_price = $json_data;
+            $json_data= $rateData['json_price'];
+            $someArray = json_decode($json_data, true);
+            if(empty($someArray[0][$r_id])){
+                array_push($someArray, $data1);
+                $arrValuesJson = array_values($someArray);
+                $json_data2 = json_encode($arrValuesJson);
+                rate_master::where([['c_id', $c_id] , ['s_id', $s_id]])->update(['json_price' => $json_data2]);
+                return Redirect::to('/rate_master');
+            }
+            else{
+            $someArray[0][$r_id] = $price;
+            $json_data2 = json_encode($someArray);
             rate_master::where([['c_id', $c_id] , ['s_id', $s_id]])->update(['json_price' => $json_data2]);
-       
+            return Redirect::to('/rate_master');
+
+            }
         }
-        // var_dump($json_data1);
-        // array_push($json_data1, $data1);
-        // $arrValuesJson = array_values($json_data1);
-        // $json_data2 = json_encode($arrValuesJson);
-        // var_dump($json_data1);
-        // $new_rate->json_price = $json_data;
-        // rate_master::where([['c_id', $c_id] , ['s_id', $s_id]])->update(['json_price' => $json_data2]);
-       
-        }
-        return Redirect::to('/rate_master');
     }  
        
     }
