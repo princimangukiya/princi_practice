@@ -52,16 +52,31 @@ class RateMaster extends Controller
             foreach ($data as $rateData) {
                 $json_data = $rateData['json_price'];
                 $someArray = json_decode($json_data, true);
+                $decodedRate = $someArray[0];
+                // $mergeArr = array_merge($decodedRate, $data1);
+                // $decodedRate
+                // array_push($decodedRate, $data1);
+                // dd($mergeArr);
                 if (empty($someArray[0][$r_id])) {
+                    // $decodedRate = [5 => "101", 6 => "103"];
+                    // $mergeArr = array_merge($decodedRate, $data1);
+                    // dd($mergeArr);
                     array_push($someArray, $data1);
-                    $arrValuesJson = array_values($someArray);
-                    $json_data2 = json_encode($arrValuesJson);
-                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $json_data2]);
+                    // $arrValuesJson = array_values($someArray);
+                    $json_data2 = json_encode($someArray);
+                    $newJsonData = str_replace('},{', ',', $json_data2);
+                    // dd($newJsonData);
+                    // var_dump(trim($json_data2[19]));
+                    // var_dump(trim($json_data2[21]));
+                    // echo $json_data2[0];
+
+                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
                     return Redirect::to('/rate_master');
                 } else {
                     $someArray[0][$r_id] = $price;
                     $json_data2 = json_encode($someArray);
-                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $json_data2]);
+                    $newJsonData = str_replace('},{', ',', $json_data2);
+                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
                     return Redirect::to('/rate_master');
                 }
             }
