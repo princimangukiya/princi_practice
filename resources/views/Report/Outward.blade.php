@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-md-5" style="padding-right: 50px;">
                             @php
-                             $c_id = session()->get('c_id');
+                                $c_id = session()->get('c_id');
                                 $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
                             @endphp
                             <div class="form-group">

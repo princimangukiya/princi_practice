@@ -101,7 +101,8 @@
 
                 <div class="card-body">
                     @php
-                        $supplier1 = App\Models\supplier_details::get();
+                        $c_id = session()->get('c_id');
+                        $supplier1 = App\Models\supplier_details::where('c_id' , $c_id)->get();
                     @endphp
                     <div class="card-title font-weight-bold">packet info:</div>
                     <div class="row">
