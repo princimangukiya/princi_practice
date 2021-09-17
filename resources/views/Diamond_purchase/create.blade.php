@@ -103,7 +103,8 @@
 
                 <div class="card-body">
                     @php
-                        $supplier1 = App\Models\supplier_details::get();
+                    $c_id = session()->get('c_id');
+                        $supplier1 = App\Models\supplier_details::where('c_id' , $c_id)->get();
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
@@ -231,23 +232,23 @@
                     "autoWidth": false,
                     "sDom": 'lfrtip',
                     "columns": [{
-                            "data": "id",
+                            "data": "s_name",
                             "searchable": false
                         },
                         {
-                            "data": "name",
+                            "data": "d_barcode",
                             "searchable": true
                         },
                         {
-                            "data": "pid",
+                            "data": "d_wt",
                             "searchable": true
                         },
                         {
-                            "data": "destination",
+                            "data": "shape_name",
                             "searchable": true
                         }, {
                             "mRender": function(data, type, row) {
-                                return '<a href=add.html?id="' + row[0] + '">Edit</a>';
+                                return '<a href=:"{{url('/diamond/edit/ ')}}"="' + row[0] + '">Edit</a>' + '<a style="padding:0px 10px;" href="{{url('/diamond/destroy/ ')}}""' + row[1] + '">Delete</a>';
                             }
                         }
                     ]
