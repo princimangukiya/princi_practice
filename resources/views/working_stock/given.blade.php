@@ -40,7 +40,26 @@ Diamond Give
             </small>
             @enderror
         </div>
-        
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+            <label class="form-label"> &nbsp &nbsp BarCode Value </label>
+            <div style="display: flex;">
+                <div class="col-8">
+                    <input id="bar_code" type="text" name="bar_code" class="form-control inputField" value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
+                    @error('bar_code')
+                    <small class="errorTxt1">
+                        <div id="title-error" class="error" style="margin-left:3rem">
+                            {{ $message }}
+                        </div>
+                    </small>
+                    @enderror
+                </div>
+                <div class="col-4">
+                    <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')" class="btn  btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     <div class="card-body">
@@ -60,33 +79,7 @@ Diamond Give
 <!--/div-->
 
 <!-- /Row -->
-<div class="row">
-    <div class="col-sm-6 col-md-6">
-        <div class="form-group">
-            <label class="form-label"> &nbsp &nbsp BarCode Value </label>
-            <div style="display: flex;">
-                <div class="col-8">
-                    <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
-                    @error('bar_code')
-                    <small class="errorTxt1">
-                        <div id="title-error" class="error" style="margin-left:3rem">
-                            {{ $message }}
-                        </div>
-                    </small>
-                    @enderror
-                </div>
-                <div class="col-4">
-                    <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')" class="btn  btn-primary">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
-
-
-
-</div>
 <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
 <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
@@ -105,6 +98,24 @@ Diamond Give
         // mytable.row.add([id, 'pkt1', '10.5']);
         // mytable.draw();
     });
+    var currentBoxNumber = 0;
+            $(".inputField").keyup(function(event) {
+                if (event.keyCode == 13) {
+                    textboxes = $("input.inputField");
+                    currentBoxNumber = textboxes.index(this);
+                    console.log(textboxes.index(this));
+                    if (textboxes[currentBoxNumber + 1] != null) {
+                        nextBox = textboxes[currentBoxNumber + 1];
+                        nextBox.focus();
+                        nextBox.select();
+                        event.preventDefault();
+                        return false;
+                    } else {
+                        addData();
+                    }
+                }
+            });
+
 </script>
 
 <script>
