@@ -53,12 +53,6 @@ class ReportController extends Controller
     public function searchdata_Inward(Request $request)
     {
         $data = array();
-        $c_id = session()->get('c_id');
-        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
-        $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
-
         $s_id = $request->s_id;
         $start_date = $request->Start_date;
         $end_date = $request->End_date;
@@ -67,10 +61,20 @@ class ReportController extends Controller
         echo $start_date;
         echo "<br>";
         echo $end_date;
+        $c_id = session()->get('c_id');
+        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+            ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
 
-        $data['inward'] = D_Purchase::where('s_id', $s_id)->get();
-        $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
+
+
+
+        // $data['inward'] = D_Purchase::where('s_id', $s_id)->get();
+        // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
         return view('Report.Inward', $data);
+        // echo $data['inward'];
     }
     //Outward PDF Genratte
     public function Outward()
@@ -106,8 +110,13 @@ class ReportController extends Controller
         echo "<br>";
         echo $end_date;
         $data['inward'] = D_Purchase::where('s_id', $s_id)->get();
-        $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
-        return view('Report.Outward', $data);
+        // $data['outward'] = Ready_Stock::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+        //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+        //     ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+        //     ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
+        // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
+        // return view('Report.Outward', $data);
+        echo $data['inward'];
     }
 
     //Party_Labour Genrate PDF
