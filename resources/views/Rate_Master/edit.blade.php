@@ -19,7 +19,7 @@
     </div>
     <!--End Page header-->
 
-    <form action="{{ route('rate_master.update', $supplier->Rate_id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('rate_master.update', $rate_master->Rate_id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
 
@@ -70,7 +70,7 @@
                                         <div class="form-group">
                                             <h4><label class="form-label">Select Rate :-</label></h4>
                                             <select id="r_id" name="r_id" required class="form-control select2">
-                                                <optgroup label="Rate" value="{{ $supplier->r_id }}">
+                                                <optgroup label="Rate" value="{{ $rate_master->r_id }}">
                                                     <option value="" disabled selected>Choose Rate</option>
                                                     @if (count($rates) > 0)
                                                         @foreach ($rates as $value)
@@ -125,8 +125,8 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label class="form-label">Price :-</label>
-                                            <input placeholder="Enter Supplier Gst" class="form-control" id="s_gst"
-                                                type="text" name="Price" value="{{ $supplier->Price }}" required>
+                                            <input placeholder="Enter Price:- " class="form-control" id="s_gst"
+                                                type="text" name="Price" value="{{ $rate_master->json_Price }}" required>
                                             @error('s_gst')
                                                 <small class="errorTxt1">
                                                     <div id="title-error" class="error" style="margin-left:3rem">
