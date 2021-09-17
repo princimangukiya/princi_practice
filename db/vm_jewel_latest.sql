@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2021 at 09:54 AM
+-- Generation Time: Sep 17, 2021 at 03:14 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -132,15 +132,18 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (34, 1, 7, '121212', '0.152', NULL, NULL, NULL, NULL, NULL, NULL, 3, '2021-09-07', NULL, NULL, NULL, '2021-09-07 01:15:58', '2021-09-07 01:15:58'),
 (35, 1, 7, '101011', '0.285', '0.270', NULL, NULL, NULL, NULL, NULL, 3, '2021-09-07', 1, 1, NULL, '2021-09-07 03:56:57', '2021-09-16 05:02:43'),
 (36, 1, 1, '101012', '0.285', '0.270', NULL, NULL, NULL, NULL, NULL, 3, '2021-09-07', 1, 1, NULL, '2021-09-07 03:58:30', '2021-09-16 05:02:59'),
-(37, 1, 7, '101020', '0.286', '0.260', NULL, NULL, NULL, NULL, NULL, 3, '2021-09-07', 1, 1, NULL, '2021-09-07 04:12:59', '2021-09-16 04:15:47'),
+(37, 1, 7, '101020', '0.286', '0.260', NULL, NULL, NULL, NULL, NULL, 3, '2021-09-07', 1, 1, 1, '2021-09-07 04:12:59', '2021-09-17 06:25:56'),
 (38, 2, 7, '145236', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2021-09-10', NULL, NULL, NULL, '2021-09-17 01:56:28', '2021-09-17 01:56:28'),
 (39, 1, 1, '1452368', '0.205', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-12', NULL, NULL, NULL, '2021-09-17 02:06:53', '2021-09-17 02:06:53'),
 (40, 1, 1, '12546', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-08', NULL, NULL, NULL, '2021-09-17 02:07:31', '2021-09-17 02:07:31'),
-(41, 1, 1, '021456', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2021-09-03', NULL, NULL, NULL, '2021-09-17 02:08:03', '2021-09-17 02:08:03'),
+(41, 1, 1, '021456', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 1, '2021-09-03', 1, NULL, NULL, '2021-09-17 02:08:03', '2021-09-17 03:27:24'),
 (42, 1, 1, '459882', '0.85', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-08', NULL, NULL, NULL, '2021-09-17 02:09:11', '2021-09-17 02:09:11'),
 (43, 1, 1, '4598823', '0.85', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-08', NULL, NULL, NULL, '2021-09-17 02:09:33', '2021-09-17 02:09:33'),
 (44, 1, 1, '4598824', '0.85', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-08', NULL, NULL, NULL, '2021-09-17 02:09:54', '2021-09-17 02:09:54'),
-(45, 1, 1, '456212', '0.52', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-09', NULL, NULL, NULL, '2021-09-17 02:10:40', '2021-09-17 02:10:40');
+(45, 1, 1, '456212', '0.52', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-09', NULL, NULL, NULL, '2021-09-17 02:10:40', '2021-09-17 02:10:40'),
+(46, 1, 1, '456213', '0.52', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-09-09', 2, NULL, NULL, '2021-09-17 03:17:20', '2021-09-17 07:32:14'),
+(47, 1, 8, '125436', '0.250', NULL, NULL, NULL, NULL, NULL, NULL, 3, '2021-09-11', 2, NULL, NULL, '2021-09-17 04:03:10', '2021-09-17 06:55:34'),
+(48, 1, 8, '1254387', '0.250', '0.230', NULL, NULL, NULL, NULL, NULL, 3, '2021-09-11', 2, 1, 1, '2021-09-17 04:03:30', '2021-09-17 07:01:48');
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,8 @@ CREATE TABLE `manager_details` (
 --
 
 INSERT INTO `manager_details` (`m_id`, `c_id`, `m_name`, `m_address`, `m_phone`, `m_email`, `created_at`, `updated_at`) VALUES
-(1, 1, 'NARESHBHAI', 'VM JEWEL', '9979966346', 'naresh@gmail.com', '2021-07-31 13:05:36', '2021-07-31 13:05:36');
+(1, 1, 'NARESHBHAI', 'VM JEWEL', '9979966346', 'naresh@gmail.com', '2021-07-31 13:05:36', '2021-07-31 13:05:36'),
+(2, 1, 'rishi', 'hirabag', '9512727308', 'rushikeshantala@gmail.com', '2021-09-17 04:02:42', '2021-09-17 04:02:42');
 
 -- --------------------------------------------------------
 
@@ -264,8 +268,8 @@ CREATE TABLE `rate_masters` (
 --
 
 INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '[{\"1\":\"50\",\"3\":\"70\",\"2\":\"50\"}]', '2021-09-16 09:20:50', '2021-09-16 23:40:18'),
-(4, 2, 7, '[{\"1\":\"50\",\"2\":\"50\"}]', '2021-09-17 00:54:52', '2021-09-17 00:55:01');
+(1, 1, 1, '[{\"1\":\"50\",\"3\":\"70\",\"2\":\"60\"}]', '2021-09-16 09:20:50', '2021-09-17 06:20:27'),
+(4, 2, 7, '[{\"1\":\"80\",\"3\":\"100\",\"2\":\"50\"}]', '2021-09-17 00:54:52', '2021-09-17 06:19:36');
 
 -- --------------------------------------------------------
 
@@ -289,7 +293,6 @@ CREATE TABLE `ready_stock` (
 --
 
 INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `d_barcode`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 37, '0.260', '101020', '2021-09-16 04:15:47', '2021-09-16 04:15:47'),
 (4, 1, 1, 36, '0.270', '101012', '2021-09-16 05:02:59', '2021-09-16 05:02:59');
 
 -- --------------------------------------------------------
@@ -307,6 +310,14 @@ CREATE TABLE `sell_stock` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sell_stock`
+--
+
+INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(2, 1, 7, 37, '101020', '2021-09-17 06:25:56', '2021-09-17 06:25:56'),
+(3, 1, 8, 48, '1254387', '2021-09-17 07:01:48', '2021-09-17 07:01:48');
 
 -- --------------------------------------------------------
 
@@ -330,7 +341,8 @@ CREATE TABLE `supplier_details` (
 
 INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `created_at`, `updated_at`) VALUES
 (1, 1, 'ALOK IMPEX', 'PLOT NO - 2&3, THE PURSHOTTAM GINNING MILLS COMPOUND, KHAN BAZAR, A.K. ROAD, SURAT - 395006', '24AAACA1033E1ZL', '2021-07-31 11:56:26', '2021-07-31 11:56:26'),
-(7, 2, 'kikani jems', 'pramukh bulding', '24aakfk0018n1zd', '2021-08-11 02:42:32', '2021-08-11 02:42:32');
+(7, 2, 'kikani jems', 'pramukh bulding', '24aakfk0018n1zd', '2021-08-11 02:42:32', '2021-08-11 02:42:32'),
+(8, 1, 'KIRAN', 'HIRABAG', '24AAACA1033E1Z', '2021-09-17 04:02:25', '2021-09-17 04:02:25');
 
 -- --------------------------------------------------------
 
@@ -372,6 +384,15 @@ CREATE TABLE `working_stock` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `working_stock`
+--
+
+INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(4, 1, 1, 41, '021456', '2021-09-17 03:27:24', '2021-09-17 03:27:24'),
+(5, 1, 2, 47, '125436', '2021-09-17 06:55:34', '2021-09-17 06:55:34'),
+(7, 1, 2, 46, '456213', '2021-09-17 07:32:14', '2021-09-17 07:32:14');
 
 --
 -- Indexes for dumped tables
@@ -504,7 +525,7 @@ ALTER TABLE `diamond_shape`
 -- AUTO_INCREMENT for table `d_purchase`
 --
 ALTER TABLE `d_purchase`
-  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -516,7 +537,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `manager_details`
 --
 ALTER TABLE `manager_details`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -540,19 +561,19 @@ ALTER TABLE `rate_masters`
 -- AUTO_INCREMENT for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sell_stock`
 --
 ALTER TABLE `sell_stock`
-  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `supplier_details`
 --
 ALTER TABLE `supplier_details`
-  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -564,7 +585,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
