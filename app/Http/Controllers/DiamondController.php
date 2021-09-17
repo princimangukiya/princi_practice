@@ -18,7 +18,7 @@ class DiamondController extends Controller
 {
     public function index()
     {
-       
+
         $data = array();
         $c_id = session()->get('c_id');
         $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate', 'supplier')->get();
@@ -27,14 +27,14 @@ class DiamondController extends Controller
 
     public function create()
     {
-        
+
         $data = array();
         $c_id = session()->get('c_id');
         // $data['supplier'] = D_Purchase::where('c_id', $c_id)->get();
         $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
-        $data['supplier']= D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
-        ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-        ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
+            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+            ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         return view('Diamond_purchase.create', $data);
     }
 
@@ -45,7 +45,7 @@ class DiamondController extends Controller
                 'bar_code' => 'required',
                 'd_wt' => 'required',
                 'shape_id' => 'required',
-                's_id' => 'required' 
+                's_id' => 'required'
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -62,10 +62,6 @@ class DiamondController extends Controller
                 $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
-                // $new_date= $request->bill_date;
-                // $newDate = \Carbon\Carbon::createFromFormat('Y-m-d', $new_date)
-                // ->format('d/m/Y');
-                // dd($newDate);
                 $newitem->bill_date = $request->bill_date;
                 //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
                 //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
