@@ -177,8 +177,6 @@
                 // mytable.row.add([id, 'pkt1', '10.5']);
                 // mytable.draw();
             });
-        </script>
-        <script>
             var currentBoxNumber = 0;
             $(".inputField").keyup(function(event) {
                 if (event.keyCode == 13) {
@@ -196,6 +194,8 @@
                     }
                 }
             });
+        </script>
+        <script>
 
             function addTOManager(id) {
                 // alert(id);
