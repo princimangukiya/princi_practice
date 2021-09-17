@@ -68,7 +68,9 @@
                         <div class="card-title font-weight-bold">Rate info:</div>
                         <div class="row">
                             @php
-                                $rate = App\Models\supplier_details::get();
+                                $c_id = session()->get('c_id');
+                                $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                                // echo $rate;
                             @endphp
                             <div class="col-md-6">
                                 <div class="form-group">
