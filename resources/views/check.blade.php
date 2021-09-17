@@ -54,7 +54,8 @@
                                     </div>
                                 </div>
                                 @php
-                                    $supplier = App\Models\Supplier_Details::get();
+                                    $c_id = session()->get('c_id');
+                                    $supplier = App\Models\Supplier_Details::where('c_id' , $c_id)->get();
                                 @endphp
                                 <div class="col-md-6">
                                     <div class="form-group">
