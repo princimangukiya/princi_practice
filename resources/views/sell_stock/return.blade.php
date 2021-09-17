@@ -19,9 +19,11 @@ Sell Diamond
         <div class="card-title">Sell Diamond</div>
     </div>
     @php
-    $supplier = App\Models\supplier_details::get();
+    $c_id = session()->get('c_id');
+    $supplier = App\Models\supplier_details::where('c_id' , $c_id)->get();
 @endphp
-    <div class="col-md-6">
+<div class="row">
+    <div class="col-md-6 col-sm-6">
         <div class="form-group">
             <h4><label class="form-label">Select Company :-</label></h4>
             <select id="s_id" name="s_id" required class="form-control select2">
@@ -43,7 +45,23 @@ Sell Diamond
             @enderror
         </div>
     </div>
-
+    <div class="col-sm-6 col-md-6" style="display: flex;">
+        <div class="form-group col-md-8 col-sm-8">
+            <label class="form-label">BarCode Value </label>
+            <input id="bar_code" type="text" name="bar_code" class="form-control " value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
+            @error('bar_code')
+            <small class="errorTxt1">
+                <div id="title-error" class="error" style="margin-left:3rem">
+                    {{ $message }}
+                </div>
+            </small>
+            @enderror
+        </div>
+        <div class="col-md-3 col-sm-3" style="padding: 27px;">
+    <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')" class="btn  btn-primary">Submit</button>
+</div>
+    </div>
+</div>
     <div class="card-body">
         <div class="table-responsive">
             <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
@@ -60,21 +78,7 @@ Sell Diamond
 <!--/div-->
 
 <!-- /Row -->
-<div class="row">
-    <div class="col-sm-6 col-md-6">
-        <div class="form-group">
-            <label class="form-label">BarCode Value </label>
-            <input id="bar_code" type="text" name="bar_code" class="form-control" value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
-            @error('bar_code')
-            <small class="errorTxt1">
-                <div id="title-error" class="error" style="margin-left:3rem">
-                    {{ $message }}
-                </div>
-            </small>
-            @enderror
-        </div>
-    </div>
-    <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')" class="btn  btn-primary">Submit</button>
+    
 
 
 
