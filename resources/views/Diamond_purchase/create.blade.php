@@ -103,7 +103,7 @@
 
                 <div class="card-body">
                     @php
-                    $c_id = session()->get('c_id');
+                        $c_id = session()->get('c_id');
                         $supplier1 = App\Models\supplier_details::where('c_id' , $c_id)->get();
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
@@ -125,9 +125,6 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Packet Supplier</label>
-                                @php
-                                $supplier = App\Models\supplier_details::get();
-                                @endphp
                                 <select id="s_id" name="s_id" required class="form-control select2">
                                     <optgroup label="Supplier">
                                         <option value="" disabled selected>Choose Supplier</option>
