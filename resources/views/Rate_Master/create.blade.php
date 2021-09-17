@@ -129,7 +129,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Labour :-</label>
-                                <input placeholder="Enter Your price" class="form-control" id="price" type="text"
+                                <input placeholder="Enter Your price" class="form-control inputField" id="price" type="text"
                                     name="price" value="{{ old('price') }}" required>
                                 @error('price')
                                     <small class="errorTxt1">
@@ -159,6 +159,24 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
+         var currentBoxNumber = 0;
+            $(".inputField").keyup(function(event) {
+                if (event.keyCode == 13) {
+                    textboxes = $("input.inputField");
+                    currentBoxNumber = textboxes.index(this);
+                    console.log(textboxes.index(this));
+                    if (textboxes[currentBoxNumber + 1] != null) {
+                        nextBox = textboxes[currentBoxNumber + 1];
+                        nextBox.focus();
+                        nextBox.select();
+                        event.preventDefault();
+                        return false;
+                    } else {
+                        addData();
+                    }
+                }
+            });
+
         // Add Categoriey to form 
         function myFunction() {
             var x = document.getElementById('myDIV');
