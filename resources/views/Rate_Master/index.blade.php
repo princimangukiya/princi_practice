@@ -56,9 +56,11 @@
                                             <td>
                                                 {{ $key + 1 }}
                                             </td>
+                                            @foreach ($supplier_name as $item)
                                             <td>
-                                                {{ $value->s_name }}
+                                                {{ $item->s_name }}
                                             </td>
+                                            @endforeach
                                             @php
                                                 $decoded_data = json_decode($value['json_price'], true);
                                                 $decoded_data = $decoded_data[0];
