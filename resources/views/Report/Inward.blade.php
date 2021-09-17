@@ -38,7 +38,8 @@
                     <div class="row">
                         <div class="col-md-5" style="padding-right: 50px;">
                             @php
-                                $rate = App\Models\supplier_details::get();
+                               $c_id = session()->get('c_id');
+                                $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
                             @endphp
                             <div class="form-group">
                                 <h4><label class="form-label">Select Company :-</label></h4>
