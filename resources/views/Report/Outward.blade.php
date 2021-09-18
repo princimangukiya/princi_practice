@@ -35,56 +35,57 @@
                 <div class="card-body">
                     <form action="/search_outward_data" method="post">
                         @csrf
-                    <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
-                            @php
-                                $c_id = session()->get('c_id');
-                                $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
-                            @endphp
-                            <div class="form-group">
-                                <h4><label class="form-label">Select Company :-</label></h4>
-                                <select id="s_id" name="s_id" required class="form-control select2">
-                                    <optgroup label="Company">
-                                        <option value="" disabled selected>Choose Company</option>
-                                        @if (count($rate) > 0)
-                                            @foreach ($rate as $value)
-                                                <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </optgroup>
-                                </select>
-                                @error('s_id')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
+                        <div class="row">
+                            <div class="col-md-5" style="padding-right: 50px;">
+                                @php
+                                    $c_id = session()->get('c_id');
+                                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                                @endphp
+                                <div class="form-group">
+                                    <h4><label class="form-label">Select Company :-</label></h4>
+                                    <select id="s_id" name="s_id" required class="form-control select2">
+                                        <optgroup label="Company">
+                                            <option value="" disabled selected>Choose Company</option>
+                                            @if (count($rate) > 0)
+                                                @foreach ($rate as $value)
+                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                    @error('s_id')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                            <div class="col-md-5" style="display: flex;">
+                                <div class="col-md-6">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content: start;">Select Start
                                                 Date:- </label></h4>
                                         <input type="date" id="Start_date" name="Start_date">
                                     </div>
-                            </div>
-                            <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content: start;">Select End
                                                 Date:- </label></h4>
                                         <input type="date" id="End_date" name="End_date">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="padding: 15px;">
+                                <button id="addData" name="addData" onClick="addData()"
+                                    class="btn  btn-primary">Serch</button>
                             </div>
                         </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Serch</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
                 <div class="card-body">
                     <div>
@@ -131,7 +132,7 @@
                                                 {{ $value->d_n_wt }}
                                             </td>
                                             <td>
-                                                {{ $value->Price }}
+                                                {{ $value->price }}
                                             </td>
                                             <td>
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
