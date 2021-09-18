@@ -49,71 +49,32 @@
                                     @php
                                         // echo $rates;
                                     @endphp
-                                    @foreach ($rates as $key => $value)
 
+                                    @foreach ($rates as $key => $value)
                                         <tr>
 
                                             <td>
                                                 {{ $key + 1 }}
                                             </td>
-                                            @foreach ($supplier_name as $item)
-                                            <td>
-                                                {{ $item->s_name }}
-                                            </td>
+                                            @php
+                                                echo $supplier_name[1]['s_name'];
+                                            @endphp
+                                            @foreach ($supplier_name as $key => $item)
+                                                @if ($value->s_id == $item->s_id)
+                                                    <td>
+                                                        {{ $item->s_name }}
+                                                    </td>
+                                                @endif
+
                                             @endforeach
                                             @php
                                                 $decoded_data = json_decode($value['json_price'], true);
                                                 $decoded_data = $decoded_data[0];
-                                                // echo count($decoded_data);*-
-                                            @endphp
-
-
-                                            @php
                                                 $data = json_decode(showData($decoded_data, $rate));
-                                                // echo json_encode($data) . '================';
-                                                // var_dump($data);
                                             @endphp
-
-                                            {{-- @for ($i = 0; $i < count($data); $i++)
-
-                                            @endfor --}}
                                             @foreach ($data as $item)
                                                 <td>{{ $item }}</td>
                                             @endforeach
-                                            {{-- <td>
-                                                {{ $value['json_price'] }}
-                                            </td>
-                                            <td>
-                                                {{ $value['json_price'] }}
-                                            </td>
-                                            <td>
-                                                {{ $value['json_price'] }}
-                                            </td>
-                                            <td>
-                                                {{ $value['json_price'] }}
-                                            </td> --}}
-                                            {{-- @if ($value['json_price']['1'] == 1)
-                                                <td>
-                                                    {{ $value['json_price']['price']}}
-                                                </td>
-                                            @endif
-                                            @if ($value->r_id == 2)
-                                               
-                                                <td>
-                                                    {{ $value->Price }}
-                                                </td>
-                                            @endif
-                                            @if ($value->r_id == 3)
-                                               
-                                                <td>
-                                                    {{ $value->Price }}
-                                                </td>
-                                            @endif
-                                            @if ($value->r_id == 4)
-                                            <td>
-                                                    {{$value->price}}
-                                            </td>
-                                            @endif --}}
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
                                                 <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
@@ -124,7 +85,6 @@
                                                                 class="fe fe-edit-2"></i></button>
                                                     </div>
                                                 </a>
-
                                                 {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
                                                     method="post">
                                                     @csrf
@@ -135,6 +95,8 @@
                                                     </div>
                                                 </form> --}}
                                             </td>
+
+
                                         </tr>
                                     @endforeach
 
@@ -158,10 +120,10 @@
     function showData($decoded_data, $p_rate)
     {
         $price = [];
-        for ($i = 1; $i <= count($p_rate); $i++) {
-            $token =0;
+        for ($i = 0; $i < count($p_rate); $i++) {
+            $token = 0;
             foreach ($decoded_data as $key => $rate) {
-                if ($i == $key) {
+                if ($p_rate[$i]['r_id'] == $key) {
                     array_push($price, $rate);
                     $token = 1;
                 }
