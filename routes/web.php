@@ -17,7 +17,7 @@ Route::get('/check', function () {
     return view('check');
 });
 Auth::routes();
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     //diamond purchase
     Route::get('/diamond', 'App\Http\Controllers\DiamondController@index')->name('diamond');
     Route::get('/diamond/create', 'App\Http\Controllers\DiamondController@create')->name('diamond.create');
@@ -51,6 +51,7 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/ready_stock', 'App\Http\Controllers\ReadyStockController@index')->name('ready_stock');
     Route::get('/ready_stock/create', 'App\Http\Controllers\ReadyStockController@create')->name('ready_stock.create');
     Route::post('/ready_stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
+    Route::post('/ready_stock/fetchdata', 'App\Http\Controllers\ReadyStockController@fetchdata')->name('ready_stock.fetchdata');
     Route::post('/ready_stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
 
 
