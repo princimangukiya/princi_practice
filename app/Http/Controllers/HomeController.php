@@ -43,23 +43,24 @@ class HomeController extends Controller
     public function firstUser()
     {
         session(['c_id' => '1', 'c_name' => 'VMJEWELS', 'dashboard' => 'VMJEWEL', 'c_img_url' => 'assets/images/company_logo/vmjewels.jpeg']);
+
         $data = array();
-        $data['totalManager'] = Count(Manager_Details::where('c_id','1')->get());
-        $data['totalSupplier'] = Count(Supplier_Details::where('c_id','1')->get());
-        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id','1')->get());
-        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id','1')->get());
-        $data['totalSellStock'] = Count(Sell_Stock::where('c_id','1')->get());
+        $data['totalManager'] = Count(Manager_Details::where('c_id', '1')->get());
+        $data['totalSupplier'] = Count(Supplier_Details::where('c_id', '1')->get());
+        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id', '1')->get());
+        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id', '1')->get());
+        $data['totalSellStock'] = Count(Sell_Stock::where('c_id', '1')->get());
         return view('home', $data);
     }
     public function SecondUser()
     {
-        session(['c_id' => '2', 'c_name' => 'EKLINGJI JEWELS', 'dashboard' => 'EKLINGJI', 'c_img_url' => 'assets/images/company_logo/eklingji_jewels.png']);
+        session(['c_id' => '2', 'c_name' => 'EKLINGJI JEWELS', 'dashboard' => 'EKLINGJI', 'c_img_url' => 'assets/images/company_logo/Eklingi_jewel.jpeg']);
         $data = array();
-        $data['totalManager'] = Count(Manager_Details::where('c_id','2')->get());
-        $data['totalSupplier'] = Count(Supplier_Details::where('c_id','2')->get());
-        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id','2')->get());
-        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id','2')->get());
-        $data['totalSellStock'] = Count(Sell_Stock::where('c_id','2')->get());
+        $data['totalManager'] = Count(Manager_Details::where('c_id', '2')->get());
+        $data['totalSupplier'] = Count(Supplier_Details::where('c_id', '2')->get());
+        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id', '2')->get());
+        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id', '2')->get());
+        $data['totalSellStock'] = Count(Sell_Stock::where('c_id', '2')->get());
         return view('home', $data);
     }
 }
