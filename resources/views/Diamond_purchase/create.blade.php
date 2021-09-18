@@ -104,7 +104,7 @@
                 <div class="card-body">
                     @php
                         $c_id = session()->get('c_id');
-                        $supplier1 = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                        $supplier1 = App\Models\supplier_details::where('c_id', $c_id)->get();
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
@@ -245,7 +245,10 @@
                             "searchable": true
                         }, {
                             "mRender": function(data, type, row) {
-                                return '<a href=:"{{url('/diamond/edit/ ')}}"="' + row[0] + '">Edit</a>' + '<a style="padding:0px 10px;" href="{{url('/diamond/destroy/ ')}}""' + row[1] + '">Delete</a>';
+                                return '<a href=:"{{ url('/diamond/edit/ ') }}"="' + row[0] +
+                                    '">Edit</a>' +
+                                    '<a style="padding:0px 10px;" href="{{ url('/diamond/destroy/ ') }}""' +
+                                    row[1] + '">Delete</a>';
                             }
                         }
                     ]
@@ -297,7 +300,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                    $.ajax({
+                $.ajax({
                     type: 'POST',
                     url: '{{ route('diamond.store') }}',
                     data: {
