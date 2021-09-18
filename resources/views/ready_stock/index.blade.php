@@ -47,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-{{-- @php
+                                    {{-- @php
     echo count($ready_stock1);
 @endphp --}}
                                     @foreach ($ready_stock as $key => $value)
@@ -74,7 +74,7 @@
                                                 {{ $value->Diamond->shape_id }}
                                             </td>
                                             <td>
-                                                {{ $value->Price }}
+                                                {{ $value->Diamond->price }}
                                             </td>
                                             <td>
                                                 <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
