@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\D_Purchase;
+use App\Models\rate_master;
 use App\Models\Supplier_Details;
+use App\Models\rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -40,6 +42,9 @@ class DiamondController extends Controller
 
     public function store(Request $request)
     {
+
+        $s_id = $request->s_id;
+        $d_wt = $request->d_wt;
         try {
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
@@ -66,6 +71,20 @@ class DiamondController extends Controller
                 //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
                 //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
                 $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
+                $json_data = rate_master::where('rate_masters.s_id', $s_id)->get();
+                $json_decoded = json_decode($json_data[0]['json_price']);
+                foreach ($json_decoded[0] as $key => $val) {
+                    $r_id = $key;
+                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = $wt_category[0]['wt_category'];
+                    $value = explode('-', $wt_category);
+                    // $first_value = substr($wt_category, 0, 5);
+                    // $last_value = substr($wt_category, -5);
+                    if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
+                        $newitem->d_wt_category = $key;
+                        $newitem->price = $val;
+                    }
+                }
                 //$newitem->d_cla = !empty($request->d_cla) ? $request->d_cla : '';
                 //$newitem->d_exp_pr = !empty($request->d_exp_pr) ? $request->d_exp_pr : '';
                 //$newitem->d_exp = !empty($request->d_exp) ? $request->d_exp : '';
