@@ -100,7 +100,7 @@
             <a href="/EKLINGJI">
                 <div class="rightCard">
                     <div class="card" style="width: 18rem;">
-                        <img src="assets\images\company_logo\eklingji_jewels.png" class="card-img-top" alt="...">
+                        <img src="assets\images\company_logo\Eklingi_jewel.jpeg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <center>
                                 <h5 class="card-title card-title111 ">EKLINGJI JEWELS</h5>
