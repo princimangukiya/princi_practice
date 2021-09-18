@@ -17,13 +17,7 @@ class RateMaster extends Controller
         $data['rates'] = rate_master::where('c_id', $c_id)->get();
         $data['supplier_name'] = rate_master::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
             ->where('supplier_details.c_id', $c_id)
-            ->get(['supplier_details.s_name']);
-        // $data_json =rate_master::where('s_id',$r_id)
-        //         ->select('json_price')
-        //         ->get();
-        // $data['supplier'] = json_decode($data_json);
-        // echo $data['supplier'];
-        // echo $data['supplier_name'];
+            ->get(['supplier_details.*']);
         return view('Rate_Master.index', $data);
     }
     public function create()
