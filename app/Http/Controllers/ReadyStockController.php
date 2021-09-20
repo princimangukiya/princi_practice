@@ -77,7 +77,7 @@ class ReadyStockController extends Controller
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
-                $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1, 'd_n_wt' => $request->d_n_wt, 'price' => $request->Ready_stock_price]);
+                $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1, 'd_n_wt' => $request->d_n_wt, 'price' => $request->price]);
                 if ($dPurchaseData != null) {
                     $stockdelete = Working_Stock::find($DiamondData->w_id);
                     $stockdelete->delete();
