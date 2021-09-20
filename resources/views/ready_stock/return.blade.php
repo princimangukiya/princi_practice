@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
-                        <input id="d_weigth" type="text" name="d_wt" class="form-control" value=""
+                        <input id="d_wt" type="text" name="d_wt" class="form-control" value=""
                             placeholder="Enter New Weight" readonly="readonly">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
-                        <input id="Price" type="text" name="Ready_stock_price" class="form-control" value=""
+                        <input id="price" type="text" name="price" class="form-control" value=""
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -274,8 +274,8 @@
                         if (response_msg.success) {
                             console.log(response_msg.success.d_wt);
                             console.log(response_msg.success.price);
-                            $('#d_weigth').val(response_msg.success.d_wt);
-                            $('#Price').val(response_msg.success.price);
+                            $('#d_wt').val(response_msg.success.d_wt);
+                            $('#price').val(response_msg.success.price);
                         }
 
                     }
