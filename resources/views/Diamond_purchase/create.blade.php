@@ -243,9 +243,8 @@
                         // alert(response_msg.success);
                         if (response_msg.success == true) {
 
-                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
+                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date ,Action]);
                             mytable.draw();
-
                             fnCreatedRow(0);
 
 
