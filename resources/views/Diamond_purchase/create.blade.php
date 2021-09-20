@@ -179,6 +179,7 @@
                     "info": true,
                     "autoWidth": false,
                     "sDom": 'lfrtip',
+
                 });
 
                 // function fnCreatedRow(nRow) {
@@ -209,6 +210,7 @@
             });
 
             function addData() {
+                // alert(id);
                 var barcode = $('#bar_code').val();
                 var weight = $('#d_wt').val();
                 var shape = $('#shape_id').val();
@@ -217,11 +219,7 @@
                 var shapevalue = $('#shape_id').find(":selected").text();
                 var partyName = $('#s_id').find(":selected").text();
                 // alert(barcode);
-                // alert(weight);
-                // alert(shapevalue);
-
-                var token = $('meta[name="csrf-token"]').attr('content');
-                // alert(token);
+                // alert(m_id);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -236,36 +234,77 @@
                         'shape_id': shape,
                         's_id': s_id,
                         'bill_date': bill_date
-
                     },
                     dataType: 'json',
                     success: function(response_msg) {
                         // alert(response_msg.success);
-                        if (response_msg.success == true) {
-
-                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date ,Action]);
+                        if (response_msg.success == 200) {
+                            alert("Barcode already exist!");
+                            //location.reload();
+                        } else if (response_msg.success == true) {
+                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
                             mytable.draw();
-                            fnCreatedRow(0);
-
-
+                            $('#s_id').val('');
                             $('#bar_code').val('');
                             $('#d_wt').val('');
-                            $('#bill_date').val('');
-                            // $('#shape_id').val('');
-                            $('#bar_code').focus();
-
-                        } else if (response_msg.success == 200) {
-                            alert("Barcode already exist!");
-                            // $('#bar_code').val('');
-                            // $('#d_wt').val('');
-                            // $('#shape_id').val('');
+                            $('#shape_id').val('');
+                            $('#bill_date').focus();
                         } else {
-                            alert("Please, Fill all the fields!");
+                            alert('Please, Fill all the fields!');
                         }
+
                     }
                 });
-                // alert(bill_date);
             }
+
+            // function addData() {
+
+            //     // alert(barcode);
+            //     // alert(weight);
+            //     // alert(shapevalue);
+
+            //     var token = $('meta[name="csrf-token"]').attr('content');
+            //     // alert(token);
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: '',
+            //         data: {
+
+
+            //         },
+            //         dataType: 'json',
+            //         success: function(response_msg) {
+            //             // alert(response_msg.success);
+            //             if (response_msg.success == true) {
+
+            //                 mytable.row.add([partyName, barcode, weight, shapevalue, bill_date, Action]);
+            //                 mytable.draw();
+            //                 fnCreatedRow(0);
+
+
+            //                 $('#bar_code').val('');
+            //                 $('#d_wt').val('');
+            //                 $('#bill_date').val('');
+            //                 // $('#shape_id').val('');
+            //                 $('#bar_code').focus();
+
+            //             } else if (response_msg.success == 200) {
+            //                 alert("Barcode already exist!");
+            //                 // $('#bar_code').val('');
+            //                 // $('#d_wt').val('');
+            //                 // $('#shape_id').val('');
+            //             } else {
+            //                 alert("Please, Fill all the fields!");
+            //             }
+            //         }
+            //     });
+            //     // alert(bill_date);
+            // }
         </script>
 
     @endsection
