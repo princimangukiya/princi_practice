@@ -34,6 +34,7 @@
                             {{-- <th>Package</th> --}}
                             <th class="border-bottom-0">Shape</th>
                             <th class="border-bottom-0">Buy Date</th>
+                            <th class="border-bottom-0">Action</th>
 
 
                         </tr>
@@ -179,7 +180,32 @@
                     "info": true,
                     "autoWidth": false,
                     "sDom": 'lfrtip',
+                    "columns": [{
+                            "data": "s_name",
+                            "searchable": false
+                        },
+                        {
+                            "data": "d_barcode",
+                            "searchable": true
+                        },
+                        {
+                            "data": "d_wt",
+                            "searchable": true
+                        },
+                        {
+                            "data": "shape_name",
+                            "searchable": true
+                        },
+                        {
+                            "data": "shape_name",
+                            "searchable": true
+                        }, {
 
+                            "mRender": function(data, type, row) {
+                                return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc()" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc()" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
+                            }
+                        }
+                    ]
                 });
 
                 // function fnCreatedRow(nRow) {
@@ -208,6 +234,44 @@
                     }
                 }
             });
+
+            function deleteFunc() {
+                if (confirm("Delete Record?") == true) {
+                    var id = id;
+                    // ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ url('delete-company') }}",
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            var oTable = $('#ajax-crud-datatable').dataTable();
+                            oTable.fnDraw(false);
+                        }
+                    });
+                }
+            }
+
+            function editFunc() {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('edit-company') }}",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        $('#CompanyModal').html("Edit Company");
+                        $('#company-modal').modal('show');
+                        $('#id').val(res.id);
+                        $('#name').val(res.name);
+                        $('#address').val(res.address);
+                        $('#email').val(res.email);
+                    }
+                });
+            }
 
             function addData() {
                 // alert(id);
@@ -256,55 +320,6 @@
                     }
                 });
             }
-
-            // function addData() {
-
-            //     // alert(barcode);
-            //     // alert(weight);
-            //     // alert(shapevalue);
-
-            //     var token = $('meta[name="csrf-token"]').attr('content');
-            //     // alert(token);
-            //     $.ajaxSetup({
-            //         headers: {
-            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //         }
-            //     });
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: '',
-            //         data: {
-
-
-            //         },
-            //         dataType: 'json',
-            //         success: function(response_msg) {
-            //             // alert(response_msg.success);
-            //             if (response_msg.success == true) {
-
-            //                 mytable.row.add([partyName, barcode, weight, shapevalue, bill_date, Action]);
-            //                 mytable.draw();
-            //                 fnCreatedRow(0);
-
-
-            //                 $('#bar_code').val('');
-            //                 $('#d_wt').val('');
-            //                 $('#bill_date').val('');
-            //                 // $('#shape_id').val('');
-            //                 $('#bar_code').focus();
-
-            //             } else if (response_msg.success == 200) {
-            //                 alert("Barcode already exist!");
-            //                 // $('#bar_code').val('');
-            //                 // $('#d_wt').val('');
-            //                 // $('#shape_id').val('');
-            //             } else {
-            //                 alert("Please, Fill all the fields!");
-            //             }
-            //         }
-            //     });
-            //     // alert(bill_date);
-            // }
         </script>
 
     @endsection
