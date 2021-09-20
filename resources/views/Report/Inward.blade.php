@@ -33,13 +33,11 @@
                     <div class="card-title">Inward Details</div>
                 </div>
                 <div class="card-body">
-                    <form action="/search_inward_data" method="post">
-                        @csrf
                     <div class="row">
                         <div class="col-md-5" style="padding-right: 50px;">
                             @php
                                 $c_id = session()->get('c_id');
-                                $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                                $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
                             @endphp
                             <div class="form-group">
                                 <h4><label class="form-label">Select Company :-</label></h4>
@@ -84,7 +82,6 @@
                             <button id="addData" name="addData" onClick="addData()" class="btn  btn-primary">Serch</button>
                         </div>
                     </div>
-                </form>
                 </div>
                 <div class="card-body">
                     <div>
@@ -152,6 +149,43 @@
 
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+    {{-- <script>
+        function addData(id) {
+            var s_id = $('#s_id').find(":selected").text();
+            var Start_date = $('#Start_date').find(":selected").text();
+            var End_date = $('#End_date').find(":selected").text();
 
+            // alert(barcode);
+            // alert(m_id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('ready_stock.fetchData') }}',
+                data: {
+                    's_id': s_id,
+                    'Start_date': Start_date,
+                    'End_date': End_date,
+                },
+                dataType: 'json',
+                success: function(response_msg) {
+                    // alert(response_msg.success);
+                    // console.log(response_msg);
+
+                    if (response_msg.success) {
+                        console.log(response_msg.success.d_wt);
+                        console.log(response_msg.success.price);
+                        $('#d_weigth').val(response_msg.success.d_wt);
+                        $('#Price').val(response_msg.success.price);
+                    }
+
+                }
+            });
+            alert('hii');
+        }
+    </script> --}}
 @endsection
 @include('app')
