@@ -13,6 +13,7 @@ use App\Models\Sell_Stock;
 use App\Models\Supplier_Details;
 use App\Models\User;
 use App\Models\Working_Stock;
+use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Http\Request;
 
@@ -67,6 +68,7 @@ class ReportController extends Controller
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
             ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
+        // return Response::json(array('success' => $data));
 
 
 
@@ -109,14 +111,16 @@ class ReportController extends Controller
         echo $start_date;
         echo "<br>";
         echo $end_date;
-        $data['inward'] = D_Purchase::where('s_id', $s_id)->get();
+        $data = D_Purchase::where('s_id', $s_id)->get();
         // $data['outward'] = Ready_Stock::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
         //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
         //     ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
         //     ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
         // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
-        // return view('Report.Outward', $data);
-        echo $data['inward'];
+        return view('Report.Outward', $data);
+        return Response::json(array('success' => $data));
+
+        // echo $data['inward'];
     }
 
     //Party_Labour Genrate PDF
@@ -125,11 +129,11 @@ class ReportController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         $data['Pay_Labour'] = D_Purchase::where('c_id', $c_id)
-            ->join('')
+            // ->join('')
             ->get('d_purchase.*');
-        // foreach ($data['Pay_Labour'] as $val) {
-        //     echo $val->s_id;
-        // }
+        foreach ($data['Pay_Labour'] as $val) {
+            echo $val->s_id;
+        }
         $data['wt_categoriey'] = rate_master::where('c_id', $c_id)->get();
         $weight = json_decode($data['wt_categoriey'][0]['json_price']);
         // dd($weight);
@@ -141,8 +145,19 @@ class ReportController extends Controller
             $wt_category = $wt_category[0]['wt_category'];
             echo $wt_category;
         }
+        echo $data;
         // return view('Report.Party_Labour', $data);
     }
+
+
+
+
+
+
+
+
+
+
     // public function genratePDF_Party_Labour()
     // {
     //     $data = [
