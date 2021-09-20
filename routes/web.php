@@ -22,9 +22,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/diamond', 'App\Http\Controllers\DiamondController@index')->name('diamond');
     Route::get('/diamond/create', 'App\Http\Controllers\DiamondController@create')->name('diamond.create');
     Route::post('/diamond/store', 'App\Http\Controllers\DiamondController@store')->name('diamond.store');
-    Route::get('/diamond/edit', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
-    Route::post('/diamond/update/{id}', 'App\Http\Controllers\DiamondController@update')->name('diamond.update');
+    Route::post('/diamond/edit', 'App\Http\Controllers\DiamondController@edit');
     Route::post('/diamond/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
+
+
+    // Route::get('/diamond/edit', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
+    // Route::post('/diamond/update/{id}', 'App\Http\Controllers\DiamondController@update')->name('diamond.update');
+    // Route::post('/diamond/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
     //supplier
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
     Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier.create');
