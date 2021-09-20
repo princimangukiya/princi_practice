@@ -45,7 +45,7 @@
                 <div class=" form-group">
                     <label class="form-label" style="padding-top: 10px">BarCode Value </label>
                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
-                        value="{{ old('bar_code') }}" onchange="fetchdata()" placeholder="Enter Bar Code" autofocus>
+                        value="{{ old('bar_code') }}" onchange="fetchData()" placeholder="Enter Bar Code" autofocus>
                     @error('bar_code')
                         <small class="errorTxt1">
                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
                     <div style="display: flex;">
-                        <input id="d_wt" type="text" name="d_wt" class="form-control" value=""
+                        <input id="d_weigth" type="text" name="d_wt" class="form-control" value=""
                             placeholder="Enter New Weight" readonly="readonly">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label class="form-label">Price </label>
                     <div style="display: flex;">
-                        <input id="Price" type="text" name="Price" class="form-control" value=""
+                        <input id="Price" type="text" name="Ready_stock_price" class="form-control" value=""
                             placeholder="Enter New Weight">
                         @error('bar_code')
                             <small class="errorTxt1">
@@ -200,6 +200,8 @@
                 // alert(id);
                 var barcode = $('#bar_code').val();
                 var m_id = $('#m_id').val();
+                var price = $('#price').val();
+                var d_wt = $('#d_wt').val();
                 var d_n_wt = $('#d_n_wt').val();
                 var manager_name = $('#m_id').find(":selected").text();
                 // alert(barcode);
@@ -215,6 +217,8 @@
                     data: {
                         'bar_code': barcode,
                         'm_id': m_id,
+                        'd_wt': d_wt,
+                        'price': price,
                         'd_n_wt': d_n_wt
                     },
                     dataType: 'json',
@@ -227,6 +231,8 @@
                             mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt]);
                             mytable.draw();
                             $('#bar_code').val('');
+                            $('#price').val('');
+                            $('#d_wt').val('');
                             $('#d_n_wt').val('');
                             $('#bar_code').focus();
                         } else if (response_msg.success == 403) {
@@ -241,7 +247,8 @@
                 });
             }
 
-            function fetchdata(id) {
+            function fetchData(id) {
+                var data = new Array();
                 var barcode = $('#bar_code').val();
                 var m_id = $('#m_id').val();
                 var d_n_wt = $('#d_n_wt').val();
@@ -254,31 +261,21 @@
                     }
                 });
                 $.ajax({
-                    type: 'POST',
-                    url: '{{ route('ready_stock.fetchdata') }}',
+                    type: 'GET',
+                    url: '{{ route('ready_stock.fetchData') }}',
                     data: {
                         'bar_code': barcode,
                     },
                     dataType: 'json',
                     success: function(response_msg) {
                         // alert(response_msg.success);
-                        if (response_msg.success == 200) {
-                            alert("Please, choose the right manager!");
-                            //location.reload();
-                        } else if (response_msg.success == $DiamondData) {
-                            mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt]);
-                            mytable.draw([d_wt, price]);
-                            $('#bar_code').val('');
-                            $('#d_n_wt').val('');
-                            $('#d_wt').val($data - > d_wt);
-                            $('#Price').val($data - > price);
-                            $('#bar_code').focus();
-                        } else if (response_msg.success == 403) {
-                            alert('Something Went Wrong!');
-                        } else if (response_msg.success == 404) {
-                            alert('Your Barcode is not valid!');
-                        } else {
-                            alert('Please, Fill all the fields!');
+                        // console.log(response_msg);
+
+                        if (response_msg.success) {
+                            console.log(response_msg.success.d_wt);
+                            console.log(response_msg.success.price);
+                            $('#d_weigth').val(response_msg.success.d_wt);
+                            $('#Price').val(response_msg.success.price);
                         }
 
                     }
