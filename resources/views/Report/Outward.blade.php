@@ -117,13 +117,23 @@
                                                 {{ $key + 1 }}
                                             </td>
                                             <td>
-                                                {{ $value->s_name }}
+                                                @php
+                                                    $s_id = $value->s_id;
+                                                    $s_name = App\Models\supplier_details::where('s_id', $s_id)->get('s_name');
+                                                    // echo $s_name;
+                                                @endphp
+                                                {{ $s_name[0]['s_name'] }}
                                             </td>
                                             <td>
                                                 {{ $value->d_barcode }}
                                             </td>
                                             <td>
-                                                {{ $value->shape_name }}
+                                                @php
+                                                    $shape_id = $value->shape_id;
+                                                    $shape_name = App\Models\diamond_shape::where('shape_id', $shape_id)->get('shape_name');
+                                                    // echo $s_name;
+                                                @endphp
+                                                {{ $shape_name[0]['shape_name'] }}
                                             </td>
                                             <td>
                                                 {{ $value->d_wt }}
