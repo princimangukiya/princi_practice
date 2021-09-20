@@ -33,54 +33,11 @@
                             <th class="border-bottom-0">Weight</th>
                             {{-- <th>Package</th> --}}
                             <th class="border-bottom-0">Shape</th>
-                            <th class="border-bottom-0">Action</th>
+                            <th class="border-bottom-0">Buy Date</th>
 
 
                         </tr>
                     </thead>
-
-                    {{-- <tbody>
-
-                        @foreach ($supplier as $key => $value)
-                            <tr>
-                                <td>
-                                    {{ $value->d_id }}
-                                </td>
-                                <td>
-                                    {{ $value->s_name }}
-                                </td>
-                                <td>
-                                    {{ $value->d_barcode }}
-                                </td>
-                                <td>
-                                    {{ $value->d_wt }}
-                                </td>
-                                <td>
-                                    {{ $value->shape_name }}
-                                </td>
-                                <td class="align-middle"
-                                    style="display: flex; align-items: center;justify-content: space-evenly;">
-                                    <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}">
-                                        <div class="btn-group align-top">
-                                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal"
-                                                data-target="#user-form-modal">Edit</button>
-                                            <button class="btn btn-sm btn-success" type="button"><i
-                                                    class="fe fe-edit-2"></i></button>
-                                        </div>
-                                    </a>
-
-                                    <form action="{{ route('diamond.destroy', $value->d_id) }}" method="post">
-                                        @csrf
-                                        <div class="btn-group align-top">
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                            <button class="btn btn-sm btn-danger"><i class="fe fe-trash-2"></i></button>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-
-                    </tbody> --}}
                 </table>
             </div>
         </div>
@@ -89,11 +46,6 @@
 
 
     <div class="row">
-        {{-- <div class="col-xl-3 col-lg-4">
-
-            <div id="camera"></div>
-
-        </div> --}}
         <div class="col-xl-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -210,7 +162,6 @@
         </div>
         <!-- End Row-->
 
-
         <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
         <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
         <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
@@ -228,30 +179,6 @@
                     "info": true,
                     "autoWidth": false,
                     "sDom": 'lfrtip',
-                    "columns": [{
-                            "data": "s_name",
-                            "searchable": false
-                        },
-                        {
-                            "data": "d_barcode",
-                            "searchable": true
-                        },
-                        {
-                            "data": "d_wt",
-                            "searchable": true
-                        },
-                        {
-                            "data": "shape_name",
-                            "searchable": true
-                        }, {
-                            "mRender": function(data, type, row) {
-                                return '<a href=:"{{ url('/diamond/edit/ ') }}"="' + row[0] +
-                                    '">Edit</a>' +
-                                    '<a style="padding:0px 10px;" href="{{ url('/diamond/destroy/ ') }}""' +
-                                    row[1] + '">Delete</a>';
-                            }
-                        }
-                    ]
                 });
 
                 // function fnCreatedRow(nRow) {
