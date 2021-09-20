@@ -22,9 +22,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/diamond', 'App\Http\Controllers\DiamondController@index')->name('diamond');
     Route::get('/diamond/create', 'App\Http\Controllers\DiamondController@create')->name('diamond.create');
     Route::post('/diamond/store', 'App\Http\Controllers\DiamondController@store')->name('diamond.store');
-    Route::get('/diamond/edit/{id}', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
+    Route::get('/diamond/edit', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
     Route::post('/diamond/update/{id}', 'App\Http\Controllers\DiamondController@update')->name('diamond.update');
-    Route::post('/diamond/{id}/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
+    Route::post('/diamond/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
     //supplier
     Route::get('/supplier', 'App\Http\Controllers\SupplierController@index')->name('supplier');
     Route::get('/supplier/create', 'App\Http\Controllers\SupplierController@create')->name('supplier.create');
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/ready_stock', 'App\Http\Controllers\ReadyStockController@index')->name('ready_stock');
     Route::get('/ready_stock/create', 'App\Http\Controllers\ReadyStockController@create')->name('ready_stock.create');
     Route::post('/ready_stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
-    Route::post('/ready_stock/fetchdata', 'App\Http\Controllers\ReadyStockController@fetchdata')->name('ready_stock.fetchdata');
+    Route::get('/ready_stock/fetchData', 'App\Http\Controllers\ReadyStockController@fetchData')->name('ready_stock.fetchData');
     Route::post('/ready_stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
 
 
