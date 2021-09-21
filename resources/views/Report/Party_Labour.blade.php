@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-5" style="display: flex;">
                                 <div class="col-md-6">
-                                    <form class="form-inline" style="padding-right: 50px;">
+                                    <form class="form-inline" style="padding-right: 70px;">
                                         <div class="col">
                                             <h4><label class="form-label"
                                                     style="display: flex; justify-content: start;">Select Start
@@ -74,7 +74,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-6">
-                                    <form class="form-inline" style="padding-left: 50px;">
+                                    <form class="form-inline" style="padding-left: 70px;">
                                         <div class="col">
                                             <h4><label class="form-label"
                                                     style="display: flex; justify-content: start;">Select End
@@ -84,7 +84,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-md-2" style="padding: 15px;">
+                            <div class="col-md-2" style="padding: 25px;">
                                 <button id="addData" name="addData" onClick="addData()"
                                     class="btn  btn-primary">Serch</button>
                             </div>
@@ -110,26 +110,52 @@
                                         <th class="border-bottom-0">Labour</th>
                                     </tr>
                                 </thead>
-                                @php
-                                    $wt_categories = App\Models\rate::all();
-                                @endphp
                                 <tbody>
-                                    <tr>
 
-                                        @foreach ($Pay_Labour as $d)
+
+                                    @foreach ($Pay_labour as $d)
+                                        <tr>
                                             <td>
                                                 <b>{{ $d->s_name }}</b>
-                                                @foreach ($wt_categories as $r)
-                                                    {{-- <td> --}}
-                                                    {{ $r->wt_category }}
-                                                    </br>
-                                                    {{-- </td> --}}
-                                                @endforeach
+                                                @php
+                                                    $s_id = $d->s_id;
+                                                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                                                    $json_data = $json_data[0]['json_price'];
+                                                    $json_decoded = json_decode($json_data);
+                                                    foreach ($json_decoded[0] as $key => $val) {
+                                                        $r_id = $key;
+                                                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                                                        $wt_category = $wt_category[0]['wt_category'];
+                                                        echo '</br>';
+                                                        echo $wt_category;
+                                                    }
+                                                @endphp
+                                                {{-- </br> --}}
+                                                {{-- {{ $wt_category }} --}}
                                             </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                @php
+                                                    $s_id = $d->s_id;
+                                                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                                                    $json_data = $json_data[0]['json_price'];
+                                                    $json_decoded = json_decode($json_data);
+                                                    foreach ($json_decoded[0] as $key => $val) {
+                                                        $r_id = $key;
+                                                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                                                        $wt_category = $wt_category[0]['wt_category'];
+                                                        echo '</br>';
+                                                        echo $val;
+                                                    }
+                                                @endphp
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
 
-                                        @endforeach
-                                        <td>hii</td>
-                                    </tr>
 
                                 </tbody>
                             </table>
