@@ -17,32 +17,6 @@
         </div>
     </div>
     <!--End Page header-->
-
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">Diamond Purchase Data</div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
-                    <thead>
-                        <tr>
-                            {{-- <th class="border-bottom-0">#</th> --}}
-                            <th class="border-bottom-0">Party Name</th>
-                            <th class="border-bottom-0">Bar Code</th>
-                            <th class="border-bottom-0">Weight</th>
-                            {{-- <th>Package</th> --}}
-                            <th class="border-bottom-0">Shape</th>
-                            <th class="border-bottom-0">Buy Date</th>
-                            <th class="border-bottom-0">Action</th>
-
-
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
     <!--/div-->
 
 
@@ -162,165 +136,201 @@
             </div>
         </div>
         <!-- End Row-->
+        <div class="col-xl-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Diamond Purchase Data</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
+                            <thead>
+                                <tr>
+                                    {{-- <th class="border-bottom-0">#</th> --}}
+                                    <th class="border-bottom-0">Party Name</th>
+                                    <th class="border-bottom-0">Bar Code</th>
+                                    <th class="border-bottom-0">Weight</th>
+                                    {{-- <th>Package</th> --}}
+                                    <th class="border-bottom-0">Shape</th>
+                                    <th class="border-bottom-0">Buy Date</th>
+                                    <th class="border-bottom-0">Action</th>
 
-        <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
-        <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
-        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
-        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
-        <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script>
-        <script>
-            var id, mytable;
-            $(document).ready(function() {
-                mytable = $('#tblItemShow').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": true,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "sDom": 'lfrtip',
-                    "columns": [{
-                            "data": "s_name",
-                            "searchable": false
-                        },
-                        {
-                            "data": "d_barcode",
-                            "searchable": true
-                        },
-                        {
-                            "data": "d_wt",
-                            "searchable": true
-                        },
-                        {
-                            "data": "shape_name",
-                            "searchable": true
-                        },
-                        {
-                            "data": "shape_name",
-                            "searchable": true
-                        }, {
 
-                            "mRender": function(data, type, row) {
-                                return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc()" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc()" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
-                            }
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
+    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script>
+    <script>
+        var id, mytable;
+        $(document).ready(function() {
+            mytable = $('#tblItemShow').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+                ajax: "{{ url('ajax-crud-datatable') }}",
+                "columns": [{
+                        "data": "s_name",
+                        "name": "s_name",
+                        "searchable": false
+                    },
+                    {
+                        "data": "d_barcode",
+                        "name": "d_barcode",
+                        "searchable": true
+                    },
+                    {
+                        "data": "d_wt",
+                        "name": "d_wt",
+                        "searchable": true
+                    },
+                    {
+                        "data": "shape_name",
+                        "name": "shape_name",
+                        "searchable": true
+                    },
+                    {
+                        "data": "shape_name",
+                        "name": "shape_name",
+                        "searchable": true
+                    }, {
+
+                        "mRender": function(data, type, row) {
+                            return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc($id)" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc($id)" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
                         }
-                    ]
-                });
-
-                // function fnCreatedRow(nRow) {
-                //     $('td:eq(0)', nRow).append(
-                //         "<div class='col1d'><button class='editBut'><img >src=''></button></div>"
-                //     );
-                // }
-                // mytable.row.add([id, 'pkt1', '10.5']);
-                // mytable.draw();
+                    }
+                ]
             });
 
-            var currentBoxNumber = 0;
-            $(".inputField").keyup(function(event) {
-                if (event.keyCode == 13) {
-                    textboxes = $("input.inputField");
-                    currentBoxNumber = textboxes.index(this);
-                    console.log(textboxes.index(this));
-                    if (textboxes[currentBoxNumber + 1] != null) {
-                        nextBox = textboxes[currentBoxNumber + 1];
-                        nextBox.focus();
-                        nextBox.select();
-                        event.preventDefault();
-                        return false;
+            // function fnCreatedRow(nRow) {
+            //     $('td:eq(0)', nRow).append(
+            //         "<div class='col1d'><button class='editBut'><img >src=''></button></div>"
+            //     );
+            // }
+            // mytable.row.add([id, 'pkt1', '10.5']);
+            // mytable.draw();
+        });
+
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 1] != null) {
+                    nextBox = textboxes[currentBoxNumber + 1];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addData();
+                }
+            }
+        });
+
+        // function deleteFunc() {
+        //     if (confirm("Delete Record?") == true) {
+        //         var id = id;
+        //         // ajax
+        //         $.ajax({
+        //             type: "POST",
+        //             url: "{{ url('delete-company') }}",
+        //             data: {
+        //                 id: id
+        //             },
+        //             dataType: 'json',
+        //             success: function(res) {
+        //                 var oTable = $('#ajax-crud-datatable').dataTable();
+        //                 oTable.fnDraw(false);
+        //             }
+        //         });
+        //     }
+        // }
+
+        // function editFunc() {
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "{{ url('edit-company') }}",
+        //         data: {
+        //             id: id
+        //         },
+        //         dataType: 'json',
+        //         success: function(res) {
+        //             $('#CompanyModal').html("Edit Company");
+        //             $('#company-modal').modal('show');
+        //             $('#id').val(res.id);
+        //             $('#name').val(res.name);
+        //             $('#address').val(res.address);
+        //             $('#email').val(res.email);
+        //         }
+        //     });
+        // }
+
+        function addData() {
+            // alert(id);
+            var barcode = $('#bar_code').val();
+            var weight = $('#d_wt').val();
+            var shape = $('#shape_id').val();
+            var s_id = $('#s_id').val();
+            var bill_date = $('#bill_date').val();
+            var shapevalue = $('#shape_id').find(":selected").text();
+            var partyName = $('#s_id').find(":selected").text();
+            // alert(barcode);
+            // alert(m_id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('diamond.store') }}',
+                data: {
+                    'bar_code': barcode,
+                    'd_wt': weight,
+                    'shape_id': shape,
+                    's_id': s_id,
+                    'bill_date': bill_date
+                },
+                dataType: 'json',
+                success: function(response_msg) {
+                    // alert(response_msg.success);
+                    if (response_msg.success == 200) {
+                        alert("Barcode already exist!");
+                        //location.reload();
+                    } else if (response_msg.success == true) {
+                        mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
+                        mytable.draw();
+                        $('#s_id').val('');
+                        $('#bar_code').val('');
+                        $('#d_wt').val('');
+                        $('#shape_id').val('');
+                        $('#bill_date').focus();
                     } else {
-                        addData();
+                        alert('Please, Fill all the fields!');
                     }
+
                 }
             });
+        }
+    </script>
 
-            function deleteFunc() {
-                if (confirm("Delete Record?") == true) {
-                    var id = id;
-                    // ajax
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ url('delete-company') }}",
-                        data: {
-                            id: id
-                        },
-                        dataType: 'json',
-                        success: function(res) {
-                            var oTable = $('#ajax-crud-datatable').dataTable();
-                            oTable.fnDraw(false);
-                        }
-                    });
-                }
-            }
-
-            function editFunc() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('edit-company') }}",
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                    success: function(res) {
-                        $('#CompanyModal').html("Edit Company");
-                        $('#company-modal').modal('show');
-                        $('#id').val(res.id);
-                        $('#name').val(res.name);
-                        $('#address').val(res.address);
-                        $('#email').val(res.email);
-                    }
-                });
-            }
-
-            function addData() {
-                // alert(id);
-                var barcode = $('#bar_code').val();
-                var weight = $('#d_wt').val();
-                var shape = $('#shape_id').val();
-                var s_id = $('#s_id').val();
-                var bill_date = $('#bill_date').val();
-                var shapevalue = $('#shape_id').find(":selected").text();
-                var partyName = $('#s_id').find(":selected").text();
-                // alert(barcode);
-                // alert(m_id);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('diamond.store') }}',
-                    data: {
-                        'bar_code': barcode,
-                        'd_wt': weight,
-                        'shape_id': shape,
-                        's_id': s_id,
-                        'bill_date': bill_date
-                    },
-                    dataType: 'json',
-                    success: function(response_msg) {
-                        // alert(response_msg.success);
-                        if (response_msg.success == 200) {
-                            alert("Barcode already exist!");
-                            //location.reload();
-                        } else if (response_msg.success == true) {
-                            mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
-                            mytable.draw();
-                            $('#s_id').val('');
-                            $('#bar_code').val('');
-                            $('#d_wt').val('');
-                            $('#shape_id').val('');
-                            $('#bill_date').focus();
-                        } else {
-                            alert('Please, Fill all the fields!');
-                        }
-
-                    }
-                });
-            }
-        </script>
-
-    @endsection
-    @include('app')
+@endsection
+@include('app')

@@ -129,12 +129,16 @@
                     </div>
                 </div>
             </div> --}}
-            {{-- <div class="col-sm-4 col-md-4">
-                <div class="form-group" style="padding: 25px">
-                    <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
-                        class="btn  btn-primary">Save</button>
-                </div>
-            </div> --}}
+        </div>
+        <div class="card-footer text-right" style="padding-right: 10% ">
+            <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
+                class="btn  btn-primary">Submit</button>
+            <a href="/manager" class="btn btn-danger">Cancle</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Return Daimond Details</div>
         </div>
         <div class="card-body">
             <div class="table-responsive">

@@ -39,7 +39,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Supplier Name </label>
-                                    <input id="s_name" type="text" name="s_name" class="form-control"
+                                    <input id="s_name" type="text" name="s_name" class="form-control inputField"
                                         value="{{ old('s_name') }}" placeholder="Enter Supplier Name" autofocus>
                                     @error('s_name')
                                         <small class="errorTxt1">
@@ -53,7 +53,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Supplier Address</label>
-                                    <input id="s_address" type="text" name="s_address" class="form-control"
+                                    <input id="s_address" type="text" name="s_address" class="form-control inputField"
                                         value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required>
                                     @error('s_address')
                                         <small class="errorTxt1">
@@ -67,8 +67,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Supplier Gst :-</label>
-                                    <input placeholder="Enter Supplier Gst" class="form-control" id="s_gst" type="text"
-                                        name="s_gst" value="{{ old('s_gst') }}" required>
+                                    <input placeholder="Enter Supplier Gst" class="form-control inputField" id="s_gst"
+                                        type="text" name="s_gst" value="{{ old('s_gst') }}" required>
                                     @error('s_gst')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -96,6 +96,24 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 0] != null) {
+                    nextBox = textboxes[currentBoxNumber + 0];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addData();
+                }
+            }
+        });
+
         var id;
         var mytable
         Quagga.init({

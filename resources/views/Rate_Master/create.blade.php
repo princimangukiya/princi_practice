@@ -55,7 +55,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                            <a href="/rate_master" class="btn btn-danger">Cancle</a>
+                            <a href="/rate_master/create" class="btn btn-danger">Cancle</a>
                         </div>
                     </div>
                 </form>
@@ -69,7 +69,7 @@
                         <div class="row">
                             @php
                                 $c_id = session()->get('c_id');
-                                $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                                $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
                                 // echo $rate;
                             @endphp
                             <div class="col-md-6">
@@ -159,23 +159,23 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
-         var currentBoxNumber = 0;
-            $(".inputField").keyup(function(event) {
-                if (event.keyCode == 13) {
-                    textboxes = $("input.inputField");
-                    currentBoxNumber = textboxes.index(this);
-                    console.log(textboxes.index(this));
-                    if (textboxes[currentBoxNumber + 1] != null) {
-                        nextBox = textboxes[currentBoxNumber + 1];
-                        nextBox.focus();
-                        nextBox.select();
-                        event.preventDefault();
-                        return false;
-                    } else {
-                        addData();
-                    }
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 1] != null) {
+                    nextBox = textboxes[currentBoxNumber + 1];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addData();
                 }
-            });
+            }
+        });
 
         // Add Categoriey to form 
         function myFunction() {

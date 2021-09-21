@@ -35,7 +35,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Manager Name </label>
-                                    <input id="m_name" type="text" name="m_name" class="form-control"
+                                    <input id="m_name" type="text" name="m_name" class="form-control inputField"
                                         value="{{ old('m_name') }}" placeholder="Enter Manager Name" autofocus required>
                                     @error('m_name')
                                         <small class="errorTxt1">
@@ -49,7 +49,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Manager Address</label>
-                                    <input id="m_address" type="text" name="m_address" class="form-control"
+                                    <input id="m_address" type="text" name="m_address" class="form-control inputField"
                                         value="{{ old('m_address') }}" placeholder="Enter Manager Address" required>
                                     @error('m_address')
                                         <small class="errorTxt1">
@@ -63,8 +63,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Manager Phone No.</label>
-                                    <input placeholder="Enter Manager Phone No." class="form-control" id="m_phone"
-                                        type="text" name="m_phone" value="{{ old('m_phone') }}" required>
+                                    <input placeholder="Enter Manager Phone No." class="form-control inputField"
+                                        id="m_phone" type="text" name="m_phone" value="{{ old('m_phone') }}" required>
                                     @error('m_phone')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -77,7 +77,7 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Manager Email ID</label>
-                                    <input placeholder="Enter Manager Email Id" class="form-control" id="m_email"
+                                    <input placeholder="Enter Manager Email Id" class="form-control inputField" id="m_email"
                                         type="text" name="m_email" value="{{ old('m_email') }}" required>
                                     @error('m_email')
                                         <small class="errorTxt1">
@@ -105,6 +105,23 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 0] != null) {
+                    nextBox = textboxes[currentBoxNumber + 0];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addData();
+                }
+            }
+        });
         var id;
         var mytable
         $(document).ready(function() {
@@ -121,42 +138,42 @@
             // mytable.draw();
         });
 
-    //     $("#addManagerForm").submit(function(e) {
-    //       alert("calling");
-    //       var mName = $('#m_name').val();
-    //       var mAddress = $('#m_address').val();
-    //       var mPhone = $('#m_phone').val();
-    //       var mEmail = $('#m_email').val();
-         
-    //       $.ajaxSetup({
-    //           headers: {
-    //               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //           }
-    //       });
-    //       $.ajax({
-    //           type: 'POST',
-    //           url: '{{route('manager.store')}}',
-    //           data: {
-    //               'm_name': mName,
-    //               'm_address': mAddress,
-    //               'm_phone': mPhone,
-    //               'm_email': mEmail
-    //           },
-    //           dataType: 'json',
-    //           success: function(response_msg) {
-    //               // alert(response_msg.success);
-    //               if (response_msg.success == 200) {
-    //                   alert("Phone Number Already Exist!");
-    //                   //location.reload();
-    //               } else if (response_msg.success == true) {
-    //                   window.location.replace('/manager');
-    //               } else {
-    //                   alert('Please, Fill all the fields!');
-    //               }
+        //     $("#addManagerForm").submit(function(e) {
+        //       alert("calling");
+        //       var mName = $('#m_name').val();
+        //       var mAddress = $('#m_address').val();
+        //       var mPhone = $('#m_phone').val();
+        //       var mEmail = $('#m_email').val();
 
-    //           }
-    //       });
-    //   });
+        //       $.ajaxSetup({
+        //           headers: {
+        //               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //           }
+        //       });
+        //       $.ajax({
+        //           type: 'POST',
+        //           url: '{{ route('manager.store') }}',
+        //           data: {
+        //               'm_name': mName,
+        //               'm_address': mAddress,
+        //               'm_phone': mPhone,
+        //               'm_email': mEmail
+        //           },
+        //           dataType: 'json',
+        //           success: function(response_msg) {
+        //               // alert(response_msg.success);
+        //               if (response_msg.success == 200) {
+        //                   alert("Phone Number Already Exist!");
+        //                   //location.reload();
+        //               } else if (response_msg.success == true) {
+        //                   window.location.replace('/manager');
+        //               } else {
+        //                   alert('Please, Fill all the fields!');
+        //               }
+
+        //           }
+        //       });
+        //   });
     </script>
 @endsection
 @include('app')
