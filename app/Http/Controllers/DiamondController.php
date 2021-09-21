@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-
+use Datatables;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 
@@ -32,14 +32,24 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        // $data['supplier'] = D_Purchase::where('c_id', $c_id)->get();
-        $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
+        $data['supplier'] = D_Purchase::where('c_id', $c_id)->get();
+        // $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
         $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         return view('Diamond_purchase.create', $data);
     }
-
+    public function fetchdata()
+    {
+        if (request()->ajax()) {
+            return Datatables()->of(D_Purchase::select('*'))
+                ->addColumn('action', 'company-action')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('Diamond_purchase.create');
+    }
     public function store(Request $request)
     {
 
@@ -98,12 +108,17 @@ class DiamondController extends Controller
             return Response::json(array('success' => false));
         }
     }
-    public function edit($id)
+    public function edit(Request $request)
     {
+        $where = array('id' => $request->id);
+        $daimond  = D_Purchase::where($where)->first();
+
+        return Response()->json($daimond);
         //dd($id);
-        $data = array();
-        $data['supplier'] = D_Purchase::findOrFail($id);
-        return view('Diamond_Purchase.edit', $data);
+        // $data = array();
+        // $data['supplier'] = D_Purchase::findOrFail($id);
+        // return Response::json(array('success' => $data));
+        // return view('Diamond_Purchase.edit', $data);
     }
     public function update(Request $request, $id)
     {
