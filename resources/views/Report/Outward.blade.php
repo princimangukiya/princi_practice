@@ -33,59 +33,60 @@
                     <div class="card-title">Outward Details</div>
                 </div>
                 <div class="card-body">
-                    <form action="/search_outward_data" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
-                                @php
-                                    $c_id = session()->get('c_id');
-                                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
-                                @endphp
-                                <div class="form-group">
-                                    <h4><label class="form-label">Select Company :-</label></h4>
-                                    <select id="s_id" name="s_id" required class="form-control select2">
-                                        <optgroup label="Company">
-                                            <option value="" disabled selected>Choose Company</option>
-                                            @if (count($rate) > 0)
-                                                @foreach ($rate as $value)
-                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </optgroup>
-                                    </select>
-                                    @error('s_id')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-5" style="display: flex;">
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content: start;">Select Start
-                                                Date:- </label></h4>
-                                        <input type="date" id="Start_date" name="Start_date">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content: start;">Select End
-                                                Date:- </label></h4>
-                                        <input type="date" id="End_date" name="End_date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2" style="padding: 15px;">
-                                <button id="addData" name="addData" onClick="addData()"
-                                    class="btn  btn-primary">Serch</button>
+                    {{-- <form action="/search_outward_data" method="post">
+                        @csrf --}}
+
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 50px;">
+                            @php
+                                $c_id = session()->get('c_id');
+                                $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                            @endphp
+                            <div class="form-group">
+                                <h4><label class="form-label">Select Company :-</label></h4>
+                                <select id="s_id" name="s_id" required class="form-control select2">
+                                    <optgroup label="Company">
+                                        <option value="" disabled selected>Choose Company</option>
+                                        @if (count($rate) > 0)
+                                            @foreach ($rate as $value)
+                                                <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('s_id')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
                             </div>
                         </div>
-                    </form>
+                        <div class="col-md-5" style="display: flex;">
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content: start;">Select
+                                            Start
+                                            Date:- </label></h4>
+                                    <input type="date" id="Start_date" name="Start_date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content: start;">Select
+                                            End
+                                            Date:- </label></h4>
+                                    <input type="date" id="End_date" name="End_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="padding: 15px;">
+                            <button id="barcode" name="fetch_Records" onchange="fetchData()"
+                                class="btn  btn-primary">Search</button>
+                        </div>
+                    </div>
+                    {{-- </form> --}}
                 </div>
                 <div class="card-body">
                     <div>
@@ -169,7 +170,58 @@
     </div>
     </div><!-- end app-content-->
     </div>
+    <script>
+        var id, mytable;
+        $(document).ready(function() {
+            mytable = $('#tblItemShow').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+        });
 
+        function fetchData(id) {
+            // alert('Hello');
+            var s_id = $('#s_id').val();
+            var Start_date = $('#Start_date').val();
+            var End_date = $('#End_date').val();
+            // alert(s_id);
+            // alert(Start_date);
+            // alert(End_date);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('Outward.search_data') }}',
+                data: {
+                    's_id': s_id,
+                    'Start_date': Start_date,
+                    'End_date': End_date,
+                },
+                dataType: 'json',
+                success: function(response_msg) {
+                    // alert(response_msg.success);
+                    console.log(response_msg);
+
+                    if (response_msg.success) {
+                        // console.log(response_msg.success.d_wt);
+                        // console.log(response_msg.success.price);
+                        // $('#d_wt').val(response_msg.success.d_wt);
+                        // $('#price').val(response_msg.success.price);
+                    }
+
+                }
+            });
+        }
+    </script>
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
 
