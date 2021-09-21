@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/diamond/store', 'App\Http\Controllers\DiamondController@store')->name('diamond.store');
     Route::post('/diamond/edit', 'App\Http\Controllers\DiamondController@edit');
     Route::post('/diamond/destroy', 'App\Http\Controllers\DiamondController@destroy')->name('diamond.destroy');
-
+    Route::get('/ajax-datatable', 'App\Http\Controllers\DiamondController@fetchdata')->name('diamond.fetchdata');
 
     // Route::get('/diamond/edit', 'App\Http\Controllers\DiamondController@edit')->name('diamond.edit');
     // Route::post('/diamond/update/{id}', 'App\Http\Controllers\DiamondController@update')->name('diamond.update');
@@ -82,19 +82,19 @@ Route::group(['middleware' => 'auth'], function () {
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Inward')->name('Inward.genratePDF');
-    Route::post('/search_inward_data', 'App\Http\Controllers\ReportController@searchdata_Inward')->name('Inward.searchdata');
+    Route::post('/search_inward_data', 'App\Http\Controllers\ReportController@search_data_Inward')->name('Inward.search_data');
 
 
     //OutWard
     Route::get('/Outward', 'App\Http\Controllers\ReportController@Outward')->name('Inward_Outward');
     Route::get('/Outward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Outward')->name('Outward.genratePDF');
-    Route::post('/search_outward_data', 'App\Http\Controllers\ReportController@searchdata_Outward')->name('Outward.searchdata');
+    Route::get('/Outward/search_outward_data', 'App\Http\Controllers\ReportController@search_data_Outward')->name('Outward.search_data');
 
 
     //Party Labour
     Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
     Route::get('/Party_Labour/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Party_Labour')->name('Party_Labour.genratePDF');
-    Route::post('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@searchdata_Party_Labour')->name('Party_Labour.searchdata');
+    Route::post('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
 
 
     //Daimond Trecker
