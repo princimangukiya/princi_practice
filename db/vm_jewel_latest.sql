@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 03:24 PM
+-- Generation Time: Sep 21, 2021 at 02:20 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -148,7 +148,7 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (48, 1, 8, '1254387', '0.250', '0.230', NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, '2021-09-11', 2, 1, 1, '2021-09-17 04:03:30', '2021-09-17 07:01:48'),
 (49, 1, 1, '456898', '0.250', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, '2021-09-14', NULL, NULL, NULL, '2021-09-17 07:56:04', '2021-09-17 07:56:04'),
 (50, 1, 8, '78965', '0.254', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, '2021-09-17', NULL, NULL, NULL, '2021-09-17 21:59:32', '2021-09-17 21:59:32'),
-(51, 1, 1, '458961', '0.212', NULL, NULL, NULL, NULL, NULL, NULL, 1, 2, 60, '2021-09-16', NULL, NULL, NULL, '2021-09-18 00:45:44', '2021-09-18 00:45:44'),
+(51, 1, 1, '458961', '0.212', '0.205', NULL, NULL, NULL, NULL, NULL, 1, 2, 60, '2021-09-16', 1, 1, 1, '2021-09-18 00:45:44', '2021-09-21 06:19:11'),
 (52, 1, 1, '4589621', '0.450', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 70, '2021-09-15', NULL, NULL, NULL, '2021-09-18 00:47:44', '2021-09-18 00:47:44'),
 (53, 1, 1, '14758585', '0.254', '0.248', NULL, NULL, NULL, NULL, NULL, 1, 2, 55, '2021-09-17', 1, 1, NULL, '2021-09-18 04:47:48', '2021-09-18 05:46:55'),
 (54, 1, 8, '56446', '0.250', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-16', NULL, NULL, NULL, '2021-09-18 05:41:37', '2021-09-18 05:41:37'),
@@ -158,11 +158,11 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (58, 1, 1, '985635', '0.280', '0.275', NULL, NULL, NULL, NULL, NULL, 2, 2, 45, '2021-09-19', 1, 1, NULL, '2021-09-20 00:12:47', '2021-09-20 00:42:55'),
 (59, 1, 1, '985636', '0.480', NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, 80, '2021-09-19', 1, NULL, NULL, '2021-09-20 00:12:56', '2021-09-20 00:46:39'),
 (60, 1, 1, '985637', '0.470', '0.475', NULL, NULL, NULL, NULL, NULL, 2, 3, 70, '2021-09-19', 1, 1, NULL, '2021-09-20 00:13:10', '2021-09-20 01:31:13'),
-(61, 1, 8, '9856321', '0.450', '0.445', NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-15', 2, 1, NULL, '2021-09-20 01:45:16', '2021-09-20 01:55:40'),
-(62, 1, 8, '9856322', '0.240', '0.235', NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-15', 2, 1, NULL, '2021-09-20 01:45:27', '2021-09-20 06:36:22'),
-(63, 1, 8, '9856323', '0.225', '0.215', NULL, NULL, NULL, NULL, NULL, 3, 2, 150, '2021-09-15', 2, 1, NULL, '2021-09-20 01:45:43', '2021-09-20 06:38:24'),
-(64, 1, 8, '9856324', '0.285', '0.284', NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-09-19', 2, 1, NULL, '2021-09-20 01:48:57', '2021-09-20 06:34:47'),
-(65, 1, 1, '458612', '0.485', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 70, '2021-09-15', NULL, NULL, NULL, '2021-09-20 04:24:41', '2021-09-20 04:24:41'),
+(61, 1, 8, '9856321', '0.450', '0.445', NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-15', 2, 1, 1, '2021-09-20 01:45:16', '2021-09-20 23:13:10'),
+(62, 1, 8, '9856322', '0.240', '0.235', NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-15', 2, 1, 1, '2021-09-20 01:45:27', '2021-09-20 23:13:15'),
+(63, 1, 8, '9856323', '0.225', '0.215', NULL, NULL, NULL, NULL, NULL, 3, 2, 150, '2021-09-15', 2, 1, 1, '2021-09-20 01:45:43', '2021-09-20 23:13:22'),
+(64, 1, 8, '9856324', '0.285', '0.284', NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-09-19', 2, 1, 1, '2021-09-20 01:48:57', '2021-09-20 23:13:27'),
+(65, 1, 1, '458612', '0.485', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 70, '2021-09-15', 1, NULL, NULL, '2021-09-20 04:24:41', '2021-09-21 06:12:43'),
 (66, 1, 8, '123456789', '0.268', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 95, '2021-09-17', NULL, NULL, NULL, '2021-09-20 05:00:53', '2021-09-20 05:00:53'),
 (67, 1, 1, '458962', '0.250', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-17', NULL, NULL, NULL, '2021-09-20 05:01:39', '2021-09-20 05:01:39'),
 (68, 1, 1, '789456123', '0.412', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 70, '2021-09-18', NULL, NULL, NULL, '2021-09-20 05:06:28', '2021-09-20 05:06:28'),
@@ -173,9 +173,24 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (73, 1, 1, '7531598', '0.254', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 60, '2021-09-17', NULL, NULL, NULL, '2021-09-20 07:39:37', '2021-09-20 07:39:37'),
 (74, 1, 1, '458968', '0.485', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 70, '2021-09-14', NULL, NULL, NULL, '2021-09-20 07:40:51', '2021-09-20 07:40:51'),
 (75, 1, 8, '651248', '0.351', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 95, '2021-09-16', NULL, NULL, NULL, '2021-09-20 07:42:20', '2021-09-20 07:42:20'),
-(76, 1, 8, '65249', '0.421', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-16', NULL, NULL, NULL, '2021-09-20 07:43:01', '2021-09-20 07:43:01'),
+(76, 1, 8, '65249', '0.421', NULL, NULL, '20', NULL, NULL, NULL, 3, 3, 100, '2021-09-16', NULL, NULL, NULL, '2021-09-20 07:43:01', '2021-09-20 07:43:01'),
 (77, 1, 8, '965874', '0.254', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 95, '2021-09-12', NULL, NULL, NULL, '2021-09-20 07:44:07', '2021-09-20 07:44:07'),
-(78, 1, 8, '652143', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-19', NULL, NULL, NULL, '2021-09-20 07:52:43', '2021-09-20 07:52:43');
+(78, 1, 8, '652143', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-19', NULL, NULL, NULL, '2021-09-20 07:52:43', '2021-09-20 07:52:43'),
+(79, 1, 1, '852369', '0.510', NULL, NULL, NULL, NULL, NULL, NULL, 3, 5, 200, '2021-09-16', 1, NULL, NULL, '2021-09-20 22:13:03', '2021-09-20 22:59:01'),
+(80, 1, 8, '852147', '0.485', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-16', 1, NULL, NULL, '2021-09-20 22:20:12', '2021-09-20 22:59:07'),
+(81, 1, 1, '741369', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-20', 1, NULL, NULL, '2021-09-20 22:24:52', '2021-09-20 23:00:55'),
+(82, 1, 1, '896574', '0.452', NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, 70, '2021-09-15', 1, NULL, NULL, '2021-09-20 22:26:24', '2021-09-20 23:00:45'),
+(83, 1, 8, '987456', '0.469', NULL, NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-18', 1, NULL, NULL, '2021-09-20 22:28:16', '2021-09-20 23:00:39'),
+(84, 1, 1, '457812', '0.212', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-18', 1, NULL, NULL, '2021-09-20 22:28:49', '2021-09-20 23:00:28'),
+(85, 1, 1, '147896325', '0.145', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 50, '2021-09-17', 1, NULL, NULL, '2021-09-20 22:30:52', '2021-09-20 22:59:18'),
+(86, 1, 1, '74589632', '0.485', NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, 70, '2021-09-19', 1, NULL, NULL, '2021-09-20 22:34:26', '2021-09-20 23:00:03'),
+(87, 1, 1, '1478952', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-18', 1, NULL, NULL, '2021-09-20 22:38:54', '2021-09-20 22:59:55'),
+(88, 1, 8, '24578873', '0.145', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 90, '2021-09-17', 1, NULL, NULL, '2021-09-20 22:52:37', '2021-09-20 22:59:46'),
+(89, 1, 1, '1457872', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-17', NULL, NULL, NULL, '2021-09-20 22:57:24', '2021-09-20 22:57:24'),
+(90, 1, 1, '1458797', '0.265', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 60, '2021-09-18', NULL, NULL, NULL, '2021-09-20 22:58:19', '2021-09-20 22:58:19'),
+(91, 1, 1, '1452637', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-13', NULL, NULL, NULL, '2021-09-20 23:23:46', '2021-09-20 23:23:46'),
+(92, 1, 1, '7458961', '0.145', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 50, '2021-09-17', NULL, NULL, NULL, '2021-09-20 23:29:56', '2021-09-20 23:29:56'),
+(93, 1, 1, '1147852', '0.124', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 50, '2021-09-02', NULL, NULL, NULL, '2021-09-21 05:30:23', '2021-09-21 05:30:23');
 
 -- --------------------------------------------------------
 
@@ -217,7 +232,8 @@ CREATE TABLE `manager_details` (
 INSERT INTO `manager_details` (`m_id`, `c_id`, `m_name`, `m_address`, `m_phone`, `m_email`, `created_at`, `updated_at`) VALUES
 (1, 1, 'NARESHBHAI', 'VM JEWEL', '9979966346', 'naresh@gmail.com', '2021-07-31 13:05:36', '2021-07-31 13:05:36'),
 (2, 1, 'RISHI', 'hirabag', '9512727308', 'rushikeshantala@gmail.com', '2021-09-17 04:02:42', '2021-09-17 04:02:42'),
-(3, 2, 'MAHESH', 'Varchha', '796541230', 'mahesh@gmail.com', '2021-09-18 01:40:58', '2021-09-18 01:40:58');
+(3, 2, 'MAHESH', 'Varchha', '796541230', 'mahesh@gmail.com', '2021-09-18 01:40:58', '2021-09-18 01:40:58'),
+(4, 1, 'KAMLESH', 'hirabugh', '7096717095', 'kamlesh@gmail.com', '2021-09-21 06:24:42', '2021-09-21 06:24:42');
 
 -- --------------------------------------------------------
 
@@ -338,11 +354,7 @@ INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `d_barcode`
 (19, 1, 1, 55, '0.260', '985632', '2021-09-20 00:14:45', '2021-09-20 00:14:45'),
 (20, 1, 1, 56, '0.260', '985633', '2021-09-20 00:16:13', '2021-09-20 00:16:13'),
 (21, 1, 1, 57, '0.265', '985634', '2021-09-20 00:37:43', '2021-09-20 00:37:43'),
-(24, 1, 1, 60, '0.475', '985637', '2021-09-20 01:31:13', '2021-09-20 01:31:13'),
-(25, 1, 2, 61, '0.445', '9856321', '2021-09-20 01:55:40', '2021-09-20 01:55:40'),
-(26, 1, 2, 64, '0.284', '9856324', '2021-09-20 06:34:47', '2021-09-20 06:34:47'),
-(27, 1, 2, 62, '0.235', '9856322', '2021-09-20 06:36:22', '2021-09-20 06:36:22'),
-(28, 1, 2, 63, '0.215', '9856323', '2021-09-20 06:38:24', '2021-09-20 06:38:24');
+(24, 1, 1, 60, '0.475', '985637', '2021-09-20 01:31:13', '2021-09-20 01:31:13');
 
 -- --------------------------------------------------------
 
@@ -366,11 +378,15 @@ CREATE TABLE `sell_stock` (
 
 INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
 (2, 1, 7, 37, '101020', '2021-09-17 06:25:56', '2021-09-17 06:25:56'),
-(3, 1, 8, 48, '1254387', '2021-09-17 07:01:48', '2021-09-17 07:01:48'),
 (5, 2, 7, 31, '1007554', '2021-09-18 01:52:05', '2021-09-18 01:52:05'),
 (6, 1, 8, 47, '125436', '2021-09-20 00:17:43', '2021-09-20 00:17:43'),
 (7, 1, 1, 36, '101012', '2021-09-20 00:18:03', '2021-09-20 00:18:03'),
-(8, 1, 1, 46, '456213', '2021-09-20 00:18:32', '2021-09-20 00:18:32');
+(8, 1, 1, 46, '456213', '2021-09-20 00:18:32', '2021-09-20 00:18:32'),
+(9, 1, 8, 61, '9856321', '2021-09-20 23:13:10', '2021-09-20 23:13:10'),
+(10, 1, 8, 62, '9856322', '2021-09-20 23:13:15', '2021-09-20 23:13:15'),
+(11, 1, 8, 63, '9856323', '2021-09-20 23:13:22', '2021-09-20 23:13:22'),
+(12, 1, 8, 64, '9856324', '2021-09-20 23:13:27', '2021-09-20 23:13:27'),
+(13, 1, 1, 51, '458961', '2021-09-21 06:19:11', '2021-09-21 06:19:11');
 
 -- --------------------------------------------------------
 
@@ -395,7 +411,8 @@ CREATE TABLE `supplier_details` (
 INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `created_at`, `updated_at`) VALUES
 (1, 1, 'ALOK IMPEX', 'PLOT NO - 2&3, THE PURSHOTTAM GINNING MILLS COMPOUND, KHAN BAZAR, A.K. ROAD, SURAT - 395006', '24AAACA1033E1ZL', '2021-07-31 11:56:26', '2021-07-31 11:56:26'),
 (7, 2, 'kikani jems', 'pramukh bulding', '24aakfk0018n1zd', '2021-08-11 02:42:32', '2021-08-11 02:42:32'),
-(8, 1, 'KIRAN', 'HIRABAG', '24AAACA1033E1Z', '2021-09-17 04:02:25', '2021-09-17 04:02:25');
+(8, 1, 'KIRAN', 'HIRABAG', '24AAACA1033E1Z', '2021-09-17 04:02:25', '2021-09-17 04:02:25'),
+(9, 1, 'rishi', 'hirabag', 'sfefsefsfvd', '2021-09-21 06:22:59', '2021-09-21 06:22:59');
 
 -- --------------------------------------------------------
 
@@ -420,7 +437,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$UciKUhn6HK3fGVx1/d..o.ZkMop7iWyJjNTqjPYOaHcLIsf3okEFO', NULL, '2021-07-01 12:40:38', '2021-07-01 12:40:38'),
-(2, 'gbm', 'gbm@gmail.com', NULL, '$2y$10$Q5bZdekXn6LdU/FkOb7BrOn39Z4TJ5GsxHIjGVDIW29M/t1k6tsCa', 'ozEehJdOhjZzZVKBbBTvkCcMvkvoNliHnPatLUmo994Vh81S9DU9YycbbNp8', '2021-07-19 16:56:33', '2021-07-19 16:56:33');
+(2, 'gbm', 'gbm@gmail.com', NULL, '$2y$10$Q5bZdekXn6LdU/FkOb7BrOn39Z4TJ5GsxHIjGVDIW29M/t1k6tsCa', 'FoWQGGdzRakNCFy3DmzYHbwUiVnfOWSHlj9hZyqbt2A5KPSfCzvJZQNxIvvX', '2021-07-19 16:56:33', '2021-07-19 16:56:33');
 
 -- --------------------------------------------------------
 
@@ -437,6 +454,23 @@ CREATE TABLE `working_stock` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `working_stock`
+--
+
+INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`) VALUES
+(29, 1, 1, 79, '852369', '2021-09-20 22:59:01', '2021-09-20 22:59:01'),
+(30, 1, 1, 80, '852147', '2021-09-20 22:59:07', '2021-09-20 22:59:07'),
+(31, 1, 1, 85, '147896325', '2021-09-20 22:59:18', '2021-09-20 22:59:18'),
+(32, 1, 1, 88, '24578873', '2021-09-20 22:59:46', '2021-09-20 22:59:46'),
+(33, 1, 1, 87, '1478952', '2021-09-20 22:59:55', '2021-09-20 22:59:55'),
+(34, 1, 1, 86, '74589632', '2021-09-20 23:00:03', '2021-09-20 23:00:03'),
+(35, 1, 1, 84, '457812', '2021-09-20 23:00:28', '2021-09-20 23:00:28'),
+(36, 1, 1, 83, '987456', '2021-09-20 23:00:39', '2021-09-20 23:00:39'),
+(37, 1, 1, 82, '896574', '2021-09-20 23:00:45', '2021-09-20 23:00:45'),
+(38, 1, 1, 81, '741369', '2021-09-20 23:00:55', '2021-09-20 23:00:55'),
+(40, 1, 1, 65, '458612', '2021-09-21 06:12:43', '2021-09-21 06:12:43');
 
 --
 -- Indexes for dumped tables
@@ -569,7 +603,7 @@ ALTER TABLE `diamond_shape`
 -- AUTO_INCREMENT for table `d_purchase`
 --
 ALTER TABLE `d_purchase`
-  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -581,7 +615,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `manager_details`
 --
 ALTER TABLE `manager_details`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -605,19 +639,19 @@ ALTER TABLE `rate_masters`
 -- AUTO_INCREMENT for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `sell_stock`
 --
 ALTER TABLE `sell_stock`
-  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `supplier_details`
 --
 ALTER TABLE `supplier_details`
-  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -629,7 +663,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
