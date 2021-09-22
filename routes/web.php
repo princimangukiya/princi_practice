@@ -82,7 +82,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Inward')->name('Inward.genratePDF');
-    Route::post('/search_inward_data', 'App\Http\Controllers\ReportController@search_data_Inward')->name('Inward.search_data');
+    Route::get('/search_inward_data', 'App\Http\Controllers\ReportController@search_data_Inward')->name('Inward.search_data');
+    Route::get('/datatabal', 'App\Http\Controllers\ReportController@datatabal')->name('Inward.datatabal');
+
 
 
     //OutWard
@@ -94,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Party Labour
     Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
     Route::get('/Party_Labour/genratePDF', 'App\Http\Controllers\ReportController@genratePDF_Party_Labour')->name('Party_Labour.genratePDF');
-    Route::post('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
+    Route::get('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
 
 
     //Daimond Trecker
