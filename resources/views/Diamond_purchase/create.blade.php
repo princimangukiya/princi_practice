@@ -245,43 +245,43 @@
             }
         });
 
-        // function deleteFunc() {
-        //     if (confirm("Delete Record?") == true) {
-        //         var id = id;
-        //         // ajax
-        //         $.ajax({
-        //             type: "POST",
-        //             url: "{{ url('delete-company') }}",
-        //             data: {
-        //                 id: id
-        //             },
-        //             dataType: 'json',
-        //             success: function(res) {
-        //                 var oTable = $('#ajax-crud-datatable').dataTable();
-        //                 oTable.fnDraw(false);
-        //             }
-        //         });
-        //     }
-        // }
+        function deleteFunc() {
+            if (confirm("Delete Record?") == true) {
+                var id = id;
+                // ajax
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('delete-company') }}",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        var oTable = $('#ajax-crud-datatable').dataTable();
+                        oTable.fnDraw(false);
+                    }
+                });
+            }
+        }
 
-        // function editFunc() {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "{{ url('edit-company') }}",
-        //         data: {
-        //             id: id
-        //         },
-        //         dataType: 'json',
-        //         success: function(res) {
-        //             $('#CompanyModal').html("Edit Company");
-        //             $('#company-modal').modal('show');
-        //             $('#id').val(res.id);
-        //             $('#name').val(res.name);
-        //             $('#address').val(res.address);
-        //             $('#email').val(res.email);
-        //         }
-        //     });
-        // }
+        function editFunc() {
+            $.ajax({
+                type: "POST",
+                url: "{{ url('edit-company') }}",
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(res) {
+                    $('#CompanyModal').html("Edit Company");
+                    $('#company-modal').modal('show');
+                    $('#id').val(res.id);
+                    $('#name').val(res.name);
+                    $('#address').val(res.address);
+                    $('#email').val(res.email);
+                }
+            });
+        }
 
         function addData() {
             // alert(id);
