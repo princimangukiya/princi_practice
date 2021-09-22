@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="padding: 15px;">
-                            <button id="barcode" name="fetch_Records" onchange="fetchData()"
+                            <button id="barcode" name="fetch_Records" onclick="fetchData()"
                                 class="btn  btn-primary">Search</button>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
     <script>
         var id, mytable;
         $(document).ready(function() {
-            mytable = $('#tblItemShow').DataTable({
+            mytable = $('#example').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -209,13 +209,16 @@
                 dataType: 'json',
                 success: function(response_msg) {
                     // alert(response_msg.success);
-                    console.log(response_msg);
+                    console.log(response_msg.success);
 
                     if (response_msg.success) {
+                        // alert("Hello");
                         // console.log(response_msg.success.d_wt);
                         // console.log(response_msg.success.price);
-                        // $('#d_wt').val(response_msg.success.d_wt);
-                        // $('#price').val(response_msg.success.price);
+                        mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
+                        mytable.draw();
+                        $('#d_wt').val(response_msg.success.d_wt);
+                        $('#price').val(response_msg.success.price);
                     }
 
                 }
