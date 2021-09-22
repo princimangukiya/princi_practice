@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Datatables;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 
@@ -38,17 +37,6 @@ class DiamondController extends Controller
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         return view('Diamond_purchase.create', $data);
-    }
-    public function fetchdata()
-    {
-        if (request()->ajax()) {
-            return Datatables()->of(D_Purchase::select('*'))
-                ->addColumn('action', 'company-action')
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-        }
-        return view('Diamond_purchase.create');
     }
     public function store(Request $request)
     {
