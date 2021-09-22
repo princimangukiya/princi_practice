@@ -84,8 +84,8 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-md-2" style="padding: 25px;">
-                                <button id="addData" name="addData" onClick="addData()"
+                            <div class="col-md-2" style="padding: 15px;">
+                                <button type="submit" id="addData" name="addData" onClick="addData()"
                                     class="btn  btn-primary">Serch</button>
                             </div>
                         </div>
