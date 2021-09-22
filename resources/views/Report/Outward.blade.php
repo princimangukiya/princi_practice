@@ -82,8 +82,8 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="padding: 15px;">
-                            <button id="barcode" name="fetch_Records" onclick="fetchData()"
-                                class="btn  btn-primary">Search</button>
+                            <button type="submit" id="addData" name="addData" onClick="addData()"
+                                class="btn  btn-primary">Serch</button>
                         </div>
                     </div>
                     {{-- </form> --}}
@@ -184,20 +184,29 @@
             });
         });
 
-        function fetchData(id) {
-            // alert('Hello');
+
+        function addData() {
             var s_id = $('#s_id').val();
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
-            // alert(s_id);
-            // alert(Start_date);
-            // alert(End_date);
-
+            var table = $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+            table.clear().draw();
+            // alert(barcode);
+            // alert(m_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
                 type: 'GET',
                 url: '{{ route('Outward.search_data') }}',
@@ -209,20 +218,38 @@
                 dataType: 'json',
                 success: function(response_msg) {
                     // alert(response_msg.success);
-                    console.log(response_msg.success);
-
+                    console.log(response_msg);
+                    // if (response_msg.data == null) {
+                    //     alert('controller Succesfully Called !!!!!');
+                    // }
                     if (response_msg.success) {
-                        // alert("Hello");
-                        // console.log(response_msg.success.d_wt);
-                        // console.log(response_msg.success.price);
-                        mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
-                        mytable.draw();
-                        $('#d_wt').val(response_msg.success.d_wt);
-                        $('#price').val(response_msg.success.price);
+
+                        // $("#p_gst_id").val(bill_no);
+                        const length = Object.keys(response_msg.success).length;
+                        // console.log(response_msg.success.length);
+                        // $('#example tbody').empty();
+
+                        response_msg.success.forEach(success => {
+
+                            $("#example").append(
+                                '<tr>' +
+                                '<td>' + success.d_id + '</td>' +
+                                '<td>' + success.s_name + '</td>' +
+                                '<td>' + success.d_barcode + '</td>' +
+                                '<td>' + success.shape_name + '</td>' +
+                                '<td>' + success.d_wt + '</td>' +
+                                '<td>' + success.d_n_wt + '</td>' +
+                                '<td>' + success.bill_date + '</td>' +
+                                '</tr>'
+                            );
+
+                        });
+                        console.log(response_msg.success.length);
                     }
 
                 }
             });
+            // alert('hii');
         }
     </script>
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>

@@ -3,6 +3,12 @@
 @endsection
 
 @section('content')
+    <style>
+        td.dataTables_empty {
+            display: none;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Inward Master</h4>
@@ -33,61 +39,59 @@
                     <div class="card-title">Inward Details</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('Inward.search_data') }}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
-                                @php
-                                    $c_id = session()->get('c_id');
-                                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
-                                @endphp
-                                <div class="form-group">
-                                    <h4><label class="form-label">Select Company :-</label></h4>
-                                    <select id="s_id" name="s_id" required class="form-control select2">
-                                        <optgroup label="Company">
-                                            <option value="" disabled selected>Choose Company</option>
-                                            @if (count($rate) > 0)
-                                                @foreach ($rate as $value)
-                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </optgroup>
-                                    </select>
-                                    @error('s_id')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-5" style="display: flex;">
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                Start
-                                                Date:- </label></h4>
-                                        <input type="date" id="Start_date" name="Start_date">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                End
-                                                Date:- </label></h4>
-                                        <input type="date" id="End_date" name="End_date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2" style="padding: 15px;">
-                                <button type="submit" id="addData" name="addData" onClick="addData()"
-                                    class="btn  btn-primary">Serch</button>
+                    {{-- <form action="{{ route('Inward.search_data') }}" method="post">
+                        @csrf --}}
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 50px;">
+                            @php
+                                $c_id = session()->get('c_id');
+                                $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                            @endphp
+                            <div class="form-group">
+                                <h4><label class="form-label">Select Company :-</label></h4>
+                                <select id="s_id" name="s_id" required class="form-control select2">
+                                    <optgroup label="Company">
+                                        <option value="" disabled selected>Choose Company</option>
+                                        @if (count($rate) > 0)
+                                            @foreach ($rate as $value)
+                                                <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('s_id')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
                             </div>
                         </div>
-                    </form>
+                        <div class="col-md-5" style="display: flex;">
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            Start
+                                            Date:- </label></h4>
+                                    <input type="date" id="Start_date" name="Start_date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            End
+                                            Date:- </label></h4>
+                                    <input type="date" id="End_date" name="End_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="padding: 15px;">
+                            <button type="submit" id="addData" name="addData" onClick="addData()"
+                                class="btn  btn-primary">Serch</button>
+                        </div>
+                    </div>
+                    {{-- </form> --}}
                 </div>
                 <div class="card-body">
                     <div>
@@ -105,13 +109,10 @@
                                         {{-- <th>Package</th> --}}
                                         {{-- <th class="border-bottom-0">0.210-0.409</th>
                                         <th class="border-bottom-0">0.410-5.000</th> --}}
-
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="showPurchaseTh">
                                     @foreach ($inward as $key => $value)
-
-
                                         <tr>
                                             <td>
                                                 {{ $key + 1 }}
@@ -155,12 +156,36 @@
 
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
-    {{-- <script>
-        function addData(id) {
-            var s_id = $('#s_id').find(":selected").text();
-            var Start_date = $('#Start_date').find(":selected").text();
-            var End_date = $('#End_date').find(":selected").text();
+    <script>
+        // var id, mytable;
+        $(document).ready(function() {
+            mytable = $('#example').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+        });
 
+
+        function addData() {
+            var s_id = $('#s_id').val();
+            var Start_date = $('#Start_date').val();
+            var End_date = $('#End_date').val();
+
+            var mytable = $('#example').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+            mytable.draw();
             // alert(barcode);
             // alert(m_id);
             $.ajaxSetup({
@@ -168,9 +193,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
                 type: 'GET',
-                url: '{{ route('ready_stock.fetchData') }}',
+                url: '{{ route('Inward.search_data') }}',
                 data: {
                     's_id': s_id,
                     'Start_date': Start_date,
@@ -179,19 +205,39 @@
                 dataType: 'json',
                 success: function(response_msg) {
                     // alert(response_msg.success);
-                    // console.log(response_msg);
-
+                    console.log(response_msg);
+                    // if (response_msg.data == null) {
+                    //     alert('controller Succesfully Called !!!!!');
+                    // }
                     if (response_msg.success) {
-                        console.log(response_msg.success.d_wt);
-                        console.log(response_msg.success.price);
-                        $('#d_weigth').val(response_msg.success.d_wt);
-                        $('#Price').val(response_msg.success.price);
+
+                        // $("#p_gst_id").val(bill_no);
+                        const length = Object.keys(response_msg.success).length;
+                        // console.log(response_msg.success.length);
+                        // $('#example tbody').empty();
+
+                        response_msg.success.forEach(success => {
+
+                            $("#example").append(
+                                '<tr>' +
+                                '<td>' + success.d_id + '</td>' +
+                                '<td>' + success.s_name + '</td>' +
+                                '<td>' + success.d_barcode + '</td>' +
+                                '<td>' + success.shape_name + '</td>' +
+                                '<td>' + success.d_wt + '</td>' +
+                                '<td>' + success.d_n_wt + '</td>' +
+                                '<td>' + success.bill_date + '</td>' +
+                                '</tr>'
+                            );
+
+                        });
+                        console.log(response_msg.success.length);
                     }
 
                 }
             });
-            alert('hii');
+            // alert('hii');
         }
-    </script> --}}
+    </script>
 @endsection
 @include('app')
