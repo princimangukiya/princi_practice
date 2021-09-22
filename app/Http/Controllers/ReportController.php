@@ -39,18 +39,20 @@ class ReportController extends Controller
 
         return view('Report.Inward', $data);
     }
+    public function genratePDF_Inward()
+    {
+        $data = array();
+        $c_id = session()->get('c_id');
+        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+            ->where([['supplier_details.c_id', $c_id]])
+            ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
 
-    // public function genratePDF_Inward()
-    // {
-    //     $data = [
-    //         'title' => 'Inward Report',
-    //         'date' => date('d/m/Y')
-    //     ];
+        $pdf = PDF::loadView('Report.Inward_Formatte', $data);
 
-    //     $pdf = PDF::loadView('Report.Inward_Formatte', $data);
-
-    //     return $pdf->download('Inward.pdf');
-    // }
+        return $pdf->download('Inward.pdf');
+    }
     public function search_data_Inward(Request $request)
     {
         // $data = array();+
@@ -66,11 +68,6 @@ class ReportController extends Controller
             ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
         // $data = "hello";
         return Response::json(array('success' => $data));
-        // return response()->json([
-        //     'success' => $data
-        // ]);
-        // return view('Report.Inward', $data);
-        // echo $data['inward'];
     }
     //Outward PDF Genratte
     public function Outward()
@@ -84,17 +81,20 @@ class ReportController extends Controller
             ->get(['sell_stock.*', 'd_purchase.*']);
         return view('Report.Outward', $data);
     }
-    // public function genratePDF_Outward()
-    // {
-    //     $data = [
-    //         'title' => 'Outward Report',
-    //         'date' => date('d/m/Y')
-    //     ];
+    public function genratePDF_Outward()
+    {
+        $data = array();
+        $d_id = Ready_Stock::get('d_id');
+        $c_id = session()->get('c_id');
+        $data['inward'] = Ready_Stock::where('c_id', $c_id)->get();
+        $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+            ->where([['sell_stock.c_id', $c_id]])
+            ->get(['sell_stock.*', 'd_purchase.*']);
 
-    //     $pdf = PDF::loadView('Report.Outward_Formatte', $data);
+        $pdf = PDF::loadView('Report.Outward_Formatte', $data);
 
-    //     return $pdf->download('Outward.pdf');
-    // }
+        return $pdf->download('Outward.pdf');
+    }
     public function search_data_Outward(Request $request)
     {
         $c_id = session()->get('c_id');
@@ -109,9 +109,6 @@ class ReportController extends Controller
             ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
             ->whereBetween('sell_stock.created_at', [$start_date, $end_date])
             ->get(['sell_stock.*', 'd_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
-        // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
-        // $data = "This is from Cntrolller !!";
-        // return view('Report.Outward', $data);
         return Response::json(array('success' => $data));
         // echo $data['inward'];
     }
@@ -139,17 +136,17 @@ class ReportController extends Controller
         // echo $data;
         return view('Report.Party_Labour', $data);
     }
-    // public function genratePDF_Party_Labour()
-    // {
-    //     $data = [
-    //         'title' => 'Party Labour Report',
-    //         'date' => date('d/m/Y')
-    //     ];
+    public function genratePDF_Party_Labour()
+    {
+        $data = [
+            'title' => 'Party Labour Report',
+            'date' => date('d/m/Y')
+        ];
 
-    //     $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
+        $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
 
-    //     return $pdf->download('Party Labour.pdf');
-    // }
+        return $pdf->download('Party Labour.pdf');
+    }
     public function search_data_Party_Labour(Request $request)
     {
         $c_id = session()->get('c_id');
