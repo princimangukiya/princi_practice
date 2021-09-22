@@ -79,9 +79,9 @@ class ReportController extends Controller
         $d_id = Ready_Stock::get('d_id');
         $c_id = session()->get('c_id');
         $data['inward'] = Ready_Stock::where('c_id', $c_id)->get();
-        $data['inward'] = Ready_Stock::join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
-            ->where([['ready_stock.c_id', $c_id]])
-            ->get(['d_purchase.*']);
+        $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+            ->where([['sell_stock.c_id', $c_id]])
+            ->get(['sell_stock.*', 'd_purchase.*']);
         return view('Report.Outward', $data);
     }
     // public function genratePDF_Outward()
@@ -97,16 +97,20 @@ class ReportController extends Controller
     // }
     public function search_data_Outward(Request $request)
     {
+        $c_id = session()->get('c_id');
         $s_id = $request->s_id;
         $start_date = $request->Start_date;
         $end_date = $request->End_date;
         // $data = D_Purchase::where('s_id', $s_id)->whereBetween('bill_date', [$start_date, $end_date])->get();
 
-        $data = Ready_Stock::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+        $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+            ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['d_purchase.s_id', $s_id]])
-            ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
-        $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
+            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+            ->whereBetween('sell_stock.created_at', [$start_date, $end_date])
+            ->get(['sell_stock.*', 'd_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
+        // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
+        // $data = "This is from Cntrolller !!";
         // return view('Report.Outward', $data);
         return Response::json(array('success' => $data));
         // echo $data['inward'];
