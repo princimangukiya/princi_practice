@@ -185,7 +185,7 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            mytable.draw();
+            mytable.clear().draw();
             // alert(barcode);
             // alert(m_id);
             $.ajaxSetup({
@@ -226,7 +226,7 @@
                                 '<td>' + success.shape_name + '</td>' +
                                 '<td>' + success.d_wt + '</td>' +
                                 '<td>' + success.d_n_wt + '</td>' +
-                                '<td>' + success.bill_date + '</td>' +
+                                '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
 

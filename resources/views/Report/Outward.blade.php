@@ -3,6 +3,12 @@
 @endsection
 
 @section('content')
+    <style>
+        td.dataTables_empty {
+            display: none;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Outward Master</h4>
@@ -149,7 +155,7 @@
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->created_at)) }}
+                                                {{ date('d-m-Y', strtotime($value->updated_at)) }}
                                             </td>
 
                                         </tr>
@@ -189,7 +195,7 @@
             var s_id = $('#s_id').val();
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
-            var table = $('#example1').DataTable({
+            var table = $('#example').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -233,13 +239,15 @@
 
                             $("#example").append(
                                 '<tr>' +
-                                '<td>' + success.d_id + '</td>' +
+                                '<td>' + success.sell_id + '</td>' +
                                 '<td>' + success.s_name + '</td>' +
                                 '<td>' + success.d_barcode + '</td>' +
                                 '<td>' + success.shape_name + '</td>' +
                                 '<td>' + success.d_wt + '</td>' +
                                 '<td>' + success.d_n_wt + '</td>' +
-                                '<td>' + success.bill_date + '</td>' +
+                                '<td>' + success.price + '</td>' +
+                                '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
+                                '<td>' + moment(success.updated_at).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
 
@@ -249,6 +257,8 @@
 
                 }
             });
+
+
             // alert('hii');
         }
     </script>
