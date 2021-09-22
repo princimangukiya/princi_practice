@@ -138,11 +138,24 @@ class ReportController extends Controller
     }
     public function genratePDF_Party_Labour()
     {
-        $data = [
-            'title' => 'Party Labour Report',
-            'date' => date('d/m/Y')
-        ];
+        $data = array();
+        $c_id = session()->get('c_id');
+        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['Pay_labour'] = Supplier_Details::where('c_id', $c_id)
+            ->get();
+        $s_id = $data['Pay_labour'][0]['s_id'];
+        $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
+        // echo $data['daimond'];
 
+        $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+        $json_data = $json_data[0]['json_price'];
+        $json_decoded = json_decode($json_data);
+        foreach ($json_decoded[0] as $key => $val) {
+            $r_id = $key;
+            $wt_category = rate::where('rates.r_id', $r_id)->get();
+            $wt_category = $wt_category[0]['wt_category'];
+            // echo $wt_category;
+        }
         $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
 
         return $pdf->download('Party Labour.pdf');
