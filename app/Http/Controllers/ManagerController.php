@@ -52,17 +52,17 @@ class ManagerController extends Controller
             // $managerData = Manager_Details::where('m_phone', $request->m_phone)->first();
 
             // if ($managerData == null) {
-                $c_id = session()->get('c_id');
-                $newitem = new Manager_Details();
-                $newitem->c_id = $c_id;
-                $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
-                $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
-                $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
-                $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
-                $newitem->save();
+            $c_id = session()->get('c_id');
+            $newitem = new Manager_Details();
+            $newitem->c_id = $c_id;
+            $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
+            $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
+            $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
+            $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
+            $newitem->save();
 
-                // return Response::json(array('success' => true));
-                return Redirect::to('/manager');
+            // return Response::json(array('success' => true));
+            return Redirect::to('/manager');
             // } else {
             //     return Response::json(array('success' => 200));
             // }
