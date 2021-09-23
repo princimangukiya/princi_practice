@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Packet Supplier</label>
-                                <select id="s_id" name="s_id" required class="form-control select2">
+                                <select id="s_id" name="s_name" required class="form-control select2">
                                     <optgroup label="Supplier">
                                         <option value="" disabled selected>Choose Supplier</option>
                                         @if (count($supplier1) > 0)
@@ -184,38 +184,38 @@
                 "info": true,
                 "autoWidth": false,
                 "sDom": 'lfrtip',
-                ajax: "{{ url('ajax-crud-datatable') }}",
-                "columns": [{
-                        "data": "s_name",
-                        "name": "s_name",
-                        "searchable": false
-                    },
-                    {
-                        "data": "d_barcode",
-                        "name": "d_barcode",
-                        "searchable": true
-                    },
-                    {
-                        "data": "d_wt",
-                        "name": "d_wt",
-                        "searchable": true
-                    },
-                    {
-                        "data": "shape_name",
-                        "name": "shape_name",
-                        "searchable": true
-                    },
-                    {
-                        "data": "shape_name",
-                        "name": "shape_name",
-                        "searchable": true
-                    }, {
+                // ajax: "{{ route('diamond.store') }}",
+                // "columns": [{
+                //         "data": "s_name",
+                //         "name": "s_name",
+                //         "searchable": false
+                //     },
+                //     {
+                //         "data": "d_barcode",
+                //         "name": "bar_code",
+                //         "searchable": true
+                //     },
+                //     {
+                //         "data": "d_wt",
+                //         "name": "d_wt",
+                //         "searchable": true
+                //     },
+                //     {
+                //         "data": "shape_name",
+                //         "name": "shape_id",
+                //         "searchable": true
+                //     },
+                //     {
+                //         "data": "bill_date",
+                //         "name": "bill_date",
+                //         "searchable": true
+                //     }, {
 
-                        "mRender": function(data, type, row) {
-                            return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc($id)" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc($id)" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
-                        }
-                    }
-                ]
+                //         "mRender": function(data, type, row) {
+                //             return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc($id)" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc($id)" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
+                //         }
+                //     }
+                // ]
             });
 
             // function fnCreatedRow(nRow) {
@@ -310,19 +310,21 @@
                     'bill_date': bill_date
                 },
                 dataType: 'json',
+
                 success: function(response_msg) {
                     // alert(response_msg.success);
                     if (response_msg.success == 200) {
                         alert("Barcode already exist!");
                         //location.reload();
                     } else if (response_msg.success == true) {
-                        mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
+                        mytable.row.add([partyName, barcode, weight, shapevalue, bill_date, ]);
                         mytable.draw();
                         $('#s_id').val('');
                         $('#bar_code').val('');
                         $('#d_wt').val('');
                         $('#shape_id').val('');
                         $('#bill_date').focus();
+
                     } else {
                         alert('Please, Fill all the fields!');
                     }
