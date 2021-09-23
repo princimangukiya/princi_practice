@@ -131,43 +131,50 @@
                                     @foreach ($Pay_labour as $d)
                                         <tr>
                                             <td>
+                                                @php
+                                                    
+                                                @endphp
                                                 <b>{{ $d->s_name }}</b>
                                                 @php
                                                     $s_id = $d->s_id;
-                                                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
-                                                    $json_data = $json_data[0]['json_price'];
-                                                    $json_decoded = json_decode($json_data);
-                                                    foreach ($json_decoded[0] as $key => $val) {
-                                                        $r_id = $key;
-                                                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                                                        $wt_category = $wt_category[0]['wt_category'];
-                                                        echo '</br>';
-                                                        echo $wt_category;
-                                                    }
+                                                    $daimond_count = json_decode(showRate($s_id));
                                                 @endphp
+                                                @foreach ($daimond_count as $item)
+                                                    <br>{{ $item }}
+                                                @endforeach
                                                 {{-- </br> --}}
                                                 {{-- {{ $wt_category }} --}}
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                @php
+                                                    $s_id = $d->s_id;
+                                                    $daimond_count = json_decode(daimondCount($s_id));
+                                                @endphp
+                                                @foreach ($daimond_count as $item)
+                                                    <br>{{ $item }}
+                                                @endforeach
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td>
                                                 @php
                                                     $s_id = $d->s_id;
-                                                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
-                                                    $json_data = $json_data[0]['json_price'];
-                                                    $json_decoded = json_decode($json_data);
-                                                    foreach ($json_decoded[0] as $key => $val) {
-                                                        $r_id = $key;
-                                                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                                                        $wt_category = $wt_category[0]['wt_category'];
-                                                        echo '</br>';
-                                                        echo $val;
-                                                    }
+                                                    $price = json_decode(showPice($s_id));
                                                 @endphp
+                                                @foreach ($price as $item)
+                                                    <br>{{ $item }}
+                                                @endforeach
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                @php
+                                                    $s_id = $d->s_id;
+                                                    $labour = json_decode(showLabour($s_id));
+                                                @endphp
+                                                @foreach ($labour as $item)
+                                                    <br>{{ $item }}
+                                                @endforeach
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -190,7 +197,107 @@
             </div>
             <!--/div-->
 
-
+            @php
+                function showRate($s_id)
+                {
+                    $rate = [];
+                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                    $json_data = $json_data[0]['json_price'];
+                    $json_decoded = json_decode($json_data);
+                    foreach ($json_decoded[0] as $key => $val) {
+                        $r_id = $key;
+                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                        $wt_category = $wt_category[0]['wt_category'];
+                        array_push($rate, $wt_category);
+                    }
+                    return json_encode($rate);
+                }
+                function daimondCount($s_id)
+                {
+                    $daimond_data = [];
+                    $sell_stock = App\Models\sell_stock::where('s_id', $s_id)->get();
+                    $daimond = App\Models\D_Purchase::where('s_id', $s_id)->get();
+                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                    $json_data = $json_data[0]['json_price'];
+                    $json_decoded = json_decode($json_data);
+                    foreach ($json_decoded[0] as $key => $val) {
+                        $r_id = $key;
+                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                        $wt_category = $wt_category[0]['wt_category'];
+                        // echo $r_id;
+                        $count1 = 0;
+                        foreach ($daimond as $r) {
+                            if ($s_id == $r->s_id) {
+                                foreach ($sell_stock as $value) {
+                                    if ($value['d_id'] == $r->d_id) {
+                                        $daimond_categorie_id = $r->d_wt_category;
+                                        // echo $daimond_count;
+                
+                                        if ($r_id == $daimond_categorie_id) {
+                                            $count1 = $count1 + 1;
+                                        } // echo count($daimond_count);
+                                    }
+                                }
+                            }
+                        }
+                        array_push($daimond_data, $count1);
+                    }
+                    return json_encode($daimond_data);
+                }
+                
+                function showPice($s_id)
+                {
+                    $price = [];
+                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                    $json_data = $json_data[0]['json_price'];
+                    $json_decoded = json_decode($json_data);
+                    foreach ($json_decoded[0] as $key => $val) {
+                        $r_id = $key;
+                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                        $wt_category = $wt_category[0]['wt_category'];
+                        $fetchPrice = $val;
+                        array_push($price, $fetchPrice);
+                    }
+                    return json_encode($price);
+                }
+                
+                function showLabour($s_id)
+                {
+                    $labour = [];
+                    $sell_stock = App\Models\sell_stock::where('s_id', $s_id)->get();
+                    $daimond = App\Models\D_Purchase::where('s_id', $s_id)->get();
+                    $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                    $json_data = $json_data[0]['json_price'];
+                    $json_decoded = json_decode($json_data);
+                    foreach ($json_decoded[0] as $key => $val) {
+                        $r_id = $key;
+                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
+                        $wt_category = $wt_category[0]['wt_category'];
+                        // echo $r_id;
+                        $count1 = 0;
+                        $price = 0;
+                
+                        foreach ($daimond as $r) {
+                            if ($r->s_id == $s_id) {
+                                foreach ($sell_stock as $value) {
+                                    if ($value['d_id'] == $r->d_id) {
+                                        $daimond_count = $r->d_wt_category;
+                                        // echo $daimond_count;
+                
+                                        if ($r_id == $daimond_count) {
+                                            $count1 = $price + $r->price;
+                                            $price = $count1;
+                                        }
+                                    }
+                                    // echo count($daimond_count);
+                                }
+                            }
+                        }
+                        array_push($labour, $price);
+                    }
+                    return json_encode($labour);
+                }
+            @endphp
         </div>
     </div>
 </body>
