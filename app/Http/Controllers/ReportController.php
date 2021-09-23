@@ -120,20 +120,20 @@ class ReportController extends Controller
         $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
         $data['Pay_labour'] = Supplier_Details::where('c_id', $c_id)
             ->get();
+
         $s_id = $data['Pay_labour'][0]['s_id'];
-        $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
+        // $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
         // echo $data['daimond'];
 
         $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
         $json_data = $json_data[0]['json_price'];
         $json_decoded = json_decode($json_data);
+        $count1 = 0;
         foreach ($json_decoded[0] as $key => $val) {
             $r_id = $key;
             $wt_category = rate::where('rates.r_id', $r_id)->get();
             $wt_category = $wt_category[0]['wt_category'];
-            // echo $wt_category;
         }
-        // echo $data;
         return view('Report.Party_Labour', $data);
     }
     public function genratePDF_Party_Labour()
@@ -143,18 +143,19 @@ class ReportController extends Controller
         $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
         $data['Pay_labour'] = Supplier_Details::where('c_id', $c_id)
             ->get();
+
         $s_id = $data['Pay_labour'][0]['s_id'];
-        $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
+        // $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
         // echo $data['daimond'];
 
         $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
         $json_data = $json_data[0]['json_price'];
         $json_decoded = json_decode($json_data);
+        $count1 = 0;
         foreach ($json_decoded[0] as $key => $val) {
             $r_id = $key;
             $wt_category = rate::where('rates.r_id', $r_id)->get();
             $wt_category = $wt_category[0]['wt_category'];
-            // echo $wt_category;
         }
         $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
 
@@ -171,9 +172,9 @@ class ReportController extends Controller
         echo $start_date;
         echo "<br>";
         echo $end_date;
-        $data['Pay_labour'] = Supplier_Details::where([['c_id', $c_id], ['S_id', $s_id]])->whereBetween('')
+        $data['Pay_labour'] = Supplier_Details::where([['c_id', $c_id], ['S_id', $s_id]])
             ->get();
-        $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
+        // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
         return view('Report.Party_Labour', $data);
     }
 }
