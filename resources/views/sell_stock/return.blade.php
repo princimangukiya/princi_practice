@@ -46,10 +46,10 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6" style="display: flex;">
-                <div class="form-group col-md-8 col-sm-8" style="padding: 20px;">
+                <div class="form-group col-md-12 col-sm-12" style="padding: 20px;">
                     <label class="form-label">BarCode Value </label>
-                    <input id="bar_code" type="text" name="bar_code" class="form-control " value="{{ old('bar_code') }}"
-                        placeholder="Enter Bar Code" autofocus>
+                    <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
+                        value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
                     @error('bar_code')
                         <small class="errorTxt1">
                             <div id="title-error" class="error" style="margin-left:3rem">
@@ -106,6 +106,23 @@
             });
             // mytable.row.add([id, 'pkt1', '10.5']);
             // mytable.draw();
+        });
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 0] != null) {
+                    nextBox = textboxes[currentBoxNumber + 0];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addTOManager();
+                }
+            }
         });
     </script>
     <script>
