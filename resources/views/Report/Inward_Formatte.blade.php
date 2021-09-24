@@ -53,7 +53,7 @@
                     $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
                     // echo $rate;
                 @endphp
-                @foreach ($inward as $key => $value)
+                @foreach ($rate as $key => $value)
                     @if ($value->s_id == 8)
                         <h3>{{ $value->s_name }}</h3>
                     @endif
