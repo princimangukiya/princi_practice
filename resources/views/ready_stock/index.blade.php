@@ -59,7 +59,10 @@
                                                 {{ $value->Manager->m_name }}
                                             </td>
                                             <td>
-                                                {{ $value->Diamond->s_id }}
+                                                @php
+                                                    $s_name = App\Models\supplier_details::where('s_id', $value->Diamond->s_id)->first('s_name');
+                                                @endphp
+                                                {{ $s_name['s_name'] }}
                                             </td>
                                             <td>
                                                 {{ $value->Diamond->d_barcode }}
@@ -71,7 +74,10 @@
                                                 {{ $value->d_n_wt }}
                                             </td>
                                             <td>
-                                                {{ $value->Diamond->shape_id }}
+                                                @php
+                                                    $shape_name = App\Models\Diamond_Shape::where('shape_id', $value->Diamond->shape_id)->first('shape_name');
+                                                @endphp
+                                                {{ $shape_name['shape_name'] }}
                                             </td>
                                             <td>
                                                 {{ $value->Diamond->price }}
