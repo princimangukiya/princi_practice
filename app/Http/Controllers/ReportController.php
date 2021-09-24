@@ -47,12 +47,12 @@ class ReportController extends Controller
         $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
         $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+            ->where([['supplier_details.c_id', $c_id]])
             ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         echo $s_id;
-        // $pdf = PDF::loadView('Report.Inward_Formatte', $data);
+        $pdf = PDF::loadView('Report.Inward_Formatte', $data);
 
-        // return $pdf->download('Inward.pdf');
+        return $pdf->download('Inward.pdf');
     }
     public function search_data_Inward(Request $request)
     {
