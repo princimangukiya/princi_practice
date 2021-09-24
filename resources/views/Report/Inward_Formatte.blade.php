@@ -10,12 +10,14 @@
     <title>Bill Formate</title>
     <style>
         @font-face {
-            font-family: SimHei;
-            src: url('{{ base_path() . '/public/report_assets/' }}fonts/simhei.ttf') format('truetype');
+            font-family: myguj-font;
+            src: url(Gujrati-Saral-1.ttf) format(truetype);
+            font-weight: normal;
+            font-style: normal;
         }
 
-        .gujrati_words {
-            font-family: SimHei;
+        .myguj {
+            font-family: myguj-font;
         }
 
         .tabel_style {
@@ -44,14 +46,14 @@
             <!--div-->
             <div class="card1">
                 <div class="textstyle">
-                    <h6 class="gujrati_words">|| શ્રી ગણેશાય નામ: ||</h6>
+                    <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div>
                 @php
                     $c_id = session()->get('c_id');
                     $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
                     // echo $rate;
                 @endphp
-                @foreach ($rate as $key => $value)
+                @foreach ($inward as $key => $value)
                     @if ($value->s_id == 8)
                         <h3>{{ $value->s_name }}</h3>
                     @endif
@@ -90,7 +92,7 @@
                                                 <td style="border: 1px solid black">
                                                     {{ $value->d_barcode }}
                                                 </td>
-                                                <td class="gujrati_words" style="border: 1px solid black">
+                                                <td class="myguj" style="border: 1px solid black">
                                                     {{ $value->shape_name }}
                                                 </td>
                                                 <td style="border: 1px solid black">
