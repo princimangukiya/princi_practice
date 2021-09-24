@@ -24,7 +24,6 @@
             <div class="btn btn-list">
                 <a href="{{ route('Inward.genratePDF') }}" class="btn btn-info"><i class="fa fa-download mr-1"></i>
                     Downloade PDF </a>
-
             </div>
         </div>
 
