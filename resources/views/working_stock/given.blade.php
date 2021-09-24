@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <div class="form-group" style="padding: 20px;">
                     <h4><label class="form-label">Select Manager :-</label></h4>
-                    <select id="m_id" name="m_id" required class="form-control select2" required>
+                    <select id="m_id" name="m_id" required class="form-control select2 inputField" required>
                         <optgroup label="Managers">
                             <option value="" disabled selected>Choose Manager</option>
                             @if (count($manager) > 0)
