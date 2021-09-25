@@ -17,20 +17,79 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Outward List</a></li>
             </ol>
         </div>
-
-
-
-        <div class="page-rightheader">
-            <div class="btn btn-list">
-                <a href="{{ route('Outward.genratePDF') }}" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                    Downloade PDF </a>
-
-            </div>
-        </div>
-
     </div>
     <!--End Page header-->
     <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <!--div-->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Outward Generate Pdf</div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('Outward.generatePDF') }}" method="get">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-5" style="padding-right: 50px;">
+                                @php
+                                    $c_id = session()->get('c_id');
+                                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                                @endphp
+                                <div class="form-group">
+                                    <h4><label class="form-label">Select Company :-</label></h4>
+                                    <select id="supplier_id" name="s_id" required class="form-control select2">
+                                        <optgroup label="Company">
+                                            <option value="" disabled selected>Choose Company</option>
+                                            @if (count($rate) > 0)
+                                                @foreach ($rate as $value)
+                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                    @error('s_id')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-5" style="display: flex;">
+                                <div class="col-md-6">
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                Start
+                                                Date:- </label></h4>
+                                        <input type="date" id="start_date" name="Start_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                End
+                                                Date:- </label></h4>
+                                        <input type="date" id="end_date" name="End_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-rightheader col-md-2">
+                                <div class="btn btn-list col-md-12">
+                                    <label for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
+                                        Downloade PDF </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <!--div-->
