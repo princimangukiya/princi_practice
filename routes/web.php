@@ -95,7 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //diamond Tracker
-    Route::get('/diamond_tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
+    Route::get('/Diamond_tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
 
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
