@@ -16,7 +16,8 @@
 
         <div class="page-rightheader">
             <div class="btn btn-list">
-                <a href="{{ route('Party_Labour.genratePDF') }}" class="btn btn-info"><i class="fa fa-download mr-1"></i>
+                <a href="{{ route('Party_Labour.generatePDF') }}" class="btn btn-info"><i
+                        class="fa fa-download mr-1"></i>
                     Downloade PDF </a>
 
             </div>
@@ -33,7 +34,7 @@
                     <div class="card-title">Party_Labour Details</div>
                 </div>
                 <div class="card-body">
-                    <form action="/search_PartyLabour_data" method="get">
+                    <form action="/search_PartyLabour_data" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-5" style="padding-right: 50px;">
@@ -64,24 +65,22 @@
                             </div>
                             <div class="col-md-5" style="display: flex;">
                                 <div class="col-md-6">
-                                    <form class="form-inline" style="padding-right: 70px;">
-                                        <div class="col">
-                                            <h4><label class="form-label"
-                                                    style="display: flex; justify-content: start;">Select Start
-                                                    Date:- </label></h4>
-                                            <input type="date" id="Start_date" name="Start_date">
-                                        </div>
-                                    </form>
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                Start
+                                                Date:- </label></h4>
+                                        <input type="date" id="Start_date" name="Start_date">
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <form class="form-inline" style="padding-left: 70px;">
-                                        <div class="col">
-                                            <h4><label class="form-label"
-                                                    style="display: flex; justify-content: start;">Select End
-                                                    Date:- </label></h4>
-                                            <input type="date" id="End_date" name="End_date">
-                                        </div>
-                                    </form>
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                End
+                                                Date:- </label></h4>
+                                        <input type="date" id="End_date" name="End_date">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-2" style="padding: 15px;">
@@ -364,5 +363,6 @@
         return json_encode($labour);
     }
     @endphp
+
 @endsection
 @include('app')
