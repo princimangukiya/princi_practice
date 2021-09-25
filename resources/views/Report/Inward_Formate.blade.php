@@ -48,17 +48,14 @@
                 <div class="textstyle">
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div>
-                @php
-                    $c_id = session()->get('c_id');
-                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
-                    // echo $rate;
-                @endphp
-                @foreach ($rate as $key => $value)
-                    @if ($value->s_id == 8)
-                        <h3>{{ $value->s_name }}</h3>
-                    @endif
-                @endforeach
-                <p>Date:- 23/9/2021</p>
+                @if ($s_name->isEmpty())
+                    <h3>All Inward Report</h3>
+
+                @else
+                    <h3>{{ $s_name[0]['s_name'] }}</h3>
+                @endif
+
+                <p>Date:-{{ $today_date }}</p>
 
                 <div class="card-body">
                     <div class="___class_+?17___">
@@ -79,33 +76,33 @@
                                         $count = 0;
                                     @endphp
                                     @foreach ($inward as $key => $value)
-                                        @if ($value->s_id == 8)
+                                        {{-- @if ($value->s_id == 8) --}}
 
-                                            @php
-                                                $count = $count + 1;
-                                            @endphp
-                                            <tr style="border: 1px solid black">
-                                                <td style="border: 1px solid black">
-                                                    {{ $count }}
-                                                </td>
+                                        @php
+                                            $count = $count + 1;
+                                        @endphp
+                                        <tr style="border: 1px solid black">
+                                            <td style="border: 1px solid black">
+                                                {{ $count }}
+                                            </td>
 
-                                                <td style="border: 1px solid black">
-                                                    {{ $value->d_barcode }}
-                                                </td>
-                                                <td class="myguj" style="border: 1px solid black">
-                                                    {{ $value->shape_name }}
-                                                </td>
-                                                <td style="border: 1px solid black">
-                                                    {{ $value->d_wt }}
-                                                </td>
-                                                <td style="border: 1px solid black">
-                                                    {{ $value->d_n_wt }}
-                                                </td>
-                                                <td style="border: 1px solid black">
-                                                    {{ date('d-m-Y', strtotime($value->bill_date)) }}
-                                                </td>
-                                            </tr>
-                                        @endif
+                                            <td style="border: 1px solid black">
+                                                {{ $value->d_barcode }}
+                                            </td>
+                                            <td class="myguj" style="border: 1px solid black">
+                                                {{ $value->shape_name }}
+                                            </td>
+                                            <td style="border: 1px solid black">
+                                                {{ $value->d_wt }}
+                                            </td>
+                                            <td style="border: 1px solid black">
+                                                {{ $value->d_n_wt }}
+                                            </td>
+                                            <td style="border: 1px solid black">
+                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                            </td>
+                                        </tr>
+                                        {{-- @endif --}}
                                     @endforeach
                                 </tbody>
                             </table>

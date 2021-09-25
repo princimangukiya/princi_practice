@@ -213,10 +213,10 @@
                                                     $total_item = 0;
                                                 @endphp
                                                 @foreach ($labour as $item)
-                                                    <br>{{ $item }}
-                                                    @php
-                                                        $total_item = $total_item + $item;
-                                                    @endphp
+                                                    < br>{{ $item }}
+                                                        @php
+                                                            $total_item = $total_item + $item;
+                                                        @endphp
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
