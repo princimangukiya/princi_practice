@@ -25,7 +25,7 @@ class ReportController extends Controller
     }
 
     //Genrate PDF
-    //Inward genrate PDF
+    //Inward generate PDF
     public function Inward()
     {
         $data = array();
@@ -39,18 +39,18 @@ class ReportController extends Controller
 
         return view('Report.Inward', $data);
     }
-    public function genratePDF_Inward(Request $request)
+    public function generatePDF_Inward(Request $request)
     {
         $s_id = $request->s_id;
         $data = array();
         $c_id = session()->get('c_id');
-        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
         $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['supplier_details.c_id', $c_id]])
+            ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
             ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
-        echo $s_id;
-        $pdf = PDF::loadView('Report.Inward_Formatte', $data);
+        // echo $s_id;
+        $pdf = PDF::loadView('Report.Inward_formate', $data);
 
         return $pdf->download('Inward.pdf');
     }
@@ -65,7 +65,7 @@ class ReportController extends Controller
         $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->whereBetween('bill_date', [$start_date, $end_date])
+            ->orWhereBetween('bill_date', [$start_date, $end_date])
             ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
         // $data = "hello";
         return Response::json(array('success' => $data));
@@ -82,17 +82,19 @@ class ReportController extends Controller
             ->get(['sell_stock.*', 'd_purchase.*']);
         return view('Report.Outward', $data);
     }
-    public function genratePDF_Outward()
+    public function generatePDF_Outward(Request $request)
     {
         $data = array();
+        $s_id = $request->s_id;
+        $c_id = session()->get('c_id');
         $d_id = Ready_Stock::get('d_id');
         $c_id = session()->get('c_id');
-        $data['inward'] = Ready_Stock::where('c_id', $c_id)->get();
+        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
         $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             ->where([['sell_stock.c_id', $c_id]])
             ->get(['sell_stock.*', 'd_purchase.*']);
 
-        $pdf = PDF::loadView('Report.Outward_Formatte', $data);
+        $pdf = PDF::loadView('Report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
     }
@@ -108,7 +110,7 @@ class ReportController extends Controller
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->whereBetween('sell_stock.created_at', [$start_date, $end_date])
+            ->orWhereBetween('sell_stock.created_at', [$start_date, $end_date])
             ->get(['sell_stock.*', 'd_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
         return Response::json(array('success' => $data));
         // echo $data['inward'];
@@ -123,8 +125,8 @@ class ReportController extends Controller
             ->get();
 
         $s_id = $data['Pay_labour'][0]['s_id'];
-        // $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
-        // echo $data['daimond'];
+        // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+        // echo $data['diamond'];
 
         $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
         $json_data = $json_data[0]['json_price'];
@@ -137,7 +139,7 @@ class ReportController extends Controller
         }
         return view('Report.Party_Labour', $data);
     }
-    public function genratePDF_Party_Labour()
+    public function generatePDF_Party_Labour()
     {
         $data = array();
         $c_id = session()->get('c_id');
@@ -146,8 +148,8 @@ class ReportController extends Controller
             ->get();
 
         $s_id = $data['Pay_labour'][0]['s_id'];
-        // $data['daimond'] = D_Purchase::where('s_id', $s_id)->get();
-        // echo $data['daimond'];
+        // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+        // echo $data['diamond'];
 
         $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
         $json_data = $json_data[0]['json_price'];
@@ -158,7 +160,7 @@ class ReportController extends Controller
             $wt_category = rate::where('rates.r_id', $r_id)->get();
             $wt_category = $wt_category[0]['wt_category'];
         }
-        $pdf = PDF::loadView('Report.Party_Labour_formatte', $data);
+        $pdf = PDF::loadView('Report.Party_Labour_formate', $data);
 
         return $pdf->download('Party Labour.pdf');
     }
