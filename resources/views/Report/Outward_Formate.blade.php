@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Inward</title>
+    <title>Outward</title>
     <style>
         @font-face {
             font-family: myguj-font;
@@ -54,7 +54,7 @@
                 @else
                     <h3>{{ $s_name[0]['s_name'] }}</h3>
                 @endif
-                <p>Date :- {{ $today_date }}</p>
+                {{-- <p>Date :- {{ $today_date }}</p> --}}
 
                 <div class="card-body">
                     <div class="___class_+?17___">
@@ -70,11 +70,7 @@
                                         <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Price</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Buy_date</th>
-                                        {{-- <th>Package</th> --}}
-                                        {{-- <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
-
-                                        <th class="border-bottom-0">Sell_Date</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black">Sell_Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,11 +84,11 @@
                                             @php
                                                 $count = $count + 1;
                                             @endphp
-                                            <tr>
-                                                <td>
+                                            <tr style="border: 1px solid black">
+                                                <td style="border: 1px solid black">
                                                     {{ $key + 1 }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     @php
                                                         $s_id = $value->s_id;
                                                         $s_name = App\Models\supplier_details::where('s_id', $s_id)->get('s_name');
@@ -100,10 +96,10 @@
                                                     @endphp
                                                     {{ $s_name[0]['s_name'] }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ $value->d_barcode }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     @php
                                                         $shape_id = $value->shape_id;
                                                         $shape_name = App\Models\diamond_shape::where('shape_id', $shape_id)->get('shape_name');
@@ -111,19 +107,19 @@
                                                     @endphp
                                                     {{ $shape_name[0]['shape_name'] }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ $value->d_wt }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ $value->d_n_wt }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ $value->price }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                                 </td>
-                                                <td>
+                                                <td style="border: 1px solid black">
                                                     {{ date('d-m-Y', strtotime($value->updated_at)) }}
                                                 </td>
 

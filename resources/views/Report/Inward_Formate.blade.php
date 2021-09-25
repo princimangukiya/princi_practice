@@ -55,14 +55,14 @@
                     <h3>{{ $s_name[0]['s_name'] }}</h3>
                 @endif
 
-                <p>Date:-{{ $today_date }}</p>
+                {{-- <p>Date:-{{ $today_date }}</p> --}}
 
                 <div class="card-body">
                     <div class="___class_+?17___">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr style="border: 1px solid black">
                                         <th class="border-bottom-0" style="border: 1px solid black">#</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Shape</th>
