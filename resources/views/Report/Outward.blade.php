@@ -42,7 +42,9 @@
                                         <optgroup label="Company">
                                             <option value="" disabled selected>Choose Company</option>
                                             @if (count($rate) > 0)
+                                                <option value="">All Outward Report</option>
                                                 @foreach ($rate as $value)
+
                                                     <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                                                 @endforeach
                                             @endif
@@ -57,32 +59,19 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-5" style="display: flex;">
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                Start
-                                                Date:- </label></h4>
-                                        <input type="date" id="start_date" name="Start_date">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                End
-                                                Date:- </label></h4>
-                                        <input type="date" id="end_date" name="End_date">
-                                    </div>
+                            <div class="col-md-3" style="display: flex;">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            Date:- </label></h4>
+                                    <input type="date" id="start_date" name="Start_date">
                                 </div>
                             </div>
-                            <div class="page-rightheader col-md-2">
-                                <div class="btn btn-list col-md-12">
-                                    <label for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                                        Downloade PDF </button>
-                                </div>
+                            <div class="page-rightheader col-md-3">
+                                <label for="&nbsp;">&nbsp;</label>
+                                <label for="&nbsp;">&nbsp;</label>
+                                <button type="submit" style="margin-top:18px;" class="btn btn-info"><i
+                                        class="fa fa-print mr-1"></i>
+                                    Print Jangad </button>
                             </div>
                         </div>
                     </form>
