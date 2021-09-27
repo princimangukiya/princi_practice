@@ -47,6 +47,7 @@
                                         <optgroup label="Company">
                                             <option value="" disabled selected>Choose Company</option>
                                             @if (count($rate) > 0)
+                                                <option value="">All Inward Report</option>
                                                 @foreach ($rate as $value)
                                                     <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                                                 @endforeach
@@ -118,6 +119,7 @@
                                         <option value="" disabled selected>Choose Company</option>
                                         @if (count($rate) > 0)
                                             @foreach ($rate as $value)
+
                                                 <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                                             @endforeach
                                         @endif
@@ -151,7 +153,7 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="addData()"
+                            <button type="submit" id="addData" name="addData" onclick="addData()"
                                 class="btn  btn-primary">Serch</button>
                         </div>
                     </div>
