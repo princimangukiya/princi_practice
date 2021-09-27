@@ -44,11 +44,21 @@ class ReportController extends Controller
         $s_id = $request->s_id;
         $data = array();
         $c_id = session()->get('c_id');
+        $start_date = $request->Start_date;
+        $End_date = $request->End_date;
         $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
-        $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        if (empty($s_id)) {
+            $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where('d_purchase.c_id', $c_id)
+                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        } else {
+            $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+                ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
+                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        }
         // echo $s_id;
         $pdf = PDF::loadView('Report.Inward_formate', $data);
 
@@ -89,14 +99,25 @@ class ReportController extends Controller
         $c_id = session()->get('c_id');
         $d_id = Ready_Stock::get('d_id');
         $c_id = session()->get('c_id');
+        $start_date = $request->Start_date;
         $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
-        $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-            ->where([['sell_stock.c_id', $c_id]])
-            ->get(['sell_stock.*', 'd_purchase.*']);
+        $data['date'] = $start_date;
+        if (empty($s_id)) {
+            $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+                ->where([['sell_stock.c_id', $c_id]])
+                ->get(['sell_stock.*', 'd_purchase.*']);
+        } else {
+            $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+                ->where([['sell_stock.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+                ->whereDate('sell_stock.created_at', '=', $start_date)
+                ->get(['sell_stock.*', 'd_purchase.*']);
+        }
+
 
         $pdf = PDF::loadView('Report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
+        return response::json(array('success' => true));
     }
     public function search_data_Outward(Request $request)
     {
