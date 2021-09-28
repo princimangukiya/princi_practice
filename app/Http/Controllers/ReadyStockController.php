@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 
 
@@ -50,6 +51,7 @@ class ReadyStockController extends Controller
     public function store(Request $request)
     {
 
+
         try {
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
@@ -79,8 +81,10 @@ class ReadyStockController extends Controller
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1, 'd_n_wt' => $request->d_n_wt, 'price' => $request->price]);
                 if ($dPurchaseData != null) {
-                    $stockdelete = Working_Stock::find($DiamondData->w_id);
-                    $stockdelete->delete();
+                    // $stockdelete = Working_Stock::find($DiamondData->w_id);
+                    // $stockdelete->delete();
+                    $time = Carbon::now();
+                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['deleted _at' => $time]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
