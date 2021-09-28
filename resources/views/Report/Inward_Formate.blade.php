@@ -49,7 +49,7 @@
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div>
                 @if ($s_name->isEmpty())
-                    <h3>All Inward Report</h3>
+                    <h3>All Inward Company Report</h3>
 
                 @else
                     <h3>{{ $s_name[0]['s_name'] }}</h3>
