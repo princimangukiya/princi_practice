@@ -57,6 +57,7 @@
             margin: 0%;
         }
 
+
         .card-footer {
             width: 100%;
             padding: 0%;
