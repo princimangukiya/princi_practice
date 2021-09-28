@@ -81,12 +81,16 @@ Route::group(['middleware' => 'auth'], function () {
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Inward')->name('Inward.generatePDF');
+    Route::get('/Inward/generateManagerPDF', 'App\Http\Controllers\ReportController@generateManagerPDF')->name('Inward.generateManagerPDF');
+
     Route::get('/search_inward_data', 'App\Http\Controllers\ReportController@search_data_Inward')->name('Inward.search_data');
+    Route::get('/search_inward_data_manager', 'App\Http\Controllers\ReportController@searchDataInwardManager')->name('Inward.search_data_manager');
 
     //OutWard
     Route::get('/Outward', 'App\Http\Controllers\ReportController@Outward')->name('Inward_Outward');
     Route::get('/Outward/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Outward')->name('Outward.generatePDF');
     Route::get('/Outward/search_outward_data', 'App\Http\Controllers\ReportController@search_data_Outward')->name('Outward.search_data');
+    Route::get('/Outward/search_data_manager', 'App\Http\Controllers\ReportController@search_data_manager')->name('Outward.search_data_manager');
 
     //Party Labour
     Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
