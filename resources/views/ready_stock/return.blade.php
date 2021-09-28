@@ -280,6 +280,8 @@
                             console.log(response_msg.success.price);
                             $('#d_wt').val(response_msg.success.d_wt);
                             $('#price').val(response_msg.success.price);
+                        } else {
+                            alert("Please, Enter Valid Barcode Number");
                         }
 
                     }
