@@ -22,7 +22,8 @@ class WorkingStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->with('Manager', 'Diamond')->get();
+        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->whereNull('deleted _at')->with('Manager', 'Diamond')->get();
+        // echo $data['working_stock'];
         return view('working_stock.index', $data);
     }
 
