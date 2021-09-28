@@ -30,7 +30,7 @@
                     <div class="card-title">Add New Rate Details</div>
                     <div class="text-right">
                         <button type="button" style="float: right;" name="action" class="btn  btn-primary"
-                            onclick="myFunction()">Add Weight Category</button>
+                            onclick="hideShowWeight()">Add Weight Category</button>
                     </div>
                 </div>
                 <form action="{{ route('rate_master.rates_store') }}" method="POST" enctype="multipart/form-data">
@@ -178,7 +178,7 @@
         });
 
         // Add Categoriey to form 
-        function myFunction() {
+        function hideShowWeight() {
             var x = document.getElementById('myDIV');
             if (x.style.display === 'block') {
                 x.style.display = 'none';
