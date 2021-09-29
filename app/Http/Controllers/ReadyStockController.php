@@ -84,7 +84,7 @@ class ReadyStockController extends Controller
                     // $stockdelete = Working_Stock::find($DiamondData->w_id);
                     // $stockdelete->delete();
                     $time = Carbon::now();
-                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['deleted _at' => $time]);
+                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['deleted_at' => $time]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
