@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
     //OutWard
     Route::get('/Outward', 'App\Http\Controllers\ReportController@Outward')->name('Inward_Outward');
     Route::get('/Outward/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Outward')->name('Outward.generatePDF');
+    Route::get('/Outward/generateManagerPDF', 'App\Http\Controllers\ReportController@generateManagerPDF_outward')->name('Outward.generateManagerPDF');
     Route::get('/Outward/search_outward_data', 'App\Http\Controllers\ReportController@search_data_Outward')->name('Outward.search_data');
     Route::get('/Outward/search_data_manager', 'App\Http\Controllers\ReportController@search_data_manager')->name('Outward.search_data_manager');
 
