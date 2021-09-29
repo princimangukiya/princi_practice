@@ -123,12 +123,7 @@ class ReportController extends Controller
             ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
             ->orWhereBetween('bill_date', [$start_date, $end_date])
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
-        // $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-        //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-        //     ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
 
-        //     ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
-        // $data = "hello";
         return Response::json(array('success' => $data));
     }
     //Outward PDF Genratte
@@ -147,7 +142,7 @@ class ReportController extends Controller
             ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where('working_stock.c_id', $c_id)
-            ->whereNotNull('deleted _at')
+            ->whereNotNull('deleted_at')
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         return view('Report.Outward', $data);
     }
@@ -176,7 +171,39 @@ class ReportController extends Controller
         $pdf = PDF::loadView('Report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
-        return response::json(array('success' => true));
+        // return response::json(array('success' => true));
+    }
+    public function generateManagerPDF_outward(Request $request)
+    {
+        $data = array();
+        $s_id = $request->m_id;
+        $c_id = session()->get('c_id');
+        $d_id = Ready_Stock::get('d_id');
+        $c_id = session()->get('c_id');
+        $start_date = $request->Start_date;
+        $data['s_name'] = Manager_Details::where('m_id', $s_id)->get('m_name');
+        $data['date'] = $start_date;
+        if (empty($s_id)) {
+            $data['outward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where('working_stock.c_id', $c_id)
+                ->whereNotNull('deleted_at')
+                ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+        } else {
+            $data['outward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
+                ->whereNotNull('deleted_at')
+                ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+        }
+
+
+        $pdf = PDF::loadView('Report.Outward_manager_formate', $data);
+
+        return $pdf->download('Outward_manager.pdf');
+        // return response::json(array('success' => true));
     }
     public function search_data_Outward(Request $request)
     {
@@ -198,17 +225,18 @@ class ReportController extends Controller
     public function search_data_manager(Request $request)
     {
         $c_id = session()->get('c_id');
-        $s_id = $request->m_id;
+        $s_id = $request->s_id;
         $start_date = $request->Start_date;
         $end_date = $request->End_date;
         // $data = D_Purchase::where('s_id', $s_id)->whereBetween('bill_date', [$start_date, $end_date])->get();
 
-        $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-            ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+        $data = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+            ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->orWhereBetween('sell_stock.created_at', [$start_date, $end_date])
-            ->get(['sell_stock.*', 'd_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
+            ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
+            ->whereNotNull('deleted_at')
+            ->whereBetween('working_stock.deleted_at', [$start_date, $end_date])
+            ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         return Response::json(array('success' => $data));
         // echo $data['inward'];
     }
