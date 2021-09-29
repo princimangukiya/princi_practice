@@ -111,7 +111,7 @@
                     <div class="card-title">Outward Manager Generate Pdf</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('Outward.generatePDF') }}" method="get">
+                    <form action="{{ route('Outward.generateManagerPDF') }}" method="get">
                         @csrf
                         <div class="row">
                             <div class="col-md-5" style="padding-right: 50px;">
@@ -121,7 +121,7 @@
                                 @endphp
                                 <div class="form-group">
                                     <h4><label class="form-label">Select Manager :-</label></h4>
-                                    <select id="supplier_id" name="s_id" required class="form-control select2">
+                                    <select id="manager_id" name="m_id" required class="form-control select2">
                                         <optgroup label="Company">
                                             <option value="" disabled selected>Choose Manager</option>
                                             @if (count($manager) > 0)
@@ -295,7 +295,7 @@
                         <div class="col-md-5" style="padding-right: 50px;">
                             <div class="form-group">
                                 <h4><label class="form-label">Select Manager :-</label></h4>
-                                <select id="s_id" name="s_id" required class="form-control select2">
+                                <select id="m_id" name="m_id" required class="form-control select2">
                                     <optgroup label="Company">
                                         <option value="" disabled selected>Choose Manager</option>
                                         @if (count($manager) > 0)
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="addData()"
+                            <button type="submit" id="addData" name="addData" onClick="showManager()"
                                 class="btn  btn-primary">Serch</button>
                         </div>
                     </div>
@@ -387,10 +387,10 @@
                                                 {{ $value->price }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                                {{ date('d-m-Y', strtotime($value->created_at)) }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->updated_at)) }}
+                                                {{ date('d-m-Y', strtotime($value->deleted_at)) }}
                                             </td>
 
                                         </tr>
@@ -535,10 +535,10 @@
         }
 
         function showManager() {
-            var s_id = $('#s_id').val();
+            var s_id = $('#m_id').val();
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
-            var managerTabel = $('#managerTabel').DataTable({
+            var managerTabel = $('#managerDataTabel').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -576,11 +576,11 @@
                         // $("#p_gst_id").val(bill_no);
                         const length = Object.keys(response_msg.success).length;
                         // console.log(response_msg.success.length);
-                        // $('#example tbody').empty();
+                        // $('#managerDataTabel tbody').empty();
 
                         response_msg.success.forEach(success => {
 
-                            $("#managerTabel").append(
+                            $("#managerDataTabel").append(
                                 '<tr>' +
                                 '<td>' + success.w_id + '</td>' +
                                 '<td>' + success.m_name + '</td>' +
@@ -589,7 +589,7 @@
                                 '<td>' + success.d_wt + '</td>' +
                                 '<td>' + success.d_n_wt + '</td>' +
                                 '<td>' + success.price + '</td>' +
-                                '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
+                                '<td>' + moment(success.created_at).format('DD-MM-YYYY') + '</td>' +
                                 '<td>' + moment(success.updated_at).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
