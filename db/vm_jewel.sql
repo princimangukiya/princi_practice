@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 03:14 PM
+-- Generation Time: Sep 29, 2021 at 12:21 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -470,14 +470,14 @@ CREATE TABLE `working_stock` (
   `d_barcode` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted _at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `working_stock`
 --
 
-INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`, `deleted _at`) VALUES
+INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `d_barcode`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (29, 1, 1, 79, '852369', '2021-09-20 22:59:01', '2021-09-28 07:31:51', '2021-09-28 13:01:51'),
 (30, 1, 1, 80, '852147', '2021-09-20 22:59:07', '2021-09-28 07:32:31', '2021-09-28 13:02:31'),
 (31, 1, 1, 85, '147896325', '2021-09-20 22:59:18', '2021-09-20 22:59:18', NULL),
