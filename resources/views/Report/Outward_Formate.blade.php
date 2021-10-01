@@ -77,6 +77,10 @@
             text-align: right;
         }
 
+        td {
+            boder: 1px solid black;
+        }
+
     </style>
 </head>
 
@@ -123,11 +127,11 @@
                             <table id="example" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
-                                        <th class="border-bottom-0" style="border: 1px solid black">#</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">Pcs</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">Weight</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">per(%)</th>
+                                        <th class="border-bottom-0">#</th>
+                                        <th class="border-bottom-0">Barcode_Id</th>
+                                        <th class="border-bottom-0">Pcs</th>
+                                        <th class="border-bottom-0">Weight</th>
+                                        <th class="border-bottom-0">per(%)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -135,17 +139,17 @@
                                         $count = 0;
                                     @endphp
                                     @foreach ($inward as $key => $value)
+                                        <tr>
+                                            {{-- @if ($value->s_id == 8) --}}
 
-                                        {{-- @if ($value->s_id == 8) --}}
+                                            @php
+                                                $count = $count + 1;
+                                            @endphp
 
-                                        @php
-                                            $count = $count + 1;
-                                        @endphp
-                                        <tr style="border: 1px solid black">
-                                            <td style="border: 1px solid black">
+                                            <td>
                                                 {{ $key + 1 }}
                                             </td>
-                                            {{-- <td style="border: 1px solid black">
+                                            {{-- <td>
                                                     @php
                                                         $s_id = $value->s_id;
                                                         $s_name = App\Models\supplier_details::where('s_id', $s_id)->get('s_name');
@@ -153,10 +157,10 @@
                                                     @endphp
                                                     {{ $s_name[0]['s_name'] }}
                                                 </td> --}}
-                                            <td style="border: 1px solid black">
+                                            <td>
                                                 {{ $value->d_barcode }}
                                             </td>
-                                            {{-- <td style="border: 1px solid black">
+                                            {{-- <td>
                                                     @php
                                                         $shape_id = $value->shape_id;
                                                         $shape_name = App\Models\diamond_shape::where('shape_id', $shape_id)->get('shape_name');
@@ -164,10 +168,10 @@
                                                     @endphp
                                                     {{ $shape_name[0]['shape_name'] }}
                                                 </td> --}}
-                                            {{-- <td style="border: 1px solid black">
+                                            {{-- <td>
                                                     {{ $value->d_wt }}
                                                 </td> --}}
-                                            <td style="border: 1px solid black">
+                                            <td>
                                                 @php
                                                     if (empty($value->d_pc)) {
                                                         echo 1;
@@ -177,19 +181,19 @@
                                                 @endphp
                                                 {{-- {{ $value->d_pc }} --}}
                                             </td>
-                                            {{-- <td style="border: 1px solid black">
+                                            {{-- <td>
                                                     {{ $value->d_n_wt }}
                                                 </td> --}}
-                                            <td style="border: 1px solid black">
+                                            <td>
                                                 {{ $value->d_n_wt }}
                                             </td>
-                                            <td style="border: 1px solid black">
+                                            <td>
                                                 {{ $value->price }}
                                             </td>
-                                            {{-- <td style="border: 1px solid black">
+                                            {{-- <td>
                                                     {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                                 </td>
-                                                <td style="border: 1px solid black">
+                                                <td>
                                                     {{ date('d-m-Y', strtotime($value->updated_at)) }}
                                                 </td> --}}
 
@@ -201,6 +205,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-footer">
                     <div class="footer-left">
                         <p>Received the above goods as per conditions</p><br><br><br>
@@ -211,6 +216,7 @@
                         <p class="pr-2">Proprietor / Auth Signature</p>
                     </div>
                 </div>
+
             </div>
             <!--/div-->
         </div>
