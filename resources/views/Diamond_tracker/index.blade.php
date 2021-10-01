@@ -99,8 +99,8 @@
                                 <form class="form-inline" method="post" action="/Diamond_tracker_search">
                                     @csrf
                                     <div class="search-element" style="border: 1px solid #CED4DA;border-radius: 5px;">
-                                        <input type="search" class="form-control header-search" name="serce_value"
-                                            id="serch_value" placeholder="Enter Barcode value..." aria-label="Search"
+                                        <input type="search" class="form-control header-search" name="search_value"
+                                            id="search_value" placeholder="Enter Barcode value..." aria-label="Search"
                                             tabindex="1" style="border: none;">
                                         <button class="btn btn-primary-color" type="submit">
                                             <svg class="header-icon search-icon" x="1008" y="1248" viewBox="0 0 24 24"
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <ol class="timeline">
+                    {{-- <ol class="timeline">
                         <li class="timeline-item timeline-item--complete">
                             <h3 class="timeline-item__title">Order placed</h3>
                             <div class="timeline-item__status">Status completed</div>
@@ -141,7 +141,7 @@
                             <p class="timeline-item__date">Jan 22nd</p>
                             <p class="timeline-item__desc">Whenever</p>
                         </li>
-                    </ol>
+                    </ol> --}}
 
 
 
