@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2021 at 12:21 PM
+-- Generation Time: Oct 01, 2021 at 03:15 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -176,7 +176,7 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (77, 1, 8, '965874', '0.254', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 95, '2021-09-12', NULL, NULL, NULL, '2021-09-20 07:44:07', '2021-09-20 07:44:07'),
 (78, 1, 8, '652143', '0.245', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 95, '2021-09-19', NULL, NULL, NULL, '2021-09-20 07:52:43', '2021-09-20 07:52:43'),
 (79, 1, 1, '852369', '0.510', '0.250', NULL, NULL, NULL, NULL, NULL, 3, 5, 200, '2021-09-16', 1, 1, NULL, '2021-09-20 22:13:03', '2021-09-28 07:31:51'),
-(80, 1, 8, '852147', '0.485', '0.240', NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-16', 1, 1, NULL, '2021-09-20 22:20:12', '2021-09-28 07:32:31'),
+(80, 1, 8, '852147', '0.485', '0.240', NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-16', 1, 1, 1, '2021-09-20 22:20:12', '2021-10-01 00:32:20'),
 (81, 1, 1, '741369', '0.245', '0.235', NULL, NULL, NULL, NULL, NULL, 3, 2, 60, '2021-09-20', 1, 1, NULL, '2021-09-20 22:24:52', '2021-09-24 01:53:30'),
 (82, 1, 1, '896574', '0.452', '0.443', NULL, NULL, NULL, NULL, NULL, 2, 3, 70, '2021-09-15', 1, 1, NULL, '2021-09-20 22:26:24', '2021-09-24 01:54:25'),
 (83, 1, 8, '987456', '0.469', '0.234', NULL, NULL, NULL, NULL, NULL, 3, 3, 100, '2021-09-18', 1, 1, NULL, '2021-09-20 22:28:16', '2021-09-28 05:09:02'),
@@ -367,8 +367,7 @@ INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `d_barcode`
 (79, 1, 1, 84, '0.106', '457812', '2021-09-28 07:23:47', '2021-09-28 07:23:47'),
 (80, 1, 1, 86, '0.290', '74589632', '2021-09-28 07:26:03', '2021-09-28 07:26:03'),
 (82, 1, 1, 87, '0.120', '1478952', '2021-09-28 07:26:20', '2021-09-28 07:26:20'),
-(98, 1, 1, 79, '0.250', '852369', '2021-09-28 07:31:51', '2021-09-28 07:31:51'),
-(99, 1, 1, 80, '0.240', '852147', '2021-09-28 07:32:31', '2021-09-28 07:32:31');
+(98, 1, 1, 79, '0.250', '852369', '2021-09-28 07:31:51', '2021-09-28 07:31:51');
 
 -- --------------------------------------------------------
 
@@ -403,7 +402,8 @@ INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `d_barcode`, `creat
 (14, 1, 1, 41, '021456', '2021-09-22 07:52:36', '2021-09-22 07:52:36'),
 (15, 2, 7, 8, '1007530', '2021-09-24 01:57:59', '2021-09-24 01:57:59'),
 (16, 2, 7, 11, '1008908', '2021-09-24 01:58:18', '2021-09-24 01:58:18'),
-(17, 2, 7, 27, '999810', '2021-09-24 01:58:37', '2021-09-24 01:58:37');
+(17, 2, 7, 27, '999810', '2021-09-24 01:58:37', '2021-09-24 01:58:37'),
+(18, 1, 8, 80, '852147', '2021-10-01 00:32:20', '2021-10-01 00:32:20');
 
 -- --------------------------------------------------------
 
@@ -666,7 +666,7 @@ ALTER TABLE `ready_stock`
 -- AUTO_INCREMENT for table `sell_stock`
 --
 ALTER TABLE `sell_stock`
-  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `sell_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `supplier_details`
@@ -740,7 +740,8 @@ ALTER TABLE `supplier_details`
 ALTER TABLE `working_stock`
   ADD CONSTRAINT `working_stock_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `company_details` (`c_id`),
   ADD CONSTRAINT `working_stock_ibfk_2` FOREIGN KEY (`d_barcode`) REFERENCES `d_purchase` (`d_barcode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `working_stock_ibfk_3` FOREIGN KEY (`d_id`) REFERENCES `d_purchase` (`d_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `working_stock_ibfk_3` FOREIGN KEY (`d_id`) REFERENCES `d_purchase` (`d_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `working_stock_ibfk_4` FOREIGN KEY (`m_id`) REFERENCES `manager_details` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
