@@ -99,17 +99,25 @@ class ReportController extends Controller
     {
         // $data = array();+
         $s_id = $request->s_id;
-        $start_date = $request->Start_date;
-        $end_date = $request->End_date;
+        $data = array();
         $c_id = session()->get('c_id');
-        $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->orWhereBetween('bill_date', [$start_date, $end_date])
-            ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
-
-        // $data = "hello";
-        return Response::json(array('success' => $data));
+        $start_date = $request->Start_date;
+        $End_date = $request->End_date;
+        $data = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        if (empty($s_id)) {
+            $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where('d_purchase.c_id', $c_id)
+                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+            return Response::json(array('success' => $data));
+        } else {
+            $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+                ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
+                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+            return Response::json(array('success' => $data));
+        }
     }
     public function searchDataInwardManager(Request $request)
     {
@@ -138,11 +146,11 @@ class ReportController extends Controller
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->where([['sell_stock.c_id', $c_id]])
             ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
-        $data['outward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+        $data['outward_manager'] = Working_Stock::onlyTrashed()
+            ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
             ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where('working_stock.c_id', $c_id)
-            ->whereNotNull('deleted_at')
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         return view('Report.Outward', $data);
     }
@@ -184,18 +192,18 @@ class ReportController extends Controller
         $data['s_name'] = Manager_Details::where('m_id', $s_id)->get('m_name');
         $data['date'] = $start_date;
         if (empty($s_id)) {
-            $data['outward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+            $data['outward_manager'] = Working_Stock::onlyTrashed()
+                ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->where('working_stock.c_id', $c_id)
-                ->whereNotNull('deleted_at')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         } else {
-            $data['outward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+            $data['outward_manager'] = Working_Stock::onlyTrashed()
+                ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
-                ->whereNotNull('deleted_at')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         }
 
@@ -207,19 +215,31 @@ class ReportController extends Controller
     }
     public function search_data_Outward(Request $request)
     {
-        $c_id = session()->get('c_id');
+        $data = array();
         $s_id = $request->s_id;
+        $c_id = session()->get('c_id');
+        $d_id = Ready_Stock::get('d_id');
+        $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
         $end_date = $request->End_date;
-        // $data = D_Purchase::where('s_id', $s_id)->whereBetween('bill_date', [$start_date, $end_date])->get();
-
-        $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-            ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['supplier_details.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-            ->orWhereBetween('sell_stock.created_at', [$start_date, $end_date])
-            ->get(['sell_stock.*', 'd_purchase.*', 'supplier_details.s_name', 'diamond_shape.shape_name']);
-        return Response::json(array('success' => $data));
+        $data = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        $data['date'] = $start_date;
+        if (empty($s_id)) {
+            $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->where([['sell_stock.c_id', $c_id]])
+                ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+            return Response::json(array('success' => $data));
+        } else {
+            $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->where([['sell_stock.c_id', $c_id], ['d_purchase.s_id', $s_id]])
+                ->whereBetween('sell_stock.created_at', [$start_date, $end_date])
+                ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+            return Response::json(array('success' => $data));
+        }
         // echo $data['inward'];
     }
     public function search_data_manager(Request $request)
@@ -230,11 +250,11 @@ class ReportController extends Controller
         $end_date = $request->End_date;
         // $data = D_Purchase::where('s_id', $s_id)->whereBetween('bill_date', [$start_date, $end_date])->get();
 
-        $data = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+        $data = Working_Stock::onlyTrashed()
+            ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
             ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
-            ->whereNotNull('deleted_at')
             ->whereBetween('working_stock.deleted_at', [$start_date, $end_date])
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         return Response::json(array('success' => $data));
@@ -264,27 +284,49 @@ class ReportController extends Controller
         }
         return view('Report.Party_Labour', $data);
     }
-    public function generatePDF_Party_Labour()
+    public function generatePDF_Party_Labour(Request $request)
     {
+        $s_id = $request->s_id;
         $data = array();
         $c_id = session()->get('c_id');
-        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
-        $data['Pay_labour'] = Supplier_Details::where('c_id', $c_id)
-            ->get();
+        $start_date = $request->Start_date;
+        $End_date = $request->End_date;
+        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        if (empty($s_id)) {
+            $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+            $data['Pay_labour'] = Supplier_Details::where('c_id', $c_id)
+                ->get();
+            $s_id = $data['Pay_labour'][0]['s_id'];
+            // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+            // echo $data['diamond'];
 
-        $s_id = $data['Pay_labour'][0]['s_id'];
-        // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
-        // echo $data['diamond'];
+            $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+            $json_data = $json_data[0]['json_price'];
+            $json_decoded = json_decode($json_data);
+            $count1 = 0;
+            foreach ($json_decoded[0] as $key => $val) {
+                $r_id = $key;
+                $wt_category = rate::where('rates.r_id', $r_id)->get();
+                $wt_category = $wt_category[0]['wt_category'];
+            }
+        } else {
+            $data['inward'] = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+            $data['Pay_labour'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])
+                ->get();
+            // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+            // echo $data['diamond'];
 
-        $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
-        $json_data = $json_data[0]['json_price'];
-        $json_decoded = json_decode($json_data);
-        $count1 = 0;
-        foreach ($json_decoded[0] as $key => $val) {
-            $r_id = $key;
-            $wt_category = rate::where('rates.r_id', $r_id)->get();
-            $wt_category = $wt_category[0]['wt_category'];
+            $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+            $json_data = $json_data[0]['json_price'];
+            $json_decoded = json_decode($json_data);
+            $count1 = 0;
+            foreach ($json_decoded[0] as $key => $val) {
+                $r_id = $key;
+                $wt_category = rate::where('rates.r_id', $r_id)->get();
+                $wt_category = $wt_category[0]['wt_category'];
+            }
         }
+        // echo $s_id;
         $pdf = PDF::loadView('Report.Party_Labour_formate', $data);
 
         return $pdf->download('Party Labour.pdf');
@@ -300,7 +342,7 @@ class ReportController extends Controller
         echo $start_date;
         echo "<br>";
         echo $end_date;
-        $data['Pay_labour'] = Supplier_Details::where([['c_id', $c_id], ['S_id', $s_id]])
+        $data['Pay_labour'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])
             ->get();
         // $data['inward'] = D_Purchase::where('bill_date', $start_date)->get();
         return view('Report.Party_Labour', $data);
