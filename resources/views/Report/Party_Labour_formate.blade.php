@@ -5,75 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Bill Formate</title>
+    <title>Party Labour</title>
     <style>
+        @font-face {
+            font-family: myguj-font;
+            src: url(Gujrati-Saral-1.ttf) format(truetype);
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .myguj {
+            font-family: myguj-font;
+        }
+
         .tabel_style {
             text-align: center;
             margin: 2% 2%;
         }
 
         .invoice {
-            width: 700px;
+            width: 100%;
             padding: 1%;
             border: 1px solid black;
         }
 
-        .logo {
-            width: 100%;
-            border-bottom: 2px solid blue;
-        }
-
-        .address {
-            width: 100%;
-            margin: 1%;
-        }
-
-        h6 {
-            color: blue;
-        }
-
-        .card-header {
-            border: 1px solid black;
-        }
-
-        .card-body {
-            padding: 0%;
-            padding-top: 1%;
-        }
-
-        .tr {
-            text-align: center;
-        }
-
-        .card-body-header {
-            border-bottom: 2px solid black;
-        }
-
-        .Description-body {
-            margin: 0%;
-        }
-
-        .card-footer {
-            width: 100%;
-            padding: 0%;
-            padding-top: 1%;
-        }
-
-        .footer-left {
-            width: 45%;
-            border: 1px solid black;
-            float: left;
-        }
-
-        .footer-right {
-            width: 45%;
-            border: 1px solid black;
-            float: right;
-            text-align: right;
+        .textstyle {
+            align-items: center;
         }
 
     </style>
@@ -86,50 +45,36 @@
         <div class="col-12 invoice">
             <!--div-->
             <div class="card1">
-                <div class="card-header-outer">
-                    <div class="card-header">
-                        <div class="card-title logo">
-                            <h6>|| શ્રી ગણેશાય નામ: ||</h6>
-
-                            <img src="logo11.png" alt="">
-                        </div>
-                        <div class="address-style">
-                            <p class="address">4th Floor,Plot No. 39/40, Gopinath Complex, Kapur Vadi,Khodiyar
-                                Vadi, Khodiyar Nagar Road Varchha Road, Surat.</p>
-                            <p class="address"> Mo.98797 52760 | Email : vmjewel1001@gmail.com</p>
-                            <p class="address"><b>GSTIN : 24AMKPP522GH1ZZ</b></p>
-                        </div>
-                    </div>
+                <div class="textstyle">
+                    <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div>
+                @if ($s_name->isEmpty())
+                    <h3>All Party Labour Report</h3>
+
+                @else
+                    <h3>{{ $s_name[0]['s_name'] }}</h3>
+                @endif
+
                 <div class="card-body">
-                    <div style="border: 1px solid royalblue">
-                        <div class="card-body-header">
-                            <p style="margin-bottom: 0%;">
-                                To,___________________________________________________Date________________</p>
-                            <br>
-                            <p style="margin-top: 0%;">
-                                Through_______________________________________Mobile______________________</p>
-                            <p class="Description-body">Please recevie the following pollished good on approval & or for
-                                asortment or for processing to sale</p>
-                        </div>
+                    <div class="___class_+?17___">
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
-                                <thead>
-                                    <tr>
-                                        <th class="border-bottom-0">Sizedesc</th>
-                                        <th class="border-bottom-0">Pcs</th>
-                                        <th class="border-bottom-0">Issue Cts.</th>
-                                        <th class="border-bottom-0">Out Cts.</th>
-                                        <th class="border-bottom-0">Type</th>
-                                        <th class="border-bottom-0">Rate</th>
-                                        <th class="border-bottom-0">Labour</th>
+                            <table class="table">
+                                <thead style="border: 1px solid black;">
+                                    <tr style="border: 1px solid black;">
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Sizedesc</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Pcs</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Issue Cts.</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Out Cts.</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Type</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Rate</th>
+                                        <th class="border-bottom-0" style="border: 1px solid black;">Labour</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="border: 1px solid black;">
 
 
                                     @foreach ($Pay_labour as $d)
-                                        <tr>
+                                        <tr style="border: 1px solid black;">
                                             @php
                                                 
                                                 $s_id = $d->s_id;
@@ -139,7 +84,7 @@
                                                 $json_data = $json_data[0]['json_price'];
                                                 $json_decoded = json_decode($json_data);
                                             @endphp
-                                            <td>
+                                            <td style="border: 1px solid black;">
                                                 <b>{{ $d->s_name }}</b>
                                                 @php
                                                     $rates = json_decode(showRate($json_decoded, $s_id));
@@ -152,7 +97,7 @@
 
                                             </td>
                                             {{-- <td style="display: flex; justify-content:center; "> --}}
-                                            <td>
+                                            <td style="border: 1px solid black;">
                                                 @php
                                                     $daimond_count = json_decode(daimondCount($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
@@ -166,7 +111,7 @@
                                                 <br><br><b>{{ $total_item }}</b>
 
                                             </td>
-                                            <td>
+                                            <td style="border: 1px solid black;">
                                                 @php
                                                     $issuCuts = json_decode(issuCuts($json_decoded, $sell_stock, $daimond, $s_id));
                                                     // var_dump($issuCuts);
@@ -180,7 +125,7 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td>
+                                            <td style="border: 1px solid black;">
                                                 @php
                                                     $outCuts = json_decode(outCuts($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
@@ -193,8 +138,8 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td></td>
-                                            <td>
+                                            <td style="border: 1px solid black;"></td>
+                                            <td style="border: 1px solid black;">
                                                 @php
                                                     $price = json_decode(showPice($json_decoded, $s_id));
                                                     $total_item = 0;
@@ -207,16 +152,16 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td>
+                                            <td style="border: 1px solid black;">
                                                 @php
                                                     $labour = json_decode(showLabour($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
                                                 @endphp
                                                 @foreach ($labour as $item)
-                                                    < br>{{ $item }}
-                                                        @php
-                                                            $total_item = $total_item + $item;
-                                                        @endphp
+                                                    <br>{{ $item }}
+                                                    @php
+                                                        $total_item = $total_item + $item;
+                                                    @endphp
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
@@ -230,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     <div class="footer-left">
                         <p>Received the above goods as per conditions</p><br><br><br>
                         <p>Through Signature Receiver's Signature</p>
@@ -239,7 +184,7 @@
                         <p class="pr-2">For Vm Jewel</p><br><br><br>
                         <p class="pr-2">Proprietor / Auth Signature</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!--/div-->
 
