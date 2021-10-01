@@ -101,6 +101,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //diamond Tracker
     Route::get('/Diamond_tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
+    Route::post('/Diamond_tracker_search', 'App\Http\Controllers\diamond_tacker_Controller@Diamond_tracker_search')->name('Diamond_tracker_search');
+
 
     //user change route
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
