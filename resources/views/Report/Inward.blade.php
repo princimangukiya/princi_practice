@@ -475,7 +475,7 @@
             var s_id = $('#s_id').val();
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
-
+            var count = 1;
             var mytable = $('#example').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -516,10 +516,10 @@
                         // $('#example tbody').empty();
 
                         response_msg.success.forEach(success => {
-
+                            count + 1;
                             $("#example").append(
                                 '<tr>' +
-                                '<td>' + success.d_id + '</td>' +
+                                '<td>' + count + '</td>' +
                                 '<td>' + success.s_name + '</td>' +
                                 '<td>' + success.d_barcode + '</td>' +
                                 '<td>' + success.shape_name + '</td>' +
@@ -528,6 +528,7 @@
                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
+                            count = count + 1;
 
                         });
                         console.log(response_msg.success.length);
@@ -543,7 +544,7 @@
             var m_id = $('#m_id').val();
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
-
+            var count = 1;
             var managerTabel = $('#managerDataTabel').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -587,7 +588,7 @@
 
                             $("#managerDataTabel").append(
                                 '<tr>' +
-                                '<td>' + success.d_id + '</td>' +
+                                '<td>' + count + '</td>' +
                                 '<td>' + success.m_name + '</td>' +
                                 '<td>' + success.d_barcode + '</td>' +
                                 '<td>' + success.shape_name + '</td>' +
@@ -596,7 +597,7 @@
                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
-
+                            count = count + 1;
                         });
                         console.log(response_msg.success.length);
                     }
