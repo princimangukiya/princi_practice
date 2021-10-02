@@ -476,7 +476,8 @@
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
             var count = 1;
-            var mytable = $('#example').DataTable({
+            var mytable = $('#example').DataTable();
+            mytable.clear().draw({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -485,7 +486,6 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            mytable.clear().draw();
             // alert(barcode);
             $.ajaxSetup({
                 headers: {
@@ -554,7 +554,15 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            managerTabel.clear().draw();
+            managerTabel.clear().draw({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
             // alert(barcode);
             $.ajaxSetup({
                 headers: {
