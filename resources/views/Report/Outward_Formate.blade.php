@@ -12,6 +12,8 @@
     <title>Bill Formate</title>
     <style>
         .tabel_style {
+            display: flex;
+            flex-wrap: wrap;
             text-align: center;
             margin: 2% 2%;
         }
@@ -81,6 +83,10 @@
             boder: 1px solid black;
         }
 
+        tr {
+            border: 1px solid black;
+        }
+
     </style>
 </head>
 
@@ -109,14 +115,15 @@
                 <div class="card-body">
                     <div style="border: 1px solid royalblue">
                         <div class="card-body-header">
-                            <p style="margin-bottom: 0%; display:flex; justify-content:space-around; flex-wrap:nowrap;">
+                            <p style="margin-bottom: 0%; display:flex; justify-content:space-around; flex-wrap:wrap;">
                                 To, @if ($s_name->isEmpty())
                                     <h3>All Party Jangad Report</h3>
 
                                 @else
                                     <h3>{{ $s_name[0]['s_name'] }}</h3>
                                 @endif
-                                Date:-{{ date('d-m-Y', strtotime($date)) }}</p>
+                                Date:-{{ date('d-m-Y', strtotime($date)) }}
+                            </p>
                             <br>
                             <p style="margin-top: 0%;">
                                 Through_______________________________________Mobile______________________</p>
@@ -149,28 +156,11 @@
                                             <td>
                                                 {{ $key + 1 }}
                                             </td>
-                                            {{-- <td>
-                                                    @php
-                                                        $s_id = $value->s_id;
-                                                        $s_name = App\Models\supplier_details::where('s_id', $s_id)->get('s_name');
-                                                        // echo $s_name;
-                                                    @endphp
-                                                    {{ $s_name[0]['s_name'] }}
-                                                </td> --}}
+
                                             <td>
                                                 {{ $value->d_barcode }}
                                             </td>
-                                            {{-- <td>
-                                                    @php
-                                                        $shape_id = $value->shape_id;
-                                                        $shape_name = App\Models\diamond_shape::where('shape_id', $shape_id)->get('shape_name');
-                                                        // echo $s_name;
-                                                    @endphp
-                                                    {{ $shape_name[0]['shape_name'] }}
-                                                </td> --}}
-                                            {{-- <td>
-                                                    {{ $value->d_wt }}
-                                                </td> --}}
+
                                             <td>
                                                 @php
                                                     if (empty($value->d_pc)) {
@@ -190,15 +180,10 @@
                                             <td>
                                                 {{ $value->price }}
                                             </td>
-                                            {{-- <td>
-                                                    {{ date('d-m-Y', strtotime($value->bill_date)) }}
-                                                </td>
-                                                <td>
-                                                    {{ date('d-m-Y', strtotime($value->updated_at)) }}
-                                                </td> --}}
+
 
                                         </tr>
-                                        {{-- @endif --}}
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -212,7 +197,7 @@
                         <p>Through Signature Receiver's Signature</p>
                     </div>
                     <div class="footer-right">
-                        <p class="pr-2">For Vm Jewel</p><br><br><br>
+                        <p class="pr-2">For Vm Jewel</p><br><br><br><br>
                         <p class="pr-2">Proprietor / Auth Signature</p>
                     </div>
                 </div>
