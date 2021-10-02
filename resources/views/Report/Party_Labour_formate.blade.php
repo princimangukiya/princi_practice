@@ -35,6 +35,14 @@
             align-items: center;
         }
 
+        tr {
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
     </style>
 </head>
 
@@ -73,36 +81,29 @@
                                 <tbody style="border: 1px solid black;">
 
 
-                                    @foreach ($Pay_labour as $d)
-                                        <tr style="border: 1px solid black;">
+                                    @foreach ($supplier as $d)
+                                        <tr>
                                             @php
-                                                
                                                 $s_id = $d->s_id;
-                                                $sell_stock = App\Models\sell_stock::where('s_id', $s_id)->get();
-                                                $daimond = App\Models\D_Purchase::where('s_id', $s_id)->get();
-                                                $json_data = App\Models\rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
-                                                $json_data = $json_data[0]['json_price'];
-                                                $json_decoded = json_decode($json_data);
+                                                
                                             @endphp
-                                            <td style="border: 1px solid black;">
+                                            <td>
                                                 <b>{{ $d->s_name }}</b>
                                                 @php
-                                                    $rates = json_decode(showRate($json_decoded, $s_id));
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($rates as $item)
+                                                @foreach ($rates[$s_id] as $item)
                                                     <br>{{ $item }}
                                                 @endforeach
                                                 <br><br><b> &nbsp;Total Party:-</b>
 
                                             </td>
                                             {{-- <td style="display: flex; justify-content:center; "> --}}
-                                            <td style="border: 1px solid black;">
+                                            <td>
                                                 @php
-                                                    $daimond_count = json_decode(daimondCount($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($daimond_count as $item)
+                                                @foreach ($counts[$s_id] as $item)
                                                     <br>{{ $item }}
                                                     @php
                                                         $total_item = $total_item + $item;
@@ -111,13 +112,11 @@
                                                 <br><br><b>{{ $total_item }}</b>
 
                                             </td>
-                                            <td style="border: 1px solid black;">
+                                            <td>
                                                 @php
-                                                    $issuCuts = json_decode(issuCuts($json_decoded, $sell_stock, $daimond, $s_id));
-                                                    // var_dump($issuCuts);
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($issuCuts as $item)
+                                                @foreach ($issueCuts[$s_id] as $item)
                                                     <br>{{ $item }}
                                                     @php
                                                         $total_item = $total_item + $item;
@@ -125,12 +124,11 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td style="border: 1px solid black;">
+                                            <td>
                                                 @php
-                                                    $outCuts = json_decode(outCuts($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($outCuts as $item)
+                                                @foreach ($outCuts[$s_id] as $item)
                                                     <br>{{ $item }}
                                                     @php
                                                         $total_item = $total_item + $item;
@@ -138,13 +136,12 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td style="border: 1px solid black;"></td>
-                                            <td style="border: 1px solid black;">
+                                            <td></td>
+                                            <td>
                                                 @php
-                                                    $price = json_decode(showPice($json_decoded, $s_id));
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($price as $item)
+                                                @foreach ($price[$s_id] as $item)
                                                     <br>{{ $item }}
                                                     @php
                                                         $total_item = $total_item + $item;
@@ -152,12 +149,11 @@
                                                 @endforeach
                                                 <br><br><b>{{ $total_item }}</b>
                                             </td>
-                                            <td style="border: 1px solid black;">
+                                            <td>
                                                 @php
-                                                    $labour = json_decode(showLabour($json_decoded, $sell_stock, $daimond, $s_id));
                                                     $total_item = 0;
                                                 @endphp
-                                                @foreach ($labour as $item)
+                                                @foreach ($labour[$s_id] as $item)
                                                     <br>{{ $item }}
                                                     @php
                                                         $total_item = $total_item + $item;
@@ -168,7 +164,6 @@
 
                                         </tr>
 
-                                        {{-- <td> Party Total:-</td> --}}
                                     @endforeach
                                 </tbody>
                             </table>
@@ -188,140 +183,7 @@
             </div>
             <!--/div-->
 
-            @php
-                function showRate($json_decoded, $s_id)
-                {
-                    $rate = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        array_push($rate, $wt_category);
-                    }
-                    return json_encode($rate);
-                }
-                function daimondCount($json_decoded, $sell_stock, $daimond, $s_id)
-                {
-                    $daimond_data = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        $count1 = 0;
-                        foreach ($daimond as $r) {
-                            if ($s_id == $r->s_id) {
-                                foreach ($sell_stock as $value) {
-                                    if ($value['d_id'] == $r->d_id) {
-                                        $daimond_categorie_id = $r->d_wt_category;
-                                        if ($r_id == $daimond_categorie_id) {
-                                            $count1 = $count1 + 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        array_push($daimond_data, $count1);
-                    }
-                    return json_encode($daimond_data);
-                }
-                function issuCuts($json_decoded, $sell_stock, $daimond, $s_id)
-                {
-                    $issueCuts = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        $total_weight = 0;
-                        $d_weigth = 0;
-                
-                        foreach ($daimond as $r) {
-                            if ($r->s_id == $s_id) {
-                                foreach ($sell_stock as $value) {
-                                    if ($value['d_id'] == $r->d_id) {
-                                        $d_weight_categry = $r->d_wt_category;
-                
-                                        if ($r_id == $d_weight_categry) {
-                                            $d_weight = $total_weight + $r->d_wt;
-                                            $total_weight = $d_weight;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        array_push($issueCuts, $total_weight);
-                    }
-                    return json_encode($issueCuts);
-                }
-                function outCuts($json_decoded, $sell_stock, $daimond, $s_id)
-                {
-                    $outCuts = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        $d_n_weight = 0;
-                        $total_new_weight = 0;
-                
-                        foreach ($daimond as $r) {
-                            if ($r->s_id == $s_id) {
-                                foreach ($sell_stock as $value) {
-                                    if ($value['d_id'] == $r->d_id) {
-                                        $d_weight_categry = $r->d_wt_category;
-                
-                                        if ($r_id == $d_weight_categry) {
-                                            $d_n_wt = $total_new_weight + $r->d_n_wt;
-                                            $total_new_weight = $d_n_wt;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        array_push($outCuts, $total_new_weight);
-                    }
-                    return json_encode($outCuts);
-                }
-                function showPice($json_decoded, $s_id)
-                {
-                    $price = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        $fetchPrice = $val;
-                        array_push($price, $fetchPrice);
-                    }
-                    return json_encode($price);
-                }
-                
-                function showLabour($json_decoded, $sell_stock, $daimond, $s_id)
-                {
-                    $labour = [];
-                    foreach ($json_decoded[0] as $key => $val) {
-                        $r_id = $key;
-                        $wt_category = App\Models\rate::where('rates.r_id', $r_id)->get();
-                        $wt_category = $wt_category[0]['wt_category'];
-                        $count1 = 0;
-                        $price = 0;
-                
-                        foreach ($daimond as $r) {
-                            if ($r->s_id == $s_id) {
-                                foreach ($sell_stock as $value) {
-                                    if ($value['d_id'] == $r->d_id) {
-                                        $daimond_count = $r->d_wt_category;
-                
-                                        if ($r_id == $daimond_count) {
-                                            $count1 = $price + $r->price;
-                                            $price = $count1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        array_push($labour, $price);
-                    }
-                    return json_encode($labour);
-                }
-            @endphp
+
         </div>
     </div>
 </body>
