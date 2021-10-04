@@ -60,7 +60,7 @@
                     <form action="{{ route('Inward.generatePDF') }}" method="get">
                         @csrf
                         <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
+                            <div class="col-md-3" style="padding-right: 0px;">
                                 @php
                                     $c_id = session()->get('c_id');
                                     $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
@@ -87,7 +87,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-5" style="display: flex;">
+                            <div class="col-md-9" style="display: flex;">
                                 <div class="col-md-6">
                                     <div class="col">
                                         <h4><label class="form-label"
@@ -106,85 +106,84 @@
                                         <input type="date" id="end_date" name="End_date">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-rightheader col-md-2">
-                                <div class="btn btn-list col-md-12">
+
+                                <div class="col">
                                     <label for="&nbsp;">&nbsp;</label>
                                     <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
                                         Downloade PDF </button>
                                 </div>
+
                             </div>
                         </div>
-                    </form>
                 </div>
-            </div>
-            <div class="card  hidden" id="cal3">
-                <div class="card-header">
-                    <div class="card-title">Inward Manager Generate Pdf</div>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('Inward.generateManagerPDF') }}" method="get">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
-                                @php
-                                    $c_id = session()->get('c_id');
-                                    $manager = App\Models\manager_details::where('c_id', $c_id)->get();
-                                @endphp
-                                <div class="form-group">
-                                    <h4><label class="form-label">Select Manager :-</label></h4>
-                                    <select id="manager_id" name="m_id" required class="form-control select2">
-                                        <optgroup label="Company">
-                                            <option value="" disabled selected>Choose Manager</option>
-                                            @if (count($manager) > 0)
-                                                <option value="">All Inward Report</option>
-                                                @foreach ($manager as $value)
-                                                    <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </optgroup>
-                                    </select>
-                                    @error('m_id')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-5" style="display: flex;">
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                Start
-                                                Date:- </label></h4>
-                                        <input type="date" id="start_date" name="Start_date_manager">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col">
-                                        <h4><label class="form-label"
-                                                style="display: flex; justify-content:start;">Select
-                                                End
-                                                Date:- </label></h4>
-                                        <input type="date" id="end_date" name="End_date_manager">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-rightheader col-md-2">
-                                <div class="btn btn-list col-md-12">
-                                    <label for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                                        Downloade PDF </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+        <div class="card  hidden" id="cal3">
+            <div class="card-header">
+                <div class="card-title">Inward Manager Generate Pdf</div>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('Inward.generateManagerPDF') }}" method="get">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 50px;">
+                            @php
+                                $c_id = session()->get('c_id');
+                                $manager = App\Models\manager_details::where('c_id', $c_id)->get();
+                            @endphp
+                            <div class="form-group">
+                                <h4><label class="form-label">Select Manager :-</label></h4>
+                                <select id="manager_id" name="m_id" required class="form-control select2">
+                                    <optgroup label="Company">
+                                        <option value="" disabled selected>Choose Manager</option>
+                                        @if (count($manager) > 0)
+                                            <option value="">All Inward Report</option>
+                                            @foreach ($manager as $value)
+                                                <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                </select>
+                                @error('m_id')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="display: flex;">
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            Start
+                                            Date:- </label></h4>
+                                    <input type="date" id="start_date" name="Start_date_manager">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col">
+                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                            End
+                                            Date:- </label></h4>
+                                    <input type="date" id="end_date" name="End_date_manager">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-rightheader col-md-2">
+                            <div class="btn btn-list col-md-12">
+                                <label for="&nbsp;">&nbsp;</label>
+                                <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
+                                    Downloade PDF </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -545,15 +544,7 @@
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
             var count = 1;
-            var managerTabel = $('#managerDataTabel').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip',
-            });
+            var managerTabel = $('#managerDataTabel').DataTable();
             managerTabel.clear().draw({
                 "paging": true,
                 "lengthChange": false,
