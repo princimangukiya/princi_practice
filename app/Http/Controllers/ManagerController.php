@@ -95,7 +95,7 @@ class ManagerController extends Controller
                 'm_name' => 'required',
                 'm_address' => 'required',
                 'm_email' => 'required|email',
-                'm_phone' => 'required|unique:manager_details,m_phone',
+                'm_phone' => 'required|m_phone',
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -110,7 +110,7 @@ class ManagerController extends Controller
 
             Manager_Details::where('m_id', $id)->update($newitem);
 
-            return Redirect::to('/manager')->with($notification);
+            return Redirect::to('/manager');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
