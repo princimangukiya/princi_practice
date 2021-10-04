@@ -3,6 +3,8 @@
 @endsection
 
 @section('content')
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <link rel="https://cdn.datatables.net/rowgroup/1.1.1/css/rowGroup.bootstrap4.min.css" />
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Diamond Give To Manager</h4>
@@ -67,7 +69,7 @@
         <div class="card-footer text-right" style="padding-right: 10% ">
             <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
                 class="btn  btn-primary">Submit</button>
-            <a href="/manager" class="btn btn-danger">Cancle</a>
+            <a href="/working_stock" class="btn btn-danger">Cancle</a>
         </div>
     </div>
     <div class="card">
