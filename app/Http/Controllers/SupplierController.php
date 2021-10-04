@@ -54,16 +54,16 @@ class SupplierController extends Controller
             // $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
 
             // if ($suppilerData == null) {
-                $c_id = session()->get('c_id');
-                $newitem = new Supplier_Details();
-                $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
-                $newitem->c_id = $c_id;
-                $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
-                $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
-                $newitem->save();
+            $c_id = session()->get('c_id');
+            $newitem = new Supplier_Details();
+            $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
+            $newitem->c_id = $c_id;
+            $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
+            $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
+            $newitem->save();
 
-                return Redirect::to('/supplier');
-                // return Response::json(array('success' => true));
+            return Redirect::to('/supplier');
+            // return Response::json(array('success' => true));
             // } else {
             //     return Response::json(array('success' => 200));
             // }
@@ -95,7 +95,7 @@ class SupplierController extends Controller
             $validator = Validator::make($request->all(), [
                 's_name' => 'required',
                 's_address' => 'required',
-                's_gst' => 'required|unique:supplier_details,s_gst',
+                's_gst' => 'required',
 
             ]);
             //dd($request);
@@ -113,7 +113,7 @@ class SupplierController extends Controller
                 'message' => 'User Updated!',
                 'alert-type' => 'success'
             );
-    
+
             return Redirect::to('/supplier')->with($notification);
         } catch (\Throwable $th) {
             $notification = array(
