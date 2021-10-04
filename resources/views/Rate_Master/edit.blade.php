@@ -36,12 +36,12 @@
                                 <div class="row">
                                     @php
                                         $c_id = session()->get('c_id');
-                                        $rate = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                                        $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
                                     @endphp
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h4><label class="form-label">Select Company :-</label></h4>
-                                            <select id="c_id" name="c_id" required class="form-control select2">
+                                            <select id="c_id" name="c_id" required class="form-control select2 inputField">
                                                 <optgroup label="Company">
                                                     <option value="" disabled selected>Choose Company</option>
                                                     @if (count($rate) > 0)
@@ -70,7 +70,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h4><label class="form-label">Select Rate :-</label></h4>
-                                            <select id="r_id" name="r_id" required class="form-control select2">
+                                            <select id="r_id" name="r_id" required class="form-control select2 inputField">
                                                 <optgroup label="Rate" value="{{ $rate_master->r_id }}">
                                                     <option value="" disabled selected>Choose Rate</option>
                                                     @if (count($rates) > 0)
@@ -126,7 +126,7 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label class="form-label">Price :-</label>
-                                            <input placeholder="Enter Price:- " class="form-control" id="s_gst"
+                                            <input placeholder="Enter Price:- " class="form-control inputField" id="s_gst"
                                                 type="text" name="Price" value="{{ $rate_master->json_Price }}" required>
                                             @error('s_gst')
                                                 <small class="errorTxt1">
@@ -153,6 +153,25 @@
             </div>
         </div>
     </form>
+    <script>
+        var currentBoxNumber = 0;
+        $(".inputField").keyup(function(event) {
+            if (event.keyCode == 13) {
+                textboxes = $("input.inputField");
+                currentBoxNumber = textboxes.index(this);
+                console.log(textboxes.index(this));
+                if (textboxes[currentBoxNumber + 0] != null) {
+                    nextBox = textboxes[currentBoxNumber + 0];
+                    nextBox.focus();
+                    nextBox.select();
+                    event.preventDefault();
+                    return false;
+                } else {
+                    addData();
+                }
+            }
+        });
+    </script>
     <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 

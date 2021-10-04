@@ -102,14 +102,14 @@
                 <div class="card-body">
                     @php
                         $c_id = session()->get('c_id');
-                        $supplier1 = App\Models\supplier_details::where('c_id' , $c_id)->get();
+                        $supplier1 = App\Models\supplier_details::where('c_id', $c_id)->get();
                     @endphp
                     <div class="card-title font-weight-bold">packet info:</div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">packet Supplier</label>
-                                <select id="s_id" name="s_id" required class="form-control select2">
+                                <select id="s_id" name="s_id" required class="form-control select2 inputField">
                                     <optgroup label="Supplier">
                                         <option value="" disabled selected>Choose Supplier</option>
                                         @if (count($supplier1) > 0)
@@ -131,7 +131,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">BarCode Value </label>
-                                <input id="bar_code" type="text" name="bar_code" class="form-control"
+                                <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                                     value="{{ $supplier->d_barcode }}" placeholder="Enter Bar Code" autofocus>
                                 @error('bar_code')
                                     <small class="errorTxt1">
@@ -145,7 +145,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">packet Weight :-</label>
-                                <input placeholder="Enter packet Wt" class="form-control" id="d_wt" type="text"
+                                <input placeholder="Enter packet Wt" class="form-control inputField" id="d_wt" type="text"
                                     name="d_wt" value="{{ $supplier->d_wt }}" required>
                                 @error('d_wt')
                                     <small class="errorTxt1">
@@ -162,7 +162,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">packet Shape</label>
-                                <select id="shape_id" name="shape_id" required class="form-control select2">
+                                <select id="shape_id" name="shape_id" required class="form-control select2 inputField">
                                     <optgroup label="Shapes">
                                         <option value="" disabled selected>Choose Diamond Shape</option>
                                         @if (count($shape) > 0)
@@ -201,6 +201,23 @@
         <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
         <script>
+            var currentBoxNumber = 0;
+            $(".inputField").keyup(function(event) {
+                if (event.keyCode == 13) {
+                    textboxes = $("input.inputField");
+                    currentBoxNumber = textboxes.index(this);
+                    console.log(textboxes.index(this));
+                    if (textboxes[currentBoxNumber + 0] != null) {
+                        nextBox = textboxes[currentBoxNumber + 0];
+                        nextBox.focus();
+                        nextBox.select();
+                        event.preventDefault();
+                        return false;
+                    } else {
+                        addData();
+                    }
+                }
+            });
             var id, mytable;
             $(document).ready(function() {
                 mytable = $('#tblItemShow').DataTable({
