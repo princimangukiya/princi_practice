@@ -63,7 +63,8 @@
                                             </td>
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                <a href="{{ route('manager.edit', ['id' => $value->m_id]) }}">
+                                                <a href="{{ route('manager.edit', ['id' => $value->m_id]) }}"
+                                                    style="margin-right: 5px;">
                                                     <div class="btn-group align-top">
                                                         <button class="btn btn-sm btn-success" type="button"
                                                             data-toggle="modal" data-target="#user-form-modal">Edit</button>
@@ -74,7 +75,7 @@
 
                                                 <form action="{{ route('manager.destroy', $value->m_id) }}" method="post">
                                                     @csrf
-                                                    <div class="btn-group align-top">
+                                                    <div class="btn-group align-top" style="margin-left: 5px;">
                                                         <button class="btn btn-sm btn-danger">Delete</button>
                                                         <button class="btn btn-sm btn-danger"><i
                                                                 class="fe fe-trash-2"></i></button>

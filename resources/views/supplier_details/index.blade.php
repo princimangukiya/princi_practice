@@ -3,6 +3,12 @@
 @endsection
 
 @section('content')
+    <style>
+        .table-responsive {
+            width: 100%;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Supplier Details</h4>
@@ -30,75 +36,79 @@
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
-                                <thead>
+                        <div class=" table-responsive">
+                        <table id="example" class="table table-bordered text-nowrap key-buttons">
+                            <thead>
+                                <tr>
+                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">Supplier Name</th>
+                                    <th class="border-bottom-0" style="width: 20%;">Supplier Address</th>
+                                    {{-- <th>Package</th> --}}
+                                    <th class="border-bottom-0">Supplier Gst No.</th>
+                                    <th class="border-bottom-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($supplier as $key => $value)
                                     <tr>
-                                        <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Supplier Name</th>
-                                        <th class="border-bottom-0">Supplier Address</th>
-                                        {{-- <th>Package</th> --}}
-                                        <th class="border-bottom-0">Supplier Gst No.</th>
-                                        <th class="border-bottom-0">Action</th>
+
+                                        <td>
+                                            {{ $key + 1 }}
+                                        </td>
+                                        <td>
+                                            {{ $value->s_name }}
+                                        </td>
+                                        <td>
+                                            {{ $value->s_address }}
+                                        </td>
+                                        <td>
+                                            {{ $value->s_gst }}
+                                        </td>
+                                        <td class="align-middle"
+                                            style="display: flex; align-items: center;justify-content: space-evenly;">
+                                            <a href="{{ route('supplier.edit', ['id' => $value->s_id]) }}"
+                                                style="margin-right: 5px;">
+                                                <div class="btn-group align-top">
+                                                    <button class="btn btn-sm btn-success" type="button" data-toggle="modal"
+                                                        data-target="#user-form-modal">Edit</button>
+                                                    <button class="btn btn-sm btn-success" type="button"><i
+                                                            class="fe fe-edit-2"></i></button>
+                                                </div>
+                                            </a>
+
+                                            <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
+                                                @csrf
+                                                <div class="btn-group align-top" style="margin-left: 5px;">
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                    <button class="btn btn-sm btn-danger"><i
+                                                            class="fe fe-trash-2"></i></button>
+                                                </div>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($supplier as $key => $value)
-                                        <tr>
+                                @endforeach
 
-                                            <td>
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $value->s_name }}
-                                            </td>
-                                            <td>
-                                                {{ $value->s_address }}
-                                            </td>
-                                            <td>
-                                                {{ $value->s_gst }}
-                                            </td>
-                                            <td class="align-middle"
-                                                style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                <a href="{{ route('supplier.edit', ['id' => $value->s_id]) }}">
-                                                    <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-success" type="button"
-                                                            data-toggle="modal" data-target="#user-form-modal">Edit</button>
-                                                        <button class="btn btn-sm btn-success" type="button"><i
-                                                                class="fe fe-edit-2"></i></button>
-                                                    </div>
-                                                </a>
-
-                                                <form action="{{ route('supplier.destroy', $value->s_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!--/div-->
-
-
         </div>
+        <!--/div-->
+
+
+    </div>
     </div>
     <!-- /Row -->
 
     </div>
     </div><!-- end app-content-->
     </div>
-
+    <script>
+        // $('#example').DataTable({
+        //     "autoWidth": true,
+        // });
+    </script>
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
 
