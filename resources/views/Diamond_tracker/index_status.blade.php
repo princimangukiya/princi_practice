@@ -1,5 +1,5 @@
 @section('page-title')
-    Rate Master
+    Diamond Tracker
 @endsection
 @section('content')
     <style>
@@ -20,6 +20,7 @@
         .timeline-item h4 {
             padding: 0;
             margin: 0;
+            font-weight: 400;
         }
 
         .timeline-item__title:before {
@@ -51,15 +52,15 @@
         }
 
         .timeline-item--complete .timeline-item__status {
-            background-color: lime;
+            background-color: #38cb89;
         }
 
         .timeline-item--error .timeline-item__status {
-            background-color: red;
+            background-color: #dc0441;
         }
 
         .timeline-item--error .timeline-item__title {
-            color: red;
+            color: #dc0441;
         }
 
         .timeline-item--warning .timeline-item__status {
@@ -147,25 +148,25 @@
                             </script>
                         @else
                             <li class="timeline-item timeline-item--complete">
-                                <h4 class="timeline-item__title">Diamond Is Assign To Supplier</h4>
+                                <h4 class="timeline-item__title">Diamond Is Assign To Company</h4>
                                 <div class="timeline-item__status">Status error</div>
                                 <p class="timeline-item__date">Date:-
-                                    <b>{{ date('d-m-Y', strtotime($daimond['created_at'])) }}</b>
+                                    {{ date('d-m-Y', strtotime($daimond['created_at'])) }}
                                 </p>
-                                <p class="timeline-item__desc">Supplier Name:-
-                                    <b>{{ $supplier_name[0]['s_name'] }}</b>
+                                <p class="timeline-item__desc">Company Name:-
+                                    {{ $c_name }}
                                 </p>
                             </li>
 
                             @if (empty($daimond['doReady']))
                                 <li class="timeline-item timeline-item--error">
-                                    <h4 class="timeline-item__title">Diamond Is Hold To Supplier</h4>
+                                    <h4 class="timeline-item__title">Diamond Is Hold To Company</h4>
                                     <div class="timeline-item__status">Status error</div>
                                     <p class="timeline-item__date">Date:-
-                                        <b>{{ date('d-m-Y', strtotime($date)) }}</b>
+                                        {{ date('d-m-Y', strtotime($date)) }}
                                     </p>
-                                    <p class="timeline-item__desc">Supplier Name:-
-                                        <b>{{ $supplier_name[0]['s_name'] }}</b>
+                                    <p class="timeline-item__desc">Company Name:-
+                                        {{ $c_name }}
                                     </p>
                                 </li>
                             @else
@@ -177,9 +178,9 @@
                                     <h4 class="timeline-item__title">Diamond Are Assign In Manager</h4>
                                     <div class="timeline-item__status">Status completed</div>
                                     <p class="timeline-item__date">Date:-
-                                        <b>{{ date('d-m-Y', strtotime($manager_name[0]['created_at'])) }}</b>
+                                        {{ date('d-m-Y', strtotime($manager_name[0]['created_at'])) }}
                                     </p>
-                                    <p class="timeline-item__desc">Manager Name:- <b>{{ $m_name[0]['m_name'] }}</b>
+                                    <p class="timeline-item__desc">Manager Name:- {{ $m_name[0]['m_name'] }}
                                     </p>
                                 </li>
                             @endif
@@ -195,22 +196,24 @@
                                     <li class="timeline-item timeline-item--error">
                                         <h4 class="timeline-item__title">Diamond Is Hold On Manager</h4>
                                         <div class="timeline-item__status">Status error</div>
-                                        <p class="timeline-item__date"> <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
+                                        <p class="timeline-item__date">
+                                            {{ date('d-m-Y', strtotime($date)) }}
+                                        </p>
                                         <p class="timeline-item__desc">Manager Name:-
-                                            <b>{{ $m_name[0]['m_name'] }}</b>
+                                            {{ $m_name[0]['m_name'] }}
                                         </p>
                                     </li>
                                 @endif
 
                             @else
                                 <li class="timeline-item timeline-item--complete">
-                                    <h4 class="timeline-item__title">Diamond Are Return To The Supplier</h4>
+                                    <h4 class="timeline-item__title">Diamond Are Return To The Company</h4>
                                     <div class="timeline-item__status">Status completed</div>
                                     <p class="timeline-item__date">Date:-
-                                        <b>{{ date('d-m-Y', strtotime($manager_name[0]['deleted_at'])) }}</b>
+                                        {{ date('d-m-Y', strtotime($manager_name[0]['deleted_at'])) }}
                                     </p>
-                                    <p class="timeline-item__desc">Supplier Name:-
-                                        <b>{{ $supplier_name[0]['s_name'] }}</b>
+                                    <p class="timeline-item__desc">Company Name:-
+                                        {{ $c_name }}
                                     </p>
                                 </li>
                             @endif
@@ -224,23 +227,27 @@
                                     </li>
                                 @else
                                     <li class="timeline-item timeline-item--error">
-                                        <h4 class="timeline-item__title">Diamond Is Hold On Supplier</h4>
+                                        <h4 class="timeline-item__title">Diamond Is Hold On Company</h4>
                                         <div class="timeline-item__status">Status error</div>
-                                        <p class="timeline-item__date"> <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
-                                        <p class="timeline-item__desc">Supplier Name:-
-                                            <b>{{ $supplier_name[0]['s_name'] }}</b>
+                                        <p class="timeline-item__date">Date:-
+                                            {{ date('d-m-Y', strtotime($date)) }}
+                                        </p>
+                                        <p class="timeline-item__desc">Company Name:-
+                                            {{ $c_name }}
                                         </p>
                                     </li>
                                 @endif
 
                             @else
                                 <li class="timeline-item timeline-item--complete">
-                                    <h4 class="timeline-item__title">Diamond Are Return To The Company</h4>
+                                    <h4 class="timeline-item__title">Diamond Are Return To The Supplier</h4>
                                     <div class="timeline-item__status">Status completed</div>
-                                    <p class="timeline-item__date">
-                                        <b>{{ date('d-m-Y', strtotime($sell_date[0]['created_at'])) }}</b>
+                                    <p class="timeline-item__date">Date:-
+                                        {{ date('d-m-Y', strtotime($sell_date[0]['created_at'])) }}
                                     </p>
-                                    <p class="timeline-item__desc">Company Name:- <b>{{ $c_name }}</b></p>
+                                    <p class="timeline-item__desc">Supplier Name:-
+                                        {{ $supplier_name[0]['s_name'] }}
+                                    </p>
                                 </li>
                             @endif
                         @endif
