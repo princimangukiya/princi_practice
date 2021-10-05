@@ -37,7 +37,7 @@
                     <form action="{{ route('Party_Labour.generatePDF') }}" method="get">
                         @csrf
                         <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
+                            <div class="col-md-3">
                                 @php
                                     $c_id = session()->get('c_id');
                                     $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
@@ -64,31 +64,33 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-5" style="display: flex;">
-                                <div class="col-md-6">
+                            <div class="col-md-9" style="display: flex;">
+                                <div class="col-md-4">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content:start;">Select
                                                 Start
                                                 Date:- </label></h4>
-                                        <input type="date" id="start_date" name="Start_date">
+                                        <input type="date" id="start_date" name="Start_date" style="padding: 5px;">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content:start;">Select
                                                 End
                                                 Date:- </label></h4>
-                                        <input type="date" id="end_date" name="End_date">
+                                        <input type="date" id="end_date" name="End_date" style="padding: 5px;">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-rightheader col-md-2">
-                                <div class="btn btn-list col-md-12">
-                                    <label for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                                        Downloade PDF </button>
+
+                                <div class="page-rightheader col-md-4">
+                                    <div class="col">
+                                        <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
+                                                class="fa fa-download mr-1"></i>
+                                            Downloade PDF </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +105,7 @@
                     {{-- <form action="/search_PartyLabour_data" method="post">
                         @csrf --}}
                     <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
+                        <div class="col-md-3">
                             @php
                                 $c_id = session()->get('c_id');
                                 $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
@@ -129,27 +131,30 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                        <div class="col-md-9" style="display: flex;">
+                            <div class="col-md-4">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             Start
                                             Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date">
+                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             End
                                             Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date">
+                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="addData()"
-                                class="btn  btn-primary">Serch</button>
+                            <div class="col-md-4">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" id="addData" name="addData" onClick="addData()"
+                                        class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{-- </form> --}}

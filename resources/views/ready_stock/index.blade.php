@@ -3,6 +3,13 @@
 @endsection
 
 @section('content')
+    <style>
+        .table {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Ready Stock</h4>
@@ -47,9 +54,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
-    echo count($ready_stock1);
-@endphp --}}
                                     @foreach ($ready_stock as $key => $value)
                                         <tr>
                                             <td>
@@ -116,7 +120,13 @@
     </div>
     </div><!-- end app-content-->
     </div>
-
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "scrollX": false
+            });
+        });
+    </script>
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
 

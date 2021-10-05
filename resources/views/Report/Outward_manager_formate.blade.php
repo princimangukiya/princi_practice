@@ -90,7 +90,7 @@
                 <div class="card-header-outer">
                     <div class="card-header">
                         <div class="card-title logo">
-                            <h6>|| શ્રી ગણેશાય નામ: ||</h6>
+                            {{-- <h6>|| શ્રી ગણેશાય નામ: ||</h6> --}}
 
                             <img src="logo11.png" alt="">
                         </div>

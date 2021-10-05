@@ -4,7 +4,7 @@
 
 @section('content')
     <style>
-        td.dataTables_empty {
+        .dataTables_empty {
             display: none;
         }
 
@@ -88,118 +88,116 @@
                                 </div>
                             </div>
                             <div class="col-md-9" style="display: flex;">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content:start;">Select
                                                 Start
                                                 Date:- </label></h4>
-                                        <input type="date" id="start_date" name="Start_date">
+                                        <input type="date" id="start_date" name="Start_date" style="padding: 5px;">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="col">
                                         <h4><label class="form-label"
                                                 style="display: flex; justify-content:start;">Select
                                                 End
                                                 Date:- </label></h4>
-                                        <input type="date" id="end_date" name="End_date">
+                                        <input type="date" id="end_date" name="End_date" style="padding: 5px;">
                                     </div>
                                 </div>
-
-                                <div class="col">
-                                    <label for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                                        Downloade PDF </button>
+                                <div class="col-md-5">
+                                    <div class="col">
+                                        <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
+                                                class="fa fa-download mr-1"></i>
+                                            Downloade PDF </button>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
-        <div class="card  hidden" id="cal3">
-            <div class="card-header">
-                <div class="card-title">Inward Manager Generate Pdf</div>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('Inward.generateManagerPDF') }}" method="get">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
-                            @php
-                                $c_id = session()->get('c_id');
-                                $manager = App\Models\manager_details::where('c_id', $c_id)->get();
-                            @endphp
-                            <div class="form-group">
-                                <h4><label class="form-label">Select Manager :-</label></h4>
-                                <select id="manager_id" name="m_id" required class="form-control select2">
-                                    <optgroup label="Company">
-                                        <option value="" disabled selected>Choose Manager</option>
-                                        @if (count($manager) > 0)
-                                            <option value="">All Inward Report</option>
-                                            @foreach ($manager as $value)
-                                                <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </optgroup>
-                                </select>
-                                @error('m_id')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
-                                <div class="col">
-                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            Start
-                                            Date:- </label></h4>
-                                    <input type="date" id="start_date" name="Start_date_manager">
+
+            <div class="card  hidden" id="cal3">
+                <div class="card-header">
+                    <div class="card-title">Inward Manager Generate Pdf</div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('Inward.generateManagerPDF') }}" method="get">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-3">
+                                @php
+                                    $c_id = session()->get('c_id');
+                                    $manager = App\Models\manager_details::where('c_id', $c_id)->get();
+                                @endphp
+                                <div class="form-group">
+                                    <h4><label class="form-label">Select Manager :-</label></h4>
+                                    <select id="manager_id" name="m_id" required class="form-control select2">
+                                        <optgroup label="Company">
+                                            <option value="" disabled selected>Choose Manager</option>
+                                            @if (count($manager) > 0)
+                                                <option value="">All Inward Report</option>
+                                                @foreach ($manager as $value)
+                                                    <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                    @error('m_id')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="col">
-                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            End
-                                            Date:- </label></h4>
-                                    <input type="date" id="end_date" name="End_date_manager">
+                            <div class="col-md-9" style="display: flex;">
+                                <div class="col-md-4">
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                Start
+                                                Date:- </label></h4>
+                                        <input type="date" id="start_date" name="Start_date_manager" style="padding: 5px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="col">
+                                        <h4><label class="form-label"
+                                                style="display: flex; justify-content:start;">Select
+                                                End
+                                                Date:- </label></h4>
+                                        <input type="date" id="end_date" name="End_date_manager" style="padding: 5px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col">
+                                        <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
+                                                class="fa fa-download mr-1"></i>
+                                            Downloade PDF </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="page-rightheader col-md-2">
-                            <div class="btn btn-list col-md-12">
-                                <label for="&nbsp;">&nbsp;</label>
-                                <button type="submit" class="btn btn-info"><i class="fa fa-download mr-1"></i>
-                                    Downloade PDF </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <!--div-->
             <div class="card" id="cal">
                 <div class="card-header">
                     <div class="card-title">Inward Company Details</div>
                 </div>
-
-
                 <div class="card-body">
-
-                    {{-- <form action="{{ route('Inward.search_data') }}" method="post">
-                        @csrf --}}
                     <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
+                        <div class="col-md-4">
 
                             <div class="form-group">
                                 <h4><label class="form-label">Select Company :-</label></h4>
@@ -223,27 +221,28 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                        <div class="col-md-8" style="display: flex;">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            Start
-                                            Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date">
+                                            Start Date:- </label></h4>
+                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            End
-                                            Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date">
+                                            End Date:- </label></h4>
+                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="showCompanyData()"
-                                class="btn  btn-primary">Serch</button>
+                            <div class="col-md-2">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" id="addData" name="addData" onClick="showCompanyData()"
+                                        class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{-- </form> --}}
@@ -300,15 +299,9 @@
                 <div class="card-header">
                     <div class="card-title">Inward Manager Details</div>
                 </div>
-
-
                 <div class=" card-body">
-
-                    {{-- <form action="{{ route('Inward.search_data') }}" method="post">
-                        @csrf --}}
                     <div class="row" id="cal">
-                        <div class="col-md-5" style="padding-right: 50px;">
-
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <h4><label class="form-label">Select Manager :-</label></h4>
                                 <select id="m_id" name="m_id" required class="form-control select2">
@@ -331,30 +324,33 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                        <div class="col-md-8" style="display: flex;">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             Start
                                             Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date">
+                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             End
                                             Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date">
+                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" id="addData" name="addData" onClick="showManagerData()"
+                                        class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="showManagerData()"
-                                class="btn  btn-primary">Serch</button>
-                        </div>
                     </div>
-                    {{-- </form> --}}
                 </div>
                 <div class="card-body">
                     <div>
@@ -403,13 +399,9 @@
                     </div>
                 </div>
             </div>
-            <!--/div-->
-
-
         </div>
     </div>
     <!-- /Row -->
-
     </div>
     </div><!-- end app-content-->
     </div>
@@ -464,6 +456,7 @@
                 "info": true,
                 "autoWidth": false,
                 "sDom": 'lfrtip',
+
             });
         });
 
