@@ -168,19 +168,6 @@
         <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
         <script>
-            $(document).ready(function() {
-                mytable = $('#tblItemShow').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": true,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "sDom": 'lfrtip'
-                });
-                // mytable.row.add([id, 'pkt1', '10.5']);
-                // mytable.draw();
-            });
             var currentBoxNumber = 0;
             $(".inputField").keyup(function(event) {
                 if (event.keyCode == 13) {
@@ -197,6 +184,19 @@
                         addTOManager();
                     }
                 }
+            });
+            $(document).ready(function() {
+                mytable = $('#tblItemShow').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "sDom": 'lfrtip'
+                });
+                // mytable.row.add([id, 'pkt1', '10.5']);
+                // mytable.draw();
             });
         </script>
         <script>
