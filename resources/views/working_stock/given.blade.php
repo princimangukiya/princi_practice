@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <div class="form-group" style="padding: 20px;">
                     <h4><label class="form-label">Select Manager :-</label></h4>
-                    <select id="m_id" name="m_id" required class="form-control select2 inputField" required>
+                    <select id="m_id" name="m_id" required class="form-control select2 inputField" required autofocus>
                         <optgroup label="Managers">
                             <option value="" disabled selected>Choose Manager</option>
                             @if (count($manager) > 0)
@@ -68,7 +68,7 @@
         </div>
         <div class="card-footer text-right" style="padding-right: 10% ">
             <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
-                class="btn  btn-primary">Submit</button>
+                class="btn  btn-primary inputField">Submit</button>
             <a href="/working_stock" class="btn btn-danger">Cancle</a>
         </div>
     </div>
@@ -99,20 +99,6 @@
     <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
 
     <script>
-        var id, mytable;
-        $(document).ready(function() {
-            mytable = $('#tblItemShow').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip'
-            });
-            // mytable.row.add([id, 'pkt1', '10.5']);
-            // mytable.draw();
-        });
         var currentBoxNumber = 0;
         $(".inputField").keyup(function(event) {
             if (event.keyCode == 13) {
@@ -129,6 +115,20 @@
                     addTOManager();
                 }
             }
+        });
+        var id, mytable;
+        $(document).ready(function() {
+            mytable = $('#tblItemShow').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip'
+            });
+            // mytable.row.add([id, 'pkt1', '10.5']);
+            // mytable.draw();
         });
     </script>
 
