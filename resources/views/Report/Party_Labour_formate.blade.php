@@ -9,17 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Party Labour</title>
     <style>
-        @font-face {
-            font-family: myguj-font;
-            src: url(Gujrati-Saral-1.ttf) format(truetype);
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .myguj {
-            font-family: myguj-font;
-        }
-
         .tabel_style {
             text-align: center;
             margin: 2% 2%;
@@ -53,16 +42,16 @@
         <div class="col-12 invoice">
             <!--div-->
             <div class="card1">
-                <div class="textstyle">
+                {{-- <div class="textstyle">
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
-                </div>
+                </div> --}}
                 @if ($s_name->isEmpty())
                     <h3>All Party Labour Report</h3>
 
                 @else
                     <h3>{{ $s_name[0]['s_name'] }}</h3>
                 @endif
-
+                <p>Date:- {{ $today_date }}</p>
                 <div class="card-body">
                     <div class="___class_+?17___">
                         <div class="table-responsive">

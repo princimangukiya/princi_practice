@@ -3,6 +3,12 @@
 @endsection
 
 @section('content')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
     <style>
         td.dataTables_empty {
             display: none;
@@ -60,7 +66,7 @@
                     <form action="{{ route('Outward.generatePDF') }}" method="get">
                         @csrf
                         <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
+                            <div class="col-md-4">
                                 @php
                                     $c_id = session()->get('c_id');
                                     $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
@@ -92,15 +98,16 @@
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             Date:- </label></h4>
-                                    <input type="date" id="start_date" name="Start_date">
+                                    <input type="date" id="start_date" name="Start_date" style="padding:5px;">
                                 </div>
                             </div>
-                            <div class="page-rightheader col-md-3">
-                                <label for="&nbsp;">&nbsp;</label>
-                                <label for="&nbsp;">&nbsp;</label>
-                                <button type="submit" style="margin-top:18px;" class="btn btn-info"><i
-                                        class="fa fa-print mr-1"></i>
-                                    Print Jangad </button>
+                            <div class="page-rightheader col-md-4">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" style="padding:5px;" class="btn btn-info"><i
+                                            class="fa fa-print mr-1"></i>
+                                        Print Jangad </button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -114,7 +121,7 @@
                     <form action="{{ route('Outward.generateManagerPDF') }}" method="get">
                         @csrf
                         <div class="row">
-                            <div class="col-md-5" style="padding-right: 50px;">
+                            <div class="col-md-4">
                                 @php
                                     $c_id = session()->get('c_id');
                                     $manager = App\Models\manager_details::where('c_id', $c_id)->get();
@@ -146,13 +153,12 @@
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             Date:- </label></h4>
-                                    <input type="date" id="start_date" name="Start_date">
+                                    <input type="date" id="start_date" name="Start_date" style="padding:5px;">
                                 </div>
                             </div>
-                            <div class="page-rightheader col-md-3">
-                                <label for="&nbsp;">&nbsp;</label>
-                                <label for="&nbsp;">&nbsp;</label>
-                                <button type="submit" style="margin-top:18px;" class="btn btn-info"><i
+                            <div class="page-rightheader col-md-4">
+                                <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                <button type="submit" style="padding:5px;" class="btn btn-info"><i
                                         class="fa fa-print mr-1"></i>
                                     Print Jangad </button>
                             </div>
@@ -174,7 +180,7 @@
                         @csrf --}}
 
                     <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <h4><label class="form-label">Select Company :-</label></h4>
                                 <select id="s_id" name="s_id" required class="form-control select2">
@@ -196,27 +202,30 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                        <div class="col-md-8" style="display: flex;">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content: start;">Select
                                             Start
                                             Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date">
+                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content: start;">Select
                                             End
                                             Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date">
+                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="addData()"
-                                class="btn  btn-primary">Serch</button>
+                            <div class="col-md-2">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" id="addData" name="addData" onClick="addData()"
+                                        class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{-- </form> --}}
@@ -224,7 +233,19 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
+                            <table border="0" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                    <tr>
+                                        <td>Minimum date:</td>
+                                        <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum date:</td>
+                                        <td><input type="text" id="max" name="max"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table id="companyTable" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
@@ -292,7 +313,7 @@
                         @csrf --}}
 
                     <div class="row">
-                        <div class="col-md-5" style="padding-right: 50px;">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <h4><label class="form-label">Select Manager :-</label></h4>
                                 <select id="m_id" name="m_id" required class="form-control select2">
@@ -314,27 +335,31 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-5" style="display: flex;">
-                            <div class="col-md-6">
+                        <div class="col-md-8" style="display: flex;">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content: start;">Select
                                             Start
                                             Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date">
+                                    <input type="date" id="Start_date" name="Start_date" style="padding:5px;">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="col">
                                     <h4><label class="form-label" style="display: flex; justify-content: start;">Select
                                             End
                                             Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date">
+                                    <input type="date" id="End_date" name="End_date" style="padding:5px;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2" style="padding: 15px;">
-                            <button type="submit" id="addData" name="addData" onClick="showManager()"
-                                class="btn  btn-primary">Serch</button>
+
+                            <div class="col-md-2">
+                                <div class="col">
+                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                    <button type="submit" id="addData" name="addData" onClick="showManager()"
+                                        class="btn  btn-primary" style="padding:5px 12px;">Serch</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {{-- </form> --}}
@@ -412,6 +437,56 @@
     </div><!-- end app-content-->
     </div>
     <script>
+        var minDate, maxDate;
+
+
+
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                alert("hellofgjfg");
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[7]);
+                console.log(min);
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        $(document).ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            // DataTables initialisation
+            var table = $('#companyTable').DataTable();
+
+            // Refilter the table
+
+            // $('#min, #max').change(function() {
+            //     alert("hello233");
+            //     table.draw();
+            // });
+        });
+
+        function selectMinDate() {
+            alert("hello");
+            // DataTables initialisation
+            var table = $('#companyTable').DataTable();
+            table.draw();
+        }
         var inputs = document.getElementsByClassName('setting'),
             setting;
 
@@ -438,18 +513,19 @@
                 document.getElementById("cal3").classList.remove('hidden');
             }
         }
+
         var id, mytable;
-        $(document).ready(function() {
-            mytable = $('#example').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip',
-            });
-        });
+        // $(document).ready(function() {
+        //     mytable = $('#example').DataTable({
+        //         "paging": true,
+        //         "lengthChange": false,
+        //         "searching": true,
+        //         "ordering": true,
+        //         "info": true,
+        //         "autoWidth": false,
+        //         "sDom": 'lfrtip',
+        //     });
+        // });
 
         $(document).ready(function() {
             managerTabel = $('#managerDataTabel').DataTable({
@@ -468,16 +544,16 @@
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
             var count = 1;
-            var table = $('#example').DataTable();
-            table.clear().draw({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip',
-            });
+            // var table = $('#example').DataTable();
+            // table.clear().draw({
+            //     "paging": true,
+            //     "lengthChange": false,
+            //     "searching": true,
+            //     "ordering": true,
+            //     "info": true,
+            //     "autoWidth": false,
+            //     "sDom": 'lfrtip',
+            // });
             // alert(barcode);
             // alert(m_id);
             $.ajaxSetup({
@@ -509,7 +585,8 @@
                         // $('#example tbody').empty();
 
                         response_msg.success.forEach(success => {
-                            $("#example").append(
+
+                            $("#").append(
                                 '<tr>' +
                                 '<td>' + count + '</td>' +
                                 '<td>' + success.s_name + '</td>' +

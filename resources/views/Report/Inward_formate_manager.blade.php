@@ -9,17 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Inward</title>
     <style>
-        @font-face {
-            font-family: myguj-font;
-            src: url(Gujrati-Saral-1.ttf) format(truetype);
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .myguj {
-            font-family: myguj-font;
-        }
-
         .tabel_style {
             text-align: center;
             margin: 2% 2%;
@@ -45,9 +34,9 @@
         <div class="col-12 invoice">
             <!--div-->
             <div class="card1">
-                <div class="textstyle">
+                {{-- <div class="textstyle">
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
-                </div>
+                </div> --}}
                 @if ($s_name->isEmpty())
                     <h3>All Inward Manager Report</h3>
 
@@ -55,7 +44,7 @@
                     <h3>{{ $s_name[0]['m_name'] }}</h3>
                 @endif
 
-                {{-- <p>Date:-{{ $today_date }}</p> --}}
+                <p>Date:-{{ $today_date }}</p>
 
                 <div class="card-body">
                     <div class="___class_+?17___">
@@ -65,7 +54,7 @@
                                     <tr style="border: 1px solid black">
                                         <th class="border-bottom-0" style="border: 1px solid black">#</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">Shape</th>
+                                        {{-- <th class="border-bottom-0" style="border: 1px solid black">Shape</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Old_Weight</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Buy_date</th>
@@ -89,9 +78,9 @@
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_barcode }}
                                             </td>
-                                            <td class="myguj" style="border: 1px solid black">
+                                            {{-- <td class="myguj" style="border: 1px solid black">
                                                 {{ $value->shape_name }}
-                                            </td>
+                                            </td> --}}
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_wt }}
                                             </td>
