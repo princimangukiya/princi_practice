@@ -166,7 +166,7 @@
                     <div>
 
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
+                            <table id="example" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">Sizedesc</th>

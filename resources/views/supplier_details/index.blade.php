@@ -35,9 +35,8 @@
                     <div class="card-title">Supplier Details</div>
                 </div>
                 <div class="card-body">
-                    <div class="">
-                        <div class=" table-responsive">
-                        <table id="example" class="table table-bordered text-nowrap key-buttons">
+                    <div class=" table-responsive">
+                        <table id="example" class="table table-bordered text-wrap key-buttons">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
@@ -93,11 +92,10 @@
                     </div>
                 </div>
             </div>
+            <!--/div-->
+
+
         </div>
-        <!--/div-->
-
-
-    </div>
     </div>
     <!-- /Row -->
 

@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -245,7 +245,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table id="companyTable" class="table table-bordered text-nowrap key-buttons">
+                            <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
@@ -367,7 +367,7 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <table id="managerDataTabel" class="table table-bordered text-nowrap key-buttons">
+                            <table id="managerDataTabel" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>

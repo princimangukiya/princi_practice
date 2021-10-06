@@ -1,8 +1,13 @@
 @section('page-title')
     Rate Master
 @endsection
-
 @section('content')
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
     <style>
         .dataTables_empty {
             display: none;
@@ -77,14 +82,12 @@
                                                 @endforeach
                                             @endif
                                         </optgroup>
-                                    </select>
-                                    @error('s_id')
+                                    </select> @error('s_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
                                             </div>
-                                        </small>
-                                    @enderror
+                                    </small> @enderror
                                 </div>
                             </div>
                             <div class="col-md-9" style="display: flex;">
@@ -145,14 +148,12 @@
                                                 @endforeach
                                             @endif
                                         </optgroup>
-                                    </select>
-                                    @error('m_id')
+                                    </select> @error('m_id')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
                                             </div>
-                                        </small>
-                                    @enderror
+                                    </small> @enderror
                                 </div>
                             </div>
                             <div class="col-md-9" style="display: flex;">
@@ -211,14 +212,12 @@
                                             @endforeach
                                         @endif
                                     </optgroup>
-                                </select>
-                                @error('s_id')
+                                </select> @error('s_id')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
                                             {{ $message }}
                                         </div>
-                                    </small>
-                                @enderror
+                                </small> @enderror
                             </div>
                         </div>
                         <div class="col-md-8" style="display: flex;">
@@ -249,163 +248,231 @@
                 </div>
 
                 <div class="card-body">
-                    <div>
-                        <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
-                                <thead>
+
+                    <div class="table-responsive">
+
+                        <table border="0" cellspacing="5" cellpadding="5">
+                            <tbody>
+                                <tr>
+                                    <td>Minimum date:</td>
+                                    <td><input type="text" id="min" name="min"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum date:</td>
+                                    <td><input type="text" id="max" name="max"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table id="companyTabel" class="table table-bordered text-wrap key-buttons display nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">Company Name</th>
+                                    <th class="border-bottom-0">Barcode_Id</th>
+                                    <th class="border-bottom-0">Shape</th>
+                                    <th class="border-bottom-0">Old_Weight</th>
+                                    <th class="border-bottom-0">New_Weight</th>
+                                    <th class="border-bottom-0">Buy_date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="showPurchaseTh">
+                                @foreach ($inward as $key => $value)
                                     <tr>
-                                        <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Company Name</th>
-                                        <th class="border-bottom-0">Barcode_Id</th>
-                                        <th class="border-bottom-0">Shape</th>
-                                        <th class="border-bottom-0">Old_Weight</th>
-                                        <th class="border-bottom-0">New_Weight</th>
-                                        <th class="border-bottom-0">Buy_date</th>
+                                        <td>
+                                            {{ $key + 1 }}
+                                        </td>
+                                        <td>
+                                            {{ $value->s_name }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_barcode }}
+                                        </td>
+                                        <td>
+                                            {{ $value->shape_name }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_wt }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_n_wt }}
+                                        </td>
+                                        <td>
+                                            {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody id="showPurchaseTh">
-                                    @foreach ($inward as $key => $value)
-                                        <tr>
-                                            <td>
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $value->s_name }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_barcode }}
-                                            </td>
-                                            <td>
-                                                {{ $value->shape_name }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_wt }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_n_wt }}
-                                            </td>
-                                            <td>
-                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card hidden" id="cal1">
+            <div class="card-header">
+                <div class="card-title">Inward Manager Details</div>
+            </div>
+            <div class=" card-body">
+                <div class="row" id="cal">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h4><label class="form-label">Select Manager :-</label></h4>
+                            <select id="m_id" name="m_id" required class="form-control select2">
+                                <optgroup label="Manager">
+                                    <option value="" disabled selected>Choose Manager</option>
+                                    @if (count($manager) > 0)
+                                        @foreach ($manager as $value)
+
+                                            <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+                                        @endforeach
+                                    @endif
+                                </optgroup>
+                            </select> @error('m_id')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                            </small> @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="display: flex;">
+                        <div class="col-md-5">
+                            <div class="col">
+                                <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                        Start
+                                        Date:- </label></h4>
+                                <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="col">
+                                <h4><label class="form-label" style="display: flex; justify-content:start;">Select
+                                        End
+                                        Date:- </label></h4>
+                                <input type="date" id="End_date" name="End_date" style="padding: 5px;">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="col">
+                                <label class="form-label" for="&nbsp;">&nbsp;</label>
+                                <button type="submit" id="addData" name="addData" onClick="showManagerData()"
+                                    class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card hidden" id="cal1">
-                <div class="card-header">
-                    <div class="card-title">Inward Manager Details</div>
-                </div>
-                <div class=" card-body">
-                    <div class="row" id="cal">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <h4><label class="form-label">Select Manager :-</label></h4>
-                                <select id="m_id" name="m_id" required class="form-control select2">
-                                    <optgroup label="Manager">
-                                        <option value="" disabled selected>Choose Manager</option>
-                                        @if (count($manager) > 0)
-                                            @foreach ($manager as $value)
-
-                                                <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </optgroup>
-                                </select>
-                                @error('m_id')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-8" style="display: flex;">
-                            <div class="col-md-5">
-                                <div class="col">
-                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            Start
-                                            Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="col">
-                                    <h4><label class="form-label" style="display: flex; justify-content:start;">Select
-                                            End
-                                            Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
-                                </div>
-                            </div>
-
-                            <div class="col-md-2">
-                                <div class="col">
-                                    <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" id="addData" name="addData" onClick="showManagerData()"
-                                        class="btn  btn-primary" style="padding: 5px 12px;">Serch</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="table-responsive">
-                            <table id="managerDataTabel" class="table table-bordered text-nowrap key-buttons">
-                                <thead>
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive">
+                        <table id="managerDataTabel" class="table table-bordered text-wrap key-buttons">
+                            <thead>
+                                <tr>
+                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">Manager Name</th>
+                                    <th class="border-bottom-0">Barcode_Id</th>
+                                    <th class="border-bottom-0">Shape</th>
+                                    <th class="border-bottom-0">Old_Weight</th>
+                                    <th class="border-bottom-0">New_Weight</th>
+                                    <th class="border-bottom-0">Buy_date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="showPurchaseTh">
+                                @foreach ($inward_manager as $key => $value)
                                     <tr>
-                                        <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">Manager Name</th>
-                                        <th class="border-bottom-0">Barcode_Id</th>
-                                        <th class="border-bottom-0">Shape</th>
-                                        <th class="border-bottom-0">Old_Weight</th>
-                                        <th class="border-bottom-0">New_Weight</th>
-                                        <th class="border-bottom-0">Buy_date</th>
+                                        <td>
+                                            {{ $key + 1 }}
+                                        </td>
+                                        <td>
+                                            {{ $value->m_name }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_barcode }}
+                                        </td>
+                                        <td>
+                                            {{ $value->shape_name }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_wt }}
+                                        </td>
+                                        <td>
+                                            {{ $value->d_n_wt }}
+                                        </td>
+                                        <td>
+                                            {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody id="showPurchaseTh">
-                                    @foreach ($inward_manager as $key => $value)
-                                        <tr>
-                                            <td>
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $value->m_name }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_barcode }}
-                                            </td>
-                                            <td>
-                                                {{ $value->shape_name }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_wt }}
-                                            </td>
-                                            <td>
-                                                {{ $value->d_n_wt }}
-                                            </td>
-                                            <td>
-                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
     <!-- /Row -->
     </div>
-    </div><!-- end app-content-->
     </div>
+    <!-- end app-content-->
+    </div>
+    <script>
+        // $(document).ready(function() {
+        //     $('#example').DataTable({
+        //         "scrollY": 200,
+        //         "scrollX": true
+        //     });
+        // });
+        var minDate, maxDate;
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                alert("fun called...");
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[6]);
 
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        $(document).ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            // DataTables initialisation
+            var table = $('#companyTabel').DataTable({
+                alert("DataTable....");
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+            });
+
+            // Refilter the table
+            $('#min, #max').on('change', function() {
+                alert("funcation call...");
+                table.draw();
+            });
+        });
+    </script>
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
     <script>
@@ -447,21 +514,7 @@
 
             });
         });
-        $(document).ready(function() {
-            mytable = $('#example').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "sDom": 'lfrtip',
-
-            });
-        });
-
         // var id, mytable;
-
         function showCompanyData() {
             // alert("hello");
             var s_id = $('#s_id').val();
@@ -599,5 +652,4 @@
             // alert('hii');
         }
     </script>
-@endsection
-@include('app')
+@endsection @include('app')

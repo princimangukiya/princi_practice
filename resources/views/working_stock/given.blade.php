@@ -78,7 +78,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
+                <table id="tblItemShow" class="table table-bordered text-wrap key-buttons">
                     <thead>
                         <tr>
                             <th class="border-bottom-0">Manager Name</th>
@@ -105,8 +105,8 @@
                 textboxes = $("input.inputField");
                 currentBoxNumber = textboxes.index(this);
                 console.log(textboxes.index(this));
-                if (textboxes[currentBoxNumber + 0] != null) {
-                    nextBox = textboxes[currentBoxNumber + 0];
+                if (textboxes[currentBoxNumber + 1] != null) {
+                    nextBox = textboxes[currentBoxNumber + 1];
                     nextBox.focus();
                     nextBox.select();
                     event.preventDefault();

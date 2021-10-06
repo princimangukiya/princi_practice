@@ -142,7 +142,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="tblItemShow" class="table table-bordered text-nowrap key-buttons">
+                <table id="tblItemShow" class="table table-bordered text-wrap key-buttons">
                     <thead>
                         <tr>
                             <th class="border-bottom-0">Manager Name</th>

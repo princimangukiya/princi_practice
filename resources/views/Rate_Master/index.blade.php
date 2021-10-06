@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-nowrap key-buttons">
+                            <table id="example" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         @php
@@ -57,7 +57,7 @@
                                                 {{ $key + 1 }}
                                             </td>
                                             @php
-                                                echo $supplier_name[1]['s_name'];
+                                                // echo $supplier_name[1]['s_name'];
                                             @endphp
                                             @foreach ($supplier_name as $key => $item)
                                                 @if ($value->s_id == $item->s_id)

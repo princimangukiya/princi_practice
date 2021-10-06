@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <div class="">
                     <div class=" table-responsive">
-                        <table id="example" class="table table-bordered text-nowrap key-buttons">
+                        <table id="example" class="table table-bordered text-wrap key-buttons">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
@@ -82,7 +82,7 @@
                                             {{ $value->shapeDate->shape_name }}
                                         </td>
                                         <td>
-                                            {{date('d-m-Y', strtotime($value->bill_date)) }}
+                                            {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                         </td>
 
                                     </tr>
