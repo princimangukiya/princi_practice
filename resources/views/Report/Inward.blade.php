@@ -395,8 +395,9 @@
 <!-- end app-content-->
 </div>
 
-<script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
-<script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
 <script>
     var inputs = document.getElementsByClassName('setting'),
         setting;

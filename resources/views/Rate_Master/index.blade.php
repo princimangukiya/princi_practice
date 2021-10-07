@@ -137,8 +137,8 @@
         return json_encode($price);
     }
     @endphp
-    <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
 
 
 

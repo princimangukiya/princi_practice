@@ -2,7 +2,7 @@
     <!--/app header-->
     @php
 
-    $avatar = 'T3_Admin_Design/assets/images/users/2.jpg';
+    $avatar = 'assets/images/users/2.jpg';
 
     @endphp
     <!--Page header-->
@@ -92,8 +92,8 @@
         </div>
         <!-- End Row-->
     </form>
-    <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
     <script>
         var currentBoxNumber = 0;

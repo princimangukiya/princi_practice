@@ -13,9 +13,9 @@
     <!--Favicon -->
     <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
 
-    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/media/css/jquery.dataTables.min.css') }}">
-    <script src="{{ asset('T3_Admin_Design/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets\media\css\jquery.dataTables.min.css') }}">
+    <script src="{{ asset('assets/media/js/jquery.dataTables.min.js') }}"></script>
 
 
 </head>

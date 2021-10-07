@@ -16,7 +16,7 @@
     <!--Favicon -->
     <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
     <!--Bootstrap css -->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>

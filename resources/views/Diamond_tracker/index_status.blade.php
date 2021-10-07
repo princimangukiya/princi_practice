@@ -274,7 +274,7 @@
     </div>
     </div><!-- end app-content-->
     </div>
-    <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
 @endsection
 @include('app')

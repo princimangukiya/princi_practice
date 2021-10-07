@@ -18,70 +18,70 @@
     <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
 
     <!--Bootstrap css -->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Style css -->
-    <link href="{{ asset('T3_Admin_Design/assets/css/style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('T3_Admin_Design/assets/css/dark.css') }}" rel="stylesheet" />
-    <link href="{{ asset('T3_Admin_Design/assets/css/skin-modes.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/dark.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
 
     <!-- Animate css -->
-    <link href="{{ asset('T3_Admin_Design/assets/css/animated.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/animated.css') }}" rel="stylesheet" />
 
     <!--Sidemenu css -->
-    <link href="{{ asset('T3_Admin_Design/assets/css/sidemenu.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/sidemenu.css') }}" rel="stylesheet">
 
     <!-- P-scroll bar css-->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
 
     <!---Icons css-->
-    <link href="{{ asset('T3_Admin_Design/assets/css/icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" />
 
     <!-- Data Table Css -->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}"
+    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}"
         rel="stylesheet" />
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}"
+    <link href="{{ asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}"
         rel="stylesheet">
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/datatable/responsive.bootstrap4.min.css') }}"
+    <link href="{{ asset('assets/plugins/datatable/responsive.bootstrap4.min.css') }}"
         rel="stylesheet" />
     <!-- Slect2 css -->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 
     <!-- Simplebar css -->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/plugins/simplebar/css/simplebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}">
 
     <!-- Color Skin css -->
-    <link id="theme" href="{{ asset('T3_Admin_Design/assets/colors/color1.css') }}" rel="stylesheet"
+    <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet"
         type="text/css" />
 
     <!-- Switcher css -->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/switcher/css/switcher.css') }}">
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/switcher/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
 
     <!--Package tag css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/form-select2.min.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/form-select2.min.css') }}"> -->
 
     <!-- INTERNAL File Uploads css -->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
     <!-- INTERNAL File Uploads css-->
-    <link href="{{ asset('T3_Admin_Design/assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet"
         type="text/css" />
 
     <!-- INTERNAL Mutipleselect css-->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/plugins/multipleselect/multiple-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}">
     <!-- INTERNAL Sumoselect css-->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/plugins/sumoselect/sumoselect.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/sumoselect/sumoselect.css') }}">
 
     <!-- INTERNAL telephoneinput css-->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/plugins/telephoneinput/telephoneinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/telephoneinput/telephoneinput.css') }}">
 
     <!-- INTERNAL Jquerytransfer css-->
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/assets/plugins/jQuerytransfer/jquery.transfer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/jQuerytransfer/jquery.transfer.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('T3_Admin_Design/assets/plugins/jQuerytransfer/icon_font/icon_font.css') }}">
+        href="{{ asset('assets/plugins/jQuerytransfer/icon_font/icon_font.css') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('T3_Admin_Design/media/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets\media\css\jquery.dataTables.min.css') }}">
 </head>
 
 <body class="app sidebar-mini">
@@ -243,49 +243,49 @@
     <a href="#top" id="back-to-top"><i class="fe fe-chevrons-up"></i></a>
 
     <!-- Jquery js-->
-    <script src="{{ asset('T3_Admin_Design/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script> -->
 
     <!-- Bootstrap4 js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/bootstrap/popper.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!--Othercharts js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
 
     <!-- Circle-progress js-->
-    <script src="{{ asset('T3_Admin_Design/assets/js/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
 
     <!-- Jquery-rating js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/rating/jquery.rating-stars.js') }}"></script>
+    <script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
 
     <!--Sidemenu js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/sidemenu/sidemenu.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sidemenu/sidemenu.js') }}"></script>
 
     <!-- P-scroll js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/p-scrollbar/p-scrollbar.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/p-scrollbar/p-scroll1.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll1.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
 
 
     <!-- INTERNAL Data tables -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/jszip.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/datatable/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/datatables.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatables.js') }}"></script>
 
 
     <!--INTERNAL Peitychart js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/peitychart/jquery.peity.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/peitychart/peitychart.init.js') }}"></script>
+    <script src="{{ asset('assets/plugins/peitychart/jquery.peity.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 
     <!-- INTERNAL Clipboard js -->
     <script src="assets/plugins/clipboard/clipboard.min.js"></script>
@@ -296,69 +296,69 @@
 
 
     <!--INTERNAL Apexchart js-->
-    <script src="{{ asset('T3_Admin_Design/assets/js/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
 
     <!--INTERNAL ECharts js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/echarts/echarts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/echarts/echarts.js') }}"></script>
 
     <!--INTERNAL Chart js -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/chart/chart.bundle.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/chart/utils.js') }}"></script>
+    <script src="{{ asset('assets/plugins/chart/chart.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/chart/utils.js') }}"></script>
 
     <!-- INTERNAL Select2 js -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/select2/select2.full.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
 
     <!--INTERNAL Moment js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>
 
     <!--INTERNAL Index js-->
-    <script src="{{ asset('T3_Admin_Design/assets/js/index1.js') }}"></script>
+    <script src="{{ asset('assets/js/index1.js') }}"></script>
 
     <!-- INTERNAL File-Uploads Js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
 
     <!-- INTERNAL File uploads js -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/fileupload/js/dropify.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/filupload.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fileupload/js/dropify.js') }}"></script>
+    <script src="{{ asset('assets/js/filupload.js') }}"></script>
 
     <!-- INTERNAL Multipleselect js -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/multipleselect/multiple-select.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/multipleselect/multi-select.js') }}"></script>
+    <script src="{{ asset('assets/plugins/multipleselect/multiple-select.js') }}"></script>
+    <script src="{{ asset('assets/plugins/multipleselect/multi-select.js') }}"></script>
 
     <!--INTERNAL telephoneinput js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/telephoneinput/telephoneinput.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/telephoneinput/inttelephoneinput.js') }}"></script>
+    <script src="{{ asset('assets/plugins/telephoneinput/telephoneinput.js') }}"></script>
+    <script src="{{ asset('assets/plugins/telephoneinput/inttelephoneinput.js') }}"></script>
 
     <!--INTERNAL jquery transfer js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/jQuerytransfer/jquery.transfer.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jQuerytransfer/jquery.transfer.js') }}"></script>
 
     <!--INTERNAL multi js-->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/multi/multi.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/multi/multi.min.js') }}"></script>
 
     <!--INTERNAL Form Advanced Element -->
-    <script src="{{ asset('T3_Admin_Design/assets/js/formelementadvnced.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/form-elements.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/file-upload.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/formelementadvnced.js') }}"></script> -->
+    <script src="{{ asset('assets/js/form-elements.js') }}"></script>
+    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
 
     <!-- Simplebar JS -->
-    <script src="{{ asset('T3_Admin_Design/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <!-- Custom js-->
-    <script src="{{ asset('T3_Admin_Design/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <!-- Switcher js-->
-    <script src="{{ asset('T3_Admin_Design/assets/switcher/js/switcher.js') }}"></script>
+    <script src="{{ asset('assets/switcher/js/switcher.js') }}"></script>
 </body>
 
 <!-- scanner js -->
-<script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
-<script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+<script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
 
-<script src="{{ asset('T3_Admin_Design/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/media/js/jquery.dataTables.min.js') }}"></script>
 
 
 </html>

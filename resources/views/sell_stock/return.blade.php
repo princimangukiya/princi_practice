@@ -90,8 +90,8 @@
 
 
 
-    <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
     <script>
         $(document).ready(function() {

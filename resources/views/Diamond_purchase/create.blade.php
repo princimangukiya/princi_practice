@@ -2,7 +2,7 @@
     <!--/app header-->
     @php
 
-    $avatar = 'T3_Admin_Design/assets/images/users/2.jpg';
+    $avatar = 'assets/images/users/2.jpg';
 
     @endphp
     <!--Page header-->
@@ -167,8 +167,8 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('T3_Admin_Design/assets/js/quagga.min.js') }}"></script>
-    <script src="{{ asset('T3_Admin_Design/assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
