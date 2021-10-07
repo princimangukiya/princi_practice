@@ -290,10 +290,10 @@
                                                 {{ $value->price }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                                {{ date('Y/M/d', strtotime($value->bill_date)) }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->updated_at)) }}
+                                                {{ date('Y/M/d', strtotime($value->updated_at)) }}
                                             </td>
 
                                         </tr>
