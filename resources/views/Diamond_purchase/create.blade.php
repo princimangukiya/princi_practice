@@ -8,7 +8,7 @@
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Add Diamond packet</h4>
+            <h4 class="page-title mb-0">Add Diamond Packet</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Purchase List</a></li>
@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Enter Date :-</label>
+                                <label class="form-label">Enter Bill Date :-</label>
                                 <input placeholder="Enter Date:-" class="form-control" id="bill_date" type="date"
                                     name="bill_date" value="bill_date" required>
                                 @error('bill_date')

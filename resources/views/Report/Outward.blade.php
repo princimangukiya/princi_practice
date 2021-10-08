@@ -3,12 +3,12 @@
 @endsection
 
 @section('content')
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
+    <!-- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
     <style>
         td.dataTables_empty {
             display: none;
@@ -233,7 +233,7 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <table border="0" cellspacing="5" cellpadding="5">
+                            <!-- <table border="0" cellspacing="5" cellpadding="5">
                                 <tbody>
                                     <tr>
                                         <td>Minimum date:</td>
@@ -244,7 +244,7 @@
                                         <td><input type="text" id="max" name="max"></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> -->
                             <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
@@ -437,56 +437,56 @@
     </div><!-- end app-content-->
     </div>
     <script>
-        var minDate, maxDate;
+        // var minDate, maxDate;
 
 
 
-        // Custom filtering function which will search data in column four between two values
-        $.fn.dataTable.ext.search.push(
-            function(settings, data, dataIndex) {
-                alert("hellofgjfg");
-                var min = minDate.val();
-                var max = maxDate.val();
-                var date = new Date(data[7]);
-                console.log(min);
-                if (
-                    (min === null && max === null) ||
-                    (min === null && date <= max) ||
-                    (min <= date && max === null) ||
-                    (min <= date && date <= max)
-                ) {
-                    return true;
-                }
-                return false;
-            }
-        );
+        // // Custom filtering function which will search data in column four between two values
+        // $.fn.dataTable.ext.search.push(
+        //     function(settings, data, dataIndex) {
+        //         alert("hellofgjfg");
+        //         var min = minDate.val();
+        //         var max = maxDate.val();
+        //         var date = new Date(data[7]);
+        //         console.log(min);
+        //         if (
+        //             (min === null && max === null) ||
+        //             (min === null && date <= max) ||
+        //             (min <= date && max === null) ||
+        //             (min <= date && date <= max)
+        //         ) {
+        //             return true;
+        //         }
+        //         return false;
+        //     }
+        // );
 
-        $(document).ready(function() {
-            // Create date inputs
-            minDate = new DateTime($('#min'), {
-                format: 'MMMM Do YYYY'
-            });
-            maxDate = new DateTime($('#max'), {
-                format: 'MMMM Do YYYY'
-            });
+        // $(document).ready(function() {
+        //     // Create date inputs
+        //     minDate = new DateTime($('#min'), {
+        //         format: 'MMMM Do YYYY'
+        //     });
+        //     maxDate = new DateTime($('#max'), {
+        //         format: 'MMMM Do YYYY'
+        //     });
 
-            // DataTables initialisation
-            var table = $('#companyTable').DataTable();
+        //     // DataTables initialisation
+        //     var table = $('#companyTable').DataTable();
 
-            // Refilter the table
+        //     // Refilter the table
 
-            // $('#min, #max').change(function() {
-            //     alert("hello233");
-            //     table.draw();
-            // });
-        });
+        //     // $('#min, #max').change(function() {
+        //     //     alert("hello233");
+        //     //     table.draw();
+        //     // });
+        // });
 
-        function selectMinDate() {
-            alert("hello");
-            // DataTables initialisation
-            var table = $('#companyTable').DataTable();
-            table.draw();
-        }
+        // function selectMinDate() {
+        //     alert("hello");
+        //     // DataTables initialisation
+        //     var table = $('#companyTable').DataTable();
+        //     table.draw();
+        // }
         var inputs = document.getElementsByClassName('setting'),
             setting;
 
@@ -515,17 +515,17 @@
         }
 
         var id, mytable;
-        // $(document).ready(function() {
-        //     mytable = $('#example').DataTable({
-        //         "paging": true,
-        //         "lengthChange": false,
-        //         "searching": true,
-        //         "ordering": true,
-        //         "info": true,
-        //         "autoWidth": false,
-        //         "sDom": 'lfrtip',
-        //     });
-        // });
+        $(document).ready(function() {
+            mytable = $('#companyTable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+        });
 
         $(document).ready(function() {
             managerTabel = $('#managerDataTabel').DataTable({
@@ -544,18 +544,18 @@
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
             var count = 1;
-            // var table = $('#example').DataTable();
-            // table.clear().draw({
-            //     "paging": true,
-            //     "lengthChange": false,
-            //     "searching": true,
-            //     "ordering": true,
-            //     "info": true,
-            //     "autoWidth": false,
-            //     "sDom": 'lfrtip',
-            // });
-            // alert(barcode);
-            // alert(m_id);
+            var table = $('#companyTable').DataTable();
+            table.clear().draw({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "sDom": 'lfrtip',
+            });
+            alert(barcode);
+            alert(m_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -572,17 +572,9 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // alert(response_msg.success);
-                    console.log(response_msg);
-                    // if (response_msg.data == null) {
-                    //     alert('controller Succesfully Called !!!!!');
-                    // }
                     if (response_msg.success) {
 
-                        // $("#p_gst_id").val(bill_no);
                         const length = Object.keys(response_msg.success).length;
-                        // console.log(response_msg.success.length);
-                        // $('#example tbody').empty();
 
                         response_msg.success.forEach(success => {
 
@@ -601,14 +593,10 @@
                             );
                             count = count + 1;
                         });
-                        console.log(response_msg.success.length);
                     }
 
                 }
             });
-
-
-            // alert('hii');
         }
 
         function showManager() {
@@ -626,8 +614,6 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            // alert(barcode);
-            // alert(m_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -644,17 +630,8 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // alert(response_msg.success);
-                    console.log(response_msg);
-                    // if (response_msg.data == null) {
-                    //     alert('controller Succesfully Called !!!!!');
-                    // }
                     if (response_msg.success) {
-
-                        // $("#p_gst_id").val(bill_no);
                         const length = Object.keys(response_msg.success).length;
-                        // console.log(response_msg.success.length);
-                        // $('#managerDataTabel tbody').empty();
 
                         response_msg.success.forEach(success => {
 
@@ -679,9 +656,6 @@
 
                 }
             });
-
-
-            // alert('hii');
         }
     </script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>

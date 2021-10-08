@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Party_Labour Master</h4>
+            <h4 class="page-title mb-0">Party Labour Master</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Party Labour List</a></li>
@@ -99,7 +99,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Party_Labour Details</div>
+                    <div class="card-title">Party Labour Details</div>
                 </div>
                 <div class="card-body">
                     {{-- <form action="/search_PartyLabour_data" method="post">
