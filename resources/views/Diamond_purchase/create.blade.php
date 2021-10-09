@@ -169,10 +169,10 @@
     </div>
     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
+    {{-- <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script> --}}
     <script>
         var id, mytable;
         $(document).ready(function() {
