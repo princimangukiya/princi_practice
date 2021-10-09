@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Carbon;
 
 
 class SellStockController extends Controller
@@ -24,7 +25,7 @@ class SellStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['sell_stock'] = Sell_Stock::where('c_id', $c_id)->with('Supplier', 'Diamond')->get();
+        $data['sell_stock'] = Sell_Stock::where([['c_id', $c_id], ['status', 1]])->with('Supplier', 'Diamond')->get();
         return view('sell_stock.index', $data);
     }
 
@@ -61,13 +62,13 @@ class SellStockController extends Controller
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
+                $newitem->status = 1;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReturn' => 1]);
                 if ($dPurchaseData != null) {
-                    $stockdelete = Ready_Stock::find($DiamondData->r_id);
-                    $stockdelete->delete();
+                    Ready_Stock::where('d_id', $DiamondData->d_id)->update(['status' => 0]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
@@ -82,8 +83,15 @@ class SellStockController extends Controller
     public function destroy($id)
     {
         //
-        $stock = Sell_Stock::find($id);
-        $stock->delete();
+        // $stock = Sell_Stock::find($id);
+        // $stock->delete();
+        $data = Sell_Stock::where('sell_id', $id)->first();
+        $d_id = $data['d_id'];
+        $time = Carbon::now();
+        Sell_Stock::where('sell_id', $id)->update(['deleted_at' => $time]);
+        // $stock->delete();
+        Ready_Stock::withTrashed()->where('d_id', $d_id)->update(['status' => 1]);
+        D_Purchase::where('d_id', $d_id)->update(['isReturn' => NULL]);
         $notification = array(
             'message' => 'User Deleted!',
             'alert-type' => 'success'

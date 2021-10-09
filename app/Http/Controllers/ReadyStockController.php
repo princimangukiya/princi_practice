@@ -24,17 +24,8 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['ready_stock'] = Ready_Stock::where('c_id', $c_id)->with('Manager', 'Diamond')->get();
-        // $bar_code = 985634;
-        // $data = D_Purchase::where('d_barcode', $bar_code)->first();
-        // $data['ready_stock'] = D_Purchase::where('c_id', $c_id)->with('Supplier_Details')->get();
-
-        // $data['ready_stock1']= D_Purchase::join('supplier_details','d_purchase.s_id','=','supplier_details.s_id')
-        // // ->join('supplier_details','d_purchase.s_id','=','supplier_details.s_id')
-        // // ->where("ready_stock.d_id","=","d_purchase.d_id" && "d_purchase.s_id","=","supplier_details.s_id")
-        // ->get('supplier_details.*');
-        // echo $data['ready_stock'];
-        // echo $data;
+        $data['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        // var_dump($data);
         return view('ready_stock.index', $data);
     }
 
@@ -76,6 +67,7 @@ class ReadyStockController extends Controller
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
                 $newitem->d_n_wt = !empty($request->d_n_wt) ? $request->d_n_wt : '';
                 $newitem->c_id = $c_id;
+                $newitem->status = 1;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
@@ -83,8 +75,7 @@ class ReadyStockController extends Controller
                 if ($dPurchaseData != null) {
                     // $stockdelete = Working_Stock::find($DiamondData->w_id);
                     // $stockdelete->delete();
-                    $time = Carbon::now();
-                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['deleted_at' => $time]);
+                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['status' => 0]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
@@ -107,8 +98,13 @@ class ReadyStockController extends Controller
     public function destroy($id)
     {
         //
-        $stock = Ready_Stock::find($id);
-        $stock->delete();
+        $data = Ready_Stock::where('r_id', $id)->first();
+        $d_id = $data['d_id'];
+        $time = Carbon::now();
+        Ready_Stock::where('r_id', $id)->update(['deleted_at' => $time]);
+        // $stock->delete();
+        Working_Stock::withTrashed()->where('d_id', $d_id)->update(['status' => 1]);
+        D_Purchase::where('d_id', $d_id)->update(['isReady' => NULL]);
         $notification = array(
             'message' => 'User Deleted!',
             'alert-type' => 'success'

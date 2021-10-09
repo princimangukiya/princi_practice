@@ -12,7 +12,6 @@ class Working_Stock extends Model
     protected $table = "working_stock";
     protected $primaryKey = "w_id";
     protected $fillable = ['m_id', 'd_id', 'd_barcode'];
-
     public function Manager()
     {
         return $this->belongsTo('App\Models\Manager_Details', 'm_id');

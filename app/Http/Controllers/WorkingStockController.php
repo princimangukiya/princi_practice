@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\D_Purchase;
 use App\Models\Working_Stock;
 use App\Models\Manager_Details;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -22,7 +23,7 @@ class WorkingStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['working_stock'] = Working_Stock::where('c_id', $c_id)->with('Manager', 'Diamond')->get();
+        $data['working_stock'] = Working_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
         // echo $data['working_stock'];
         return view('working_stock.index', $data);
     }
@@ -61,6 +62,7 @@ class WorkingStockController extends Controller
                 $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
                 $newitem->c_id = $c_id;
+                $newitem->status = 1;
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
@@ -76,8 +78,12 @@ class WorkingStockController extends Controller
     public function destroy($id)
     {
         //
-        $stock = Working_Stock::find($id);
-        $stock->delete();
+        $data = Working_Stock::where('w_id', $id)->first();
+        $d_id = $data['d_id'];
+        $time = Carbon::now();
+        Working_Stock::where('w_id', $id)->update(['deleted_at' => $time]);
+        // $stock->delete();
+        D_Purchase::where('d_id', $d_id)->update(['doReady' => NULL]);
         $notification = array(
             'message' => 'User Deleted!',
             'alert-type' => 'success'
