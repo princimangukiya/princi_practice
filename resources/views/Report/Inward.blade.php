@@ -34,7 +34,24 @@
         <!--div-->
         <div class="card">
             <div class=" card-header">
-                <div id="setting" class="selectInward">
+                <div class="col-xl-4 mt-4 mt-xl-0">
+                    <div class="form-group">
+                        <div id="setting" class="custom-controls-stacked"
+                            style="display: flex; justify-content:space-around;">
+                            <label class="custom-control custom-radio custom-control-md">
+                                <input type="radio" class="custom-control-input setting" name="companyTabel-radios1"
+                                    value="option1" id="year" checked="">
+                                <span class="custom-control-label custom-control-label-md">Companies</span>
+                            </label>
+                            <label class="custom-control custom-radio custom-control-md">
+                                <input type="radio" id="month" class="custom-control-input setting"
+                                    name="companyTabel-radios1" value="option2">
+                                <span class="custom-control-label custom-control-label-md">Manager</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="selectInward">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input setting" type="radio" name="inlineRadioOptions" id="year"
                             value="year" checked>
@@ -45,7 +62,7 @@
                             value="month">
                         <label class="form-check-label form-label" for="Manager">Manager</label>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="card" id="cal2">
@@ -241,7 +258,7 @@
             <div class="card-body">
                 <div>
                     <div class="table-responsive">
-                        <table id="example" class="table table-bordered text-nowrap key-buttons">
+                        <table id="companyTabel" class="table table-bordered text-nowrap key-buttons">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
@@ -438,7 +455,7 @@
         });
     });
     $(document).ready(function() {
-        mytable = $('#example').DataTable({
+        mytable = $('#companyTabel').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -458,7 +475,7 @@
         var Start_date = $('#Start_date').val();
         var End_date = $('#End_date').val();
         var count = 1;
-        var mytable = $('#example').DataTable();
+        var mytable = $('#companyTabel').DataTable();
         mytable.clear().draw({
             "paging": true,
             "lengthChange": false,
@@ -495,11 +512,11 @@
                     // $("#p_gst_id").val(bill_no);
                     const length = Object.keys(response_msg.success).length;
                     // console.log(response_msg.success.length);
-                    // $('#example tbody').empty();
+                    // $('#companyTabel tbody').empty();
 
                     response_msg.success.forEach(success => {
                         count + 1;
-                        $("#example").append(
+                        $("#companyTabel").append(
                             '<tr>' +
                             '<td>' + count + '</td>' +
                             '<td>' + success.s_name + '</td>' +
@@ -564,7 +581,7 @@
                     // $("#p_gst_id").val(bill_no);
                     const length = Object.keys(response_msg.success).length;
                     // console.log(response_msg.success.length);
-                    // $('#example tbody').empty();
+                    // $('#companyTabel tbody').empty();
 
                     response_msg.success.forEach(success => {
 

@@ -50,6 +50,9 @@
     <!-- Color Skin css -->
     <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- INTERNAL Date Picker css -->
+    <link href="{{ asset('assets/plugins/date-picker/date-picker.css') }}" rel="stylesheet" />
+
     <!-- Switcher css -->
     <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
@@ -283,12 +286,17 @@
     <script src="{{ asset('assets/plugins/peitychart/peitychart.init.js') }}"></script>
 
     <!-- INTERNAL Clipboard js -->
-    <script src="assets/plugins/clipboard/clipboard.min.js"></script>
-    <script src="assets/plugins/clipboard/clipboard.js"></script>
+    <script src="{{ asset('assets/plugins/clipboard/clipboard.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/clipboard/clipboard.js') }}"></script>
 
     <!-- INTERNAL Prism js -->
-    <script src="assets/plugins/prism/prism.js"></script>
+    <script src="{{ asset('assets/plugins/prism/prism.js') }}"></script>
 
+
+    <!-- INTERNAL Datepicker js -->
+    <script src="{{ asset('assets/plugins/date-picker/date-picker.js') }}"></script>
+    <script src="{{ asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 
     <!--INTERNAL Apexchart js-->
     <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
