@@ -38,12 +38,9 @@
     <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" />
 
     <!-- Data Table Css -->
-    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}"
-        rel="stylesheet" />
-    <link href="{{ asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}"
-        rel="stylesheet">
-    <link href="{{ asset('assets/plugins/datatable/responsive.bootstrap4.min.css') }}"
-        rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatable/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
     <!-- Slect2 css -->
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 
@@ -51,21 +48,19 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}">
 
     <!-- Color Skin css -->
-    <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet"
-        type="text/css" />
+    <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Switcher css -->
     <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
 
     <!--Package tag css-->
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/form-select2.min.css') }}"> -->
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/form-select2.min.css') }}"> --}}
 
     <!-- INTERNAL File Uploads css -->
     <link href="{{ asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
     <!-- INTERNAL File Uploads css-->
-    <link href="{{ asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- INTERNAL Mutipleselect css-->
     <link rel="stylesheet" href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}">
@@ -77,11 +72,10 @@
 
     <!-- INTERNAL Jquerytransfer css-->
     <link rel="stylesheet" href="{{ asset('assets/plugins/jQuerytransfer/jquery.transfer.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/plugins/jQuerytransfer/icon_font/icon_font.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/jQuerytransfer/icon_font/icon_font.css') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('assets\media\css\jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/media/css/jquery.dataTables.min.css') }}">
 </head>
 
 <body class="app sidebar-mini">
@@ -341,7 +335,7 @@
     <script src="{{ asset('assets/plugins/multi/multi.min.js') }}"></script>
 
     <!--INTERNAL Form Advanced Element -->
-    <!-- <script src="{{ asset('assets/js/formelementadvnced.js') }}"></script> -->
+    <script src="{{ asset('assets/js/formelementadvnced.js') }}"></script>
     <script src="{{ asset('assets/js/form-elements.js') }}"></script>
     <script src="{{ asset('assets/js/file-upload.js') }}"></script>
 
