@@ -3,6 +3,7 @@
 @endsection
 
 @section('content')
+
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Diamond Return From Manager</h4>
@@ -158,7 +159,6 @@
     </div>
     </div>
     <!--/div-->
-
     <!-- /Row -->
     <div class="row">
 

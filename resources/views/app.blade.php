@@ -235,9 +235,10 @@
         @endforeach
     @endif
     <a href="#top" id="back-to-top"><i class="fe fe-chevrons-up"></i></a>
-
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <!-- Jquery js-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+
 
     <!-- Bootstrap4 js-->
     <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
@@ -258,7 +259,7 @@
     <!-- P-scroll js-->
     <script src="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll1.js') }}"></script>
-    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll.js') }}"></script> --}}
 
 
     <!-- INTERNAL Data tables -->

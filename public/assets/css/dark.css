@@ -1,7 +1,14 @@
 /*Color variables*/
+
+
 /*border variables*/
+
+
 /*shadow variables*/
+
+
 /*Colors*/
+
 .dark-mode a {
     color: #d5dae2;
 }
@@ -146,7 +153,6 @@ body.dark-mode {
     .dark-mode #sticky {
         color: #FFF;
     }
-
     .dark-mode .horizontalMenu>.horizontalMenu-list>li>ul.sub-menu>li>ul.sub-menu {
         background-color: #272d47;
         border: 1px solid rgba(255, 255, 255, 0.04);
@@ -269,13 +275,14 @@ body.dark-mode {
         box-shadow: 0px 2px 3px rgba(4, 4, 7, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.04);
     }
-
     .dark-mode .horizontalMenu>.horizontalMenu-list {
         background: #272d47;
     }
 }
 
+
 /*------- Forms -------*/
+
 .h-100vh.bg-primary.dark-mode .input-group .form-control {
     border: 1px solid #272d47;
 }
@@ -958,11 +965,21 @@ body.dark-mode {
     color: rgba(0, 0, 0, 0.9);
 }
 
+
 /*-------- Buttons ------*/
+
+
 /*------Drop Downs-------*/
+
+
 /*----- Global Loader -----*/
+
+
 /*----- Custom control -----*/
+
+
 /*------ Navigation -------*/
+
 .navbar-light .navbar-nav .nav-link.show {
     color: rgba(0, 0, 0, 0.9);
 }
@@ -3709,49 +3726,95 @@ body.dark-mode {
     background: #292929;
 }
 
-/*------ Card -------*/
-/*------ Accordion -------*/
-/*------ Email services -------*/
-/*----- Range slider -------*/
-/* Merged labels */
-/*-----Pricing tables-----*/
-/*------ Pricing Styles ---------*/
-/*end of pricing*/
-/*-------Tooptip &popover------*/
-/*alerts*/
-/*----- Typography ------*/
-/*------ Breadcrumb ------*/
-/*-------Accordion-----------*/
-/* ----- v CAN BE DELETED v ----- */
-/* #bs-collapse icon scale option */
-/*-----List Of Dropdwons-----*/
-/*-----Badges-----*/
-/*-----Jumbotron-----*/
-/*-----Countdown-----*/
-/*-----Alerts-----*/
-/*-----progress-----*/
-/*-----Lists-----*/
-/*------ Modal -------*/
-/*------ Carousel -------*/
-/*------ Alignments -------*/
-@media print {
 
+/*------ Card -------*/
+
+
+/*------ Accordion -------*/
+
+
+/*------ Email services -------*/
+
+
+/*----- Range slider -------*/
+
+
+/* Merged labels */
+
+
+/*-----Pricing tables-----*/
+
+
+/*------ Pricing Styles ---------*/
+
+
+/*end of pricing*/
+
+
+/*-------Tooptip &popover------*/
+
+
+/*alerts*/
+
+
+/*----- Typography ------*/
+
+
+/*------ Breadcrumb ------*/
+
+
+/*-------Accordion-----------*/
+
+
+/* ----- v CAN BE DELETED v ----- */
+
+
+/* #bs-collapse icon scale option */
+
+
+/*-----List Of Dropdwons-----*/
+
+
+/*-----Badges-----*/
+
+
+/*-----Jumbotron-----*/
+
+
+/*-----Countdown-----*/
+
+
+/*-----Alerts-----*/
+
+
+/*-----progress-----*/
+
+
+/*-----Lists-----*/
+
+
+/*------ Modal -------*/
+
+
+/*------ Carousel -------*/
+
+
+/*------ Alignments -------*/
+
+@media print {
     .dark-mode pre,
     .dark-mode blockquote {
         border: 1px solid #adb5bd;
     }
-
     .dark-mode .badge {
         border: 1px solid #000;
     }
-
     .dark-mode .table td,
     .dark-mode .text-wrap table td,
     .dark-mode .table th,
     .dark-mode .text-wrap table th {
         background-color: #272d47 !important;
     }
-
     .dark-mode .table-bordered th,
     .dark-mode .text-wrap table th,
     .dark-mode .table-bordered td,
@@ -3760,45 +3823,52 @@ body.dark-mode {
     }
 }
 
+
 /*------ Headers -------*/
+
+
 /*---Mega Menu---*/
+
 @media (max-width: 768px) {
     .dark-mode .richText .richText-toolbar ul li a {
         border: rgba(0, 40, 100, 0.12) solid 1px;
     }
 }
 
+
 /*----- Btn styles------*/
+
+
 /*--------panel----------*/
+
+
 /*---------Thumbnails----------*/
+
+
 /*------ Default Card Values -------*/
+
 @media (max-width: 767.98px) and (min-width: 576px) {
     .dark-mode .header .navsearch i {
         color: #fff;
     }
-
     .dark-mode .search-element .form-control {
         background: #050e25 !important;
         color: #d5dae2;
         border: 1px solid rgba(255, 255, 255, 0.04);
     }
-
     .dark-mode .header .form-inline .form-control::-webkit-input-placeholder,
     .dark-mode .header .navsearch i {
         color: #d5dae2;
     }
-
     .dark-mode .header .form-inline .btn {
         color: #46494a !important;
     }
-
     .dark-mode .animated-arrow.hor-toggle {
         border: 1px solid rgba(255, 255, 255, 0.04);
     }
 }
 
 @media (max-width: 1024px) {
-
     body.dark-mode.search-show:before,
     body.dark-mode.sidebar-show:before {
         background-color: rgba(0, 0, 0, 0.4);
@@ -3810,19 +3880,15 @@ body.dark-mode {
         background: #272d47;
         color: #fff;
     }
-
     .dark-mode .form-control.header-search {
         color: #000;
     }
-
     .dark-mode .header .form-inline .btn {
         color: #46494a !important;
     }
-
     .dark-mode .header .form-inline .form-control::-webkit-input-placeholder {
         color: #d5dae2 !important;
     }
-
     .dark-mode .header .navsearch i {
         color: #d5dae2;
     }
@@ -6098,25 +6164,39 @@ body.dark-mode {
     border-bottom: 0 !important;
 }
 
+
 /*-----selectize ------*/
+
+
 /*----- Date Picker ----*/
+
+
 /*-----Back to Top-----*/
+
+
 /*-- rating--*/
+
+
 /*-----Chat----*/
+
+
 /* --------Added--------- css*/
+
+
 /*=====================================
   Inbox Message Style
   =======================================*/
+
+
 /*--- img container---*/
+
 @media (max-width: 992px) {
     .dark-mode .navsearch {
         border: 0px solid rgba(255, 255, 255, 0.15);
     }
-
     .dark-mode .animated-arrow span {
         background: rgba(255, 255, 255, 0.65);
     }
-
     .dark-mode .animated-arrow span:before,
     .dark-mode .animated-arrow span:after {
         background: rgba(255, 255, 255, 0.65);
@@ -6129,14 +6209,17 @@ body.dark-mode {
     }
 }
 
+
 /***** Chat ******/
+
+
 /*----- Horizontal-Menu ----- */
+
 @media (max-width: 575.98px) {
     .dark-mode .header-brand-img.darkmobile-logo {
         display: block;
         margin-left: 0.5rem;
     }
-
     .dark-mode .header {
         border-bottom: 0px !important;
     }
@@ -6149,25 +6232,20 @@ body.dark-mode {
 }
 
 @media (min-width: 768px) {
-
     .dark-mode .horizontalMenucontainer .header-brand-img.desktop-lgo,
     .dark-mode .horizontalMenucontainer .header-brand-img.mobile-logo {
         display: none;
     }
-
     .dark-mode .horizontalMenucontainer .header-brand-img.dark-logo {
         display: inline-flex;
         display: inline-flex;
     }
-
     .dark-mode.sidenav-toggled .app-sidebar__logo {
         border-right: 1px solid rgba(255, 255, 255, 0.04);
     }
-
     .dark-mode.sidenav-toggled.sidenav-toggled1 .header-brand-img.desktop-lgo {
         display: none;
     }
-
     .dark-mode.sidenav-toggled.sidenav-toggled1 .header-brand-img.dark-logo {
         display: block;
         margin: 0 auto;
@@ -6179,7 +6257,6 @@ body.dark-mode {
     .dark-mode .horizontalMenucontainer .header-brand-img.dark-logo {
         display: inline-flex;
     }
-
     .dark-mode .horizontalMenucontainer .header-brand-img.desktop-lgo {
         display: none;
     }
@@ -6208,13 +6285,11 @@ body.dark-mode {
     .dark-mode .horizontalMenu>.horizontalMenu-list>li>.horizontalMenu-click>i {
         color: rgba(255, 255, 255, 0.2);
     }
-
     .dark-mode .mega-menubg {
         background: #040b1d !important;
         border: 1px solid rgba(255, 255, 255, 0.04);
         box-shadow: none !important;
     }
-
     .dark-mode .horizontalMenu>.horizontalMenu-list>li>ul.sub-menu {
         background-color: #040b1d;
         border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -6223,16 +6298,13 @@ body.dark-mode {
         border-left: 0;
         border-right: 0;
     }
-
     .dark-mode .horizontalMenu>.horizontalMenu-list>li>a.active {
         text-decoration: none;
         background: #0c1731;
     }
-
     .dark-mode .header-brand-img.darkmobile-logo {
         display: none;
     }
-
     .dark-mode .horizontalMenu>.horizontalMenu-list>li>ul.sub-menu li:hover>a {
         color: #d5dae2;
     }
@@ -6262,13 +6334,14 @@ body.dark-mode {
     .dark-mode .top-header1 .header-brand2 .header-brand-img {
         margin-top: 0;
     }
-
     .dark-mode .hor-header.header.top-header.top-header1 {
         border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
     }
 }
 
+
 /* Toggle-menu */
+
 .dark-mode .first-sidemenu {
     background: #272d47 !important;
 }
@@ -6552,4 +6625,4 @@ body.dark-mode {
     box-shadow: none;
 }
 
-/*# sourceMappingURL=dark.css.map */
+# sourceMappingURL=dark.css.map

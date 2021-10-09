@@ -1,7 +1,14 @@
 /*Color variables*/
+
+
 /*border variables*/
+
+
 /*shadow variables*/
+
+
 /*Colors*/
+
 a:hover {
     color: #705ec8;
 }
@@ -1517,7 +1524,9 @@ li.ui-timepicker-selected {
     color: #fff;
 }
 
+
 /*-- Horizontal-menu --*/
+
 .hor-menu .horizontalMenu>.horizontalMenu-list>li>ul.sub-menu>li>a:hover,
 .hor-menu .horizontalMenu>.horizontalMenu-list>li>ul.sub-menu>li>ul.sub-menu>li>a:hover {
     color: #705ec8;
@@ -1545,7 +1554,9 @@ li.ui-timepicker-selected {
     opacity: 0.9;
 }
 
+
 /*-- Sidemenu --*/
+
 .app-sidebar__toggle:hover {
     color: #705ec8;
 }
@@ -1569,16 +1580,13 @@ li.ui-timepicker-selected {
         color: #705ec8;
         background: transparent;
     }
-
     .sidebar-mini.sidenav-toggled.sidenav-toggled1 .app-sidebar .slide-item.active {
         color: #705ec8;
     }
-
     .slide-item:hover,
     .slide-item:focus {
         color: #705ec8;
     }
-
     .sidebar-mini.sidenav-toggled.sidenav-toggled1 .app-sidebar .slide-item.active {
         color: #705ec8;
         background: transparent;
@@ -1603,4 +1611,4 @@ li.ui-timepicker-selected {
     border-color: #705ec8;
 }
 
-/*# sourceMappingURL=color1.css.map */
+# sourceMappingURL=color1.css.map
