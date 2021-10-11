@@ -1,14 +1,14 @@
 @section('page-title')
-    Rate Master
+    Outward Details
 @endsection
 
 @section('content')
     <!-- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
+                <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+                <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
     <style>
         td.dataTables_empty {
             display: none;
@@ -44,7 +44,24 @@
             <!--div-->
             <div class="card">
                 <div class=" card-header">
-                    <div id="setting" class="selectInward">
+                    <div class="col-xl-4 mt-4 mt-xl-0">
+                        <div class="form-group">
+                            <div id="setting" class="custom-controls-stacked"
+                                style="display: flex; justify-content:space-around;">
+                                <label class="custom-control custom-radio custom-control-md">
+                                    <input type="radio" class="custom-control-input form-check-input setting"
+                                        name="companyTabel-radios1" value="year" id="year" checked>
+                                    <span class="custom-control-label custom-control-label-md">Companies</span>
+                                </label>
+                                <label class="custom-control custom-radio custom-control-md">
+                                    <input type="radio" id="month" class="custom-control-input form-check-input setting"
+                                        name="companyTabel-radios1" value="month">
+                                    <span class="custom-control-label custom-control-label-md">Manager</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div id="setting" class="selectInward">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input setting" type="radio" name="inlineRadioOptions" id="year"
                                 value="year" checked>
@@ -55,7 +72,7 @@
                                 value="month">
                             <label class="form-check-label form-label" for="Manager">Manager</label>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card" id="cal2">
@@ -234,17 +251,17 @@
                     <div>
                         <div class="table-responsive">
                             <!-- <table border="0" cellspacing="5" cellpadding="5">
-                                <tbody>
-                                    <tr>
-                                        <td>Minimum date:</td>
-                                        <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maximum date:</td>
-                                        <td><input type="text" id="max" name="max"></td>
-                                    </tr>
-                                </tbody>
-                            </table> -->
+                                            <tbody>
+                                                <tr>
+                                                    <td>Minimum date:</td>
+                                                    <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Maximum date:</td>
+                                                    <td><input type="text" id="max" name="max"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table> -->
                             <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
@@ -659,7 +676,7 @@
         }
     </script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
 
 @endsection
 @include('app')
