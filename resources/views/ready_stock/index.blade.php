@@ -86,7 +86,17 @@
                                             <td>
                                                 {{ $value->Diamond->price }}
                                             </td>
-                                            <td>
+                                            <td class="align-middle"
+                                                style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                <a href="{{ route('ready_stock.edit', ['id' => $value->r_id]) }}"
+                                                    style="margin-right: 5px;">
+                                                    <div class="btn-group align-top">
+                                                        <button class="btn btn-sm btn-success" type="button"
+                                                            data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                                                        <button class="btn btn-sm btn-success" type="button"><i
+                                                                class="fe fe-edit-2"></i></button>
+                                                    </div>
+                                                </a>
                                                 <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
                                                     method="post">
                                                     @csrf
