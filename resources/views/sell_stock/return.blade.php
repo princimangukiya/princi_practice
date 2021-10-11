@@ -23,6 +23,20 @@
             $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
         @endphp
         <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Enter Date :-</label>
+                    <input placeholder="Enter Date:-" class="form-control" id="date" type="date" name="date" value=""
+                        required>
+                    @error('date')
+                        <small class="errorTxt1">
+                            <div id="title-error" class="error" style="margin-left:3rem">
+                                {{ $message }}
+                            </div>
+                        </small>
+                    @enderror
+                </div>
+            </div>
             <div class="col-md-6 col-sm-6">
                 <div class="form-group" style="padding: 20px">
                     <h4><label class="form-label">Select Company :-</label></h4>
