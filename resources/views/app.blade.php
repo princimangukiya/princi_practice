@@ -355,13 +355,14 @@
 
     <!-- Switcher js-->
     <script src="{{ asset('assets/switcher/js/switcher.js') }}"></script>
+    <!-- scanner js -->
+    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+    <script src="{{ asset('assets/media/js/jquery.dataTables.min.js') }}"></script>
+
+
 </body>
-
-<!-- scanner js -->
-<script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
-
-<script src="{{ asset('assets/media/js/jquery.dataTables.min.js') }}"></script>
 
 
 </html>
