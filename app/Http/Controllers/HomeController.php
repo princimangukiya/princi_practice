@@ -47,9 +47,9 @@ class HomeController extends Controller
         $data = array();
         $data['totalManager'] = Count(Manager_Details::where('c_id', '1')->get());
         $data['totalSupplier'] = Count(Supplier_Details::where('c_id', '1')->get());
-        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id', '1')->get());
-        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id', '1')->get());
-        $data['totalSellStock'] = Count(Sell_Stock::where('c_id', '1')->get());
+        $data['totalReadyStock'] = Count(Ready_Stock::where([['c_id', '1'], ['status', '1']])->get());
+        $data['totalWorkingStock'] = Count(Working_Stock::where([['c_id', '1'], ['status', '1']])->get());
+        $data['totalSellStock'] = Count(Sell_Stock::where([['c_id', '1'], ['status', '1']])->get());
         return view('home', $data);
     }
     public function SecondUser()
@@ -58,9 +58,9 @@ class HomeController extends Controller
         $data = array();
         $data['totalManager'] = Count(Manager_Details::where('c_id', '2')->get());
         $data['totalSupplier'] = Count(Supplier_Details::where('c_id', '2')->get());
-        $data['totalReadyStock'] = Count(Ready_Stock::where('c_id', '2')->get());
-        $data['totalWorkingStock'] = Count(Ready_Stock::where('c_id', '2')->get());
-        $data['totalSellStock'] = Count(Sell_Stock::where('c_id', '2')->get());
+        $data['totalReadyStock'] = Count(Ready_Stock::where([['c_id', '2'], ['status', '1']])->get());
+        $data['totalWorkingStock'] = Count(Working_Stock::where([['c_id', '2'], ['status', '1']])->get());
+        $data['totalSellStock'] = Count(Sell_Stock::where([['c_id', '2'], ['status', '1']])->get());
         return view('home', $data);
     }
 }
