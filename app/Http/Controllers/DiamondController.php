@@ -6,6 +6,7 @@ use App\Models\D_Purchase;
 use App\Models\rate_master;
 use App\Models\Supplier_Details;
 use App\Models\rate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -23,6 +24,7 @@ class DiamondController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate', 'supplier')->get();
+
         return view('Diamond_purchase.index', $data);
     }
 
@@ -36,6 +38,7 @@ class DiamondController extends Controller
         $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+        $data['toDaydate'] = Carbon::now()->format('D-m-Y');
         return view('Diamond_purchase.create', $data);
     }
     public function store(Request $request)
@@ -98,49 +101,66 @@ class DiamondController extends Controller
     }
     public function edit(Request $request)
     {
-        $where = array('id' => $request->id);
-        $daimond  = D_Purchase::where($where)->first();
+        $where = array('d_id' => $request->id);
+        $data['Diamond']  = D_Purchase::where($where)->first();
 
-        return Response()->json($daimond);
+        // return Response()->json($Diamond);
         //dd($id);
         // $data = array();
         // $data['supplier'] = D_Purchase::findOrFail($id);
         // return Response::json(array('success' => $data));
-        // return view('Diamond_Purchase.edit', $data);
+        return view('Diamond_Purchase.edit', $data);
     }
     public function update(Request $request, $id)
     {
+        try {
+            $validator = Validator::make($request->all(), [
+                'bar_code' => 'required',
+                'd_wt' => 'required',
+                'shape_id' => 'required',
+                's_name' => 'required',
+            ]);
+            //dd($request);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
 
-        // try {
-        //     $validator = Validator::make($request->all(), [
-        //         's_name' => 'required',
-        //         's_address' => 'required',
-        //         's_gst' => 'required|unique:supplier_details,s_gst',
+            $s_id = $request->s_name;
+            $d_wt = $request->d_wt;
+            $c_id = session()->get('c_id');
+            $newitem = array();
+            $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
+            $newitem['d_wt'] = !empty($request->d_wt) ? $request->d_wt : '';
+            $newitem['s_id'] = $s_id;
+            $newitem['c_id'] = $c_id;
+            $newitem['bill_date'] = $request->bill_date;
+            $newitem['shape_id'] = !empty($request->shape_id) ? $request->shape_id : '';
+            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
+            $json_decoded = json_decode($json_data['json_price']);
+            foreach ($json_decoded[0] as $key => $val) {
+                $r_id = $key;
+                $wt_category = rate::where('rates.r_id', $r_id)->get();
+                $wt_category = $wt_category[0]['wt_category'];
+                $value = explode('-', $wt_category);
+                // $first_value = substr($wt_category, 0, 5);
+                // $last_value = substr($wt_category, -5);
+                if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
+                    $newitem['d_wt_category'] = $key;
+                    $newitem['price'] = $val;
+                }
+            }
+            // dd($newitem);
+            D_Purchase::where('d_id', $id)->update($newitem);
 
-        //     ]);
-        //     //dd($request);
-        //     if ($validator->fails()) {
-        //         return redirect()->back()->withErrors($validator)->withInput($request->all());
-        //     }
+            return Redirect::to('/diamond');
+        } catch (\Throwable $th) {
+            $notification = array(
+                'message' => 'User can`t Update!',
+                'alert-type' => 'error'
+            );
 
-        $c_id = session()->get('c_id');
-        $newitem = new D_Purchase();
-        $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
-        $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
-        $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
-        $newitem->c_id = $c_id;
-        $newitem->bill_date = $request->bill_date;
-
-        //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
-        //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
-        $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
-        //$newitem->d_cla = !empty($request->d_cla) ? $request->d_cla : '';
-        //$newitem->d_exp_pr = !empty($request->d_exp_pr) ? $request->d_exp_pr : '';
-        //$newitem->d_exp = !empty($request->d_exp) ? $request->d_exp : '';
-        D_Purchase::where('d_id', $id)->update($newitem);
-
-        return Redirect::to('/diamond/create');
-        // }
+            return Redirect::to('/diamond')->with($notification);
+        }
     }
     public function destroy($id)
     {

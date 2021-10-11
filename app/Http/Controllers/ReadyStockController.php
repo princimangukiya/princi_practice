@@ -68,6 +68,7 @@ class ReadyStockController extends Controller
                 $newitem->d_n_wt = !empty($request->d_n_wt) ? $request->d_n_wt : '';
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
+                $newitem->bill_date = !empty($request->date) ? $request->date : '';
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
@@ -93,8 +94,53 @@ class ReadyStockController extends Controller
         $data = D_Purchase::where('d_barcode', $bar_code)->first();
         return Response::json(array('success' => $data));
     }
+    public function edit($id)
+    {
+        //dd($id);
+        $data = array();
+        $data['Diamond'] = Ready_Stock::findOrFail($id);
+        $bar_code = $data['Diamond']['d_barcode'];
+        $data['Diamond_purchase'] = D_Purchase::where('d_barcode', $bar_code)->first();
+        // echo $data['Diamond'];
+        return view('ready_stock.edit', $data);
+    }
+    public function update(Request $request, $id)
+    {
 
-    // supplier delete
+        try {
+            $validator = Validator::make($request->all(), [
+                'bar_code' => 'required',
+                'm_id' => 'required',
+                'd_n_wt' => 'required',
+
+            ]);
+            //dd($request);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
+            $c_id = session()->get('c_id');
+            $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
+            $newitem = array();
+            $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
+            $newitem['m_id'] = !empty($request->m_id) ? $request->m_id : '';
+            $newitem['d_n_wt'] = !empty($request->d_n_wt) ? $request->d_n_wt : '';
+            $newitem['c_id'] = $c_id;
+            $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
+            // dd($newitem);
+            Ready_Stock::where('r_id', $id)->update($newitem);
+            $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_n_wt' => $request->d_n_wt, 'price' => $request->price]);
+
+            return Redirect::to('/ready_stock');
+        } catch (\Throwable $th) {
+            $notification = array(
+                'message' => 'User can`t Update!',
+                'alert-type' => 'error'
+            );
+
+            return Redirect::to('/ready_stock')->with($notification);
+        }
+    }
+    // Ready Stock delete
     public function destroy($id)
     {
         //

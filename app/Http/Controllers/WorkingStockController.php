@@ -63,6 +63,7 @@ class WorkingStockController extends Controller
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
+                $newitem->bill_date = !empty($request->date) ? $request->date : '';
                 $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
@@ -73,7 +74,46 @@ class WorkingStockController extends Controller
             return Response::json(array('success' => false));
         }
     }
+    public function edit($id)
+    {
+        //dd($id);
+        $data = array();
+        $data['Diamond'] = Working_Stock::findOrFail($id);
+        // dd($data['Diamond']);
+        return view('working_stock.edit', $data);
+    }
+    public function update(Request $request, $id)
+    {
 
+        try {
+            $validator = Validator::make($request->all(), [
+                'bar_code' => 'required',
+                'm_id' => 'required'
+
+            ]);
+            //dd($request);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
+            $c_id = session()->get('c_id');
+            $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
+            $newitem = array();
+            $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
+            $newitem['m_id'] = !empty($request->m_id) ? $request->m_id : '';
+            $newitem['c_id'] = $c_id;
+
+            Working_Stock::where('w_id', $id)->update($newitem);
+
+            return Redirect::to('/working_stock');
+        } catch (\Throwable $th) {
+            $notification = array(
+                'message' => 'User can`t Update!',
+                'alert-type' => 'error'
+            );
+
+            return Redirect::to('/working_stock')->with($notification);
+        }
+    }
     // supplier delete
     public function destroy($id)
     {
