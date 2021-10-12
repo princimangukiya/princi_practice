@@ -23,7 +23,7 @@ class WorkingStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['working_stock'] = Working_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        $data['working_stock'] = Working_Stock::withTrashed()->where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
         // echo $data['working_stock'];
         return view('working_stock.index', $data);
     }
@@ -43,7 +43,8 @@ class WorkingStockController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
-                'm_id' => 'required'
+                'm_id' => 'required',
+                'date' => 'required'
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -88,8 +89,8 @@ class WorkingStockController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
-                'm_id' => 'required'
-
+                'm_id' => 'required',
+                'date' => 'required'
             ]);
             //dd($request);
             if ($validator->fails()) {
@@ -121,7 +122,7 @@ class WorkingStockController extends Controller
         $data = Working_Stock::where('w_id', $id)->first();
         $d_id = $data['d_id'];
         $time = Carbon::now();
-        Working_Stock::where('w_id', $id)->update(['deleted_at' => $time]);
+        Working_Stock::where('w_id', $id)->update(['deleted_at' => $time, 'status' => 0]);
         // $stock->delete();
         D_Purchase::where('d_id', $d_id)->update(['doReady' => NULL]);
         $notification = array(

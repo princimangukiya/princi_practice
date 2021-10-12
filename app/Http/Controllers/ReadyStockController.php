@@ -24,7 +24,7 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        $data['ready_stock'] = Ready_Stock::withTrashed()->where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
         // var_dump($data);
         return view('ready_stock.index', $data);
     }
@@ -48,6 +48,7 @@ class ReadyStockController extends Controller
                 'bar_code' => 'required',
                 'm_id' => 'required',
                 'd_n_wt' => 'required',
+                'date' => 'required'
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -76,7 +77,7 @@ class ReadyStockController extends Controller
                 if ($dPurchaseData != null) {
                     // $stockdelete = Working_Stock::find($DiamondData->w_id);
                     // $stockdelete->delete();
-                    Working_Stock::where('d_id', $DiamondData->d_id)->update(['status' => 0]);
+                    Working_Stock::where('w_id', $DiamondData->w_id)->update(['status' => 0]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
@@ -144,10 +145,11 @@ class ReadyStockController extends Controller
     public function destroy($id)
     {
         //
-        $data = Ready_Stock::where('r_id', $id)->first();
+        $data = Ready_Stock::withTrashed()->where('r_id', $id)->first();
         $d_id = $data['d_id'];
+        // echo $data;
         $time = Carbon::now();
-        Ready_Stock::where('r_id', $id)->update(['deleted_at' => $time]);
+        Ready_Stock::where('r_id', $id)->update(['deleted_at' => $time, 'status' => 0]);
         // $stock->delete();
         Working_Stock::withTrashed()->where('d_id', $d_id)->update(['status' => 1]);
         D_Purchase::where('d_id', $d_id)->update(['isReady' => NULL]);

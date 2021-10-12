@@ -23,10 +23,10 @@
             $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
         @endphp
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-6" style="padding: 20px;">
                 <div class="form-group">
                     <label class="form-label">Enter Date :-</label>
-                    <input placeholder="Enter Date:-" class="form-control" id="date" type="date" name="date" value=""
+                    <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date" value=""
                         required>
                     @error('date')
                         <small class="errorTxt1">
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6" style="display: flex;">
-                <div class="form-group col-md-12 col-sm-12" style="padding: 20px;">
+                <div class="form-group col-md-12 col-sm-12" style="padding:0 20px;">
                     <label class="form-label">BarCode Value </label>
                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                         value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
@@ -91,6 +91,7 @@
                         <tr>
                             <th class="border-bottom-0">Company Name</th>
                             <th class="border-bottom-0">Bar Code</th>
+                            <th class="border-bottom-0">Date</th>
                         </tr>
                     </thead>
                 </table>
@@ -145,6 +146,7 @@
             var barcode = $('#bar_code').val();
             var s_id = $('#s_id').val();
             var manager_name = $('#s_id').find(":selected").text();
+            var date = $('#Date').val();
             // alert(barcode);
             //  alert(s_id);
             $.ajaxSetup({
@@ -161,12 +163,12 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // alert(response_msg.success);
+                    // console.log(s_id);
                     if (response_msg.success == 200) {
                         alert("Please, choose the right company!");
                         //location.reload();
                     } else if (response_msg.success == true) {
-                        mytable.row.add([manager_name, barcode]);
+                        mytable.row.add([manager_name, barcode, date]);
                         mytable.draw();
                         $('#bar_code').val('');
                         $('#bar_code').focus();

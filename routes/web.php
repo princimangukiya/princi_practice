@@ -82,9 +82,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/rate_master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
     // Route::post('/rate_master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
 
-    //Report 
-    Route::get('/Report', 'App\Http\Controllers\ReportController@index')->name('Report');
-
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
     Route::get('/Inward/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Inward')->name('Inward.generatePDF');

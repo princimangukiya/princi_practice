@@ -22,8 +22,8 @@
         <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class="form-group">
-                    <label class="form-label">Enter Date :-</label>
-                    <input placeholder="Enter Date:-" class="form-control" id="date" type="date" name="date" value=""
+                    <label class="form-label" style="padding-top: 10px">Enter Date :-</label>
+                    <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date" value=""
                         required>
                     @error('date')
                         <small class="errorTxt1">
@@ -56,9 +56,11 @@
                     @enderror
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class=" form-group">
-                    <label class="form-label" style="padding-top: 10px">BarCode Value </label>
+                    <label class="form-label">BarCode Value </label>
                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                         value="{{ old('bar_code') }}" onchange="fetchData()" placeholder="Enter Bar Code" autofocus>
                     @error('bar_code')
@@ -70,9 +72,6 @@
                     @enderror
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <label class="form-label">Old Weight </label>
@@ -90,6 +89,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-6  col-md-6">
                 <div class="form-group">
                     <label class="form-label">Price </label>
@@ -107,9 +108,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <label class="form-label">Enter New Weight :- </label>
@@ -165,6 +164,7 @@
                             <th class="border-bottom-0">Old Weight</th>
                             <th class="border-bottom-0">Price</th>
                             <th class="border-bottom-0">New Weight</th>
+                            <th class="border-bottom-0">Date</th>
                         </tr>
                     </thead>
                 </table>
@@ -222,6 +222,7 @@
                 var d_wt = $('#d_wt').val();
                 var d_n_wt = $('#d_n_wt').val();
                 var manager_name = $('#m_id').find(":selected").text();
+                var date = $('#Date').val();
                 // alert(barcode);
                 // alert(m_id);
                 $.ajaxSetup({
@@ -237,16 +238,17 @@
                         'm_id': m_id,
                         'd_wt': d_wt,
                         'price': price,
-                        'd_n_wt': d_n_wt
+                        'd_n_wt': d_n_wt,
+                        'date': date
                     },
                     dataType: 'json',
                     success: function(response_msg) {
-                        // alert(response_msg.success);
+                        // console.log(date);
                         if (response_msg.success == 200) {
                             alert("Please, choose the right manager!");
                             //location.reload();
                         } else if (response_msg.success == true) {
-                            mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt]);
+                            mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt, date]);
                             mytable.draw();
                             $('#bar_code').val('');
                             $('#price').val('');

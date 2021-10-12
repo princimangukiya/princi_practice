@@ -21,10 +21,10 @@
             <div class="card-title">Give To Manager</div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-6" style="padding: 20px;">
                 <div class="form-group">
                     <label class="form-label">Enter Date :-</label>
-                    <input placeholder="Enter Date:-" class="form-control" id="date" type="date" name="date" value=""
+                    <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="bill_date" value=""
                         required>
                     @error('date')
                         <small class="errorTxt1">
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
-                <div class="form-group" style="padding: 20px">
+                <div class="form-group" style="padding: 0 20px">
                     <label class="form-label"> &nbsp &nbsp BarCode Value </label>
                     <div style="display: flex;">
                         {{-- <div class="col-8"> --}}
@@ -97,6 +97,7 @@
                         <tr>
                             <th class="border-bottom-0">Manager Name</th>
                             <th class="border-bottom-0">Bar Code</th>
+                            <th class="border-bottom-0">Date</th>
                         </tr>
                     </thead>
                 </table>
@@ -152,6 +153,7 @@
             var barcode = $('#bar_code').val();
             var m_id = $('#m_id').val();
             var manager_name = $('#m_id').find(":selected").text();
+            var date = $('#Date').val();
 
 
             // alert(m_id);
@@ -165,7 +167,8 @@
                 url: '{{ route('working_stock.store') }}',
                 data: {
                     'bar_code': barcode,
-                    'm_id': m_id
+                    'm_id': m_id,
+                    'date': date
                 },
                 dataType: 'json',
                 success: function(response_msg) {
@@ -174,7 +177,7 @@
                         alert("check your barcode, This barcode Already assign to other manager!");
                         //location.reload();
                     } else if (response_msg.success == true) {
-                        mytable.row.add([manager_name, barcode]);
+                        mytable.row.add([manager_name, barcode, date]);
                         mytable.draw();
                         $('#bar_code').val('');
                         $('#bar_code').focus();

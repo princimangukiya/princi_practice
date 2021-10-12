@@ -25,7 +25,7 @@ class SellStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['sell_stock'] = Sell_Stock::where([['c_id', $c_id], ['status', 1]])->with('Supplier', 'Diamond')->get();
+        $data['sell_stock'] = Sell_Stock::withTrashed()->where([['c_id', $c_id], ['status', 1]])->with('Supplier', 'Diamond')->get();
         return view('sell_stock.index', $data);
     }
 
@@ -44,6 +44,7 @@ class SellStockController extends Controller
             $validator = Validator::make($request->all(), [
                 'bar_code' => 'required',
                 's_id' => 'required',
+                'date' => 'required'
 
             ]);            //dd($request);
             if ($validator->fails()) {
@@ -69,7 +70,7 @@ class SellStockController extends Controller
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReturn' => 1]);
                 if ($dPurchaseData != null) {
-                    Ready_Stock::where('d_id', $DiamondData->d_id)->update(['status' => 0]);
+                    Ready_Stock::where('r_id', $DiamondData->r_id)->update(['status' => 0]);
                     return Response::json(array('success' => true));
                 } else {
                     return Response::json(array('success' => 403));
@@ -127,10 +128,10 @@ class SellStockController extends Controller
         //
         // $stock = Sell_Stock::find($id);
         // $stock->delete();
-        $data = Sell_Stock::where('sell_id', $id)->first();
+        $data = Sell_Stock::withTrashed()->where('sell_id', $id)->first();
         $d_id = $data['d_id'];
         $time = Carbon::now();
-        Sell_Stock::where('sell_id', $id)->update(['deleted_at' => $time]);
+        Sell_Stock::where('sell_id', $id)->update(['deleted_at' => $time, 'status' => 0]);
         // $stock->delete();
         Ready_Stock::withTrashed()->where('d_id', $d_id)->update(['status' => 1]);
         D_Purchase::where('d_id', $d_id)->update(['isReturn' => NULL]);
