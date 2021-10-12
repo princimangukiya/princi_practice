@@ -84,28 +84,34 @@
                                             <td>
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
-                                            <td class="align-middle"
-                                                style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
-                                                    style="margin-right: 5px;">
-                                                    <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-success" type="button"
-                                                            data-toggle="modal" data-target="#user-form-modal">Edit</button>
-                                                        <button class="btn btn-sm btn-success" type="button"><i
-                                                                class="fe fe-edit-2"></i></button>
-                                                    </div>
-                                                </a>
+                                            @if (empty($value->doReady))
+                                                <td class="align-middle"
+                                                    style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                    <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
+                                                        style="margin-right: 5px;">
+                                                        <div class="btn-group align-top">
+                                                            <button class="btn btn-sm btn-success" type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#user-form-modal">Edit</button>
+                                                            <button class="btn btn-sm btn-success" type="button"><i
+                                                                    class="fe fe-edit-2"></i></button>
+                                                        </div>
+                                                    </a>
 
-                                                <form action="{{ route('diamond.destroy', $value->d_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div class="btn-group align-top" style="margin-left: 5px;">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
-                                                    </div>
-                                                </form>
-                                            </td>
+                                                    <form action="{{ route('diamond.destroy', $value->d_id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <div class="btn-group align-top" style="margin-left: 5px;">
+                                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                                            <button class="btn btn-sm btn-danger"><i
+                                                                    class="fe fe-trash-2"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            @else
+                                                <td>-</td>
+                                            @endif
+
                                         </tr>
                                     @endforeach
 

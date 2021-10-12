@@ -130,17 +130,17 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
-        // $suplier = Supplier_Details::withTrashed()->find($id);
-        // $suplier->delete();
-        // // dd($suplier);
-        // // $time = Carbon::now();
-        // // Supplier_Details::where('s_id', $id)->update(['deleted_at' => $time]);
-        // $notification = array(
-        //     'message' => 'User Deleted!',
-        //     'alert-type' => 'success'
-        // );
+        $suplier = Supplier_Details::withTrashed()->find($id);
+        $suplier->delete();
+        // dd($suplier);
+        // $time = Carbon::now();
+        // Supplier_Details::where('s_id', $id)->update(['deleted_at' => $time]);
+        $notification = array(
+            'message' => 'User Deleted!',
+            'alert-type' => 'success'
+        );
 
-        // return Redirect::to('/supplier')->with($notification);
-        echo "This Controller";
+        return Redirect::to('/supplier')->with($notification);
+        // echo "This Controller";
     }
 }

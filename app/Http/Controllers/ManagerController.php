@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\D_Purchase;
 use App\Models\Supplier_Details;
 use App\Models\Manager_Details;
+use App\Models\Ready_Stock;
+use App\Models\Working_Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -127,6 +129,16 @@ class ManagerController extends Controller
         //
         $suplier = Manager_Details::find($id);
         $suplier->delete();
+        $ready_stock = Ready_Stock::where('m_id', $id)->get();
+        foreach ($ready_stock as $value) {
+            $value->delete();
+        }
+        // $ready_stock->delete();
+        $working_stock = Working_Stock::where('m_id', $id)->get();
+        foreach ($working_stock as $value) {
+            $value->delete();
+        }
+        // $working_stock->delete();
         $notification = array(
             'message' => 'User Deleted!',
             'alert-type' => 'success'

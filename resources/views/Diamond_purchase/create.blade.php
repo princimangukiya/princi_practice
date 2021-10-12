@@ -333,10 +333,10 @@
                     } else if (response_msg.success == true) {
                         mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
                         mytable.draw();
-                        $('#s_id').val('');
+                        // $('#s_id').val('');
                         $('#bar_code').val('');
-                        $('#d_wt').val('');
-                        $('#shape_id').val('');
+                        $('#d_wt').val('0.');
+                        // $('#shape_id').val('');
                         $('#bill_date').focus();
 
                     } else {
