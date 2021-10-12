@@ -3,6 +3,78 @@
 @endsection
 
 @section('content')
+    <!--Favicon -->
+    {{-- <link rel="icon" href="{{ asset('assets/images/brand/favicon.ico') }}" type="image/x-icon" /> --}}
+
+    <!--Bootstrap css -->
+    <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Style css -->
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/dark.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
+
+    <!-- Animate css -->
+    <link href="{{ asset('assets/css/animated.css') }}" rel="stylesheet" />
+
+    <!--Sidemenu css -->
+    <link href="{{ asset('assets/css/sidemenu.css') }}" rel="stylesheet">
+
+    <!-- P-scroll bar css-->
+    <link href="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
+
+    <!---Icons css-->
+    <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" />
+    <!-- INTERNAL Prism Css -->
+    <link href="{{ asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
+
+    <!-- Simplebar css -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}">
+
+    <!-- Color Skin css -->
+    <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Switcher css -->
+    <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
+    <!-- Jquery js-->
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+
+    <!-- Bootstrap4 js-->
+    <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!--Othercharts js-->
+    <script src="{{ asset('assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Circle-progress js-->
+    <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
+
+    <!-- Jquery-rating js-->
+    <script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
+
+    <!--Sidemenu js-->
+    <script src="{{ asset('assets/plugins/sidemenu/sidemenu.js') }}"></script>
+
+    <!-- P-scroll js-->
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll1.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
+
+    <!-- INTERNAL Clipboard js -->
+    <script src="{{ asset('assets/plugins/clipboard/clipboard.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/clipboard/clipboard.js') }}"></script>
+
+    <!-- INTERNAL Prism js -->
+    <script src="{{ asset('assets/plugins/prism/prism.js') }}"></script>
+    <!-- Simplebar JS -->
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <!-- Custom js-->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <!-- Switcher js-->
+    <script src="{{ asset('assets/switcher/js/switcher.js') }}"></script>
+
     <style>
         .table-responsive {
             width: 100%;
@@ -78,9 +150,13 @@
                                             <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
                                                 @csrf
                                                 <div class="btn-group align-top" style="margin-left: 5px;">
-                                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                                    <button class="btn btn-sm btn-danger"><i
-                                                            class="fe fe-trash-2"></i></button>
+                                                    <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
+                                                        data-toggle="modal" href=""><a data-target="#modaldemo3"
+                                                            data-toggle="modal" href="">
+                                                            Delete</a></button>
+
+                                                    <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
+                                                        data-toggle="modal" href=""><i class="fe fe-trash-2"></i></button>
                                                 </div>
                                             </form>
                                         </td>
@@ -89,27 +165,64 @@
 
                             </tbody>
                         </table>
+                        <div class="card" id="modal1">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    Small Modal
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="p-4 bg-light border border-bottom-0">
+                                    <div class="modal d-block pos-static">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h6 class="modal-title">Notice</h6><button aria-label="Close"
+                                                        class="close" data-dismiss="modal" type="button"><span
+                                                            aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>It is a long established fact that a reader will be distracted by the
+                                                        readable content of a page when looking at its layout.</p>
+                                                </div>
+                                                <div class="modal-footer justify-content-center">
+                                                    <button class="btn btn-indigo" type="button">Save
+                                                        changes</button> <button class="btn btn-secondary"
+                                                        type="button">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- modal-wrapper-demo -->
+                                <div class="text-center py-4 bg-light border">
+                                    <a class="btn btn-primary" data-target="#modaldemo2" data-toggle="modal" href="#">View
+                                        Live Demo</a>
+                                </div>
+                                <!-- pd-y-30 -->
+                            </div>
+                            <!---Prism Pre code-->
+                            <div class="html-code"><i class="las la-code mr-2"></i> Html </div>
+                            <figure class="highlight mb-0" id="element2">
+
+                            </figure>
+                            <!---Prism Pre code--
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--/div-->
+                <!--/div-->
 
 
+                        </div>
+                    </div>
+                    <!-- /Row -->
+
+                </div>
+            </div><!-- end app-content-->
         </div>
-    </div>
-    <!-- /Row -->
+        <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+        {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
 
-    </div>
-    </div><!-- end app-content-->
-    </div>
-    <script>
-        // $('#example').DataTable({
-        //     "autoWidth": true,
-        // });
-    </script>
-    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
-
-
-@endsection
-@include('app')
+    @endsection
+    @include('app')

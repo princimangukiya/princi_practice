@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\D_Purchase;
 use App\Models\Supplier_Details;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -129,13 +130,17 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
-        $suplier = Supplier_Details::find($id);
-        $suplier->delete();
-        $notification = array(
-            'message' => 'User Deleted!',
-            'alert-type' => 'success'
-        );
+        // $suplier = Supplier_Details::withTrashed()->find($id);
+        // $suplier->delete();
+        // // dd($suplier);
+        // // $time = Carbon::now();
+        // // Supplier_Details::where('s_id', $id)->update(['deleted_at' => $time]);
+        // $notification = array(
+        //     'message' => 'User Deleted!',
+        //     'alert-type' => 'success'
+        // );
 
-        return Redirect::to('/rate_master')->with($notification);
+        // return Redirect::to('/supplier')->with($notification);
+        echo "This Controller";
     }
 }

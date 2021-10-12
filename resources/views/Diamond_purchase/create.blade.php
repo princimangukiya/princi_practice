@@ -49,35 +49,10 @@
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
-                        {{-- <div class="card-body">
-                            <p class="mg-b-20 mg-sm-b-40">The datepicker is tied to a standard form input field. Click on
-                                the input to open an interactive calendar in a small overlay. If a date is chosen, feedback
-                                is shown as the input's value.</p>
-                            <div class="wd-200 mg-b-30"> --}}
-                        {{-- <div class="col-sm-6 col-md-6">
-                            <label class="form-label">Enter Bill Date :-</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18"
-                                            viewBox="0 0 24 24" width="18">
-                                            <path d="M0 0h24v24H0V0z" fill="none" />
-                                            <path
-                                                d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z" />
-                                            <path d="M4 5.01h16V8H4z" opacity=".3" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date">
-                            </div>
-                        </div> --}}
-                        {{-- </div>
-                        </div>
-                    </div> --}}
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Enter Bill Date :-</label>
-                                <input placeholder="Enter Date:-" class="form-control" id="bill_date" type="date"
+                                <input placeholder="Enter Date:-" class="form-control" id="Bill_date" type="date"
                                     name="bill_date" value="" required>
                                 @error('bill_date')
                                     <small class="errorTxt1">
@@ -112,7 +87,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label class="form-label">BarCode Value </label>
+                                <label class="form-label">BarCode Value</label>
                                 <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                                     value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
                                 @error('bar_code')
@@ -192,7 +167,7 @@
                                     {{-- <th>Package</th> --}}
                                     <th class="border-bottom-0">Shape</th>
                                     <th class="border-bottom-0">Buy Date</th>
-                                    <th class="border-bottom-0">Action</th>
+                                    {{-- <th class="border-bottom-0">Action</th> --}}
 
 
                                 </tr>
@@ -213,7 +188,6 @@
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script> --}}
     <script>
-        $(".selector").datepicker("setDate", new Date());
         var id, mytable;
         $(document).ready(function() {
             mytable = $('#tblItemShow').DataTable({
@@ -329,7 +303,7 @@
             var weight = $('#d_wt').val();
             var shape = $('#shape_id').val();
             var s_id = $('#s_id').val();
-            var bill_date = $('#bill_date').val();
+            var bill_date = $('#Bill_date').val();
             var shapevalue = $('#shape_id').find(":selected").text();
             var partyName = $('#s_id').find(":selected").text();
             // alert(barcode);
@@ -352,7 +326,7 @@
                 dataType: 'json',
 
                 success: function(response_msg) {
-                    // alert(response_msg.success);
+                    // alert(bill_date);
                     if (response_msg.success == 200) {
                         alert("Barcode already exist!");
                         //location.reload();

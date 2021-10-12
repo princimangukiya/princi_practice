@@ -38,24 +38,10 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Supplier Name </label>
+                                    <label class="form-label">Supplier Name:- </label>
                                     <input id="s_name" type="text" name="s_name" class="form-control inputField"
                                         value="{{ old('s_name') }}" placeholder="Enter Supplier Name" autofocus>
                                     @error('s_name')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Supplier Address</label>
-                                    <input id="s_address" type="text" name="s_address" class="form-control inputField"
-                                        value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required>
-                                    @error('s_address')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">
                                                 {{ $message }}
@@ -78,7 +64,24 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Supplier Address:-</label>
+                                    <textarea id="s_address" type="text" name="s_address"
+                                        class="form-control mb-4 inputField" rows="3" value="{{ old('s_address') }}"
+                                        placeholder="Enter Supplier Address" required
+                                        style="margin-top: 0px; margin-bottom: 16px; height: 81px;"></textarea>
+                                    {{-- <input id="s_address" type="text" name="s_address" class="form-control inputField"
+                                        value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required> --}}
+                                    @error('s_address')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                     </div>

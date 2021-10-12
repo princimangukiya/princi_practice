@@ -49,20 +49,6 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Supplier Address</label>
-                                    <input id="s_address" type="text" name="s_address" class="form-control inputField"
-                                        value="{{ $supplier->s_address }}" placeholder="Enter Supplier Address" required>
-                                    @error('s_address')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
                                     <label class="form-label">Supplier Gst :-</label>
                                     <input placeholder="Enter Supplier Gst" class="form-control inputField" id="s_gst"
                                         type="text" name="s_gst" value="{{ $supplier->s_gst }}" required>
@@ -75,7 +61,22 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Supplier Address:-</label>
+                                    <textarea id="s_address" type="text" name="s_address"
+                                        class="form-control mb-4 inputField" rows="3" placeholder="Enter Supplier Address"
+                                        required
+                                        style="margin-top: 0px; margin-bottom: 16px; height: 81px;">{{ $supplier->s_address }}</textarea>
+                                    @error('s_address')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                     </div>

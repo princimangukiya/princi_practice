@@ -30,6 +30,20 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-sm-6 col-md-6" style="padding: 20px;">
+                            <div class="form-group">
+                                <label class="form-label">Enter Date :-</label>
+                                <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
+                                    name="bill_date" value="{{ $Diamond->bill_date }}" required>
+                                @error('date')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <h4><label class="form-label" style="padding-top: 10px">Select Manager :-</label></h4>
@@ -54,7 +68,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class=" form-group">
-                                <label class="form-label" style="padding-top: 10px">BarCode Value </label>
+                                <label class="form-label" style="padding-top: 10px">BarCode Value</label>
                                 <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                                     value="{{ $Diamond->d_barcode }}" onchange="fetchData()" placeholder="Enter Bar Code"
                                     autofocus>

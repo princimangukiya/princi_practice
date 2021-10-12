@@ -79,10 +79,44 @@
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
+                                                        <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
+                                                            data-toggle="modal" href="">Delete</button>
+                                                        <button data-target="#modaldemo3" data-toggle="modal" href=""><i
                                                                 class="fe fe-trash-2"></i></button>
                                                     </div>
+                                                    <div class="p-4 bg-light border border-bottom-0">
+                                                        <div class="modal d-block pos-static">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content modal-content-demo">
+                                                                    <div class="modal-header">
+                                                                        <h6 class="modal-title">Message Preview</h6>
+                                                                        <button aria-label="Close" class="close"
+                                                                            data-dismiss="modal" type="button"><span
+                                                                                aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h6>Why We Use Electoral College, Not Popular Vote
+                                                                        </h6>
+                                                                        <p>It is a long established fact that a reader will
+                                                                            be distracted by the
+                                                                            readable content of a page when looking at its
+                                                                            layout. The point of
+                                                                            using Lorem Ipsum is that it has a more-or-less
+                                                                            normal distribution of
+                                                                            letters, as opposed to using 'Content here,
+                                                                            content here', making it
+                                                                            look like readable English.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-indigo" type="button">Save
+                                                                            changes</button> <button
+                                                                            class="btn btn-secondary"
+                                                                            type="button">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- modal-wrapper-demo -->
                                                 </form>
                                             </td>
                                             {{-- <td>
@@ -94,6 +128,10 @@
 
                                 </tbody>
                             </table>
+
+
+
+
                         </div>
                     </div>
                 </div>

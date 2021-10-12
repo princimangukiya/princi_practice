@@ -21,7 +21,7 @@
             <div class="card-title">Give To Manager</div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-6" style="padding: 20px;">
+            <div class="col-sm-6 col-md-6" style="padding:1.5rem 2.4rem;">
                 <div class="form-group">
                     <label class="form-label">Enter Date :-</label>
                     <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="bill_date" value=""
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group" style="padding: 20px;">
+                <div class="form-group" style="padding: 1.5rem;">
                     <h4><label class="form-label">Select Manager :-</label></h4>
                     <select id="m_id" name="m_id" required class="form-control select2 inputField" required autofocus>
                         <optgroup label="Managers">
@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
-                <div class="form-group" style="padding: 0 20px">
-                    <label class="form-label"> &nbsp &nbsp BarCode Value </label>
+                <div class="form-group" style="padding: 0 1.5rem">
+                    <label class="form-label">BarCode Value </label>
                     <div style="display: flex;">
                         {{-- <div class="col-8"> --}}
                         <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
@@ -154,7 +154,7 @@
             var m_id = $('#m_id').val();
             var manager_name = $('#m_id').find(":selected").text();
             var date = $('#Date').val();
-
+            var c_id = '{{ Session::get('c_id') }}';
 
             // alert(m_id);
             $.ajaxSetup({
@@ -183,7 +183,14 @@
                         $('#bar_code').focus();
 
                     } else if (response_msg.success == 404) {
-                        alert('Your Barcode is not valid!');
+                        // alert(c_id);
+                        if (c_id == 1) {
+                            alert('You can not assign Eklingji Barcode to VmJewles!');
+                        } else {
+                            alert('You can not assign VmJewles Barcode to Eklingji!');
+                        }
+
+
                         $('#bar_code').focus();
                     } else {
                         alert('Please, Fill all the fields!');

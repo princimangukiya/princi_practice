@@ -48,20 +48,6 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Manager Address</label>
-                                    <input id="m_address" type="text" name="m_address" class="form-control inputField"
-                                        value="{{ old('m_address') }}" placeholder="Enter Manager Address" required>
-                                    @error('m_address')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
                                     <label class="form-label">Manager Phone No.</label>
                                     <input placeholder="Enter Manager Phone No." class="form-control inputField"
                                         id="m_phone" type="text" name="m_phone" value="{{ old('m_phone') }}" required>
@@ -88,7 +74,24 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Manager Address</label>
+                                    <textarea id="m_address" type="text" name="m_address"
+                                        class="form-control mb-4 inputField" rows="3" value="{{ old('m_address') }}"
+                                        placeholder="Enter Manager Address" required
+                                        style="margin-top: 0px; margin-bottom: 16px; height: 81px;"></textarea>
+                                    {{-- <input id="m_address" type="text" name="m_address" class="form-control inputField"
+                                        value="{{ old('m_address') }}" placeholder="Enter Manager Address" required> --}}
+                                    @error('m_address')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                     </div>

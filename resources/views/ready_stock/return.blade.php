@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class=" form-group">
-                    <label class="form-label">BarCode Value </label>
+                    <label class="form-label">BarCode Value</label>
                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                         value="{{ old('bar_code') }}" onchange="fetchData()" placeholder="Enter Bar Code" autofocus>
                     @error('bar_code')

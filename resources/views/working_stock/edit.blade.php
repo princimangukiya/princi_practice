@@ -32,6 +32,20 @@
 
                         <div class="card-title font-weight-bold">Manager info:</div>
                         <div class="row">
+                            <div class="col-sm-6 col-md-6" style="padding: 20px;">
+                                <div class="form-group">
+                                    <label class="form-label">Enter Date :-</label>
+                                    <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
+                                        name="bill_date" value="{{ $Diamond->bill_date }}" required>
+                                    @error('date')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group" style="padding: 20px;">
                                     <h4><label class="form-label">Select Manager :-</label></h4>
@@ -56,21 +70,19 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <div class="form-group" style="padding: 20px">
-                                    <label class="form-label"> &nbsp &nbsp BarCode Value </label>
-                                    <div style="display: flex;">
-                                        {{-- <div class="col-8"> --}}
-                                        <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
-                                            value="{{ $Diamond->d_barcode }}" placeholder="Enter Bar Code" autofocus
-                                            required>
-                                        @error('bar_code')
-                                            <small class="errorTxt1">
-                                                <div id="title-error" class="error" style="margin-left:3rem">
-                                                    {{ $message }}
-                                                </div>
-                                            </small>
-                                        @enderror
-                                    </div>
+                                <div class="form-group" style="padding:20px 0px">
+                                    <label class="form-label">BarCode Value</label>
+
+                                    {{-- <div class="col-8"> --}}
+                                    <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
+                                        value="{{ $Diamond->d_barcode }}" placeholder="Enter Bar Code" autofocus required>
+                                    @error('bar_code')
+                                        <small class="errorTxt1">
+                                            <div id="title-error" class="error" style="margin-left:3rem">
+                                                {{ $message }}
+                                            </div>
+                                        </small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

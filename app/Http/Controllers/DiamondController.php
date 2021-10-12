@@ -23,7 +23,7 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate', 'supplier')->get();
+        $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate')->get();
 
         return view('Diamond_purchase.index', $data);
     }
@@ -69,7 +69,7 @@ class DiamondController extends Controller
                 $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
-                $newitem->bill_date = $request->bill_date;
+                $newitem->bill_date =  !empty($request->bill_date) ? $request->bill_date : '';
                 //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
                 //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
                 $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
