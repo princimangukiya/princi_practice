@@ -70,8 +70,8 @@
                             <div class=" form-group">
                                 <label class="form-label" style="padding-top: 10px">BarCode Value</label>
                                 <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
-                                    value="{{ $Diamond->d_barcode }}" onchange="fetchData()" placeholder="Enter Bar Code"
-                                    autofocus>
+                                    value="{{ $Diamond_purchase->d_barcode }}" onchange="fetchData()"
+                                    placeholder="Enter Bar Code" autofocus>
                                 @error('bar_code')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">

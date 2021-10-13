@@ -36,7 +36,7 @@
                             $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
                         @endphp
                         <div class="row">
-                            <div class="col-sm-6 col-md-6" style="padding: 20px;">
+                            <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Enter Date :-</label>
                                     <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <div class="form-group" style="padding: 20px">
+                                <div class="form-group">
                                     <h4><label class="form-label">Select Company :-</label></h4>
                                     <select id="s_id" name="s_id" required class="form-control select2">
                                         <optgroup label="Company">
@@ -72,11 +72,11 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6" style="display: flex;">
-                                <div class="form-group" style="padding: 20px;">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
                                     <label class="form-label">BarCode Value</label>
                                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
-                                        value="{{ $Diamond->d_barcode }}" placeholder="Enter Bar Code" autofocus>
+                                        value="{{ $Diamond_purchase->d_barcode }}" placeholder="Enter Bar Code" autofocus>
                                     @error('bar_code')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">

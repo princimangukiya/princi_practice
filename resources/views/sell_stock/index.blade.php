@@ -79,12 +79,11 @@
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
-                                                            data-toggle="modal" href="">Delete</button>
-                                                        <button data-target="#modaldemo3" data-toggle="modal" href=""><i
+                                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                                        <button class="btn btn-sm btn-danger"><i
                                                                 class="fe fe-trash-2"></i></button>
                                                     </div>
-                                                    <div class="p-4 bg-light border border-bottom-0">
+                                                    {{-- <div class="p-4 bg-light border border-bottom-0">
                                                         <div class="modal d-block pos-static">
                                                             <div class="modal-dialog modal-lg" role="document">
                                                                 <div class="modal-content modal-content-demo">
@@ -116,8 +115,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div><!-- modal-wrapper-demo -->
+                                                    </div><!-- modal-wrapper-demo --> --}}
                                                 </form>
+
                                             </td>
                                             {{-- <td>
                                                     <a href="{{ route('user.edit',['id'=>$user->id]) }}"><i class="fa fa-pencil">Edit</i></a>
@@ -148,7 +148,7 @@
     </div>
 
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
 
 
 @endsection

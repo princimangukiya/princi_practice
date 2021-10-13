@@ -159,7 +159,8 @@
                 url: '{{ route('sell_stock.store') }}',
                 data: {
                     'bar_code': barcode,
-                    's_id': s_id
+                    's_id': s_id,
+                    'date': date
                 },
                 dataType: 'json',
                 success: function(response_msg) {

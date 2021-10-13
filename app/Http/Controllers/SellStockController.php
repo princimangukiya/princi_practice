@@ -65,7 +65,6 @@ class SellStockController extends Controller
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
                 $newitem->bill_date = !empty($request->date) ? $request->date : '';
-                $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReturn' => 1]);
@@ -85,8 +84,8 @@ class SellStockController extends Controller
         //dd($id);
         $data = array();
         $data['Diamond'] = Sell_Stock::findOrFail($id);
-        $bar_code = $data['Diamond']['d_barcode'];
-        $data['Diamond_purchase'] = D_Purchase::where('d_barcode', $bar_code)->first();
+        $bar_code = $data['Diamond']['d_id'];
+        $data['Diamond_purchase'] = D_Purchase::where('d_id', $bar_code)->first();
         // echo $data['Diamond'];
         return view('sell_stock.edit', $data);
     }
@@ -103,15 +102,14 @@ class SellStockController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
             $c_id = session()->get('c_id');
-            $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
+            $DiamondData = Sell_Stock::where('sell_id', $id)->first();
             $newitem = array();
             $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
             $newitem['s_id'] = !empty($request->s_id) ? $request->s_id : '';
             $newitem['c_id'] = $c_id;
-            $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
             // dd($newitem);
             Sell_Stock::where('sell_id', $id)->update($newitem);
-
+            D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code]);
             return Redirect::to('/sell_stock');
         } catch (\Throwable $th) {
             $notification = array(

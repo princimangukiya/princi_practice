@@ -24,7 +24,7 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['ready_stock'] = Ready_Stock::withTrashed()->where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        $data['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
         // var_dump($data);
         return view('ready_stock.index', $data);
     }
@@ -70,7 +70,7 @@ class ReadyStockController extends Controller
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
                 $newitem->bill_date = !empty($request->date) ? $request->date : '';
-                $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
+                // $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReady' => 1, 'd_n_wt' => $request->d_n_wt, 'price' => $request->price]);
@@ -100,8 +100,8 @@ class ReadyStockController extends Controller
         //dd($id);
         $data = array();
         $data['Diamond'] = Ready_Stock::findOrFail($id);
-        $bar_code = $data['Diamond']['d_barcode'];
-        $data['Diamond_purchase'] = D_Purchase::where('d_barcode', $bar_code)->first();
+        $bar_code = $data['Diamond']['d_id'];
+        $data['Diamond_purchase'] = D_Purchase::where('d_id', $bar_code)->first();
         // echo $data['Diamond'];
         return view('ready_stock.edit', $data);
     }
@@ -120,16 +120,16 @@ class ReadyStockController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
             $c_id = session()->get('c_id');
-            $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
+            $DiamondData = Ready_Stock::where('r_id', $id)->first();
             $newitem = array();
             $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
             $newitem['m_id'] = !empty($request->m_id) ? $request->m_id : '';
             $newitem['d_n_wt'] = !empty($request->d_n_wt) ? $request->d_n_wt : '';
             $newitem['c_id'] = $c_id;
-            $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
+            // $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
             // dd($newitem);
             Ready_Stock::where('r_id', $id)->update($newitem);
-            $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_n_wt' => $request->d_n_wt, 'price' => $request->price]);
+            $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code, 'd_n_wt' => $request->d_n_wt, 'price' => $request->price]);
 
             return Redirect::to('/ready_stock');
         } catch (\Throwable $th) {
