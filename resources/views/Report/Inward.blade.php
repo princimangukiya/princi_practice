@@ -217,6 +217,7 @@
                                     <optgroup label="Company">
                                         <option value="" disabled selected>Choose Company</option>
                                         @if (count($rate) > 0)
+                                            <option value="">All Company Inward Search</option>
                                             @foreach ($rate as $value)
 
                                                 <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
@@ -314,12 +315,12 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <h4><label class="form-label">Select Manager :-</label></h4>
-                                <select id="m_id" name="m_id" required class="form-control select2">
+                                <select id="m_Id" name="m_id" required class="form-control select2">
                                     <optgroup label="Manager">
                                         <option value="" disabled selected>Choose Manager</option>
                                         @if (count($manager) > 0)
+                                            <option value="">All Manager Inward Search</option>
                                             @foreach ($manager as $value)
-
                                                 <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
                                             @endforeach
                                         @endif
@@ -338,7 +339,7 @@
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             Start
                                             Date:- </label></h4>
-                                    <input type="date" id="Start_date" name="Start_date" style="padding: 5px;">
+                                    <input type="date" id="Start_date_Manager" name="Start_date" style="padding: 5px;">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -346,7 +347,7 @@
                                     <h4><label class="form-label" style="display: flex; justify-content:start;">Select
                                             End
                                             Date:- </label></h4>
-                                    <input type="date" id="End_date" name="End_date" style="padding: 5px;">
+                                    <input type="date" id="End_date_Manager" name="End_date" style="padding: 5px;">
                                 </div>
                             </div>
 
@@ -543,9 +544,9 @@
 
         function showManagerData() {
             // alert("hello");
-            var m_id = $('#m_id').val();
-            var Start_date = $('#Start_date').val();
-            var End_date = $('#End_date').val();
+            var m_id = $('#m_Id').val();
+            var Start_date_Manager = $('#Start_date_Manager').val();
+            var End_date_Manager = $('#End_date_Manager').val();
             var count = 1;
             var managerTabel = $('#managerDataTabel').DataTable();
             managerTabel.clear().draw({
@@ -557,7 +558,10 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            // alert(barcode);
+            // alert(m_id);
+            // alert(Start_date_Manager);
+            // alert(End_date_Manager);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -569,8 +573,8 @@
                 url: '{{ route('Inward.search_data_manager') }}',
                 data: {
                     'm_id': m_id,
-                    'Start_date': Start_date,
-                    'End_date': End_date,
+                    'Start_date': Start_date_Manager,
+                    'End_date': End_date_Manager,
                 },
                 dataType: 'json',
                 success: function(response_msg) {

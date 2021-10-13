@@ -4,11 +4,11 @@
 
 @section('content')
     <!-- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-                <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
-                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-                <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
+                                <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+                                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+                                <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
     <style>
         td.dataTables_empty {
             display: none;
@@ -251,17 +251,17 @@
                     <div>
                         <div class="table-responsive">
                             <!-- <table border="0" cellspacing="5" cellpadding="5">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Minimum date:</td>
-                                                    <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Maximum date:</td>
-                                                    <td><input type="text" id="max" name="max"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table> -->
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Minimum date:</td>
+                                                                    <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Maximum date:</td>
+                                                                    <td><input type="text" id="max" name="max"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table> -->
                             <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
@@ -429,10 +429,10 @@
                                                 {{ $value->price }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->created_at)) }}
+                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
                                             <td>
-                                                {{ date('d-m-Y', strtotime($value->deleted_at)) }}
+                                                {{ date('d-m-Y', strtotime($value->updated_at)) }}
                                             </td>
 
                                         </tr>
@@ -661,7 +661,7 @@
                                 '<td>' + success.d_wt + '</td>' +
                                 '<td>' + success.d_n_wt + '</td>' +
                                 '<td>' + success.price + '</td>' +
-                                '<td>' + moment(success.created_at).format('DD-MM-YYYY') + '</td>' +
+                                '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '<td>' + moment(success.updated_at).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
