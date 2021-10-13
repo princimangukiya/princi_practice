@@ -44,16 +44,10 @@ class ManagerController extends Controller
                 'm_phone' => 'required',
 
             ]);
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all());
-            }
-            //dd($request);
             // if ($validator->fails()) {
-            //     return Response::json(array('success' => false));
+            //     return redirect()->back()->withErrors($validator)->withInput($request->all());
             // }
-            // $managerData = Manager_Details::where('m_phone', $request->m_phone)->first();
 
-            // if ($managerData == null) {
             $c_id = session()->get('c_id');
             $newitem = new Manager_Details();
             $newitem->c_id = $c_id;
@@ -62,12 +56,7 @@ class ManagerController extends Controller
             $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
             $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
             $newitem->save();
-
-            // return Response::json(array('success' => true));
             return Redirect::to('/manager');
-            // } else {
-            //     return Response::json(array('success' => 200));
-            // }
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'Suppiler can`t Add!',
@@ -75,7 +64,6 @@ class ManagerController extends Controller
             );
 
             return Redirect::to('/manager');
-            // return Response::json(array('success' => false));
         }
     }
 
@@ -145,5 +133,15 @@ class ManagerController extends Controller
         );
 
         return Redirect::to('/manager')->with($notification);
+    }
+    public function edit_data()
+    {
+        $isActive = "awese";
+        // $isActive = $_GET['isActive'];
+        // Manager_Details:/:()
+        // dd("hello");
+        print_r("hello");
+        // return redirect('/working_stock');
+        return Response::json(array('success' => $isActive));
     }
 }

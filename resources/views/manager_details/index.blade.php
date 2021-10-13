@@ -3,6 +3,71 @@
 @endsection
 
 @section('content')
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            display: flex;
+            height: 17px;
+            margin: 0;
+            align-items: center;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 17px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Manager Details</h4>
@@ -81,6 +146,29 @@
                                                                 class="fe fe-trash-2"></i></button>
                                                     </div>
                                                 </form>
+
+                                                @php
+                                                    $url = '/manager/edit-data/' . $value->m_id;
+                                                    echo $value->m_id;
+                                                @endphp
+                                                @if ($value->status == 0)
+                                                    <a href="javascript:;" data-toggle="tooltip"
+                                                        data-isactive="{{ $value->status }}"
+                                                        data-id="{{ $value->m_id }}" data-original-title="edit"
+                                                        data-href="{{ url($url) }}"
+                                                        class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
+                                                            class="switch"><input type="checkbox"><span
+                                                                class="slider round"></span></label></a>
+                                                @else
+                                                    <a href="javascript:;" data-toggle="tooltip"
+                                                        data-isactive="{{ $value->status }}"
+                                                        data-id="{{ $value->m_id }}" data-original-title="edit"
+                                                        data-href="{{ url($url) }}"
+                                                        class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
+                                                            class="switch"><input type="checkbox" checked><span
+                                                                class="slider round"></span></label></a>
+                                                @endif
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -101,9 +189,49 @@
     </div>
     </div><!-- end app-content-->
     </div>
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
 
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
+    <script>
+        //  alert(id);
+        $('body').on('click', '.edit', function() {
+            // if (confirm("Are you sure you want to edit this?")) {
+            var user_url = $(this).data('href');
+            var isActive = $(this).data('isactive');
+            var m_id = $(this).data('id');
+            alert(user_url);
+            // alert(isActive);
+            // alert(m_id);
+            // alert(delete_url_second + " --- " + isActive);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: user_url,
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    // "_token": "{{ csrf_token() }}",
+                    // "_method": "post",
+                    'isActive': isActive,
+                    'm_id': m_id
+                },
+                success: function(response) {
+                    alert("response.success");
+                    // var message = response.message;
+                    // localStorage.setItem('message', message);
+                    // location.reload();
+                },
+                // error: function(response) {
+                //     console.error(response);
+                // }
+            });
+            // }
+        });
+    </script>
 
 
 @endsection

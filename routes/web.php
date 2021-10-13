@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/manager/edit/{id}', 'App\Http\Controllers\ManagerController@edit')->name('manager.edit');
     Route::post('/manager/update/{id}', 'App\Http\Controllers\ManagerController@update')->name('manager.update');
     Route::post('/manager/{id}/destroy', 'App\Http\Controllers\ManagerController@destroy')->name('manager.destroy');
+    Route::get('/manager/edit-data/{id}', 'App\Http\Controllers\ManagerController@edit_data')->name('manager/edit_data');
 
     //working_stock
     Route::get('/working_stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
