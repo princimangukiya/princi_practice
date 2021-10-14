@@ -25,7 +25,7 @@ class SellStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['sell_stock'] = Sell_Stock::withTrashed()->where([['c_id', $c_id], ['status', 1]])->with('Supplier', 'Diamond')->get();
+        $data['sell_stock'] = Sell_Stock::where('c_id', $c_id)->with('Supplier', 'Diamond')->get();
         return view('sell_stock.index', $data);
     }
 
@@ -51,7 +51,8 @@ class SellStockController extends Controller
                 return Response::json(array('success' => false));
             }
             //dd($request);
-            $DiamondData = Ready_Stock::where('d_barcode', $request->bar_code)->first();
+            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first('d_id');
+            $DiamondData = Ready_Stock::where('d_id', $Diamond['d_id'])->first();
             $d_purchse = D_Purchase::where('d_barcode', $request->bar_code)->where('isReady', 1)->first();
             if ($DiamondData == null && $d_purchse == null) {
                 return Response::json(array('success' => 404));
@@ -64,7 +65,7 @@ class SellStockController extends Controller
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
-                $newitem->bill_date = !empty($request->date) ? $request->date : '';
+                $newitem->return_date = !empty($request->date) ? $request->date : '';
                 $newitem->save();
 
                 $dPurchaseData = D_Purchase::where('d_id', $DiamondData->d_id)->update(['isReturn' => 1]);
@@ -107,6 +108,7 @@ class SellStockController extends Controller
             $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
             $newitem['s_id'] = !empty($request->s_id) ? $request->s_id : '';
             $newitem['c_id'] = $c_id;
+            $newitem['return_date'] = !empty($request->date) ? $request->date : '';
             // dd($newitem);
             Sell_Stock::where('sell_id', $id)->update($newitem);
             D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code]);
@@ -128,8 +130,9 @@ class SellStockController extends Controller
         // $stock->delete();
         $data = Sell_Stock::withTrashed()->where('sell_id', $id)->first();
         $d_id = $data['d_id'];
-        $time = Carbon::now();
-        Sell_Stock::where('sell_id', $id)->update(['deleted_at' => $time, 'status' => 0]);
+        // $time = Carbon::now();
+        // $sell_stock = Sell_Stock::where('sell_id', $id)->first();
+        $data->delete();
         // $stock->delete();
         Ready_Stock::withTrashed()->where('d_id', $d_id)->update(['status' => 1]);
         D_Purchase::where('d_id', $d_id)->update(['isReturn' => NULL]);

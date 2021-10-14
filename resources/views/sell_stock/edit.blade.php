@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Enter Date :-</label>
                                     <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
-                                        name="bill_date" value="{{ $Diamond->bill_date }}" required>
+                                        name="bill_date" value="{{ $Diamond->return_date }}" required>
                                     @error('date')
                                         <small class="errorTxt1">
                                             <div id="title-error" class="error" style="margin-left:3rem">

@@ -53,6 +53,9 @@
                                 <thead>
                                     <tr style="border: 1px solid black">
                                         <th class="border-bottom-0" style="border: 1px solid black">#</th>
+                                        @if ($s_name->isEmpty())
+                                            <th class="border-bottom-0" style="border: 1px solid black">Manager_Name</th>
+                                        @endif
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
                                         {{-- <th class="border-bottom-0" style="border: 1px solid black">Shape</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Old_Weight</th>
@@ -74,7 +77,11 @@
                                             <td style="border: 1px solid black">
                                                 {{ $count }}
                                             </td>
-
+                                            @if ($s_name->isEmpty())
+                                                <td style="border: 1px solid black">
+                                                    {{ $value->m_name }}
+                                                </td>
+                                            @endif
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_barcode }}
                                             </td>

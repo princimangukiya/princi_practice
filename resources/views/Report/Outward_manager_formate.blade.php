@@ -124,6 +124,10 @@
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0" style="border: 1px solid black">#</th>
+                                        @if ($s_name->isEmpty())
+                                            <th class="border-bottom-0" style="border: 1px solid black">Manager_Name
+                                            </th>
+                                        @endif
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Pcs</th>
                                         <th class="border-bottom-0" style="border: 1px solid black">Weight</th>
@@ -145,6 +149,11 @@
                                             <td style="border: 1px solid black">
                                                 {{ $key + 1 }}
                                             </td>
+                                            @if ($s_name->isEmpty())
+                                                <td style="border: 1px solid black">
+                                                    {{ $value->m_name }}
+                                                </td>
+                                            @endif
                                             {{-- <td style="border: 1px solid black">
                                                     @php
                                                         $s_id = $value->s_id;

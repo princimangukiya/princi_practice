@@ -58,6 +58,7 @@
                             <table class="table">
                                 <thead style="border: 1px solid black;">
                                     <tr style="border: 1px solid black;">
+
                                         <th class="border-bottom-0" style="border: 1px solid black;">Sizedesc</th>
                                         <th class="border-bottom-0" style="border: 1px solid black;">Pcs</th>
                                         <th class="border-bottom-0" style="border: 1px solid black;">Issue Cts.</th>

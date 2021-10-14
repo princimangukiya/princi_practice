@@ -117,7 +117,7 @@
                         <div class="card-body-header">
                             <p style="margin-bottom: 0%; display:flex; justify-content:space-around; flex-wrap:wrap;">
                                 To, @if ($s_name->isEmpty())
-                                    <h3>All Party Jangad Report</h3>
+                                    <h3>All Party Report</h3>
 
                                 @else
                                     <h3>{{ $s_name[0]['s_name'] }}</h3>
@@ -135,6 +135,9 @@
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
+                                        @if ($s_name->isEmpty())
+                                            <th class="border-bottom-0">Company_Name</th>
+                                        @endif
                                         <th class="border-bottom-0">Barcode_Id</th>
                                         <th class="border-bottom-0">Pcs</th>
                                         <th class="border-bottom-0">Weight</th>
@@ -156,7 +159,11 @@
                                             <td>
                                                 {{ $key + 1 }}
                                             </td>
-
+                                            @if ($s_name->isEmpty())
+                                                <td>
+                                                    {{ $value->s_name }}
+                                                </td>
+                                            @endif
                                             <td>
                                                 {{ $value->d_barcode }}
                                             </td>

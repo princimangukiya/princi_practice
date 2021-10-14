@@ -55,8 +55,10 @@ class ReadyStockController extends Controller
                 return Response::json(array('success' => false));
             }
             //dd($request);
-            $DiamondData = Working_Stock::where('d_barcode', $request->bar_code)->first();
 
+            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first('d_id');
+            // dd($Diamond);
+            $DiamondData = Working_Stock::where('d_id', $Diamond['d_id'])->first();
             if ($DiamondData == null) {
                 return Response::json(array('success' => 404));
             } else if ($DiamondData->m_id != $request->m_id) {
@@ -69,7 +71,7 @@ class ReadyStockController extends Controller
                 $newitem->d_n_wt = !empty($request->d_n_wt) ? $request->d_n_wt : '';
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
-                $newitem->bill_date = !empty($request->date) ? $request->date : '';
+                $newitem->return_date = !empty($request->date) ? $request->date : '';
                 // $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
@@ -126,6 +128,7 @@ class ReadyStockController extends Controller
             $newitem['m_id'] = !empty($request->m_id) ? $request->m_id : '';
             $newitem['d_n_wt'] = !empty($request->d_n_wt) ? $request->d_n_wt : '';
             $newitem['c_id'] = $c_id;
+            $newitem['return_date'] = !empty($request->date) ? $request->date : '';
             // $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
             // dd($newitem);
             Ready_Stock::where('r_id', $id)->update($newitem);

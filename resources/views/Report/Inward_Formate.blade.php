@@ -37,11 +37,11 @@
                 {{-- <div class="textstyle">
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div> --}}
-                @if ($s_name->isEmpty())
+                @if (empty($s_name))
                     <h3>All Inward Company Report</h3>
 
                 @else
-                    <h3>{{ $s_name[0]['s_name'] }}</h3>
+                    <h3>{{ $s_name['s_name'] }}</h3>
                 @endif
 
                 <p>Date:-{{ $today_date }}</p>
@@ -53,10 +53,13 @@
                                 <thead>
                                     <tr style="border: 1px solid black">
                                         <th class="border-bottom-0" style="border: 1px solid black">#</th>
+                                        @if (empty($s_name))
+                                            <th class="border-bottom-0" style="border: 1px solid black">Company_Name</th>
+                                        @endif
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
                                         {{-- <th class="border-bottom-0" style="border: 1px solid black">Shape</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Old_Weight</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th>
+                                        {{-- <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Buy_date</th>
                                     </tr>
                                 </thead>
@@ -74,7 +77,11 @@
                                             <td style="border: 1px solid black">
                                                 {{ $count }}
                                             </td>
-
+                                            @if (empty($s_name))
+                                                <td style="border: 1px solid black">
+                                                    {{ $value->s_name }}
+                                                </td>
+                                            @endif
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_barcode }}
                                             </td>
@@ -84,9 +91,9 @@
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_wt }}
                                             </td>
-                                            <td style="border: 1px solid black">
+                                            {{-- <td style="border: 1px solid black">
                                                 {{ $value->d_n_wt }}
-                                            </td>
+                                            </td> --}}
                                             <td style="border: 1px solid black">
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>

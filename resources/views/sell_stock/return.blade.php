@@ -145,7 +145,7 @@
             //  alert(id);
             var barcode = $('#bar_code').val();
             var s_id = $('#s_id').val();
-            var manager_name = $('#s_id').find(":selected").text();
+            var supplier_name = $('#s_id').find(":selected").text();
             var date = $('#Date').val();
             // alert(barcode);
             //  alert(s_id);
@@ -169,7 +169,7 @@
                         alert("Please, choose the right company!");
                         //location.reload();
                     } else if (response_msg.success == true) {
-                        mytable.row.add([manager_name, barcode, date]);
+                        mytable.row.add([supplier_name, barcode, date]);
                         mytable.draw();
                         $('#bar_code').val('');
                         $('#bar_code').focus();

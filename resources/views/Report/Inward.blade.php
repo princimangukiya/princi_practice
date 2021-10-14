@@ -217,7 +217,7 @@
                                     <optgroup label="Company">
                                         <option value="" disabled selected>Choose Company</option>
                                         @if (count($rate) > 0)
-                                            <option value="">All Company Inward Search</option>
+                                            <option value="">All Company</option>
                                             @foreach ($rate as $value)
 
                                                 <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
@@ -270,7 +270,7 @@
                                         <th class="border-bottom-0">Barcode_Id</th>
                                         <th class="border-bottom-0">Shape</th>
                                         <th class="border-bottom-0">Old_Weight</th>
-                                        <th class="border-bottom-0">New_Weight</th>
+                                        {{-- <th class="border-bottom-0">New_Weight</th> --}}
                                         <th class="border-bottom-0">Buy_date</th>
                                     </tr>
                                 </thead>
@@ -292,9 +292,9 @@
                                             <td>
                                                 {{ $value->d_wt }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $value->d_n_wt }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
@@ -319,7 +319,7 @@
                                     <optgroup label="Manager">
                                         <option value="" disabled selected>Choose Manager</option>
                                         @if (count($manager) > 0)
-                                            <option value="">All Manager Inward Search</option>
+                                            <option value="">All Manager</option>
                                             @foreach ($manager as $value)
                                                 <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
                                             @endforeach
@@ -372,7 +372,7 @@
                                         <th class="border-bottom-0">Barcode_Id</th>
                                         <th class="border-bottom-0">Shape</th>
                                         <th class="border-bottom-0">Old_Weight</th>
-                                        <th class="border-bottom-0">New_Weight</th>
+                                        {{-- <th class="border-bottom-0">New_Weight</th> --}}
                                         <th class="border-bottom-0">Buy_date</th>
                                     </tr>
                                 </thead>
@@ -394,9 +394,9 @@
                                             <td>
                                                 {{ $value->d_wt }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $value->d_n_wt }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
@@ -527,7 +527,7 @@
                                 '<td>' + success.d_barcode + '</td>' +
                                 '<td>' + success.shape_name + '</td>' +
                                 '<td>' + success.d_wt + '</td>' +
-                                '<td>' + success.d_n_wt + '</td>' +
+                                // '<td>' + success.d_n_wt + '</td>' +
                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );
@@ -599,7 +599,7 @@
                                 '<td>' + success.d_barcode + '</td>' +
                                 '<td>' + success.shape_name + '</td>' +
                                 '<td>' + success.d_wt + '</td>' +
-                                '<td>' + success.d_n_wt + '</td>' +
+                                // '<td>' + success.d_n_wt + '</td>' +
                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                 '</tr>'
                             );

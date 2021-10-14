@@ -34,7 +34,7 @@ class ReportController extends Controller
         $data['inward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
             ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['working_stock.c_id', $c_id]])
+            ->where([['working_stock.c_id', $c_id], ['working_stock.status', 1]])
             ->orderBy('working_stock.bill_date', 'ASC')
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         // echo $data['manager'];
@@ -47,15 +47,9 @@ class ReportController extends Controller
         $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
         $End_date = $request->End_date;
-        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->first('s_name');
         $data['today_date'] = Carbon::now()->format('d-m-Y');
         if (empty($s_id)) {
-            $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where('d_purchase.c_id', $c_id)
-                ->orderBy('d_purchase.bill_date', 'ASC')
-                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
-        } else {
             if (empty($start_date)) {
                 $start_date = new Carbon('first day of January 2000');
             }
@@ -64,12 +58,29 @@ class ReportController extends Controller
             }
             $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where('d_purchase.c_id', $c_id)
+                ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
+                ->orderBy('d_purchase.bill_date', 'ASC')
+                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+
+            // return Response::json(array('success' => $data));
+        } else {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
+
+            $data['inward'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
                 ->orderBy('d_purchase.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+            // return Response::json(array('success' => $data));
         }
-        // echo $s_id;
+        // dd($data);
         $pdf = PDF::loadView('Report.Inward_formate', $data);
 
         return $pdf->download('Inward_Company.pdf');
@@ -84,20 +95,35 @@ class ReportController extends Controller
         $data['s_name'] = Manager_Details::where('m_id', $s_id)->get('m_name');
         $data['today_date'] = Carbon::now()->format('d-m-Y');
         if (empty($s_id)) {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
             $data['inward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where([['working_stock.c_id', $c_id]])
-                ->orderBy('d_purchase.bill_date', 'ASC')
+                ->where([['manager_details.c_id', $c_id], ['working_stock.status', 1]])
+                ->whereBetween('working_stock.bill_date', [$start_date, $End_date])
+                ->orderBy('working_stock.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+            // return Response::json(array('success' => $data));
         } else {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
             $data['inward_manager'] = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
-                ->orWhereBetween('bill_date', [$start_date, $end_date])
-                ->orderBy('d_purchase.bill_date', 'ASC')
+                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id], ['working_stock.status', 1]])
+                ->whereBetween('working_stock.bill_date', [$start_date, $End_date])
+                ->orderBy('working_stock.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+            // return Response::json(array('success' => $data));
         }
         // echo $s_id;
         $pdf = PDF::loadView('Report.Inward_formate_manager', $data);
@@ -122,10 +148,10 @@ class ReportController extends Controller
             }
             $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where('d_purchase.c_id', $c_id)
+                ->where(['d_purchase.c_id', $c_id])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
                 ->orderBy('d_purchase.bill_date', 'ASC')
-                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+                ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.*']);
 
             return Response::json(array('success' => $data));
         } else {
@@ -140,7 +166,7 @@ class ReportController extends Controller
                 ->where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id]])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
                 ->orderBy('d_purchase.bill_date', 'ASC')
-                ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+                ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.*']);
             return Response::json(array('success' => $data));
         }
     }
@@ -162,7 +188,7 @@ class ReportController extends Controller
             $data = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where('manager_details.c_id', $c_id)
+                ->where([['manager_details.c_id', $c_id], ['working_stock.status', 1]])
                 ->whereBetween('working_stock.bill_date', [$start_date, $End_date])
                 ->orderBy('working_stock.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
@@ -177,7 +203,7 @@ class ReportController extends Controller
             $data = Working_Stock::join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
                 ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
+                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id], ['working_stock.status', 1]])
                 ->whereBetween('working_stock.bill_date', [$start_date, $End_date])
                 ->orderBy('working_stock.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
@@ -193,15 +219,17 @@ class ReportController extends Controller
         $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->where([['sell_stock.c_id', $c_id], ['sell_stock.status', 1]])
-            ->orderBy('sell_stock.bill_date', 'ASC')
+            ->where('sell_stock.c_id', $c_id)
+            ->orderBy('sell_stock.return_date', 'ASC')
             ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+        // echo $data['inward'];
         $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
             ->join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
             ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
+            ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->orderBy('ready_stock.bill_date', 'ASC')
-            ->get(['d_purchase.*', 'manager_details.m_name', 'ready_stock.*', 'diamond_shape.shape_name']);
+            ->orderBy('ready_stock.return_date', 'ASC')
+            ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
         // echo $data['outward_manager'];
         return view('Report.Outward', $data);
     }
@@ -211,24 +239,42 @@ class ReportController extends Controller
         $s_id = $request->s_id;
         $c_id = session()->get('c_id');
         $d_id = Ready_Stock::get('d_id');
-        $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
         $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        $End_date = $request->End_date;
         $data['date'] = $start_date;
         if (empty($s_id)) {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
             $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-                ->where([['sell_stock.c_id', $c_id]])
-                ->orderBy('sell_stock.bill_date', 'ASC')
-                ->get(['sell_stock.*', 'd_purchase.*']);
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->where('sell_stock.c_id', $c_id)
+                ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
+                ->orderBy('sell_stock.return_date', 'ASC')
+                ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+            // dd($data);
+            // return Response::json(array('success' => $data));
         } else {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
             $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-                ->where([['sell_stock.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-                ->whereDate('sell_stock.bill_date', '=', $start_date)
-                ->orderBy('sell_stock.bill_date', 'ASC')
-                ->get(['sell_stock.*', 'd_purchase.*']);
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id]])
+                ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
+                ->orderBy('sell_stock.return_date', 'ASC')
+                ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+            // return Response::json(array('success' => $data));
         }
-
-
         $pdf = PDF::loadView('Report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
@@ -237,32 +283,46 @@ class ReportController extends Controller
     public function generateManagerPDF_outward(Request $request)
     {
         $data = array();
-        $s_id = $request->m_id;
-        $c_id = session()->get('c_id');
-        $d_id = Ready_Stock::get('d_id');
+        $m_id = $request->m_id;
         $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
-        $data['s_name'] = Manager_Details::where('m_id', $s_id)->get('m_name');
+        $data['s_name'] = Manager_Details::where('m_id', $m_id)->get('m_name');
+        $End_date = $request->End_date;
         $data['date'] = $start_date;
-        if (empty($s_id)) {
-            $data['outward_manager'] = Working_Stock::onlyTrashed()
-                ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
-                ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
+        if (empty($m_id)) {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
+            $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
+                ->join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where('working_stock.c_id', $c_id)
-                ->orderBy('working_stock.bill_date', 'ASC')
-
-                ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+                ->whereBetween('ready_stock.return_date', [$start_date, $End_date])
+                ->orderBy('ready_stock.return_date', 'ASC')
+                ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
+            // dd($data);
+            // return Response::json(array('success' => $data));
         } else {
-            $data['outward_manager'] = Working_Stock::onlyTrashed()
-                ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
-                ->join('d_purchase', 'working_stock.d_id', '=', 'd_purchase.d_id')
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
+            $data['outward_manager'] = Ready_Stock::join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where([['working_stock.c_id', $c_id], ['working_stock.m_id', $s_id]])
-                ->orderBy('working_stock.bill_date', 'ASC')
-                ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
+                ->where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0], ['ready_stock.m_id', $m_id]])
+                ->whereBetween('ready_stock.return_date', [$start_date, $End_date])
+                ->orderBy('ready_stock.return_date', 'ASC')
+                ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
+            // return Response::json(array('success' => $data));
         }
-
 
         $pdf = PDF::loadView('Report.Outward_manager_formate', $data);
 
@@ -272,14 +332,12 @@ class ReportController extends Controller
     public function search_data_Outward(Request $request)
     {
         $data = array();
-        $s_id = $request->s_id;
-        $c_id = session()->get('c_id');
-        $d_id = Ready_Stock::get('d_id');
+        $s_id = $request->S_id;
         $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
-        $end_date = $request->End_date;
-        $data = Supplier_Details::where('s_id', $s_id)->get('s_name');
-        $data['date'] = $start_date;
+        $End_date = $request->End_date;
+        // $data = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        // $data['date'] = $start_date;
         if (empty($s_id)) {
             if (empty($start_date)) {
                 $start_date = new Carbon('first day of January 2000');
@@ -290,10 +348,11 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id]])
-                ->whereBetween('sell_stock.bill_date', [$start_date, $end_date])
-                ->orderBy('sell_stock.bill_date', 'ASC')
+                ->where('sell_stock.c_id', $c_id)
+                ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
+                ->orderBy('sell_stock.return_date', 'ASC')
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
+            // dd($data);
             return Response::json(array('success' => $data));
         } else {
             if (empty($start_date)) {
@@ -305,9 +364,9 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['d_purchase.s_id', $s_id]])
-                ->whereBetween('sell_stock.bill_date', [$start_date, $end_date])
-                ->orderBy('sell_stock.bill_date', 'ASC')
+                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id]])
+                ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
+                ->orderBy('sell_stock.return_date', 'ASC')
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             return Response::json(array('success' => $data));
         }
@@ -316,24 +375,43 @@ class ReportController extends Controller
     public function search_data_manager(Request $request)
     {
         $c_id = session()->get('c_id');
-        $s_id = $request->s_id;
+        $m_id = $request->m_id;
         $start_date = $request->Start_date;
-        $end_date = $request->End_date;
-        // $data = D_Purchase::where('s_id', $s_id)->whereBetween('bill_date', [$start_date, $end_date])->get();
-        if (empty($start_date)) {
-            $start_date = new Carbon('first day of January 2000');
+        $End_date = $request->End_date;
+        if (empty($m_id)) {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
+            $data = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
+                ->join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->whereBetween('ready_stock.return_date', [$start_date, $End_date])
+                ->orderBy('ready_stock.return_date', 'ASC')
+                ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
+            // dd($data);
+            return Response::json(array('success' => $data));
+        } else {
+            if (empty($start_date)) {
+                $start_date = new Carbon('first day of January 2000');
+            }
+            if (empty($End_date)) {
+                $End_date = Carbon::now()->format('Y-m-d');
+            }
+            $data = Ready_Stock::join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
+                ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
+                ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')
+                ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+                ->where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0], ['ready_stock.m_id', $m_id]])
+                ->whereBetween('ready_stock.return_date', [$start_date, $End_date])
+                ->orderBy('ready_stock.return_date', 'ASC')
+                ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
+            return Response::json(array('success' => $data));
         }
-        if (empty($End_date)) {
-            $End_date = Carbon::now()->format('Y-m-d');
-        }
-        $data = Ready_stock::join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
-            ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
-            ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-            ->where([['ready_stock.c_id', $c_id], ['ready_stock.m_id', $s_id]])
-            ->whereBetween('ready_stock.bill_date', [$start_date, $end_date])
-            ->orderBy('ready_stock.bill_date', 'ASC')
-            ->get(['d_purchase.*', 'manager_details.m_name', 'ready_stock.*', 'diamond_shape.shape_name']);
-        return Response::json(array('success' => $data));
         // echo $data['inward'];
     }
     //Party_Labour Genrate PDF
@@ -349,9 +427,9 @@ class ReportController extends Controller
 
             $s_id = $supplier->s_id;
             // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
-            $sell_stock = sell_stock::where('s_id', $s_id)->get();
-            $daimond = D_Purchase::where('s_id', $s_id)->get();
-            $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+            $sell_stock = sell_stock::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+            $daimond = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+            $json_data = rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->get('json_price');
             $rate[$s_id] = array();
             $daimond_data[$s_id] = array();
             $issueCuts[$s_id] = array();
@@ -415,14 +493,14 @@ class ReportController extends Controller
         $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
         $End_date = $request->End_date;
-        $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
+        $data['s_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get('s_name');
         $data['today_date'] = Carbon::now()->format('d-m-Y');
         if (empty($s_id)) {
             $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
             foreach ($data['supplier'] as $key => $supplier) {
                 $s_id = $supplier->s_id;
-                $sell_stock = sell_stock::where('s_id', $s_id)->get();
-                $daimond = D_Purchase::where('s_id', $s_id)->get();
+                $sell_stock = sell_stock::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+                $daimond = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])->get();
                 $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
                 $rate[$s_id] = array();
                 $daimond_data[$s_id] = array();
@@ -482,7 +560,7 @@ class ReportController extends Controller
 
             return $pdf->download('Party_Labour.pdf');
         } else {
-            $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
+            $data['supplier'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
             foreach ($data['supplier'] as $key => $supplier) {
                 $s_id = $supplier->s_id;
                 $sell_stock = sell_stock::where('s_id', $s_id)->get();
@@ -558,8 +636,8 @@ class ReportController extends Controller
             ->get();
 
         // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
-        $sell_stock = sell_stock::where('s_id', $s_id)->get();
-        $daimond = D_Purchase::where('s_id', $s_id)
+        $sell_stock = sell_stock::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+        $daimond = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])
             ->whereBetween('d_purchase.bill_date', [$start_date, $end_date])
             ->get();
         $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
