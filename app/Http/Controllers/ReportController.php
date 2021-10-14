@@ -148,7 +148,7 @@ class ReportController extends Controller
             }
             $data = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-                ->where(['d_purchase.c_id', $c_id])
+                ->where([['d_purchase.c_id', $c_id]])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
                 ->orderBy('d_purchase.bill_date', 'ASC')
                 ->get(['d_purchase.*', 'supplier_details.s_name', 'diamond_shape.*']);

@@ -116,6 +116,7 @@
                                     <optgroup label="Company">
                                         <option value="" disabled selected>Choose Company</option>
                                         @if (count($rate) > 0)
+                                            <option value="">All Company</option>
                                             @foreach ($rate as $value)
                                                 <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                                             @endforeach
