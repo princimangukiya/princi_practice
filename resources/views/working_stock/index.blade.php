@@ -76,17 +76,54 @@
                                                     </div>
                                                 </a>
 
+
+
                                                 <form action="{{ route('working_stock.destroy', $value->w_id) }}"
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
+                                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                            data-attr="{{ route('working_stock.destroy', $value->w_id) }}"
+                                                            title="Delete Project">
+                                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                                            <button class="btn btn-sm btn-danger"><i
+                                                                    class="fe fe-trash-2"></i></button></a>
                                                     </div>
                                                 </form>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="smallModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="smallBody">
+                                                        <form action="{{ route('working_stock.destroy', $value->w_id) }}"
+                                                            method="post">
+                                                            <div class="modal-body">
+                                                                @csrf
+                                                                <h5 class="text-center">Are you sure you want to
+                                                                    delete Daimond ?</h5>
+                                                                <div class="modal-footer"
+                                                                    style="display: flex; flex-direction:no-wrap;">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" class="btn btn-danger">Yes, Delete
+                                                                        Project</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
 
                                 </tbody>
@@ -102,6 +139,7 @@
     </div>
     <!-- /Row -->
 
+    </div>
     </div>
     </div><!-- end app-content-->
     </div>

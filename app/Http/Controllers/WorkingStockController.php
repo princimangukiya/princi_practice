@@ -53,10 +53,17 @@ class WorkingStockController extends Controller
             //dd($request);
             $c_id = session()->get('c_id');
             $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
-
-            if ($DiamondData == null) {
-                return Response::json(array('success' => 404));
-            } else if ($DiamondData->doReady != null) {
+            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            // dd($Diamond);
+            $D_C_Id = $Diamond['c_id'];
+            // return Response::json(array('success' => ));
+            if ($Diamond == null) {
+                return Response::json(array('success' => 210));
+            }
+            // else if ($D_C_Id != $c_id) {
+            //     return Response::json(array('successs' => 404));
+            // } 
+            else if ($DiamondData->doReady != null) {
                 return Response::json(array('success' => 200));
             } else {
                 $newitem = new Working_Stock();

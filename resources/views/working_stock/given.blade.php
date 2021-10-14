@@ -172,7 +172,7 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // alert(response_msg);
+                    console.log(response_msg.success);
                     if (response_msg.success == 200) {
                         alert("check your barcode, This barcode Already assign to other manager!");
                         //location.reload();
@@ -184,14 +184,18 @@
 
                     } else if (response_msg.success == 404) {
                         // alert(c_id);
+                        alert('Your Barcode Is Not Valid!!!');
+                        $('#bar_code').focus();
+                    } else if (response_msg.success == 210) {
                         if (c_id == 1) {
                             alert('You can not assign Eklingji Barcode to VmJewles!');
+                            $('#bar_code').focus();
+
                         } else {
                             alert('You can not assign VmJewles Barcode to Eklingji!');
+                            $('#bar_code').focus();
+
                         }
-
-
-                        $('#bar_code').focus();
                     } else {
                         alert('Please, Fill all the fields!');
                     }
