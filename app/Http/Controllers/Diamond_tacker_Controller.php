@@ -30,17 +30,20 @@ class Diamond_tacker_Controller extends Controller
         $fetchdata = [];
         $c_id = session()->get('c_id');
         $barcode_id = $request->search_value;
-        $fetchdata['daimond'] = D_Purchase::where([['c_id', $c_id], ['d_barcode', $barcode_id]])->first();
-        $fetchdata['supplier_name'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->where('d_purchase.d_barcode', $barcode_id)
-            ->get('supplier_details.s_name');
+
+        $fetchdata['daimond'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
+            ->where([['d_purchase.c_id', $c_id], ['d_purchase.d_barcode', $barcode_id]])
+            ->first();
+        $Diamond = $fetchdata['daimond']['d_id'];
+        // $s_id = $fetchdata['daimond']['s_id'];
+        // $fetchdata['supplier_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->first('supplier_details.s_name');
         $fetchdata['manager_name'] = Working_Stock::withTrashed()
             ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
-            ->where('working_stock.d_barcode', $barcode_id)
-            ->get('working_stock.*', 'manager_details.m_name');
+            ->where([['working_stock.c_id', $c_id], ['working_stock.d_id', $Diamond]])->first();
         $fetchdata['date'] = Carbon::now();
-        $fetchdata['sell_date'] = Sell_Stock::where('d_barcode', $barcode_id)->get('created_at');
-        // echo $barcode_id;
+        $fetchdata['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
+        $fetchdata['sell_date'] = Sell_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
+        // echo $fetchdata['sell_date'];
         // echo "<br>";
         // echo $fetchdata['sell_date'];
         // dd($fetchdata);

@@ -151,7 +151,7 @@
                                 <h4 class="timeline-item__title">Diamond Is Assign To Company</h4>
                                 <div class="timeline-item__status">Status error</div>
                                 <p class="timeline-item__date">Date:-
-                                    {{ date('d-m-Y', strtotime($daimond['created_at'])) }}
+                                    {{ date('d-m-Y', strtotime($daimond['bill_date'])) }}
                                 </p>
                                 <p class="timeline-item__desc">Company Name:-
                                     {{ $c_name }}
@@ -170,17 +170,13 @@
                                     </p>
                                 </li>
                             @else
-                                @php
-                                    $m_id = $manager_name[0]['m_id'];
-                                    $m_name = App\Models\Manager_Details::where('m_id', $m_id)->get('m_name');
-                                @endphp
                                 <li class="timeline-item timeline-item--complete">
                                     <h4 class="timeline-item__title">Diamond Are Assign In Manager</h4>
                                     <div class="timeline-item__status">Status completed</div>
                                     <p class="timeline-item__date">Date:-
-                                        {{ date('d-m-Y', strtotime($manager_name[0]['created_at'])) }}
+                                        {{ date('d-m-Y', strtotime($manager_name['bill_date'])) }}
                                     </p>
-                                    <p class="timeline-item__desc">Manager Name:- {{ $m_name[0]['m_name'] }}
+                                    <p class="timeline-item__desc">Manager Name:- {{ $manager_name['m_name'] }}
                                     </p>
                                 </li>
                             @endif
@@ -200,7 +196,7 @@
                                             {{ date('d-m-Y', strtotime($date)) }}
                                         </p>
                                         <p class="timeline-item__desc">Manager Name:-
-                                            {{ $m_name[0]['m_name'] }}
+                                            {{ $manager_name['m_name'] }}
                                         </p>
                                     </li>
                                 @endif
@@ -210,7 +206,7 @@
                                     <h4 class="timeline-item__title">Diamond Are Return To The Company</h4>
                                     <div class="timeline-item__status">Status completed</div>
                                     <p class="timeline-item__date">Date:-
-                                        {{ date('d-m-Y', strtotime($manager_name[0]['deleted_at'])) }}
+                                        {{ date('d-m-Y', strtotime($ready_stock['return_date'])) }}
                                     </p>
                                     <p class="timeline-item__desc">Company Name:-
                                         {{ $c_name }}
@@ -243,10 +239,10 @@
                                     <h4 class="timeline-item__title">Diamond Are Return To The Supplier</h4>
                                     <div class="timeline-item__status">Status completed</div>
                                     <p class="timeline-item__date">Date:-
-                                        {{ date('d-m-Y', strtotime($sell_date[0]['created_at'])) }}
+                                        {{ date('d-m-Y', strtotime($sell_date['return_date'])) }}
                                     </p>
                                     <p class="timeline-item__desc">Supplier Name:-
-                                        {{ $supplier_name[0]['s_name'] }}
+                                        {{ $daimond['s_name'] }}
                                     </p>
                                 </li>
                             @endif
@@ -275,6 +271,6 @@
     </div><!-- end app-content-->
     </div>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
 @endsection
 @include('app')
