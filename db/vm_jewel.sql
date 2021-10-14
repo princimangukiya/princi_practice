@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2021 at 10:48 AM
+-- Generation Time: Oct 14, 2021 at 11:08 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -394,21 +394,22 @@ CREATE TABLE `sell_stock` (
   `return_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sell_stock`
 --
 
-INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `return_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, 41, '2021-10-01', '2021-10-09 07:55:51', '2021-10-11 05:26:46', NULL),
-(2, 1, 1, 42, '2021-10-09', '2021-10-09 07:56:10', '2021-10-11 05:27:06', NULL),
-(3, 1, 1, 45, '2021-10-09', '2021-10-09 07:56:16', '2021-10-13 04:33:40', NULL),
-(4, 1, 8, 47, NULL, '2021-10-09 07:56:29', '2021-10-13 23:25:42', '2021-10-13 23:25:42'),
-(5, 1, 1, 36, NULL, '2021-10-09 07:56:43', '2021-10-09 08:06:55', '2021-10-09 08:06:55'),
-(6, 1, 1, 35, '2021-10-14', '2021-10-12 23:21:41', '2021-10-12 23:21:41', NULL),
-(7, 1, 8, 34, '2021-10-11', '2021-10-13 23:23:00', '2021-10-13 23:23:00', NULL);
+INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `return_date`, `created_at`, `updated_at`, `deleted_at`, `status`) VALUES
+(1, 1, 1, 41, '2021-10-01', '2021-10-09 07:55:51', '2021-10-11 05:26:46', NULL, 0),
+(2, 1, 1, 42, '2021-10-09', '2021-10-09 07:56:10', '2021-10-11 05:27:06', NULL, 0),
+(3, 1, 1, 45, '2021-10-09', '2021-10-09 07:56:16', '2021-10-13 04:33:40', NULL, 0),
+(4, 1, 8, 47, NULL, '2021-10-09 07:56:29', '2021-10-13 23:25:42', '2021-10-13 23:25:42', 0),
+(5, 1, 1, 36, NULL, '2021-10-09 07:56:43', '2021-10-09 08:06:55', '2021-10-09 08:06:55', 0),
+(6, 1, 1, 35, '2021-10-14', '2021-10-12 23:21:41', '2021-10-12 23:21:41', NULL, 0),
+(7, 1, 8, 34, '2021-10-11', '2021-10-13 23:23:00', '2021-10-13 23:23:00', NULL, 0);
 
 -- --------------------------------------------------------
 
