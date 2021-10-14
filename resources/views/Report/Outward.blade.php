@@ -4,11 +4,11 @@
 
 @section('content')
     <!-- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-                                                                                                                                                                                                                                        <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
-                                                                                                                                                                                                                                        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                                                                                                                                                                                                                                        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-                                                                                                                                                                                                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-                                                                                                                                                                                                                                        <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
+                                                                                                                                                                                                                                                <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+                                                                                                                                                                                                                                                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                                                                                                                                                                                                                                                <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+                                                                                                                                                                                                                                                <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
     <style>
         td.dataTables_empty {
             display: none;
@@ -274,17 +274,17 @@
                     <div>
                         <div class="table-responsive">
                             <!-- <table border="0" cellspacing="5" cellpadding="5">
-                                                                                                                                                                                                                                                                    <tbody>
-                                                                                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                                                                                            <td>Minimum date:</td>
-                                                                                                                                                                                                                                                                            <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
-                                                                                                                                                                                                                                                                        </tr>
-                                                                                                                                                                                                                                                                        <tr>
-                                                                                                                                                                                                                                                                            <td>Maximum date:</td>
-                                                                                                                                                                                                                                                                            <td><input type="text" id="max" name="max"></td>
-                                                                                                                                                                                                                                                                        </tr>
-                                                                                                                                                                                                                                                                    </tbody>
-                                                                                                                                                                                                                                                                </table> -->
+                                                                                                                                                                                                                                                                            <tbody>
+                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                    <td>Minimum date:</td>
+                                                                                                                                                                                                                                                                                    <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
+                                                                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                    <td>Maximum date:</td>
+                                                                                                                                                                                                                                                                                    <td><input type="text" id="max" name="max"></td>
+                                                                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                                                            </tbody>
+                                                                                                                                                                                                                                                                        </table> -->
                             <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
@@ -583,7 +583,7 @@
         function addData() {
             var S_id = $('#s_id').val();
             var Start_date = $('#Start_date').val();
-            var End_date = $('#End_date').val();
+            var End_date_Manager = $('#End_date').val();
             var count = 1;
             var table = $('#companyTable').DataTable();
             table.clear().draw({
@@ -609,7 +609,7 @@
                 data: {
                     'S_id': S_id,
                     'Start_date': Start_date,
-                    'End_date': End_date,
+                    'End_date': End_date_Manager,
                 },
                 dataType: 'json',
 

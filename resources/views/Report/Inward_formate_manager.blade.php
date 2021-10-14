@@ -59,7 +59,7 @@
                                         <th class="border-bottom-0" style="border: 1px solid black">Barcode_Id</th>
                                         {{-- <th class="border-bottom-0" style="border: 1px solid black">Shape</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Old_Weight</th>
-                                        <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th>
+                                        {{-- <th class="border-bottom-0" style="border: 1px solid black">New_Weight</th> --}}
                                         <th class="border-bottom-0" style="border: 1px solid black">Buy_date</th>
                                     </tr>
                                 </thead>
@@ -91,9 +91,9 @@
                                             <td style="border: 1px solid black">
                                                 {{ $value->d_wt }}
                                             </td>
-                                            <td style="border: 1px solid black">
+                                            {{-- <td style="border: 1px solid black">
                                                 {{ $value->d_n_wt }}
-                                            </td>
+                                            </td> --}}
                                             <td style="border: 1px solid black">
                                                 {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
