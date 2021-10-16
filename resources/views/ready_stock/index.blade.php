@@ -50,7 +50,8 @@
                                         {{-- <th>Package</th> --}}
                                         <th class="border-bottom-0">Shape</th>
                                         <th class="border-bottom-0">Price</th>
-                                        <th class="border-bottom-0">Delete</th>
+                                        <th class="border-bottom-0">Date</th>
+                                        <th class="border-bottom-0">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +87,10 @@
                                             <td>
                                                 {{ $value->Diamond->price }}
                                             </td>
+                                            <td>
+                                                {{ date('d-m-Y', strtotime($value->return_date)) }}
+                                            </td>
+
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
                                                 <a href="{{ route('ready_stock.edit', ['id' => $value->r_id]) }}"

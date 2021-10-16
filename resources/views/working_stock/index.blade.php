@@ -40,6 +40,7 @@
                                         <th class="border-bottom-0">Weight</th>
                                         {{-- <th>Package</th> --}}
                                         <th class="border-bottom-0">Shape</th>
+                                        <th class="border-bottom-0">Date</th>
                                         <th class="border-bottom-0">Delete</th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,9 @@
                                             @endphp
                                             <td>
                                                 {{ $shape->shape_name }}
+                                            </td>
+                                            <td>
+                                                {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                             </td>
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
@@ -93,8 +97,8 @@
                                         </tr>
 
                                     @endforeach
-                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
-                                        aria-labelledby="smallModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
+                                        role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
                                         <div class="modal d-block pos-static">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
