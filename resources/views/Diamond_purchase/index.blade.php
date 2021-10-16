@@ -2,6 +2,8 @@
     Diamond Purchase
 @endsection
 @section('content')
+<link href="{{asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.css')}}" />
+		<link href="{{asset('assets/plugins/sweet-alert/sweetalert.css')}}" />
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Diamond Purchase</h4>
@@ -138,8 +140,10 @@
                                                         <form action="{{ route('diamond.destroy', $value->d_id) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button class="btn btn-indigo" type="submit">Delete
+                                                            <button class="btn btn-indigo" type="submit"
+                                                                value='success alert' id='click'>Delete
                                                                 Diamond</button>
+                                                            {{-- <input type='button' class="btn btn-success mt-2"> --}}
                                                             <button class="btn btn-secondary" type="button"
                                                                 data-dismiss="modal">Close</button>
                                                         </form>
@@ -162,7 +166,9 @@
     </div>
     <!-- /Row -->
 
-
+    <script src="{{asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/js/sweet-alert.js')}}"></script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
