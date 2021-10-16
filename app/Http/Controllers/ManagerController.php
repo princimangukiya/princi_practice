@@ -117,15 +117,15 @@ class ManagerController extends Controller
         //
         $suplier = Manager_Details::find($id);
         $suplier->delete();
-        $ready_stock = Ready_Stock::where('m_id', $id)->get();
-        foreach ($ready_stock as $value) {
-            $value->delete();
-        }
-        // $ready_stock->delete();
-        $working_stock = Working_Stock::where('m_id', $id)->get();
-        foreach ($working_stock as $value) {
-            $value->delete();
-        }
+        // $ready_stock = Ready_Stock::where('m_id', $id)->get();
+        // foreach ($ready_stock as $value) {
+        //     $value->delete();
+        // }
+        // // $ready_stock->delete();
+        // $working_stock = Working_Stock::where('m_id', $id)->get();
+        // foreach ($working_stock as $value) {
+        //     $value->delete();
+        // }
         // $working_stock->delete();
         $notification = array(
             'message' => 'User Deleted!',

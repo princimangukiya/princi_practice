@@ -23,7 +23,7 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate')->get();
+        $data['diamond'] = D_Purchase::where('c_id', $c_id)->orderBy('d_purchase.bill_date', 'DESC')->with('shapeDate')->get();
 
         return view('Diamond_purchase.index', $data);
     }
@@ -37,6 +37,7 @@ class DiamondController extends Controller
         // $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
         $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
+
             ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         $data['toDaydate'] = Carbon::now()->format('D-m-Y');
         return view('Diamond_purchase.create', $data);
