@@ -182,11 +182,11 @@
                         $('#bar_code').val('');
                         $('#bar_code').focus();
 
-                    } else if (response_msg.success == 404) {
+                    } else if (response_msg.success == 500) {
                         // alert(c_id);
                         alert('Your Barcode Is Not Valid!!!');
                         $('#bar_code').focus();
-                    } else if (response_msg.success == 210) {
+                    } else if (response_msg.success == response_msg.success) {
                         if (c_id == 1) {
                             alert('You can not assign Eklingji Barcode to VmJewles!');
                             $('#bar_code').focus();

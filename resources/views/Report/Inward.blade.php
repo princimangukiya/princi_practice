@@ -142,11 +142,11 @@
                                         <button type="submit" class="btn btn-info" style="padding: 5px;"><i
                                                 class="fa fa-download mr-1"></i>
                                             Downloade PDF </button>
-                                        <div class="text-center">
+                                        {{-- <div class="text-center">
                                             <div class="spinner-border" role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

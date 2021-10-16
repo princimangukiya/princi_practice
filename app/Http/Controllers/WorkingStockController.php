@@ -58,12 +58,15 @@ class WorkingStockController extends Controller
             $D_C_Id = $Diamond['c_id'];
             // return Response::json(array('success' => ));
             if ($Diamond == null) {
-                return Response::json(array('success' => 210));
-            }
-            // else if ($D_C_Id != $c_id) {
-            //     return Response::json(array('successs' => 404));
-            // } 
-            else if ($DiamondData->doReady != null) {
+                return Response::json(array('success' => 500));
+            } else if ($D_C_Id != $c_id) {
+                if ('c_id' == 1) {
+                    $data = 1;
+                } else {
+                    $data = 2;
+                }
+                return Response::json(array('successs' => $data));
+            } else if ($DiamondData->doReady != null) {
                 return Response::json(array('success' => 200));
             } else {
                 $newitem = new Working_Stock();
