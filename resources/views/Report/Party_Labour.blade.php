@@ -48,7 +48,7 @@
                                         <optgroup label="Company">
                                             <option value="" disabled selected>Choose Company</option>
                                             @if (count($rate) > 0)
-                                                <option value="">All Inward Report</option>
+                                                <option value="">All Report</option>
                                                 @foreach ($rate as $value)
                                                     <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
                                                 @endforeach
@@ -90,6 +90,9 @@
                                         <button type="submit" class="btn btn-info" style="padding: 5px;"><i
                                                 class="fa fa-download mr-1"></i>
                                             Downloade PDF </button>
+                                        {{-- <div id="global-loader">
+                                            <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +280,9 @@
         </div>
     </div>
     <!-- /Row -->
-
+    <div id="global-loader">
+        <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
+    </div>
     </div>
     </div><!-- end app-content-->
     </div>
@@ -330,15 +335,15 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // alert(response_msg.success);
-                    console.log(response_msg.success);
-                    console.log(response_msg.success.supplier);
-                    console.log(response_msg.success.rates);
+                    // // alert(response_msg.success);
+                    // console.log(response_msg.success);
+                    // console.log(response_msg.success.supplier);
+                    // console.log(response_msg.success.rates);
                     console.log(response_msg.success.counts);
-                    console.log(response_msg.success.issueCuts);
-                    console.log(response_msg.success.outCuts);
-                    console.log(response_msg.success.price);
-                    console.log(response_msg.success.labour);
+                    // console.log(response_msg.success.issueCuts);
+                    // console.log(response_msg.success.outCuts);
+                    // console.log(response_msg.success.price);
+                    // console.log(response_msg.success.labour);
                     if (response_msg == null) {
                         alert('controller Succesfully Called !!!!!');
                     }
@@ -350,17 +355,40 @@
                         $('#example tbody').empty();
 
                         response_msg.success.supplier.forEach(success => {
+                            count;
                             $("#example").append(
                                 '<tr>' +
                                 '<td>' + '<b>' + success.s_name + '</b><br>' +
-                                success.rates + '</td>' +
-                                '<td>' + success.counts +
-                                '</td>' +
-                                '<td>' + success.issueCuts + '</td>' +
-                                '<td>' + success.outCuts + '</td>' +
-                                '<td>' + +'</td>' +
-                                '<td>' + success.price + '</td>' +
-                                '<td>' + success.labour + '</td>' +
+                                response_msg.success.rates[success.s_id][0] + '<br>' +
+                                response_msg.success.rates[success.s_id][1] + '<br>' +
+                                response_msg.success.rates[success.s_id][2] + '<br>' +
+                                response_msg.success.rates[success.s_id][3] + '</td>' +
+                                '<td>' + '<br>' + response_msg.success.counts[success.s_id][0] +
+                                '<br>' +
+                                response_msg.success.counts[success.s_id][1] + '<br>' +
+                                response_msg.success.counts[success.s_id][2] + '<br>' +
+                                response_msg.success.counts[success.s_id][3] + '</td>' +
+                                '<td>' + '<br>' + response_msg.success.issueCuts[success.s_id][0] +
+                                '<br>' +
+                                response_msg.success.issueCuts[success.s_id][1] + '<br>' +
+                                response_msg.success.issueCuts[success.s_id][2] + '<br>' +
+                                response_msg.success.issueCuts[success.s_id][3] + '</td>' +
+                                '<td>' + '<br>' + response_msg.success.outCuts[success.s_id][0] +
+                                '<br>' +
+                                response_msg.success.outCuts[success.s_id][1] + '<br>' +
+                                response_msg.success.outCuts[success.s_id][2] + '<br>' +
+                                response_msg.success.outCuts[success.s_id][3] + '</td>' +
+                                '<td>' + '<br>' + '</td>' +
+                                '<td>' + '<br>' + response_msg.success.price[success.s_id][0] +
+                                '<br>' +
+                                response_msg.success.price[success.s_id][1] + '<br>' +
+                                response_msg.success.price[success.s_id][2] + '<br>' +
+                                response_msg.success.price[success.s_id][3] + '</td>' +
+                                '<td>' + '<br>' + response_msg.success.labour[success.s_id][0] +
+                                '<br>' +
+                                response_msg.success.labour[success.s_id][1] + '<br>' +
+                                response_msg.success.labour[success.s_id][2] + '<br>' +
+                                response_msg.success.labour[success.s_id][3] + '</td>' +
                                 '</tr>'
                             );
                             count = count + 1;

@@ -20,6 +20,22 @@
             padding: 1%;
         }
 
+        .spinner {
+            display: none;
+            position: fixed;
+            top: 33%;
+            left: 48%;
+            width: 60px;
+            height: 60px;
+            background-color: black;
+            -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+            animation: sk-rotateplane 1.2s infinite ease-in-out;
+        }
+
+        .spinner.active {
+            display: block
+        }
+
     </style>
     <div class="page-header">
         <div class="page-leftheader">
@@ -32,7 +48,7 @@
     </div>
     <!--End Page header-->
     <!-- Row -->
-    <div class="row">
+    <div class="row" id="loader">
         <div class="col-12">
             <!--div-->
             <div class="card">
@@ -126,6 +142,11 @@
                                         <button type="submit" class="btn btn-info" style="padding: 5px;"><i
                                                 class="fa fa-download mr-1"></i>
                                             Downloade PDF </button>
+                                        <div class="text-center">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -189,8 +210,8 @@
                                 <div class="col-md-5">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
-                                                class="fa fa-download mr-1"></i>
+                                        <button type="submit" class="btn btn-info" style="padding: 5px;"
+                                            onclick="loading()"><i class="fa fa-download mr-1"></i>
                                             Downloade PDF </button>
                                     </div>
                                 </div>
@@ -410,16 +431,24 @@
             </div>
         </div>
     </div>
+
+
+    <div id="global-loader">
+        <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
+    </div>
     <!-- /Row -->
     </div>
     </div>
     <!-- end app-content-->
     </div>
-
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> --}}
     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
     <script>
+        // $(window).load(function() {
+        //     $("#preloaders").fadeOut(500);
+        // });
         var inputs = document.getElementsByClassName('setting'),
             setting;
 
@@ -471,6 +500,38 @@
             });
         });
 
+        /*This makes the timeout variable global so all functions can access it.*/
+        var timeout;
+
+        /*This is an example function and can be disregarded
+        This function sets the loading div to a given string.*/
+        function loaded() {
+            $('#loading').html('The Ajax Call Data');
+        }
+
+        function startLoad() {
+            /*This is the loading gif, It will popup as soon as startLoad is called*/
+            $('#loading').html('<img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader"/>');
+            /*
+            This is an example of the ajax get method, 
+            You would retrieve the html then use the results
+            to populate the container.
+            
+            $.get('example.php', function (results) {
+                $('#loading').html(results);
+            });
+            */
+            /*This is an example and can be disregarded
+            The clearTimeout makes sure you don't overload the timeout variable
+            with multiple timout sessions.*/
+            clearTimeout(timeout);
+            /*Set timeout delays a given function for given milliseconds*/
+            timeout = setTimeout(loaded, 150000);
+        }
+        /*This binds a click event to the refresh button*/
+        $('#start_call').click(startLoad);
+        /*This starts the load on page load, so you don't have to click the button*/
+        startLoad();
         // var id, mytable;
 
         function showCompanyData() {
