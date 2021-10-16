@@ -23,55 +23,74 @@
         @csrf
         <div class="row">
 
-            <div class="col-xl-9 col-lg-8">
-                <div class="card" style="padding: 10px;">
-                    <div class="card-header">
-                        <div class="card-title">Edit ReadyStock Details</div>
+            <div class="card" style="padding: 20px;">
+                <div class="card-header">
+                    <div class="card-title">Edit ReadyStock Details</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" style="padding-top: 10px">Enter Date :-</label>
+                            <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="bill_date"
+                                value="{{ $Diamond->return_date }}" required>
+                            @error('date')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <h4><label class="form-label" style="padding-top: 10px">Select Manager :-</label></h4>
+                            <select id="m_id" name="m_id" required class="form-control select2">
+                                <optgroup label="Managers">
+                                    <option value="" disabled selected>Choose Manager</option>
+                                    @if (count($manager) > 0)
+                                        @foreach ($manager as $value)
+                                            <option value="{{ $value->m_id }}"
+                                                {{ $Diamond_purchase->doReady == $value->m_id ? 'selected="selected"' : '' }}>
+                                                {{ $value->m_name }}</option>
+                                        @endforeach
+                                    @endif
+                                </optgroup>
+                            </select>
+                            @error('m_id')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class=" form-group">
+                            <label class="form-label">BarCode Value</label>
+                            <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
+                                value="{{ $Diamond_purchase->d_barcode }}" onchange="fetchData()"
+                                placeholder="Enter Bar Code" autofocus>
+                            @error('bar_code')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6" style="padding: 20px;">
-                            <div class="form-group">
-                                <label class="form-label">Enter Date :-</label>
-                                <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
-                                    name="bill_date" value="{{ $Diamond->return_date }}" required>
-                                @error('date')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-group">
-                                <h4><label class="form-label" style="padding-top: 10px">Select Manager :-</label></h4>
-                                <select id="m_id" name="m_id" required class="form-control select2">
-                                    <optgroup label="Managers">
-                                        <option value="" disabled selected>Choose Manager</option>
-                                        @if (count($manager) > 0)
-                                            @foreach ($manager as $value)
-                                                <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </optgroup>
-                                </select>
-                                @error('m_id')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class=" form-group">
-                                <label class="form-label" style="padding-top: 10px">BarCode Value</label>
-                                <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
-                                    value="{{ $Diamond_purchase->d_barcode }}" onchange="fetchData()"
-                                    placeholder="Enter Bar Code" autofocus>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Old Weight </label>
+                            <div style="display: flex;">
+                                <input id="d_wt" type="text" name="d_wt" class="form-control"
+                                    value="{{ $Diamond_purchase->d_wt }}" placeholder="Enter New Weight"
+                                    readonly="readonly">
                                 @error('bar_code')
                                     <small class="errorTxt1">
                                         <div id="title-error" class="error" style="margin-left:3rem">
@@ -79,67 +98,47 @@
                                         </div>
                                     </small>
                                 @enderror
+
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6  col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Price </label>
+                            <div style="display: flex;">
+                                <input id="price" type="text" name="price" class="form-control"
+                                    value="{{ $Diamond_purchase->price }}" placeholder="Enter New Weight">
+                                @error('bar_code')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Old Weight </label>
-                                <div style="display: flex;">
-                                    <input id="d_wt" type="text" name="d_wt" class="form-control"
-                                        value="{{ $Diamond_purchase->d_wt }}" placeholder="Enter New Weight"
-                                        readonly="readonly">
-                                    @error('bar_code')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6  col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Price </label>
-                                <div style="display: flex;">
-                                    <input id="price" type="text" name="price" class="form-control"
-                                        value="{{ $Diamond_purchase->price }}" placeholder="Enter New Weight">
-                                    @error('bar_code')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-
-                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Enter New Weight :- </label>
+                            <div style="display: flex;">
+                                <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField"
+                                    value="{{ $Diamond->d_n_wt }}" placeholder="Enter New Weight">
+                                @error('bar_code')
+                                    <small class="errorTxt1">
+                                        <div id="title-error" class="error" style="margin-left:3rem">
+                                            {{ $message }}
+                                        </div>
+                                    </small>
+                                @enderror
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Enter New Weight :- </label>
-                                <div style="display: flex;">
-                                    <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField"
-                                        value="{{ $Diamond->d_n_wt }}" placeholder="Enter New Weight">
-                                    @error('bar_code')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-
-                                </div>
                             </div>
                         </div>
-                        {{-- <div class="col-md-6">
+                    </div>
+                    {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Date :- </label>
                                 <div style="display: flex;">
@@ -156,13 +155,12 @@
                                 </div>
                             </div>
                         </div> --}}
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                        <a href="/manager" class="btn btn-danger">Cancle</a>
-                    </div>
-
                 </div>
+                <div class="card-footer text-right">
+                    <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                    <a href="/manager" class="btn btn-danger">Cancle</a>
+                </div>
+
             </div>
         </div>
         <!-- End Row-->

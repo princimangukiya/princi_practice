@@ -90,6 +90,8 @@ class RateMaster extends Controller
         //dd($id);
         $data = array();
         $data['rate_master'] = rate_master::findOrFail($id);
+        $data['price'] = $data['rate_master']['json_price'];
+        echo $data['price'];
         return view('Rate_Master.edit', $data);
     }
     public function update(Request $request, $id)

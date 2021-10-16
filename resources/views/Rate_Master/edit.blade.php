@@ -46,7 +46,9 @@
                                                     <option value="" disabled selected>Choose Company</option>
                                                     @if (count($rate) > 0)
                                                         @foreach ($rate as $value)
-                                                            <option value="{{ $value->s_id }}">{{ $value->s_name }}
+                                                            <option value="{{ $value->s_id }}"
+                                                                {{ $rate_master->s_id == $value->s_id ? 'selected="selected"' : '' }}>
+                                                                {{ $value->s_name }}
                                                             </option>
                                                             {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
 

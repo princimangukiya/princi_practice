@@ -112,7 +112,7 @@
                             @endphp
                             <div class="form-group">
                                 <h4><label class="form-label">Select Company :-</label></h4>
-                                <select id="s_id" name="s_id" required class="form-control select2">
+                                <select id="S_id" name="s_id" required class="form-control select2">
                                     <optgroup label="Company">
                                         <option value="" disabled selected>Choose Company</option>
                                         @if (count($rate) > 0)
@@ -296,7 +296,7 @@
 
         function addData() {
 
-            var s_id = $('#s_id').val();
+            var s_id = $('#S_id').val();
             // alert(s_id);
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
@@ -311,8 +311,9 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            // alert(barcode);
-            // alert(m_id);
+            // alert(s_id);
+            // alert(Start_date);
+            // alert(End_date);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -348,22 +349,22 @@
                         console.log(response_msg.success.supplier);
                         $('#example tbody').empty();
 
-                        // response_msg.success.forEach(success => {
-                        $("#example").append(
-                            '<tr>' +
-                            '<td>' + '<b>' + response_msg.success.s_name + '</b><br>' +
-                            response_msg.success.rates + '</td>' +
-                            '<td>' + response_msg.success.counts +
-                            '</td>' +
-                            '<td>' + response_msg.success.issueCuts + '</td>' +
-                            '<td>' + response_msg.success.outCuts + '</td>' +
-                            '<td>' + +'</td>' +
-                            '<td>' + response_msg.success.price + '</td>' +
-                            '<td>' + response_msg.success.labour + '</td>' +
-                            '</tr>'
-                        );
-                        count = count + 1;
-                        // });
+                        response_msg.success.supplier.forEach(success => {
+                            $("#example").append(
+                                '<tr>' +
+                                '<td>' + '<b>' + success.s_name + '</b><br>' +
+                                success.rates + '</td>' +
+                                '<td>' + success.counts +
+                                '</td>' +
+                                '<td>' + success.issueCuts + '</td>' +
+                                '<td>' + success.outCuts + '</td>' +
+                                '<td>' + +'</td>' +
+                                '<td>' + success.price + '</td>' +
+                                '<td>' + success.labour + '</td>' +
+                                '</tr>'
+                            );
+                            count = count + 1;
+                        });
                         // console.log(response_msg.success.length);
                     }
 

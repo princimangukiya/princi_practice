@@ -55,7 +55,9 @@
                                             <option value="" disabled selected>Choose Manager</option>
                                             @if (count($manager) > 0)
                                                 @foreach ($manager as $value)
-                                                    <option value="{{ $value->m_id }}">{{ $value->m_name }}</option>
+                                                    <option value="{{ $value->m_id }}"
+                                                        {{ $Diamond_purchase->doReady == $value->m_id ? 'selected="selected"' : '' }}>
+                                                        {{ $value->m_name }}</option>
                                                 @endforeach
                                             @endif
                                         </optgroup>

@@ -90,6 +90,7 @@ class WorkingStockController extends Controller
         $d_id = $data['Diamond']['d_id'];
         $data['Diamond_purchase'] = D_Purchase::where('d_id', $d_id)->first();
         // dd($data['Diamond']);
+        // echo  $data['Diamond_purchase'];
         return view('working_stock.edit', $data);
     }
     public function update(Request $request, $id)

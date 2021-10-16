@@ -58,7 +58,9 @@
                                             <option value="" disabled selected>Choose Company</option>
                                             @if (count($supplier) > 0)
                                                 @foreach ($supplier as $value)
-                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                                    <option value="{{ $value->s_id }}"
+                                                        {{ $Diamond_purchase->s_id == $value->s_id ? 'selected="selected"' : '' }}>
+                                                        {{ $value->s_name }}</option>
                                                 @endforeach
                                             @endif
                                         </optgroup>

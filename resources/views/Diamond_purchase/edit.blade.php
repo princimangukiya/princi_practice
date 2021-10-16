@@ -56,7 +56,9 @@
                                             <option value="" disabled selected>Choose Supplier</option>
                                             @if (count($supplier1) > 0)
                                                 @foreach ($supplier1 as $value)
-                                                    <option value="{{ $value->s_id }}">{{ $value->s_name }}</option>
+                                                    <option value="{{ $value->s_id }}"
+                                                        {{ $Diamond->s_id == $value->s_id ? 'selected="selected"' : '' }}>
+                                                        {{ $value->s_name }}</option>
                                                 @endforeach
                                             @endif
                                         </optgroup>
@@ -109,7 +111,8 @@
                                             <option value="" disabled selected>Choose Diamond Shape</option>
                                             @if (count($shape) > 0)
                                                 @foreach ($shape as $shapevalue)
-                                                    <option value="{{ $shapevalue->shape_id }}">
+                                                    <option value="{{ $shapevalue->shape_id }}"
+                                                        {{ $Diamond->shape_id == $shapevalue->shape_id ? 'selected="selected"' : '' }}>
                                                         {{ $shapevalue->shape_name }}
                                                     </option>
                                                 @endforeach

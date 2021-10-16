@@ -140,16 +140,18 @@
 
                                                 <form action="{{ route('manager.destroy', $value->m_id) }}" method="post">
                                                     @csrf
-                                                    <div class="btn-group align-top" style="margin-left: 5px;">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
+                                                    <div class="btn-group align-top">
+                                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                            data-attr="{{ route('manager.destroy', $value->m_id) }}"
+                                                            title="Delete Manager">
+                                                            <button class="btn btn-sm btn-danger">Delete <i
+                                                                    class="fe fe-trash-2"></i></button></a>
                                                     </div>
                                                 </form>
 
                                                 @php
                                                     $url = '/manager/edit-data/' . $value->m_id;
-                                                    echo $value->m_id;
+                                                    // echo $value->m_id;
                                                 @endphp
                                                 @if ($value->status == 0)
                                                     <a href="javascript:;" data-toggle="tooltip"
@@ -172,7 +174,38 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
+                                        role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+                                        <div class="modal d-block pos-static">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content modal-content-demo">
+                                                    <div class="modal-header">
+                                                        <h6 class="modal-title">Message Preview</h6><button
+                                                            aria-label="Close" class="close" data-dismiss="modal"
+                                                            type="button"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>Are You Sure To Delete Manager ?</h6>
+                                                        {{-- <div style="display: flex;">
+                                                <p style="color: red;">Note:- </p>
+                                                <p> This Diamond Show To Diamond Purchase</p>
+                                            </div> --}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('manager.destroy', $value->m_id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <button class="btn btn-indigo" type="submit">Delete
+                                                                Manager</button>
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Close</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </tbody>
                             </table>
                         </div>

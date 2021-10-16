@@ -150,13 +150,11 @@
                                             <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
                                                 @csrf
                                                 <div class="btn-group align-top" style="margin-left: 5px;">
-                                                    <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
-                                                        data-toggle="modal" href=""><a data-target="#modaldemo3"
-                                                            data-toggle="modal" href="">
-                                                            Delete</a></button>
-
-                                                    <button class="btn btn-sm btn-danger" data-target="#modaldemo3"
-                                                        data-toggle="modal" href=""><i class="fe fe-trash-2"></i></button>
+                                                    <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                        data-attr="{{ route('supplier.destroy', $value->s_id) }}"
+                                                        title="Delete Supplier">
+                                                        <button class="btn btn-sm btn-danger">Delete <i
+                                                                class="fe fe-trash-2"></i></button></a>
                                                 </div>
                                             </form>
                                         </td>
@@ -165,64 +163,52 @@
 
                             </tbody>
                         </table>
-                        <div class="card" id="modal1">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    Small Modal
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="p-4 bg-light border border-bottom-0">
-                                    <div class="modal d-block pos-static">
-                                        <div class="modal-dialog modal-sm" role="document">
-                                            <div class="modal-content modal-content-demo">
-                                                <div class="modal-header">
-                                                    <h6 class="modal-title">Notice</h6><button aria-label="Close"
-                                                        class="close" data-dismiss="modal" type="button"><span
-                                                            aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>It is a long established fact that a reader will be distracted by the
-                                                        readable content of a page when looking at its layout.</p>
-                                                </div>
-                                                <div class="modal-footer justify-content-center">
-                                                    <button class="btn btn-indigo" type="button">Save
-                                                        changes</button> <button class="btn btn-secondary"
-                                                        type="button">Close</button>
-                                                </div>
-                                            </div>
+                        <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
+                            aria-labelledby="smallModalLabel" aria-hidden="true">
+                            <div class="modal d-block pos-static">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content modal-content-demo">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">Message Preview</h6><button aria-label="Close"
+                                                class="close" data-dismiss="modal" type="button"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <h6>Are You Sure To Delete Supplier?</h6>
+                                            {{-- <div style="display: flex;">
+                                                    <p style="color: red;">Note:- </p>
+                                                    <p> This Diamond Show To Diamond Purchase</p>
+                                                </div> --}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
+                                                @csrf
+                                                <button class="btn btn-indigo" type="submit">Delete
+                                                    Supplier</button>
+                                                <button class="btn btn-secondary" type="button"
+                                                    data-dismiss="modal">Close</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- modal-wrapper-demo -->
-                                <div class="text-center py-4 bg-light border">
-                                    <a class="btn btn-primary" data-target="#modaldemo2" data-toggle="modal" href="#">View
-                                        Live Demo</a>
-                                </div>
-                                <!-- pd-y-30 -->
                             </div>
-                            <!---Prism Pre code-->
-                            <div class="html-code"><i class="las la-code mr-2"></i> Html </div>
-                            <figure class="highlight mb-0" id="element2">
 
-                            </figure>
-                            <!---Prism Pre code--
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!--/div-->
 
 
-                        </div>
-                    </div>
-                    <!-- /Row -->
-
-                </div>
-            </div><!-- end app-content-->
+            </div>
         </div>
-        <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-        {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
+        <!-- /Row -->
 
-    @endsection
-    @include('app')
+    </div>
+    </div><!-- end app-content-->
+    </div>
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
+
+@endsection
+@include('app')

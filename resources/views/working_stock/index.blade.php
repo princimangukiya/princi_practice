@@ -77,54 +77,54 @@
                                                 </a>
 
 
-
                                                 <form action="{{ route('working_stock.destroy', $value->w_id) }}"
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
                                                         <a data-toggle="modal" id="smallButton" data-target="#smallModal"
                                                             data-attr="{{ route('working_stock.destroy', $value->w_id) }}"
-                                                            title="Delete Project">
-                                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                                            <button class="btn btn-sm btn-danger"><i
-                                                                    class="fe fe-trash-2"></i></button></a>
+                                                            title="Delete Diamond">
+                                                            <button class="btn btn-sm btn-danger">Delete <i
+                                                                    class="fe fe-trash-2"></i></button>
+                                                            </button></a>
                                                     </div>
                                                 </form>
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="smallModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-sm" role="document">
-                                                <div class="modal-content">
+
+                                    @endforeach
+                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
+                                        aria-labelledby="smallModalLabel" aria-hidden="true">
+                                        <div class="modal d-block pos-static">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <h6 class="modal-title">Message Preview</h6><button
+                                                            aria-label="Close" class="close" data-dismiss="modal"
+                                                            type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
-                                                    <div class="modal-body" id="smallBody">
+                                                    <div class="modal-body">
+                                                        <h6>Are You Sure To Delete Diamond ?</h6>
+                                                        {{-- <div style="display: flex;">
+                                                    <p style="color: red;">Note:- </p>
+                                                    <p> This Diamond Show To Diamond Purchase</p>
+                                                </div> --}}
+                                                    </div>
+                                                    <div class="modal-footer">
                                                         <form action="{{ route('working_stock.destroy', $value->w_id) }}"
                                                             method="post">
-                                                            <div class="modal-body">
-                                                                @csrf
-                                                                <h5 class="text-center">Are you sure you want to
-                                                                    delete Daimond ?</h5>
-                                                                <div class="modal-footer"
-                                                                    style="display: flex; flex-direction:no-wrap;">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Cancel</button>
-                                                                    <button type="submit" class="btn btn-danger">Yes, Delete
-                                                                        Project</button>
-                                                                </div>
-                                                            </div>
+                                                            @csrf
+                                                            <button class="btn btn-indigo" type="submit">Delete
+                                                                Diamond</button>
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Close</button>
                                                         </form>
-
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+
+                                    </div>
 
                                 </tbody>
                             </table>

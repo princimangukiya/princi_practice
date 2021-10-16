@@ -79,53 +79,49 @@
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
+                                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                            data-attr="{{ route('sell_stock.destroy', $value->sell_id) }}"
+                                                            title="Delete Diamond">
+                                                            <button class="btn btn-sm btn-danger">Delete <i
+                                                                    class="fe fe-trash-2"></i></button></a>
                                                     </div>
-                                                    {{-- <div class="p-4 bg-light border border-bottom-0">
-                                                        <div class="modal d-block pos-static">
-                                                            <div class="modal-dialog modal-lg" role="document">
-                                                                <div class="modal-content modal-content-demo">
-                                                                    <div class="modal-header">
-                                                                        <h6 class="modal-title">Message Preview</h6>
-                                                                        <button aria-label="Close" class="close"
-                                                                            data-dismiss="modal" type="button"><span
-                                                                                aria-hidden="true">&times;</span></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <h6>Why We Use Electoral College, Not Popular Vote
-                                                                        </h6>
-                                                                        <p>It is a long established fact that a reader will
-                                                                            be distracted by the
-                                                                            readable content of a page when looking at its
-                                                                            layout. The point of
-                                                                            using Lorem Ipsum is that it has a more-or-less
-                                                                            normal distribution of
-                                                                            letters, as opposed to using 'Content here,
-                                                                            content here', making it
-                                                                            look like readable English.</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-indigo" type="button">Save
-                                                                            changes</button> <button
-                                                                            class="btn btn-secondary"
-                                                                            type="button">Close</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- modal-wrapper-demo --> --}}
                                                 </form>
 
                                             </td>
-                                            {{-- <td>
-                                                    <a href="{{ route('user.edit',['id'=>$user->id]) }}"><i class="fa fa-pencil">Edit</i></a>
-                                                    <a href="{{ route('user.view',['id'=>$user->id]) }}"><i class="zmdi zmdi-eye">View</i></a>
-                                                </td> --}}
                                         </tr>
                                     @endforeach
+                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
+                                        aria-labelledby="smallModalLabel" aria-hidden="true">
+                                        <div class="modal d-block pos-static">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content modal-content-demo">
+                                                    <div class="modal-header">
+                                                        <h6 class="modal-title">Message Preview</h6><button
+                                                            aria-label="Close" class="close" data-dismiss="modal"
+                                                            type="button"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>Are You Sure To Delete Diamond ?</h6>
+                                                        {{-- <div style="display: flex;">
+                                                <p style="color: red;">Note:- </p>
+                                                <p> This Diamond Show To Diamond Purchase</p>
+                                            </div> --}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('sell_stock.destroy', $value->sell_id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <button class="btn btn-indigo" type="submit">Delete
+                                                                Diamond</button>
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Close</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </tbody>
                             </table>
 

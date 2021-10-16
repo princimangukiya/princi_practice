@@ -101,9 +101,11 @@
                                                     method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
+                                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                            data-attr="{{ route('ready_stock.destroy', $value->r_id) }}"
+                                                            title="Delete Diamond" style="display: flex">
+                                                            <button class="btn btn-sm btn-danger">Delete <i
+                                                                    class="fe fe-trash-2"></i></button></a>
                                                     </div>
                                                 </form>
                                             </td>
@@ -113,7 +115,38 @@
                                                 </td> --}}
                                         </tr>
                                     @endforeach
+                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
+                                        role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+                                        <div class="modal d-block pos-static">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content modal-content-demo">
+                                                    <div class="modal-header">
+                                                        <h6 class="modal-title">Message Preview</h6><button
+                                                            aria-label="Close" class="close" data-dismiss="modal"
+                                                            type="button"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>Are You Sure To Delete Diamond ?</h6>
+                                                        {{-- <div style="display: flex;">
+                                                <p style="color: red;">Note:- </p>
+                                                <p> This Diamond Show To Diamond Purchase</p>
+                                            </div> --}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <button class="btn btn-indigo" type="submit">Delete
+                                                                Diamond</button>
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Close</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </tbody>
                             </table>
                         </div>
