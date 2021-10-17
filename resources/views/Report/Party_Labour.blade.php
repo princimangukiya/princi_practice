@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Rate Master
 @endsection
@@ -407,4 +409,4 @@
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
 
 @endsection
-@include('app')
+@include('footer_js')

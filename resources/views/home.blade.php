@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <style>
         .text-color:hover {
@@ -126,4 +128,4 @@
         </div>
     </div>
 @endsection
-@include('app')
+@include('footer_js')

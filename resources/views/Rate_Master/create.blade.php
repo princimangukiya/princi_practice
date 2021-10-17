@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <!--/app header-->
     @php
@@ -69,7 +71,7 @@
                         <div class="row">
                             @php
                                 $c_id = session()->get('c_id');
-                                $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                                $rate = App\Models\supplier_details::where([['c_id', $c_id], ['status', 1]])->get();
                                 // echo $rate;
                             @endphp
                             <div class="col-md-6">
@@ -234,4 +236,4 @@
         });
     </script>
 @endsection
-@include('app')
+@include('footer_js')

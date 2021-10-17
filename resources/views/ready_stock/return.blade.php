@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Diamond Return
 @endsection
@@ -306,4 +308,4 @@
         </script>
 
     @endsection
-    @include('app')
+    @include('footer_js')

@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <!--/app header-->
     @php
@@ -45,7 +47,7 @@
                 <div class="card-body">
                     @php
                         $c_id = session()->get('c_id');
-                        $supplier1 = App\Models\supplier_details::where('c_id', $c_id)->get();
+                        $supplier1 = App\Models\supplier_details::where([['c_id', $c_id], ['status', 1]])->get();
                     @endphp
                     <div class="card-title font-weight-bold">Packet info:</div>
                     <div class="row">
@@ -259,44 +261,6 @@
             }
         });
 
-        function deleteFunc() {
-            if (confirm("Delete Record?") == true) {
-                var id = id;
-                // ajax
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('delete-company') }}",
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                    success: function(res) {
-                        var oTable = $('#ajax-crud-datatable').dataTable();
-                        oTable.fnDraw(false);
-                    }
-                });
-            }
-        }
-
-        function editFunc() {
-            $.ajax({
-                type: "POST",
-                url: "{{ url('edit-company') }}",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function(res) {
-                    $('#CompanyModal').html("Edit Company");
-                    $('#company-modal').modal('show');
-                    $('#id').val(res.id);
-                    $('#name').val(res.name);
-                    $('#address').val(res.address);
-                    $('#email').val(res.email);
-                }
-            });
-        }
-
         function addData() {
             // alert(id);
             var barcode = $('#bar_code').val();
@@ -349,4 +313,4 @@
     </script>
 
 @endsection
-@include('app')
+@include('footer_js')

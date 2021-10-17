@@ -1,83 +1,72 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Supplier Details
 @endsection
 
 @section('content')
-    <!--Favicon -->
-    {{-- <link rel="icon" href="{{ asset('assets/images/brand/favicon.ico') }}" type="image/x-icon" /> --}}
-
-    <!--Bootstrap css -->
-    <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Style css -->
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/dark.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
-
-    <!-- Animate css -->
-    <link href="{{ asset('assets/css/animated.css') }}" rel="stylesheet" />
-
-    <!--Sidemenu css -->
-    <link href="{{ asset('assets/css/sidemenu.css') }}" rel="stylesheet">
-
-    <!-- P-scroll bar css-->
-    <link href="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" />
-
-    <!---Icons css-->
-    <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" />
-    <!-- INTERNAL Prism Css -->
-    <link href="{{ asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
-
-    <!-- Simplebar css -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}">
-
-    <!-- Color Skin css -->
-    <link id="theme" href="{{ asset('assets/colors/color1.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- Switcher css -->
-    <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
-    <!-- Jquery js-->
-    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
-
-    <!-- Bootstrap4 js-->
-    <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-
-    <!--Othercharts js-->
-    <script src="{{ asset('assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
-
-    <!-- Circle-progress js-->
-    <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
-
-    <!-- Jquery-rating js-->
-    <script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
-
-    <!--Sidemenu js-->
-    <script src="{{ asset('assets/plugins/sidemenu/sidemenu.js') }}"></script>
-
-    <!-- P-scroll js-->
-    <script src="{{ asset('assets/plugins/p-scrollbar/p-scrollbar.js') }}"></script>
-    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll1.js') }}"></script>
-    <script src="{{ asset('assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
-
-    <!-- INTERNAL Clipboard js -->
-    <script src="{{ asset('assets/plugins/clipboard/clipboard.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/clipboard/clipboard.js') }}"></script>
-
-    <!-- INTERNAL Prism js -->
-    <script src="{{ asset('assets/plugins/prism/prism.js') }}"></script>
-    <!-- Simplebar JS -->
-    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-    <!-- Custom js-->
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-
-    <!-- Switcher js-->
-    <script src="{{ asset('assets/switcher/js/switcher.js') }}"></script>
-
     <style>
-        .table-responsive {
-            width: 100%;
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            display: flex;
+            height: 17px;
+            margin: 0;
+            align-items: center;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 17px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
         }
 
     </style>
@@ -108,13 +97,14 @@
                 </div>
                 <div class="card-body">
                     <div class=" table-responsive">
-                        <table id="example" class="table table-bordered text-wrap key-buttons">
+                        <table id="Supplier" class="table table-bordered text-wrap key-buttons">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">Supplier Name</th>
                                     <th class="border-bottom-0" style="width: 20%;">Supplier Address</th>
                                     {{-- <th>Package</th> --}}
+                                    <th class="border-bottom-0">Status</th>
                                     <th class="border-bottom-0">Supplier Gst No.</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>
@@ -135,6 +125,13 @@
                                         <td>
                                             {{ $value->s_gst }}
                                         </td>
+                                        <td>
+                                            @if ($value->status == 1)
+                                                <p>Active</p>
+                                            @else
+                                                <p>In-Active</p>
+                                            @endif
+                                        </td>
                                         <td class="align-middle"
                                             style="display: flex; align-items: center;justify-content: space-evenly;">
                                             <a href="{{ route('supplier.edit', ['id' => $value->s_id]) }}"
@@ -147,7 +144,7 @@
                                                 </div>
                                             </a>
 
-                                            <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
+                                            {{-- <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
                                                 @csrf
                                                 <div class="btn-group align-top" style="margin-left: 5px;">
                                                     <a data-toggle="modal" id="smallButton" data-target="#smallModal"
@@ -156,25 +153,28 @@
                                                         <button class="btn btn-sm btn-danger">Delete <i
                                                                 class="fe fe-trash-2"></i></button></a>
                                                 </div>
-                                            </form>
+                                            </form> --}}
                                             @php
                                                 $url = '/supplier/edit-data/' . $value->s_id;
-                                                echo $value->s_id;
+                                                // echo $value->m_id;
                                             @endphp
                                             @if ($value->status == 0)
                                                 <a href="javascript:;" data-toggle="tooltip"
                                                     data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
                                                     data-original-title="edit" data-href="{{ url($url) }}"
                                                     class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                        class="switch"><input type="checkbox"><span
-                                                            class="slider round"></span></label></a>
+                                                        class="custom-switch"><input type="checkbox"
+                                                            name="custom-switch-checkbox" class="custom-switch-input"><span
+                                                            class="custom-switch-indicator"></span></label></a>
                                             @else
                                                 <a href="javascript:;" data-toggle="tooltip"
                                                     data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
                                                     data-original-title="edit" data-href="{{ url($url) }}"
                                                     class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                        class="switch"><input type="checkbox" checked><span
-                                                            class="slider round"></span></label></a>
+                                                        class="custom-switch"><input type="checkbox"
+                                                            name="custom-switch-checkbox" class="custom-switch-input"
+                                                            checked><span
+                                                            class="custom-switch-indicator"></span></label></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -182,7 +182,7 @@
 
                             </tbody>
                         </table>
-                        <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
+                        {{-- <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}" role="dialog"
                             aria-labelledby="smallModalLabel" aria-hidden="true">
                             <div class="modal d-block pos-static">
                                 <div class="modal-dialog" role="document">
@@ -198,7 +198,7 @@
                                             {{-- <div style="display: flex;">
                                                     <p style="color: red;">Note:- </p>
                                                     <p> This Diamond Show To Diamond Purchase</p>
-                                                </div> --}}
+                                                </div> --}
                                         </div>
                                         <div class="modal-footer">
                                             <form action="{{ route('supplier.destroy', $value->s_id) }}" method="post">
@@ -211,21 +211,22 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                        </div>
                     </div>
                 </div>
-                <!--/div-->
-
-
             </div>
+            <!--/div-->
+
+
         </div>
-        <!-- /Row -->
+    </div>
+    <!-- /Row -->
 
     </div>
     </div><!-- end app-content-->
     </div>
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
     <script>
@@ -235,7 +236,7 @@
             var user_url = $(this).data('href');
             var isActive = $(this).data('isactive');
             var s_id = $(this).data('id');
-            alert(user_url);
+            // alert(s_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -249,14 +250,34 @@
                     // "_token": "{{ csrf_token() }}",
                     // "_method": "post",
                     'isActive': isActive,
-                    'm_id': m_id
+                    's_id': s_id
                 },
                 success: function(response) {
-                    // alert("response.success");
+                    if (response.success) {
+                        // alert(response.responseText);
+                        location.reload(true);
+                    } else {
+                        // alert(response.responseText);
+                    }
                 },
             });
             // }
         });
+        $(document).ready(function() {
+            SupplierTabel = $('#Supplier').DataTable({
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "pageLength": 50,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+        });
     </script>
 @endsection
-@include('app')
+@include('footer_js')

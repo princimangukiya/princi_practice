@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <!--/app header-->
     @php
@@ -172,4 +174,4 @@
         });
     </script>
 @endsection
-@include('app')
+@include('footer_js')

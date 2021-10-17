@@ -1,9 +1,11 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Diamond Purchase
 @endsection
 @section('content')
-<link href="{{asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.css')}}" />
-		<link href="{{asset('assets/plugins/sweet-alert/sweetalert.css')}}" />
+    <link href="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.css') }}" />
+    <link href="{{ asset('assets/plugins/sweet-alert/sweetalert.css') }}" />
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Diamond Purchase</h4>
@@ -32,7 +34,7 @@
                 <div class="card-body">
                     <div class="">
                         <div class=" table-responsive">
-                            <table id="example" class="table table-bordered text-wrap key-buttons">
+                            <table id="Daimond_Tabel" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
@@ -48,11 +50,15 @@
                                 <tbody>
                                     @foreach ($diamond as $key => $value)
                                         <tr>
-                                            @if ($value->doReady != null && $value->isReady != null)
+                                            @if ($value->isReturn != null)
                                                 <td style="background-color: #74c69d;">
                                                     {{ $key + 1 }}
                                                 </td>
-                                            @elseif($value->doReady != null)
+                                            @elseif($value->isReady != null)
+                                                <td style="background-color: #ADD8E6;">
+                                                    {{ $key + 1 }}
+                                                </td>
+                                            @elseif( $value->doReady != null)
                                                 <td style="background-color: #eae2b7;">
                                                     {{ $key + 1 }}
                                                 </td>
@@ -64,8 +70,12 @@
                                             <td>
                                                 {{ $value->supplier->s_name }}
                                             </td>
-                                            @if ($value->doReady != null && $value->isReady != null)
+                                            @if ($value->isReturn != null)
                                                 <td style="background-color: #74c69d;">
+                                                    {{ $value->d_barcode }}
+                                                </td>
+                                            @elseif($value->isReady != null)
+                                                <td style="background-color: #ADD8E6;">
                                                     {{ $value->d_barcode }}
                                                 </td>
                                             @elseif($value->doReady != null)
@@ -165,12 +175,28 @@
         </div>
     </div>
     <!-- /Row -->
-
-    <script src="{{asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('assets/js/sweet-alert.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            DaimondTabel = $('#Daimond_Tabel').DataTable({
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "pageLength": 50,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+        });
+    </script>
+    <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
 @endsection
-@include('app')
+@include('footer_js')

@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <!--/app header-->
     @php
@@ -230,4 +232,4 @@
             // mytable.draw();
         });
     @endsection
-    @include('app')
+    @include('footer_js')

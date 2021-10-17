@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('content')
     <!--/app header-->
     @php
@@ -57,7 +59,8 @@
                                             @if (count($supplier1) > 0)
                                                 @foreach ($supplier1 as $value)
                                                     <option value="{{ $value->s_id }}"
-                                                        {{ $Diamond->s_id == $value->s_id ? 'selected="selected"' : '' }}>
+                                                        {{ $Diamond->s_id == $value->s_id ? 'selected="selected"' : '' }}
+                                                        {{ $value->status == 0 ? 'disabled="disabled"' : '' }}>
                                                         {{ $value->s_name }}</option>
                                                 @endforeach
                                             @endif
@@ -208,4 +211,4 @@
     </script>
 
 @endsection
-@include('app')
+@include('footer_js')

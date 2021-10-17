@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Inward Details
 @endsection
@@ -20,201 +22,59 @@
             padding: 1%;
         }
 
-        #preloader {
-            width: 250px;
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin: 5rem auto;
-        }
-
-        #preloader li:nth-child(1) {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            text-align: center;
-            padding: 2rem 0;
-            display: block;
-            width: 100%;
-            /* text-transform: uppercase; */
-        }
-
-        #preloader li:nth-child(1):after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            margin-left: 5px;
-            transform: translateY(-50%);
-        }
-
-        #preloader.preloader-active li:nth-child(1):after {
-            animation-name: loading-dots;
-            animation-duration: 1.5s;
-        }
-
-        #preloader li:not(:nth-child(1)) {
-            border-radius: 50%;
-            height: 20px;
-            width: 20px;
-            list-style: none;
-            background: #1DE9B6;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-        }
-
-        #preloader.preloader-active li:nth-child(2) {
-            animation-name: loading-first;
-        }
-
-        #preloader.preloader-active li:nth-child(3) {
-            animation-name: loading-second;
-        }
-
-        #preloader.preloader-active li:nth-child(4) {
-            transform: translateX(-50%);
-        }
-
-        #preloader.preloader-active li:nth-child(5) {
-            animation-name: loading-fourth;
-        }
-
-        #preloader.preloader-active li:nth-child(6) {
-            animation-name: loading-fivth;
-        }
-
-        #preloader li:not(:nth-child(4)),
-        #preloader li:nth-child(1):after {
-            animation-duration: 1.5s;
-            animation-iteration-count: infinite;
-            animation-timing-function: cubic-bezier(0.830, 0.430, 0.020, 1.080);
-        }
-
-        @keyframes loading-first {
-            25% {
-                left: calc(50% - 40px);
-            }
-
-            50% {
-                left: calc(50% - 80px);
-            }
-
-            75% {
-                left: calc(50% + 80px);
-            }
-
-            100% {
-                left: 50%;
-            }
-        }
-
-        @keyframes loading-second {
-            25% {
-                left: calc(50% - 40px);
-            }
-
-            50% {
-                left: calc(50% - 40px);
-            }
-
-            75% {
-                left: calc(50% + 40px);
-            }
-
-            100% {
-                left: 50%;
-            }
-        }
-
-        @keyframes loading-fourth {
-            25% {
-                left: calc(50% + 40px);
-            }
-
-            50% {
-                left: calc(50% + 80px);
-            }
-
-            75% {
-                left: calc(50% - 80px);
-            }
-
-            100% {
-                left: 50%;
-            }
-        }
-
-        @keyframes loading-fivth {
-            25% {
-                left: calc(50% + 40px);
-            }
-
-            50% {
-                left: calc(50% + 40px);
-            }
-
-            75% {
-                left: calc(50% - 40px);
-            }
-
-            100% {
-                left: 50%;
-            }
-        }
-
-        @keyframes loading-dots {
-            25% {
-                content: " .";
-            }
-
-            50% {
-                content: " ..";
-            }
-
-            75% {
-                content: " ...";
-            }
-
-            100% {
-                content: "";
-            }
-        }
-
-        #activate-preloader {
-            margin: 3rem auto;
-            margin-top: 1rem;
-            display: block;
-            /* border: 1px solid #1DE9B6; */
-            padding: 1rem;
-            /* background: #1DE9B6; */
+        .btn {
+            align-items: center;
+            background: 400;
+            border-radius: 5px;
             color: white;
-            text-transform: uppercase;
-            transition: .2s;
             cursor: pointer;
-            outline: none;
+            display: inline-flex;
+            height: 36px;
+            justify-content: center;
+            min-width: 90px;
         }
 
-        #activate-preloader.active,
-        #activate-preloader:hover {
-            /* background: none;
-                    color: #1DE9B6;
-                    border: 1px solid #1DE9B6; */
+        .btn.btn--loading {
+            font-size: 0;
         }
 
-        #content {
-            max-width: 960px;
-            margin: 0 auto;
+        .btn.btn--loading span {
             display: flex;
-            flex-direction: row;
         }
 
-        .preloader-content {
+        .btn.btn--loading span b {
+            animation-direction: alternate;
+            animation-duration: 0.5s;
+            animation-fill-mode: none;
+            animation-iteration-count: infinite;
+            animation-name: stretch;
+            animation-play-state: running;
+            animation-timing-function: ease-out;
+            border-radius: 100%;
             display: block;
-            width: 100%;
-            float: left;
+            height: 10px;
+            margin: 0 1px;
+            width: 10px;
+            animation-delay: 0.1s;
+            margin: 0 5px;
+        }
+
+        .btn.btn--loading span b:first-child {
+            animation-delay: 0s;
+            margin: 0;
+        }
+
+        .btn.btn--loading span b:last-child {
+            animation-delay: 0.2s;
+            margin: 0;
+        }
+
+        .btn b {
+            font-weight: normal;
+        }
+
+        .btn span {
+            display: none;
         }
 
     </style>
@@ -276,7 +136,7 @@
                             <div class="col-md-3" style="padding-right: 0px;">
                                 @php
                                     $c_id = session()->get('c_id');
-                                    $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                                    $rate = App\Models\supplier_details::where([['c_id', $c_id], ['status', 1]])->get();
                                 @endphp
                                 <div class="form-group">
                                     <h4><label class="form-label">Select Company :-</label></h4>
@@ -320,22 +180,24 @@
                                 <div class="col-md-5">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button id="activate-preloader" type="submit" class="btn btn-info"
-                                            style="padding: 5px;"><i class="fa fa-download mr-1"></i>
-                                            Downloade PDF </button>
-                                        {{-- <button id="activate-preloader">Activate Preloader</button> --}}
-                                        <div id="content">
+                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><a
+                                                class="btn">
+                                                <span>
+                                                    <b></b>
+                                                    <b></b>
+                                                    <b></b>
+                                                </span>
+                                                <i class="fa fa-download mr-1"></i>
+                                                Downloade PDF</a> </button>
 
-                                            <ul id="preloader" class="preloader-inactive">
-                                                <li>Inhalte werden geladen</li>
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-
+                                        <script>
+                                            $('.btn').on('click', function() {
+                                                $(this).addClass('btn--loading');
+                                                setTimeout(() => {
+                                                    $(this).removeClass('btn--loading');
+                                                }, 14000);
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -886,4 +748,4 @@
         }
     </script>
 @endsection
-@include('app')
+@include('footer_js')

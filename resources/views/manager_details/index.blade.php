@@ -1,9 +1,11 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Manager Details
 @endsection
 
 @section('content')
-    <style>
+    {{-- <style>
         .switch {
             position: relative;
             display: inline-block;
@@ -67,7 +69,7 @@
             border-radius: 50%;
         }
 
-    </style>
+    </style> --}}
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Manager Details</h4>
@@ -96,7 +98,7 @@
                 <div class="card-body">
                     <div class="___class_+?17___">
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-wrap key-buttons">
+                            <table id="Manager_tabel" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
@@ -104,6 +106,7 @@
                                         <th class="border-bottom-0">Manager Address</th>
                                         <th class="border-bottom-0">Manager Phone No.</th>
                                         <th class="border-bottom-0">Manager EmailID</th>
+                                        <th class="border-bottom-0">Status</th>
                                         <th class="border-bottom-0">Action</th>
                                     </tr>
                                 </thead>
@@ -126,6 +129,13 @@
                                             <td>
                                                 {{ $value->m_email }}
                                             </td>
+                                            <td>
+                                                @if ($value->status == 1)
+                                                    <p>Active</p>
+                                                @else
+                                                    <p>In-Active</p>
+                                                @endif
+                                            </td>
                                             <td class="align-middle"
                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
                                                 <a href="{{ route('manager.edit', ['id' => $value->m_id]) }}"
@@ -138,7 +148,7 @@
                                                     </div>
                                                 </a>
 
-                                                <form action="{{ route('manager.destroy', $value->m_id) }}" method="post">
+                                                {{-- <form action="{{ route('manager.destroy', $value->m_id) }}" method="post">
                                                     @csrf
                                                     <div class="btn-group align-top">
                                                         <a data-toggle="modal" id="smallButton" data-target="#smallModal"
@@ -147,34 +157,39 @@
                                                             <button class="btn btn-sm btn-danger">Delete <i
                                                                     class="fe fe-trash-2"></i></button></a>
                                                     </div>
-                                                </form>
+                                                </form> --}}
 
                                                 @php
                                                     $url = '/manager/edit-data/' . $value->m_id;
                                                     // echo $value->m_id;
                                                 @endphp
+
                                                 @if ($value->status == 0)
                                                     <a href="javascript:;" data-toggle="tooltip"
                                                         data-isactive="{{ $value->status }}"
                                                         data-id="{{ $value->m_id }}" data-original-title="edit"
                                                         data-href="{{ url($url) }}"
                                                         class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                            class="switch"><input type="checkbox"><span
-                                                                class="slider round"></span></label></a>
+                                                            class="custom-switch"><input type="checkbox"
+                                                                name="custom-switch-checkbox"
+                                                                class="custom-switch-input"><span
+                                                                class="custom-switch-indicator"></span></label></a>
                                                 @else
                                                     <a href="javascript:;" data-toggle="tooltip"
                                                         data-isactive="{{ $value->status }}"
                                                         data-id="{{ $value->m_id }}" data-original-title="edit"
                                                         data-href="{{ url($url) }}"
                                                         class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                            class="switch"><input type="checkbox" checked><span
-                                                                class="slider round"></span></label></a>
+                                                            class="custom-switch"><input type="checkbox"
+                                                                name="custom-switch-checkbox" class="custom-switch-input"
+                                                                checked><span
+                                                                class="custom-switch-indicator"></span></label></a>
                                                 @endif
 
                                             </td>
                                         </tr>
                                     @endforeach
-                                    <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
+                                    {{-- <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
                                         role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
                                         <div class="modal d-block pos-static">
                                             <div class="modal-dialog" role="document">
@@ -189,7 +204,7 @@
                                                         {{-- <div style="display: flex;">
                                                 <p style="color: red;">Note:- </p>
                                                 <p> This Diamond Show To Diamond Purchase</p>
-                                            </div> --}}
+                                            </div> --}
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form action="{{ route('manager.destroy', $value->m_id) }}"
@@ -205,7 +220,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -233,7 +248,7 @@
             var user_url = $(this).data('href');
             var isActive = $(this).data('isactive');
             var m_id = $(this).data('id');
-            alert(user_url);
+            // alert(user_url);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -250,13 +265,35 @@
                     'm_id': m_id
                 },
                 success: function(response) {
-                    // alert("response.success");
+                    if (response.success) {
+                        // alert(response.responseText);
+                        location.reload(true);
+                    } else {
+                        // alert(response.responseText);
+                    }
+                    // location.reload();
                 },
+
             });
             // }
+        });
+        $(document).ready(function() {
+            managerTabel = $('#Manager_tabel').DataTable({
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "pageLength": 50,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+                "order": [
+                    [0, "desc"]
+                ]
+            });
         });
     </script>
 
 
 @endsection
-@include('app')
+@include('footer_js')
