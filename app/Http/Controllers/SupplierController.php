@@ -143,4 +143,22 @@ class SupplierController extends Controller
         return Redirect::to('/supplier')->with($notification);
         // echo "This Controller";
     }
+    public function edit_data($id)
+    {
+        $c_id = session()->get('c_id');
+        // $isActive = "awese";
+        $isActive = $_GET['isActive'];
+        // $m_id = $_GET['m_id'];
+        $s_id = $id;
+        if ($isActive == 1) {
+            Supplier_Details::where([['c_id', $c_id], ['m_id', $s_id]])->update(['status' => 0]);
+        } else {
+            Supplier_Details::where([['c_id', $c_id], ['m_id', $s_id]])->update(['status' => 1]);
+        }
+
+        // dd("hello");
+        // print_r("hello");
+        return redirect('/manager');
+        // return Response::json(array('success' => $isActive));
+    }
 }

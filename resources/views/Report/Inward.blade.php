@@ -20,20 +20,201 @@
             padding: 1%;
         }
 
-        .spinner {
-            display: none;
-            position: fixed;
-            top: 33%;
-            left: 48%;
-            width: 60px;
-            height: 60px;
-            background-color: black;
-            -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-            animation: sk-rotateplane 1.2s infinite ease-in-out;
+        #preloader {
+            width: 250px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 5rem auto;
         }
 
-        .spinner.active {
-            display: block
+        #preloader li:nth-child(1) {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            text-align: center;
+            padding: 2rem 0;
+            display: block;
+            width: 100%;
+            /* text-transform: uppercase; */
+        }
+
+        #preloader li:nth-child(1):after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            margin-left: 5px;
+            transform: translateY(-50%);
+        }
+
+        #preloader.preloader-active li:nth-child(1):after {
+            animation-name: loading-dots;
+            animation-duration: 1.5s;
+        }
+
+        #preloader li:not(:nth-child(1)) {
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            list-style: none;
+            background: #1DE9B6;
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        #preloader.preloader-active li:nth-child(2) {
+            animation-name: loading-first;
+        }
+
+        #preloader.preloader-active li:nth-child(3) {
+            animation-name: loading-second;
+        }
+
+        #preloader.preloader-active li:nth-child(4) {
+            transform: translateX(-50%);
+        }
+
+        #preloader.preloader-active li:nth-child(5) {
+            animation-name: loading-fourth;
+        }
+
+        #preloader.preloader-active li:nth-child(6) {
+            animation-name: loading-fivth;
+        }
+
+        #preloader li:not(:nth-child(4)),
+        #preloader li:nth-child(1):after {
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(0.830, 0.430, 0.020, 1.080);
+        }
+
+        @keyframes loading-first {
+            25% {
+                left: calc(50% - 40px);
+            }
+
+            50% {
+                left: calc(50% - 80px);
+            }
+
+            75% {
+                left: calc(50% + 80px);
+            }
+
+            100% {
+                left: 50%;
+            }
+        }
+
+        @keyframes loading-second {
+            25% {
+                left: calc(50% - 40px);
+            }
+
+            50% {
+                left: calc(50% - 40px);
+            }
+
+            75% {
+                left: calc(50% + 40px);
+            }
+
+            100% {
+                left: 50%;
+            }
+        }
+
+        @keyframes loading-fourth {
+            25% {
+                left: calc(50% + 40px);
+            }
+
+            50% {
+                left: calc(50% + 80px);
+            }
+
+            75% {
+                left: calc(50% - 80px);
+            }
+
+            100% {
+                left: 50%;
+            }
+        }
+
+        @keyframes loading-fivth {
+            25% {
+                left: calc(50% + 40px);
+            }
+
+            50% {
+                left: calc(50% + 40px);
+            }
+
+            75% {
+                left: calc(50% - 40px);
+            }
+
+            100% {
+                left: 50%;
+            }
+        }
+
+        @keyframes loading-dots {
+            25% {
+                content: " .";
+            }
+
+            50% {
+                content: " ..";
+            }
+
+            75% {
+                content: " ...";
+            }
+
+            100% {
+                content: "";
+            }
+        }
+
+        #activate-preloader {
+            margin: 3rem auto;
+            margin-top: 1rem;
+            display: block;
+            /* border: 1px solid #1DE9B6; */
+            padding: 1rem;
+            /* background: #1DE9B6; */
+            color: white;
+            text-transform: uppercase;
+            transition: .2s;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #activate-preloader.active,
+        #activate-preloader:hover {
+            /* background: none;
+                    color: #1DE9B6;
+                    border: 1px solid #1DE9B6; */
+        }
+
+        #content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .preloader-content {
+            display: block;
+            width: 100%;
+            float: left;
         }
 
     </style>
@@ -139,14 +320,22 @@
                                 <div class="col-md-5">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
-                                                class="fa fa-download mr-1"></i>
+                                        <button id="activate-preloader" type="submit" class="btn btn-info"
+                                            style="padding: 5px;"><i class="fa fa-download mr-1"></i>
                                             Downloade PDF </button>
-                                        {{-- <div class="text-center">
-                                            <div class="spinner-border" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                        </div> --}}
+                                        {{-- <button id="activate-preloader">Activate Preloader</button> --}}
+                                        <div id="content">
+
+                                            <ul id="preloader" class="preloader-inactive">
+                                                <li>Inhalte werden geladen</li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -445,6 +634,28 @@
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> --}}
     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
+    <script>
+        var preloader_button = document.getElementById('activate-preloader'),
+            preloader = document.getElementById('preloader'),
+            activated = false;
+
+        preloader_button.addEventListener('click', animate_preloader);
+
+
+        function animate_preloader() {
+            if (activated) {
+                preloader.classList.remove('preloader-active');
+                preloader.classList.add('preloader-inactive');
+                this.innerHTML = 'Activate Preloader';
+                activated = false;
+            } else {
+                preloader.classList.remove('preloader-inactive');
+                preloader.classList.add('preloader-active');
+                this.innerHTML = 'Deactivate Preloader';
+                activated = true;
+            }
+        }
+    </script>
     <script>
         // $(window).load(function() {
         //     $("#preloaders").fadeOut(500);

@@ -27,6 +27,7 @@ class ReadyStockController extends Controller
         $data['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')
             ->orderBy('return_date', 'DESC')->get();
         // var_dump($data);
+        // echo $data['ready_stock'];
         return view('ready_stock.index', $data);
     }
 
@@ -34,7 +35,7 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
+        $data['manager'] = Manager_Details::where([['c_id', $c_id], ['status', 1]])->get();
         // $data['manager']= Ready_Stock::join('d_purchase', 'ready_stock.d_barcode', '=', 'd_purchase.d_barcode')
         //         ->get(['ready_stock.*', 'd_purchase.*']);
         return view('ready_stock.return', $data);

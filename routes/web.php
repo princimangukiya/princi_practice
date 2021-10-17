@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/supplier/edit/{id}', 'App\Http\Controllers\SupplierController@edit')->name('supplier.edit');
     Route::post('/supplier/update/{id}', 'App\Http\Controllers\SupplierController@update')->name('supplier.update');
     Route::post('/supplier/{id}/destroy', 'App\Http\Controllers\SupplierController@destroy')->name('supplier.destroy');
+    Route::get('/supplier/edit-data/{id}', 'App\Http\Controllers\SupplierController@edit_data')->name('supplier.edit_data');
 
     //manager
     Route::get('/manager', 'App\Http\Controllers\ManagerController@index')->name('manager');
@@ -44,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/manager/edit/{id}', 'App\Http\Controllers\ManagerController@edit')->name('manager.edit');
     Route::post('/manager/update/{id}', 'App\Http\Controllers\ManagerController@update')->name('manager.update');
     Route::post('/manager/{id}/destroy', 'App\Http\Controllers\ManagerController@destroy')->name('manager.destroy');
-    Route::get('/manager/edit-data/{id}', 'App\Http\Controllers\ManagerController@edit_data')->name('manager/edit_data');
+    Route::get('/manager/edit-data/{id}', 'App\Http\Controllers\ManagerController@edit_data')->name('manager.edit_data');
 
     //working_stock
     Route::get('/working_stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');

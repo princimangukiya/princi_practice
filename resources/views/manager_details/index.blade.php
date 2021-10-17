@@ -234,9 +234,6 @@
             var isActive = $(this).data('isactive');
             var m_id = $(this).data('id');
             alert(user_url);
-            // alert(isActive);
-            // alert(m_id);
-            // alert(delete_url_second + " --- " + isActive);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -253,14 +250,8 @@
                     'm_id': m_id
                 },
                 success: function(response) {
-                    alert("response.success");
-                    // var message = response.message;
-                    // localStorage.setItem('message', message);
-                    // location.reload();
+                    // alert("response.success");
                 },
-                // error: function(response) {
-                //     console.error(response);
-                // }
             });
             // }
         });

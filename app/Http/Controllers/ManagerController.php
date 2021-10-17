@@ -134,14 +134,22 @@ class ManagerController extends Controller
 
         return Redirect::to('/manager')->with($notification);
     }
-    public function edit_data()
+    public function edit_data($id)
     {
-        $isActive = "awese";
-        // $isActive = $_GET['isActive'];
-        // Manager_Details:/:()
+        $c_id = session()->get('c_id');
+        // $isActive = "awese";
+        $isActive = $_GET['isActive'];
+        // $m_id = $_GET['m_id'];
+        $m_id = $id;
+        if ($isActive == 1) {
+            Manager_Details::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 0]);
+        } else {
+            Manager_Details::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 1]);
+        }
+
         // dd("hello");
-        print_r("hello");
-        // return redirect('/working_stock');
-        return Response::json(array('success' => $isActive));
+        // print_r("hello");
+        return redirect('/manager');
+        // return Response::json(array('success' => $isActive));
     }
 }

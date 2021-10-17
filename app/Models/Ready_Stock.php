@@ -11,7 +11,7 @@ class Ready_Stock extends Model
     use SoftDeletes;
     protected $table = "ready_stock";
     protected $primaryKey = "r_id";
-    protected $fillable = ['m_id', 'd_id', 'd_barcode'];
+    protected $fillable = ['m_id', 'd_id'];
 
     public function Manager()
     {

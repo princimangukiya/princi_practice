@@ -32,7 +32,7 @@ class WorkingStockController extends Controller
     {
         $c_id =  session()->get('c_id');
         $data = array();
-        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
+        $data['manager'] = Manager_Details::where([['c_id', $c_id], ['status', 1]])->get();
         $data['check'] = 'hello';
         return view('working_stock.given', $data);
     }

@@ -157,6 +157,25 @@
                                                                 class="fe fe-trash-2"></i></button></a>
                                                 </div>
                                             </form>
+                                            @php
+                                                $url = '/supplier/edit-data/' . $value->s_id;
+                                                echo $value->s_id;
+                                            @endphp
+                                            @if ($value->status == 0)
+                                                <a href="javascript:;" data-toggle="tooltip"
+                                                    data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
+                                                    data-original-title="edit" data-href="{{ url($url) }}"
+                                                    class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
+                                                        class="switch"><input type="checkbox"><span
+                                                            class="slider round"></span></label></a>
+                                            @else
+                                                <a href="javascript:;" data-toggle="tooltip"
+                                                    data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
+                                                    data-original-title="edit" data-href="{{ url($url) }}"
+                                                    class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
+                                                        class="switch"><input type="checkbox" checked><span
+                                                            class="slider round"></span></label></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -209,6 +228,35 @@
     </div>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
     {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
-
+    <script>
+        //  alert(id);
+        $('body').on('click', '.edit', function() {
+            // if (confirm("Are you sure you want to edit this?")) {
+            var user_url = $(this).data('href');
+            var isActive = $(this).data('isactive');
+            var s_id = $(this).data('id');
+            alert(user_url);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: user_url,
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    // "_token": "{{ csrf_token() }}",
+                    // "_method": "post",
+                    'isActive': isActive,
+                    'm_id': m_id
+                },
+                success: function(response) {
+                    // alert("response.success");
+                },
+            });
+            // }
+        });
+    </script>
 @endsection
 @include('app')
