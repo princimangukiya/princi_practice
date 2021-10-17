@@ -23,7 +23,7 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['diamond'] = D_Purchase::where('c_id', $c_id)->orderBy('d_purchase.bill_date', 'DESC')->with('shapeDate')->get();
+        $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate')->get();
 
         return view('Diamond_purchase.index', $data);
     }

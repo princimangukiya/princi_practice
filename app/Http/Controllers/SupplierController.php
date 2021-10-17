@@ -151,14 +151,14 @@ class SupplierController extends Controller
         // $m_id = $_GET['m_id'];
         $s_id = $id;
         if ($isActive == 1) {
-            Supplier_Details::where([['c_id', $c_id], ['m_id', $s_id]])->update(['status' => 0]);
+            Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 0]);
         } else {
-            Supplier_Details::where([['c_id', $c_id], ['m_id', $s_id]])->update(['status' => 1]);
+            Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 1]);
         }
 
         // dd("hello");
         // print_r("hello");
-        return redirect('/manager');
-        // return Response::json(array('success' => $isActive));
+        // return redirect('/suplier');
+        return Response::json(array('success' => true));
     }
 }

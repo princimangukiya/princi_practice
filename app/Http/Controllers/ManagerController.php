@@ -149,7 +149,7 @@ class ManagerController extends Controller
 
         // dd("hello");
         // print_r("hello");
-        return redirect('/manager');
-        // return Response::json(array('success' => $isActive));
+        // return redirect('/manager');
+        return Response::json(array('success' => true));
     }
 }
