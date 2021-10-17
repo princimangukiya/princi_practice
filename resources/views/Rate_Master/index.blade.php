@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Rate Master
 @endsection
@@ -30,7 +32,7 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-wrap key-buttons">
+                            <table id="rate_Master" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         @php
@@ -138,9 +140,26 @@
     }
     @endphp
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+    {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
+    <script>
+        $(document).ready(function() {
+            RateTabel = $('#rate_Master').DataTable({
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "pageLength": 50,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+        });
+    </script>
 
 
 
 @endsection
-@include('app')
+@include('footer_js')

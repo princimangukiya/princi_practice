@@ -1,3 +1,5 @@
+@include('header_css')
+@extends('app')
 @section('page-title')
     Ready Stock
 @endsection
@@ -38,7 +40,7 @@
                 <div class="card-body">
                     <div class="___class_+?17___">
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-wrap key-buttons">
+                            <table id="Diamond_Data" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
@@ -170,6 +172,22 @@
     </div>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
 
-
+    <script>
+        $(document).ready(function() {
+            DaimondTabel = $('#Diamond_Data').DataTable({
+                "autoWidth": false,
+                "info": true,
+                "paging": true,
+                "lengthChange": false,
+                "pageLength": 50,
+                "sDom": 'lfrtip',
+                "ordering": true,
+                "searching": true,
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+        });
+    </script>
 @endsection
-@include('app')
+@include('footer_js')
