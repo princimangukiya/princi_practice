@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 11:07 AM
+-- Generation Time: Oct 18, 2021 at 03:13 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -206,9 +206,15 @@ INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`,
 (108, 1, 1, '4585621', '0.150', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 50, '2021-10-11', NULL, NULL, NULL, '2021-10-12 07:33:52', '2021-10-17 00:45:00', NULL),
 (109, 1, 1, '454545', '0.210', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 70, '2021-10-01', NULL, NULL, NULL, '2021-10-18 02:00:57', '2021-10-18 02:00:57', NULL),
 (110, 1, 1, '45896161', '0.220', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 70, '2021-10-01', NULL, NULL, NULL, '2021-10-18 02:01:46', '2021-10-18 02:01:46', NULL),
-(111, 1, 8, '757575', '0.225', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-18', NULL, NULL, NULL, '2021-10-18 03:10:50', '2021-10-18 03:10:50', NULL),
-(112, 1, 8, '1010192', '0.201', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 70, '2021-10-18', NULL, NULL, NULL, '2021-10-18 03:13:17', '2021-10-18 03:13:17', NULL),
-(113, 1, 8, '434343', '0.240', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-13', NULL, NULL, NULL, '2021-10-18 03:20:28', '2021-10-18 03:20:28', NULL);
+(111, 1, 8, '757575', '0.225', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-18', 4, NULL, NULL, '2021-10-18 03:10:50', '2021-10-18 06:01:44', NULL),
+(112, 1, 8, '1010192', '0.201', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 70, '2021-10-18', 1, NULL, NULL, '2021-10-18 03:13:17', '2021-10-18 06:00:28', NULL),
+(113, 1, 8, '434343', '0.240', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-13', 15, NULL, NULL, '2021-10-18 03:20:28', '2021-10-18 05:57:58', NULL),
+(114, 1, 14, '5599595', '0.260', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-18', 15, NULL, NULL, '2021-10-18 03:54:55', '2021-10-18 05:57:32', NULL),
+(115, 1, 8, '785124', '0.124', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 70, '2021-10-18', 1, NULL, NULL, '2021-10-18 04:11:35', '2021-10-18 05:57:09', NULL),
+(116, 1, 8, '757424', '0.105', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 70, '2021-10-18', 1, NULL, NULL, '2021-10-18 04:12:38', '2021-10-18 05:55:44', NULL),
+(117, 1, 8, '789789', '0.240', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 100, '2021-10-18', 1, NULL, NULL, '2021-10-18 05:21:37', '2021-10-18 05:55:32', NULL),
+(118, 1, 8, '741741', '0.241', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-13', 1, NULL, NULL, '2021-10-18 05:23:54', '2021-10-18 05:55:23', NULL),
+(119, 1, 1, '963963', '0.260', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 70, '2021-10-19', 4, NULL, NULL, '2021-10-18 05:29:36', '2021-10-18 05:31:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +261,8 @@ INSERT INTO `manager_details` (`m_id`, `c_id`, `m_name`, `m_address`, `m_phone`,
 (4, 1, 'KAMLESH', 'hirabugh', '7096717095', 'kamlesh@gmail.com', 1, '2021-09-21 06:24:42', '2021-10-17 05:59:05', NULL),
 (6, 2, 'RAMESH', 'Rambag', '7096717096', 'ramesh@gmail.com', 1, '2021-10-06 06:13:10', '2021-10-06 06:13:10', NULL),
 (8, 1, 'rishi', 'hiranagar', '9512727308', 'rushikeshantala@gmail.com', 1, '2021-10-12 03:36:07', '2021-10-12 22:21:03', '2021-10-12 22:21:03'),
-(15, 1, 'rishi', 'Hirabag', '6541239807', 'rushikeshantala001@gmail.com', 1, '2021-10-12 23:16:10', '2021-10-17 05:59:08', NULL);
+(15, 1, 'rishi', 'Hirabag', '6541239807', 'rushikeshantala001@gmail.com', 1, '2021-10-12 23:16:10', '2021-10-17 05:59:08', NULL),
+(16, 1, 'Abhay', 'vsvsd', '789652314', 'meet@gmaiol.com', 0, '2021-10-18 06:08:47', '2021-10-18 06:10:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -343,7 +350,8 @@ INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `created_at
 (1, 1, 1, '[{\"1\":\"50\",\"2\":\"70\",\"5\":\"150\",\"3\":\"100\"}]', '2021-10-06 05:31:23', '2021-10-06 05:37:56'),
 (2, 1, 8, '[{\"1\":\"70\",\"5\":\"200\",\"2\":\"100\",\"3\":\"150\"}]', '2021-10-06 05:38:11', '2021-10-06 05:38:59'),
 (3, 2, 7, '[{\"1\":\"40\",\"3\":\"90\",\"2\":\"70\",\"5\":\"120\"}]', '2021-10-06 05:39:28', '2021-10-06 05:40:43'),
-(5, 1, 14, '[{\"1\":\"90\",\"2\":\"100\",\"3\":\"120\",\"5\":\"150\"}]', '2021-10-12 03:39:15', '2021-10-12 03:40:04');
+(5, 1, 14, '[{\"1\":\"90\",\"2\":\"100\",\"3\":\"120\",\"5\":\"150\"}]', '2021-10-12 03:39:15', '2021-10-12 03:40:04'),
+(6, 1, 16, '[{\"1\":\"10\"}]', '2021-10-18 06:20:35', '2021-10-18 06:20:35');
 
 -- --------------------------------------------------------
 
@@ -445,7 +453,8 @@ INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, 
 (7, 2, 'kikani jems', 'pramukh bulding', '24aakfk0018n1zd', 1, '2021-08-11 02:42:32', '2021-08-11 02:42:32', NULL),
 (8, 1, 'KIRAN', 'HIRABAG', '24AAACA1033E1Z', 1, '2021-09-17 04:02:25', '2021-09-17 04:02:25', NULL),
 (12, 2, 'GAJERA', 'Varchha', '24AAACA1033E1R', 1, '2021-10-06 05:49:38', '2021-10-06 05:49:54', NULL),
-(14, 1, 'Ravi', 'eorpermemkv', 'wiinevjvnejvner', 1, '2021-10-12 03:33:39', '2021-10-17 06:20:14', NULL);
+(14, 1, 'Ravi', 'eorpermemkv', 'wiinevjvnejvner', 1, '2021-10-12 03:33:39', '2021-10-17 06:20:14', NULL),
+(16, 1, 'wedwefe', 'Amroli', '24AAACA1033E1L', 1, '2021-10-18 06:08:04', '2021-10-18 06:08:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -543,7 +552,16 @@ INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `status`, `bill_dat
 (47, 1, 1, 59, 1, '2021-10-12', '2021-10-16 00:03:21', '2021-10-16 00:03:21', NULL),
 (48, 1, 15, 60, 1, '2021-10-11', '2021-10-16 00:03:25', '2021-10-17 00:13:48', NULL),
 (49, 1, 4, 56, 0, '2021-10-10', '2021-10-16 00:05:57', '2021-10-16 00:06:11', '2021-10-16 00:06:11'),
-(50, 1, 1, 53, 1, '2021-10-15', '2021-10-16 07:52:21', '2021-10-16 07:52:21', NULL);
+(50, 1, 1, 53, 1, '2021-10-15', '2021-10-16 07:52:21', '2021-10-16 07:52:21', NULL),
+(51, 1, 4, 119, 1, '2021-10-18', '2021-10-18 05:31:11', '2021-10-18 05:31:11', NULL),
+(52, 1, 1, 118, 1, '2021-10-18', '2021-10-18 05:55:23', '2021-10-18 05:55:23', NULL),
+(53, 1, 1, 117, 1, '2021-10-18', '2021-10-18 05:55:32', '2021-10-18 05:55:32', NULL),
+(54, 1, 1, 116, 1, '2021-10-18', '2021-10-18 05:55:44', '2021-10-18 05:55:44', NULL),
+(55, 1, 1, 115, 1, '2021-10-18', '2021-10-18 05:57:09', '2021-10-18 05:57:09', NULL),
+(56, 1, 15, 114, 1, '2021-10-18', '2021-10-18 05:57:32', '2021-10-18 05:57:32', NULL),
+(57, 1, 15, 113, 1, '2021-10-18', '2021-10-18 05:57:58', '2021-10-18 05:57:58', NULL),
+(58, 1, 1, 112, 1, '2021-10-17', '2021-10-18 06:00:28', '2021-10-18 06:00:28', NULL),
+(59, 1, 4, 111, 1, '2021-10-18', '2021-10-18 06:01:44', '2021-10-18 06:01:44', NULL);
 
 --
 -- Indexes for dumped tables
@@ -674,7 +692,7 @@ ALTER TABLE `diamond_shape`
 -- AUTO_INCREMENT for table `d_purchase`
 --
 ALTER TABLE `d_purchase`
-  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -686,7 +704,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `manager_details`
 --
 ALTER TABLE `manager_details`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -704,7 +722,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `rate_masters`
 --
 ALTER TABLE `rate_masters`
-  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ready_stock`
@@ -722,7 +740,7 @@ ALTER TABLE `sell_stock`
 -- AUTO_INCREMENT for table `supplier_details`
 --
 ALTER TABLE `supplier_details`
-  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -734,7 +752,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- Constraints for dumped tables
