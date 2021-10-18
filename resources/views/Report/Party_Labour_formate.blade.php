@@ -32,6 +32,10 @@
             border: 1px solid black;
         }
 
+        .date {
+            text-align: right;
+        }
+
     </style>
 </head>
 
@@ -45,13 +49,18 @@
                 {{-- <div class="textstyle">
                     <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
                 </div> --}}
+                <p class="date">Print Date:- {{ $today_date }}</p>
                 @if ($s_name->isEmpty())
                     <h3>All Party Labour Report</h3>
 
                 @else
                     <h3>{{ $s_name[0]['s_name'] }}</h3>
                 @endif
-                <p>Date:- {{ $today_date }}</p>
+                <p>{{ $s_name[0]['s_address'] }}</p>
+                <h5><b>Party Labour Sizewise Summary</b></h5>
+                <h6>from Date:- {{ date('d-m-Y', strtotime($start_date)) }} To Date:-
+                    {{ date('d-m-Y', strtotime($end_date)) }}</h6>
+
                 <div class="card-body">
                     <div class="___class_+?17___">
                         <div class="table-responsive">

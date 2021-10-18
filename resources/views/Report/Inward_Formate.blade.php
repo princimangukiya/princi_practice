@@ -67,6 +67,9 @@
                                     @php
                                         $count = 0;
                                     @endphp
+                                    @php
+                                        $i = 1;
+                                    @endphp
                                     @foreach ($inward as $key => $value)
                                         {{-- @if ($value->s_id == 8) --}}
 
@@ -99,7 +102,15 @@
                                             </td>
                                         </tr>
                                         {{-- @endif --}}
+                                        @php
+                                            $i++;
+                                        @endphp
+
+
                                     @endforeach
+                                    @if ($i % 10 === 0)
+                                        <p style="page-break-after: always;"></p>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

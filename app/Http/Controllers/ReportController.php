@@ -471,8 +471,8 @@ class ReportController extends Controller
         $c_id = session()->get('c_id');
         $start_date = $request->Start_date;
         $End_date = $request->End_date;
-        $data['s_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get('s_name');
-        $data['today_date'] = Carbon::now()->format('d-m-Y');
+        $data['s_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+        $data['today_date'] = Carbon::now();
         if (empty($start_date)) {
             $start_date = new Carbon('first day of January 2000');
         }
@@ -541,7 +541,11 @@ class ReportController extends Controller
             $data['outCuts'] = $outCuts;
             $data['price'] = $price;
             $data['labour'] = $labour;
+            $data['start_date'] = $start_date;
+            $data['end_date'] = $End_date;
+
             // echo $data['count'];
+            view()->share('Report.party_Labour_formate', $data);
             $pdf = PDF::loadView('Report.party_Labour_formate', $data);
 
             return $pdf->download('Party_Labour.pdf');
@@ -607,7 +611,11 @@ class ReportController extends Controller
             $data['outCuts'] = $outCuts;
             $data['price'] = $price;
             $data['labour'] = $labour;
+            $data['start_date'] = $start_date;
+            $data['end_date'] = $End_date;
+
             // echo $data['count'];
+            view()->share('Report.party_Labour_formate', $data);
             $pdf = PDF::loadView('Report.party_Labour_formate', $data);
 
             return $pdf->download('Party_Labour.pdf');

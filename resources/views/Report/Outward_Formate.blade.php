@@ -15,7 +15,8 @@
             display: flex;
             flex-wrap: wrap;
             text-align: center;
-            margin: 2% 2%;
+            margin: 2% 0%;
+            background: white;
         }
 
         .invoice {
@@ -43,7 +44,7 @@
         }
 
         .card-body {
-            padding: 0%;
+            /* padding: 0%; */
             padding-top: 1%;
         }
 
@@ -56,7 +57,7 @@
         }
 
         .Description-body {
-            margin: 0%;
+            /* margin: 0%; */
         }
 
 
