@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+    <style>
+        .hidden {
+            display: none;
+        }
+
+    </style>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Party Labour Master</h4>
@@ -13,18 +19,6 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Party Labour List</a></li>
             </ol>
         </div>
-
-
-
-        {{-- <div class="page-rightheader">
-            <div class="btn btn-list">
-                <a href="{{ route('Party_Labour.generatePDF') }}" class="btn btn-info"><i
-                        class="fa fa-download mr-1"></i>
-                    Downloade PDF </a>
-
-            </div>
-        </div> --}}
-
     </div>
     <!--End Page header-->
     <!-- Row -->
@@ -89,12 +83,15 @@
                                 <div class="page-rightheader col-md-4">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><i
-                                                class="fa fa-download mr-1"></i>
-                                            Downloade PDF </button>
-                                        {{-- <div id="global-loader">
-                                            <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
-                                        </div> --}}
+                                        <a class="supplier_button">
+                                            <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
+                                                <i class="fa fa-download mr-1"></i>Downloade PDF
+                                            </button></a>
+                                        <div id="annimation" class="spinner4 hidden">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +169,7 @@
                     <div>
 
                         <div class="table-responsive">
-                            <table id="example" class="table table-bordered text-wrap key-buttons">
+                            <table id="Party_Tabel" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">Sizedesc</th>
@@ -289,8 +286,20 @@
     </div><!-- end app-content-->
     </div>
     <script>
+        $('.supplier_button').on('click', function() {
+            $(this).removeClass('supplier_button');
+            document.getElementById("annimation").classList.remove('hidden');
+            $("#text").hide();
+            $(this).addClass('sk-child');
+            setTimeout(() => {
+                $(this).removeClass('sk-child');
+                document.getElementById("annimation").classList.add('hidden');
+                $("#text").show();
+                $(this).addClass('supplier_button');
+            }, 5000);
+        });
         $(document).ready(function() {
-            PatyLabourDataTabel = $('#PatyLabourDataTabel').DataTable({
+            PatyLabourDataTabel = $('#Party_Tabel').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -308,7 +317,7 @@
             var Start_date = $('#Start_date').val();
             var End_date = $('#End_date').val();
             var count = 1;
-            var example = $('#example').DataTable();
+            var example = $('#Party_Tabel').DataTable();
             example.clear().draw({
                 "paging": true,
                 "lengthChange": false,
@@ -354,11 +363,11 @@
                         // $("#p_gst_id").val(bill_no);
                         // const length = Object.keys(response_msg.success).length;
                         console.log(response_msg.success.supplier);
-                        $('#example tbody').empty();
+                        $('#Party_Tabel tbody').empty();
 
                         response_msg.success.supplier.forEach(success => {
                             count;
-                            $("#example").append(
+                            $("#Party_Tabel").append(
                                 '<tr>' +
                                 '<td>' + '<b>' + success.s_name + '</b><br>' +
                                 response_msg.success.rates[success.s_id][0] + '<br>' +

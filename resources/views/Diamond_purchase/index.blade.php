@@ -182,10 +182,10 @@
                 "info": true,
                 "paging": true,
                 "lengthChange": false,
-                "pageLength": 50,
                 "sDom": 'lfrtip',
                 "ordering": true,
                 "searching": true,
+                "pageLength": 50,
                 "order": [
                     [0, "desc"]
                 ]

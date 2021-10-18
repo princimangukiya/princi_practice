@@ -5,28 +5,13 @@
 @endsection
 
 @section('content')
-    <!-- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
-                                                                                                                                                                                                                                                                                            <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
-                                                                                                                                                                                                                                                                                            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                                                                                                                                                                                                                                                                                            <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-                                                                                                                                                                                                                                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-                                                                                                                                                                                                                                                                                            <script src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script> -->
     <style>
-        td.dataTables_empty {
+        .dataTables_empty {
             display: none;
         }
 
         .hidden {
             display: none;
-        }
-
-        .setting {
-            padding: 10%;
-        }
-
-        .selectInward {
-            display: flex;
-            padding: 1%;
         }
 
     </style>
@@ -133,9 +118,15 @@
                                 <div class="page-rightheader col-md-2">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" style="padding:5px;" class="btn btn-info"><i
-                                                class="fa fa-print mr-1"></i>
-                                            Print </button>
+                                        <a class="supplier_button">
+                                            <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
+                                                <i class="fa fa-download mr-1"></i>Print
+                                            </button></a>
+                                        <div id="annimation" class="spinner4 hidden">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -198,9 +189,15 @@
                                 </div>
                                 <div class="page-rightheader col-md-2">
                                     <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                    <button type="submit" style="padding:5px;" class="btn btn-info"><i
-                                            class="fa fa-print mr-1"></i>
-                                        Print </button>
+                                    <a class="manager_button">
+                                        <button type="submit" id="textMnager" class="btn btn-info" style="padding: 5px;">
+                                            <i class="fa fa-download mr-1"></i>Print
+                                        </button></a>
+                                    <div id="annimationManager" class="spinner4 hidden">
+                                        <div class="bounce1"></div>
+                                        <div class="bounce2"></div>
+                                        <div class="bounce3"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -275,18 +272,6 @@
                 <div class="card-body">
                     <div>
                         <div class="table-responsive">
-                            <!-- <table border="0" cellspacing="5" cellpadding="5">
-                                                                                                                                                                                                                                                                                                                        <tbody>
-                                                                                                                                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                                                                                                                                                <td>Minimum date:</td>
-                                                                                                                                                                                                                                                                                                                                <td><input type="text" id="min" name="min" onchange="selectMinDate()"></td>
-                                                                                                                                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                                                                                                                                            <tr>
-                                                                                                                                                                                                                                                                                                                                <td>Maximum date:</td>
-                                                                                                                                                                                                                                                                                                                                <td><input type="text" id="max" name="max"></td>
-                                                                                                                                                                                                                                                                                                                            </tr>
-                                                                                                                                                                                                                                                                                                                        </tbody>
-                                                                                                                                                                                                                                                                                                                    </table> -->
                             <table id="companyTable" class="table table-bordered text-wrap key-buttons">
                                 <thead>
                                     <tr>
@@ -482,6 +467,31 @@
     </div>
     </div><!-- end app-content-->
     </div>
+    <script>
+        $('.supplier_button').on('click', function() {
+            $(this).removeClass('supplier_button');
+            document.getElementById("annimation").classList.remove('hidden');
+            $("#text").hide();
+            $(this).addClass('sk-child');
+            setTimeout(() => {
+                $(this).removeClass('sk-child');
+                document.getElementById("annimation").classList.add('hidden');
+                $("#text").show();
+                $(this).addClass('supplier_button');
+            }, 6000);
+        });
+
+        $('.manager_button').on('click', function() {
+            $(this).removeClass('manager_button');
+            document.getElementById("annimationManager").classList.remove('hidden');
+            $("#textMnager").hide();
+            setTimeout(() => {
+                document.getElementById("annimationManager").classList.add('hidden');
+                $("#textMnager").show();
+                $(this).addClass('manager_button');
+            }, 4000);
+        });
+    </script>
     <script>
         // var minDate, maxDate;
 

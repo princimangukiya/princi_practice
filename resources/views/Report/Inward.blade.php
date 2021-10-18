@@ -13,71 +13,17 @@
             display: none;
         }
 
-        .setting {
-            padding: 10%;
-        }
-
-        .selectInward {
-            display: flex;
-            padding: 1%;
-        }
-
-        .btn {
-            align-items: center;
-            background: 400;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            display: inline-flex;
-            height: 36px;
-            justify-content: center;
-            min-width: 90px;
-        }
-
-        .btn.btn--loading {
-            font-size: 0;
-        }
-
-        .btn.btn--loading span {
-            display: flex;
-        }
-
-        .btn.btn--loading span b {
-            animation-direction: alternate;
-            animation-duration: 0.5s;
-            animation-fill-mode: none;
-            animation-iteration-count: infinite;
-            animation-name: stretch;
-            animation-play-state: running;
-            animation-timing-function: ease-out;
-            border-radius: 100%;
-            display: block;
-            height: 10px;
-            margin: 0 1px;
-            width: 10px;
-            animation-delay: 0.1s;
-            margin: 0 5px;
-        }
-
-        .btn.btn--loading span b:first-child {
-            animation-delay: 0s;
-            margin: 0;
-        }
-
-        .btn.btn--loading span b:last-child {
-            animation-delay: 0.2s;
-            margin: 0;
-        }
-
-        .btn b {
-            font-weight: normal;
-        }
-
-        .btn span {
-            display: none;
-        }
-
     </style>
+    {{-- <div id="growls-default">
+        <div class="growl growl-notice growl-medium">
+            <div class="growl-close">x</div>
+            <div class="growl-title">x</div>
+            <div class="growl-message">x</div>
+        </div>
+    </div> --}}
+    <div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">×</button><strong>Well done!</strong> You successfully read <a href="#"
+            class="alert-link">this important alert message.</a></div>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Inward Master</h4>
@@ -123,6 +69,18 @@
                         <label class="form-check-label form-label" for="Manager">Manager</label>
                     </div>
                 </div> --}}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Side Alerts Notifications</h3>
+                </div>
+                <div class="card-body">
+                    <div class="btn-list">
+                        <a href="#" class="btn btn-primary notice">Primary</a>
+                        <a href="#" class="btn btn-secondary warning">Warning</a>
+                        <a href="#" class="btn btn-info error">Danger</a>
+                    </div>
                 </div>
             </div>
             <div class="card" id="cal2">
@@ -177,27 +135,22 @@
                                         <input type="date" id="end_date" name="End_date" style="padding: 5px;">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="col">
+                                        {{-- <div class="spinner1"> --}}
+                                        {{-- <div class="double-bounce1"></div> --}}
+                                        {{-- <div class="double-bounce2"></div> --}}
+                                        {{-- </div> --}}
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" class="btn btn-info" style="padding: 5px;"><a
-                                                class="btn">
-                                                <span>
-                                                    <b></b>
-                                                    <b></b>
-                                                    <b></b>
-                                                </span>
-                                                <i class="fa fa-download mr-1"></i>
-                                                Downloade PDF</a> </button>
-
-                                        <script>
-                                            $('.btn').on('click', function() {
-                                                $(this).addClass('btn--loading');
-                                                setTimeout(() => {
-                                                    $(this).removeClass('btn--loading');
-                                                }, 14000);
-                                            });
-                                        </script>
+                                        <a class="supplier_button">
+                                            <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
+                                                <i class="fa fa-download mr-1"></i>Downloade PDF
+                                            </button></a>
+                                        <div id="annimation" class="spinner4 hidden">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -261,9 +214,16 @@
                                 <div class="col-md-5">
                                     <div class="col">
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
-                                        <button type="submit" class="btn btn-info" style="padding: 5px;"
-                                            onclick="loading()"><i class="fa fa-download mr-1"></i>
-                                            Downloade PDF </button>
+                                        <a class="manager_button">
+                                            <button type="submit" id="textMnager" class="btn btn-info"
+                                                style="padding: 5px;">
+                                                <i class="fa fa-download mr-1"></i>Downloade PDF
+                                            </button></a>
+                                        <div id="annimationManager" class="spinner4 hidden">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -492,31 +452,30 @@
     </div>
     <!-- end app-content-->
     </div>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> --}}
-    {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
+
     <script>
-        var preloader_button = document.getElementById('activate-preloader'),
-            preloader = document.getElementById('preloader'),
-            activated = false;
+        $('.supplier_button').on('click', function() {
+            $(this).removeClass('supplier_button');
+            document.getElementById("annimation").classList.remove('hidden');
+            $("#text").hide();
+            setTimeout(() => {
+                document.getElementById("annimation").classList.add('hidden');
+                $("#text").show();
+                $(this).addClass('supplier_button');
+            }, 14000);
+        });
 
-        preloader_button.addEventListener('click', animate_preloader);
-
-
-        function animate_preloader() {
-            if (activated) {
-                preloader.classList.remove('preloader-active');
-                preloader.classList.add('preloader-inactive');
-                this.innerHTML = 'Activate Preloader';
-                activated = false;
-            } else {
-                preloader.classList.remove('preloader-inactive');
-                preloader.classList.add('preloader-active');
-                this.innerHTML = 'Deactivate Preloader';
-                activated = true;
-            }
-        }
+        $('.manager_button').on('click', function() {
+            $(this).removeClass('manager_button');
+            document.getElementById("annimationManager").classList.remove('hidden');
+            $("#textMnager").hide();
+            setTimeout(() => {
+                document.getElementById("annimationManager").classList.add('hidden');
+                $("#textMnager").show();
+                $(this).addClass('manager_button');
+            }, 4000);
+        });
     </script>
     <script>
         // $(window).load(function() {
@@ -557,7 +516,10 @@
                 "sDom": 'lfrtip',
                 "ordering": true,
                 "searching": true,
-
+                "pageLength": 50,
+                "order": [
+                    [0, "desc"]
+                ]
             });
         });
         $(document).ready(function() {
@@ -569,7 +531,10 @@
                 "info": true,
                 "autoWidth": false,
                 "sDom": 'lfrtip',
-
+                "pageLength": 50,
+                "order": [
+                    [0, "desc"]
+                ]
             });
         });
 
@@ -622,6 +587,10 @@
                 "info": true,
                 "autoWidth": false,
                 "sDom": 'lfrtip',
+                "pageLength": 50,
+                "order": [
+                    [0, "desc"]
+                ]
             });
             // alert(barcode);
             $.ajaxSetup({
@@ -691,6 +660,10 @@
                 "info": true,
                 "autoWidth": false,
                 "sDom": 'lfrtip',
+                "pageLength": 50,
+                "order": [
+                    [0, "desc"]
+                ]
             });
             // alert(m_id);
             // alert(Start_date_Manager);
