@@ -257,6 +257,10 @@
                             $('#d_wt').val('');
                             $('#d_n_wt').val('');
                             $('#bar_code').focus();
+                            notif({
+                                msg: "<b>Success:</b> Well done Diamond Added Successfully",
+                                type: "success"
+                            });
                         } else if (response_msg.success == 403) {
                             alert('Something Went Wrong!');
                         } else if (response_msg.success == 404) {

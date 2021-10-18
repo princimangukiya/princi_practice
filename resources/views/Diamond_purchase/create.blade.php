@@ -106,22 +106,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Packet Weight :-</label>
-                                <input placeholder="Enter Packet Wt" class="form-control inputField" id="d_wt" type="text"
-                                    name="d_wt" value="0." required>
-                                @error('d_wt')
-                                    <small class="errorTxt1">
-                                        <div id="title-error" class="error" style="margin-left:3rem">
-                                            {{ $message }}
-                                        </div>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
                         @php
-                            $shape = App\Models\Diamond_Shape::get();
+                            $shape = App\Models\Diamond_Shape::all();
                         @endphp
                         <div class="col-md-6">
                             <div class="form-group">
@@ -146,6 +132,20 @@
                                     </small>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Packet Weight :-</label>
+                            <input placeholder="Enter Packet Wt" class="form-control inputField" id="d_wt" type="text"
+                                name="d_wt" value="0." required>
+                            @error('d_wt')
+                                <small class="errorTxt1">
+                                    <div id="title-error" class="error" style="margin-left:3rem">
+                                        {{ $message }}
+                                    </div>
+                                </small>
+                            @enderror
                         </div>
                     </div>
                     <div class="card-footer text-right">
@@ -188,13 +188,14 @@
             </div>
         </div>
     </div>
-    <div class="growls-default">
+    <button onclick="not1()" class="btn btn-primary">Default</button>
+    {{-- <div id="growls-default">
         <div class="growl growl-notice growl-medium">
             <div class="growl-close">x</div>
-            <div class="growl-title">x</div>
-            <div class="growl-message">x</div>
+            <div class="growl-title">Your Diamond Succefully Added</div>
+            <div class="growl-message">THank You !!</div>
         </div>
-    </div>
+    </div> --}}
     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script>
@@ -310,9 +311,18 @@
                         $('#d_wt').val('0.');
                         // $('#shape_id').val('');
                         $('#bill_date').focus();
+                        notif({
+                            msg: "<b>Success:</b> Well done Diamond Added Successfully",
+                            type: "success"
+                        });
                         // $(this).addClass('growls-default');
                     } else {
-                        alert('Please, Fill all the fields!');
+                        // alert('Please, Fill all the fields!');
+                        notif({
+                            msg: "<b>Please,</b> Fill all the fields!",
+                            type: "error"
+                            // position: "center"   
+                        });
                     }
 
                 }

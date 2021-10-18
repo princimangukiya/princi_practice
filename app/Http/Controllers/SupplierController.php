@@ -61,6 +61,7 @@ class SupplierController extends Controller
             $newitem->c_id = $c_id;
             $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
             $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
+            $newitem->status = 1;
             $newitem->save();
 
             return Redirect::to('/supplier');

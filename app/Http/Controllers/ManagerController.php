@@ -55,6 +55,7 @@ class ManagerController extends Controller
             $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
             $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
             $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
+            $newitem->status = 1;
             $newitem->save();
             return Redirect::to('/manager');
         } catch (\Throwable $th) {

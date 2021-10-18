@@ -88,7 +88,7 @@
 
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                        <button type="submit" onclick="addSupplier()" name="action" class="btn  btn-primary">Submit</button>
                         <a href="/supplier" class="btn btn-danger">Cancle</a>
                     </div>
 
@@ -162,6 +162,13 @@
             // mytable.row.add([id, 'pkt1', '10.5']);
             // mytable.draw();
         });
+
+        function addSupplier() {
+            notif({
+                msg: "<b>Success:</b> Well done Supplier Added Successfully",
+                type: "success"
+            });
+        }
     </script>
 @endsection
 @include('footer_js')

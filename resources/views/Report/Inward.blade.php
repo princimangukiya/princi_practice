@@ -21,9 +21,7 @@
             <div class="growl-message">x</div>
         </div>
     </div> --}}
-    <div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert"
-            aria-hidden="true">×</button><strong>Well done!</strong> You successfully read <a href="#"
-            class="alert-link">this important alert message.</a></div>
+
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Inward Master</h4>
@@ -71,18 +69,7 @@
                 </div> --}}
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Side Alerts Notifications</h3>
-                </div>
-                <div class="card-body">
-                    <div class="btn-list">
-                        <a href="#" class="btn btn-primary notice">Primary</a>
-                        <a href="#" class="btn btn-secondary warning">Warning</a>
-                        <a href="#" class="btn btn-info error">Danger</a>
-                    </div>
-                </div>
-            </div>
+
             <div class="card" id="cal2">
                 <div class="card-header">
                     <div class="card-title">Inward Company Generate Pdf</div>

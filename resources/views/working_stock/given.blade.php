@@ -165,45 +165,50 @@
                 }
             });
             $.ajax({
-                type: 'POST',
-                url: '{{ route('working_stock.store') }}',
-                data: {
-                    'bar_code': barcode,
-                    'm_id': m_id,
-                    'date': date
-                },
-                dataType: 'json',
-                success: function(response_msg) {
-                    console.log(response_msg.success);
-                    if (response_msg.success == 200) {
-                        alert("check your barcode, This barcode Already assign to other manager!");
-                        //location.reload();
-                    } else if (response_msg.success == true) {
-                        mytable.row.add([manager_name, barcode, date]);
-                        mytable.draw();
-                        $('#bar_code').val('');
-                        $('#bar_code').focus();
-
-                    } else if (response_msg.success == 500) {
-                        // alert(c_id);
-                        alert('Your Barcode Is Not Valid!!!');
-                        $('#bar_code').focus();
-                    } else if (response_msg.success == response_msg.success) {
-                        if (c_id == 1) {
-                            alert('You can not assign Eklingji Barcode to VmJewles!');
+                    type: 'POST',
+                    url: '{{ route('working_stock.store') }}',
+                    data: {
+                        'bar_code': barcode,
+                        'm_id': m_id,
+                        'date': date
+                    },
+                    dataType: 'json',
+                    success: function(response_msg) {
+                        console.log(response_msg.success);
+                        if (response_msg.success == 200) {
+                            alert("check your barcode, This barcode Already assign to other manager!");
+                            //location.reload();
+                        } else if (response_msg.success == true) {
+                            mytable.row.add([manager_name, barcode, date]);
+                            mytable.draw();
+                            $('#bar_code').val('');
                             $('#bar_code').focus();
-
-                        } else {
-                            alert('You can not assign VmJewles Barcode to Eklingji!');
+                            notif({
+                                msg: "<b>Success:</b> Well done Diamond Added Successfully",
+                                type: "success"
+                            });
+                        } else if (response_msg.success == 500) {
+                            // alert(c_id);
+                            alert('Your Barcode Is Not Valid!!!');
                             $('#bar_code').focus();
-
-                        }
-                    } else {
-                        alert('Please, Fill all the fields!');
-                    }
-
+                        });
                 }
-            });
+                else if (response_msg.success == response_msg.success) {
+                    if (c_id == 1) {
+                        alert('You can not assign Eklingji Barcode to VmJewles!');
+                        $('#bar_code').focus();
+
+                    } else {
+                        alert('You can not assign VmJewles Barcode to Eklingji!');
+                        $('#bar_code').focus();
+
+                    }
+                } else {
+                    alert('Please, Fill all the fields!');
+                }
+
+            }
+        });
         }
     </script>
 

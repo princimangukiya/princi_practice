@@ -105,7 +105,10 @@
 {{-- <script src="{{ asset('assets/js/formelementadvnced.js') }}"></script>
 <script src="{{ asset('assets/js/form-elements.js') }}"></script>
 <script src="{{ asset('assets/js/file-upload.js') }}"></script> --}}
-
+<script src="{{ asset('assets/plugins/notify/js/jquery.growl.js') }}"></script>
+<script src="{{ asset('assets/plugins/notify/js/rainbow.js') }}"></script>
+<script src="{{ asset('assets/plugins/notify/js/sample.js') }}"></script>
+<script src="{{ asset('assets/plugins/notify/js/notifIt.js') }}"></script>
 <!-- Simplebar JS -->
 <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
 <!-- Custom js-->

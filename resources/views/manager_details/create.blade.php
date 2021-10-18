@@ -98,7 +98,7 @@
 
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                        <button type="submit" onclick="not1()" name="action" class="btn  btn-primary">Submit</button>
                         <a href="/manager" class="btn btn-danger">Cancle</a>
                     </div>
                 </div>
@@ -179,6 +179,12 @@
         //           }
         //       });
         //   });
+        function addManager() {
+            notif({
+                msg: "<b>Success:</b> Well done Manager Added Successfully",
+                type: "success"
+            });
+        }
     </script>
 @endsection
 @include('footer_js')

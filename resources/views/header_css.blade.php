@@ -59,6 +59,10 @@
 
     <!--Package tag css-->
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/form-select2.min.css') }}"> --}}
+    {{-- <link href="" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="{{ asset('assets/plugins/notify/css/jquery.growl.css') }}">
+    <link href="{{ asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+
 
     <!-- INTERNAL File Uploads css -->
     <link href="{{ asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
@@ -79,4 +83,7 @@
 
 
     <link rel="stylesheet" href="{{ asset('assets/media/css/jquery.dataTables.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
 </head>
