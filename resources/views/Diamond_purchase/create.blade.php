@@ -1,15 +1,20 @@
 @include('header_css')
 @extends('app')
 @section('content')
+
     <!--/app header-->
     @php
 
     $avatar = 'assets/images/users/2.jpg';
 
     @endphp
-    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
-    <!-- INTERNAL Time picker css -->
-    <link href="{{ asset('assets/plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet" />
+    <style>
+        .hidden {
+            display: none;
+        }
+
+    </style>
+    {{-- <link href="{{ asset('assets/plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet" />
     <!-- INTERNAL Date Picker css -->
     <link href="{{ asset('assets/plugins/date-picker/date-picker.css') }}" rel="stylesheet" />
 
@@ -19,7 +24,7 @@
     <script src="{{ asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
     <!-- INTERNAL Timepicker js -->
     <script src="{{ asset('assets/plugins/time-picker/jquery.timepicker.js') }}"></script>
-    <script src="{{ asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/time-picker/toggles.min.js') }}"></script> --}}
 
     <!--Page header-->
     <div class="page-header">
@@ -183,12 +188,15 @@
             </div>
         </div>
     </div>
+    <div class="growls-default">
+        <div class="growl growl-notice growl-medium">
+            <div class="growl-close">x</div>
+            <div class="growl-title">x</div>
+            <div class="growl-message">x</div>
+        </div>
+    </div>
     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    {{-- <script type="text/javascript" src="js/previos/jquery-1.4.1.js"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.core.js"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/ui.datepicker.js"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.7.2/ui/i18n/ui.datepicker-es.js"></script> --}}
     <script>
         var id, mytable;
         $(document).ready(function() {
@@ -302,7 +310,7 @@
                         $('#d_wt').val('0.');
                         // $('#shape_id').val('');
                         $('#bill_date').focus();
-
+                        // $(this).addClass('growls-default');
                     } else {
                         alert('Please, Fill all the fields!');
                     }
