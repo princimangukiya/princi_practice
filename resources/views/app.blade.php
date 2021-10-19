@@ -1,4 +1,4 @@
-@extends('header_css')
+@include('header_css')
 
 <body class="app sidebar-mini">
 
@@ -157,6 +157,10 @@
         @endforeach
     @endif
     <a href="#top" id="back-to-top"><i class="fe fe-chevrons-up"></i></a>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Jquery js-->
-    @extende('footer_js')
+
+    @include('footerjs')
+</body>
+
+</html>

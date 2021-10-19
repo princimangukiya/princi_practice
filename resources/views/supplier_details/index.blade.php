@@ -280,4 +280,4 @@
         });
     </script>
 @endsection
-@include('footer_js')
+@include('footerjs')

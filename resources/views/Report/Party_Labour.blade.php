@@ -418,4 +418,4 @@
     <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
 
 @endsection
-@include('footer_js')
+@include('footerjs')

@@ -232,4 +232,4 @@
             // mytable.draw();
         });
     @endsection
-    @include('footer_js')
+    @include('footerjs')

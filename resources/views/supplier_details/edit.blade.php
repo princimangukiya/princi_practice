@@ -115,4 +115,4 @@
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
 @endsection
-@include('footer_js')
+@include('footerjs')

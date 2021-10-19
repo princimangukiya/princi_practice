@@ -128,4 +128,4 @@
         </div>
     </div>
 @endsection
-@include('footer_js')
+@include('footerjs')
