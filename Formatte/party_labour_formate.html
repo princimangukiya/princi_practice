@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Party Labour Formate</title>
+    <style>
+        td {
+            padding: 0px .75rem !important;
+            vertical-align: middle !important;
+            font-size: 11px;
+            border: 1px solid black;
+        }
+        
+        .box-title {
+            font-weight: bold;
+        }
+        
+        .heading-row td {
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .total-row td {}
+        
+        .v-row td {}
+        
+        @media print {
+            button .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="padding: 10px;  text-transform: uppercase;">
+        <div id="bill-display" style="border: 1px solid black;">
+            <!-- ----- HEADER ---- -->
+            <table class="table table-bordered" style="border: 1px solid black;">
+                <!-- <caption class="text-center">RETAIL INVOICE <small class="pull-right">(original)</small></caption> -->
+                <tr>
+                    <td colspan="7" rowspan="1" class="text-center"><b style="font-size: 24px;;">EKLINGJI
+                            GEMS</b></td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1" style="text-align: center;"><b>Manufacturing Jobwork of Rough
+                            Diamond</b></td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1" style="text-align: center;"><b> FLAT NO-A/203, SUNDAY AVENUE,WING-A,
+                            AMBATALAVADI ROAD, KATARGAM, Surat, Gujarat, 395004</b></td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1">GST NO. :- 24DHCPM9189L1ZN</td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1">PAN :- DHCPM9189L</td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1">State :- 24-GUJARAT</td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1" class="box-title" style="text-align: center;">TAX INVOICE</td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="4" rowspan="4">
+                        <div class="box-title">To,</div>
+                        <div class="box-content title-name">Name :- ALOK IMPEX</div>
+                        <div class="box-content title-name">Address :- GF-2. Shiv Prasad Complex,<br> &nbsp;&nbsp;Mangal Bazar,
+                            <br> &nbsp;&nbsp;Vadodara-390006.
+                        </div>
+                        <div class="box-content title-name">GSTIN :- 24AAACA1033E1Z</div>
+                        <div class="box-content title-name">PAN :- AALFR9869B</div>
+                        <div class="box-content title-name">State :- GUJARAT CODE : 24</div>
+                    </td>
+                    <td colspan="3" rowspan="4">
+                        <div class="box-content title-name">Bill No. :- 24</div>
+                        <div class="box-content title-name">Bill Dt. :- 30-09-2021</div>
+                        <div class="box-content title-name">Reverse Charge(Y/N) :- </div>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+
+                <!-- ----- BODY ---- -->
+                <tr class="heading-row v-row">
+                    <td>SR No.</td>
+                    <td>Particulars</td>
+                    <td>HSN/ <br>SAC Code</td>
+                    <td>Rough Mfgd<br> Crt/ Pcs.</td>
+                    <td>Polish Pcs.</td>
+                    <td>Rate Per <br>Crt/Pcs.</td>
+                    <td>Total amount</td>
+                </tr>
+                <tr class="v-row">
+                    <td class="text-center"></td>
+                    <td class="text-center">Job Work Charges of Diamond<br> 01/05/2021 TO 31/05/2021</td>
+                    <td class="text-center">9988</td>
+                    <td class="text-center">435.9</td>
+                    <td class="text-center">777</td>
+                    <td class="text-center">1,500.00</td>
+                    <td class="text-center">653,850.00</td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="6">&nbsp;</td>
+                    <td colspan="1" rowspan="6">&nbsp;</td>
+                    <td colspan="1" rowspan="6">&nbsp;</td>
+                    <td colspan="2" class="text-center">Taxable Value
+                    </td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+                    <td colspan="1" class="text-center">653,850.00</td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">CGST
+                    </td>
+                    <td colspan="1" class="text-center">0.75% </td>
+                    <td colspan="1" class="text-center">4,903.88
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">SGST
+                    </td>
+                    <td colspan="1" class="text-center">0.75%</td>
+                    <td colspan="1" class="text-center">4,903.88
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">IGST
+                    </td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">&nbsp;</td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">GRAND TOTAL
+                    </td>
+                    <td colspan="1" class="text-center">&nbsp;</td>
+                    <td colspan="1" class="text-center">663,657.75</td>
+                </tr>
+                <!-- ----- FOOTER ---- -->
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="box-content">Amount Chargeable(in words)</div>
+
+                    </td>
+                    <td colspan="5">
+                        <div class="box-content">Seventy Eight Thousands Two Hundred Ten Rs Only</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="box-content">SUBJECT TO SURAT JURISDICTION</div>
+                    </td>
+                    <td colspan="4" rowspan="3">
+                        <div class="text-right">
+                            <br>For, EKLINGJI GEMS<br><br><br><br><br><br>Authorise Signature
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="box-content">Bank Detail</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="box-content title-name">BANK :- Kotak Mahindra Bank (KMB)</div>
+                        <div class="box-content title-name">BRANCH :- Katargam Avalon, Surat</div>
+                        <div class="box-content title-name">A/C NO. :- 9879752799*</div>
+                        <div class="box-content title-name">IFSC CODE :- KKBK0002868</div>
+                        <div class="box-content"> MICR:-</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" rowspan="7" class="text-left"> <br> <br> <br>Reciever Signature and Stamp<br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button class="btn btn-default .print-btn" onclick="jsvascript:window.print()">Print Invoice</button>
+    </div>
+</body>
+
+</html>
