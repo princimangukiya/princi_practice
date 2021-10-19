@@ -543,14 +543,9 @@ class ReportController extends Controller
             $data['start_date'] = $start_date;
             $data['end_date'] = $End_date;
 
-            // echo $data['count'];
-            // $this->genrate_pdf($data);
-
-            view()->share('Report.party_Labour_formate', $data);
-            $pdf = PDF::loadView('Report.party_Labour_formate', $data);
-
-            return $pdf->download('Party_Labour.pdf');
             return view('Report.party_Labour_formate', $data);
+            // $pdf = PDF::loadView('Report.party_Labour_formate', $data);
+            // return $pdf->download('Party_Labour.pdf');
         }
     }
     public function genrate_pdf($data)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 03:13 PM
+-- Generation Time: Oct 19, 2021 at 03:47 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -351,7 +351,8 @@ INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `created_at
 (2, 1, 8, '[{\"1\":\"70\",\"5\":\"200\",\"2\":\"100\",\"3\":\"150\"}]', '2021-10-06 05:38:11', '2021-10-06 05:38:59'),
 (3, 2, 7, '[{\"1\":\"40\",\"3\":\"90\",\"2\":\"70\",\"5\":\"120\"}]', '2021-10-06 05:39:28', '2021-10-06 05:40:43'),
 (5, 1, 14, '[{\"1\":\"90\",\"2\":\"100\",\"3\":\"120\",\"5\":\"150\"}]', '2021-10-12 03:39:15', '2021-10-12 03:40:04'),
-(6, 1, 16, '[{\"1\":\"10\"}]', '2021-10-18 06:20:35', '2021-10-18 06:20:35');
+(6, 1, 16, '[{\"1\":\"10\"}]', '2021-10-18 06:20:35', '2021-10-18 06:20:35'),
+(7, 2, 12, '[{\"1\":\"50\"}]', '2021-10-19 06:25:21', '2021-10-19 06:25:21');
 
 -- --------------------------------------------------------
 
@@ -722,7 +723,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `rate_masters`
 --
 ALTER TABLE `rate_masters`
-  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ready_stock`

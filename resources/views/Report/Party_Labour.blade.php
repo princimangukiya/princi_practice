@@ -1,4 +1,3 @@
-@include('header_css')
 @extends('app')
 @section('page-title')
     Rate Master
@@ -415,7 +414,7 @@
         }
     </script>
     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
 @endsection
 @include('footerjs')
