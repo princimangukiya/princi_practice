@@ -29,7 +29,7 @@
                     <div class="card-title">Party Labour Generate Pdf</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('Party_Labour.generatePDF') }}" method="get">
+                    <form action="{{ route('Party_Labour.generatePDF') }}" method="get" target="_blank">
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
