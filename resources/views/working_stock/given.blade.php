@@ -194,11 +194,11 @@
                  }
                  else if (response_msg.success == response_msg.success) {
                      if (c_id == 1) {
-                         alert('You can not assign Eklingji Barcode to VmJewles!');
+                         alert('You can not assign EKLINGJI GEMS Barcode to VmJewles!');
                          $('#bar_code').focus();
 
                      } else {
-                         alert('You can not assign VmJewles Barcode to Eklingji!');
+                         alert('You can not assign VmJewles Barcode to EKLINGJI GEMS!');
                          $('#bar_code').focus();
 
                      }

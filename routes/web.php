@@ -73,6 +73,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/sell_stock/update/{id}', 'App\Http\Controllers\SellStockController@update')->name('sell_stock.update');
     Route::post('/sell_stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
 
+    //Defective_Pcs
+    Route::get('/Defective_Pcs', 'App\Http\Controllers\Defective_Pcs_Controller@index')->name('Defective_Pcs');
+    Route::get('/Defective_Pcs/create', 'App\Http\Controllers\Defective_Pcs_Controller@create')->name('Defective_Pcs.create');
+    Route::post('/Defective_Pcs/store', 'App\Http\Controllers\Defective_Pcs_Controller@store')->name('Defective_Pcs.store');
+    Route::get('/Defective_Pcs/edit/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@edit')->name('Defective_Pcs.edit');
+    Route::post('/Defective_Pcs/update/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@update')->name('Defective_Pcs.update');
+    Route::post('/Defective_Pcs/{id}/destroy', 'App\Http\Controllers\Defective_Pcs_Controller@destroy')->name('Defective_Pcs.destroy');
+
     //rate_master 
     Route::get('/rate_master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
     Route::get('/rate_master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');

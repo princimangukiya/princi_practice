@@ -70,6 +70,7 @@ class DiamondController extends Controller
                 $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
                 $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
                 $newitem->c_id = $c_id;
+                $newitem->status = 1;
                 $newitem->bill_date =  !empty($request->bill_date) ? $request->bill_date : '';
                 //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
                 //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
