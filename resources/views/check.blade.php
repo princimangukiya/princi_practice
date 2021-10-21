@@ -8,7 +8,7 @@
     <meta content="VM Jewels Billing & Inventory Management System" name="description">
     <meta content="VM Jewels Private Limited" name="author">
     <meta name="keywords"
-        content="vm jewels, eklingji jewels, VM JEWELS, EKLINGJI JEWELS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
+        content="vm jewels,  EKLINGJI GEMS, VM JEWELS,  EKLINGJI GEMS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
     <title> Barcode Scanning </title>
     <!--Favicon -->
     <link rel="icon" href="{{ asset('assets\images\company_logo\vmjewels.jpeg') }}" type="image/x-icon" />
@@ -55,7 +55,7 @@
                                 </div>
                                 @php
                                     $c_id = session()->get('c_id');
-                                    $supplier = App\Models\Supplier_Details::where('c_id' , $c_id)->get();
+                                    $supplier = App\Models\Supplier_Details::where('c_id', $c_id)->get();
                                 @endphp
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -83,8 +83,8 @@
                                 <div class="col-sm-6 col-md-4">
                                     <div class="form-group">
                                         <label class="form-label">Packate Weight :-</label>
-                                        <input placeholder="Enter Packate Wt" class="form-control" id="d_wt" type="text"
-                                            name="d_wt" value="{{ old('d_wt') }}" required>
+                                        <input placeholder="Enter Packate Wt" class="form-control" id="d_wt"
+                                            type="text" name="d_wt" value="{{ old('d_wt') }}" required>
                                         @error('d_wt')
                                             <small class="errorTxt1">
                                                 <div id="title-error" class="error" style="margin-left:3rem">

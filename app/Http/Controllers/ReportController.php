@@ -12,6 +12,7 @@ use App\Models\Ready_Stock;
 use App\Models\Sell_Stock;
 use App\Models\Supplier_Details;
 use App\Models\User;
+use App\Models\company_detail;
 use App\Models\Working_Stock;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
@@ -260,10 +261,14 @@ class ReportController extends Controller
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // return Response::json(array('success' => $data));
         }
+        $data['start_date'] = $start_date;
+        $data['end_date'] = $End_date;
+        $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
+        // echo $data['company_detail'];
         $pdf = PDF::loadView('Report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
-        // return response::json(array('success' => true));
+        // return view('Report.Outward_formate', $data);
     }
     public function generateManagerPDF_outward(Request $request)
     {
@@ -490,58 +495,62 @@ class ReportController extends Controller
         $data['supplier'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
         foreach ($data['supplier'] as $key => $supplier) {
             $s_id = $supplier->s_id;
-            $sell_stock = sell_stock::where('s_id', $s_id)->get();
-            $daimond = D_Purchase::where('s_id', $s_id)
-                ->whereBetween('bill_date', [$start_date, $End_date])
-                ->get();
-            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first('json_price');
             $rate[$s_id] = array();
             $daimond_data[$s_id] = array();
             $issueCuts[$s_id] = array();
             $outCuts[$s_id] = array();
             $price[$s_id] = array();
             $labour[$s_id] = array();
-            $json_data = $json_data['json_price'];
-            $json_decoded = json_decode($json_data);
-            foreach ($json_decoded[0] as $key => $val) {
-                $r_id = $key;
-                $wt_category = rate::where('rates.r_id', $r_id)->get();
-                $wt_category = $wt_category[0]['wt_category'];
-                $fetchPrice = $val;
-                array_push($price[$s_id], $fetchPrice);
-                array_push($rate[$s_id], $wt_category);
-                $count1 = 0;
-                $total_weight = 0;
-                $d_weight = 0;
-                $d_n_wt = 0;
-                $count = 0;
-                $labour_price = 0;
-                $total_new_weight = 0;
-                foreach ($daimond as $r) {
-                    if ($s_id == $r->s_id) {
-                        foreach ($sell_stock as $value) {
-                            if ($value['d_id'] == $r->d_id) {
-                                $daimond_categorie_id = $r->d_wt_category;
+            $sell_stock = sell_stock::where('s_id', $s_id)->get();
+            $daimond = D_Purchase::where('s_id', $s_id)
+                ->whereBetween('bill_date', [$start_date, $End_date])
+                ->get();
+            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first('json_price');
+            if (empty($json_data)) {
+                // echo 1;
+                // echo "<br>";
+            } else {
+                $json_data = $json_data['json_price'];
+                $json_decoded = json_decode($json_data);
+                foreach ($json_decoded[0] as $key => $val) {
+                    $r_id = $key;
+                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = $wt_category[0]['wt_category'];
+                    $fetchPrice = $val;
+                    array_push($price[$s_id], $fetchPrice);
+                    array_push($rate[$s_id], $wt_category);
+                    $count1 = 0;
+                    $total_weight = 0;
+                    $d_weight = 0;
+                    $d_n_wt = 0;
+                    $count = 0;
+                    $labour_price = 0;
+                    $total_new_weight = 0;
+                    foreach ($daimond as $r) {
+                        if ($s_id == $r->s_id) {
+                            foreach ($sell_stock as $value) {
+                                if ($value['d_id'] == $r->d_id) {
+                                    $daimond_categorie_id = $r->d_wt_category;
 
-                                if ($r_id == $daimond_categorie_id) {
-                                    $count1 = $count1 + 1;
-                                    $d_weight = $total_weight + $r->d_wt;
-                                    $total_weight = $d_weight;
-                                    $d_n_wt = $total_new_weight + $r->d_n_wt;
-                                    $total_new_weight = $d_n_wt;
-                                    $count = $labour_price + $r->price;
-                                    $labour_price = $count;
+                                    if ($r_id == $daimond_categorie_id) {
+                                        $count1 = $count1 + 1;
+                                        $d_weight = $total_weight + $r->d_wt;
+                                        $total_weight = $d_weight;
+                                        $d_n_wt = $total_new_weight + $r->d_n_wt;
+                                        $total_new_weight = $d_n_wt;
+                                        $count = $labour_price + $r->price;
+                                        $labour_price = $count;
+                                    }
                                 }
                             }
                         }
                     }
+                    array_push($daimond_data[$s_id], $count1);
+                    array_push($issueCuts[$s_id], $total_weight);
+                    array_push($outCuts[$s_id], $total_new_weight);
+                    array_push($labour[$s_id], $labour_price);
                 }
-                array_push($daimond_data[$s_id], $count1);
-                array_push($issueCuts[$s_id], $total_weight);
-                array_push($outCuts[$s_id], $total_new_weight);
-                array_push($labour[$s_id], $labour_price);
             }
-
             $data['rates'] = $rate;
             $data['counts'] = $daimond_data;
             $data['issueCuts'] = $issueCuts;
@@ -550,7 +559,7 @@ class ReportController extends Controller
             $data['labour'] = $labour;
             $data['start_date'] = $start_date;
             $data['end_date'] = $End_date;
-
+            $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
             // return view('Report.party_Labour_formate', $data);
             $pdf = PDF::loadView('Report.party_Labour_formate', $data);
             return $pdf->download('Party_Labour.pdf');

@@ -284,6 +284,10 @@
     </div>
     </div><!-- end app-content-->
     </div>
+
+
+
+
     <script>
         $('.supplier_button').on('click', function() {
             $(this).removeClass('supplier_button');
@@ -408,8 +412,6 @@
 
                 }
             });
-
-
             // alert('hii');
         }
     </script>
@@ -417,4 +419,4 @@
     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
 @endsection
-@include('footerjs')
+{{-- @include('footerjs') --}}

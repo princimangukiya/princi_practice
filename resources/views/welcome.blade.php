@@ -8,7 +8,7 @@
     <meta content="VM Jewels Private Limited" name="author">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords"
-        content="vm jewels, eklingji jewels, VM JEWELS, EKLINGJI JEWELS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
+        content="vm jewels,  EKLINGJI GEMS, VM JEWELS,  EKLINGJI GEMS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
 
     <!-- Title -->
     <title>VM Jewels Billing & Inventory Management System</title>
@@ -103,7 +103,7 @@
                         <img src="assets\images\company_logo\Eklingi_jewel.jpeg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <center>
-                                <h5 class="card-title card-title111 ">EKLINGJI JEWELS</h5>
+                                <h5 class="card-title card-title111 "> EKLINGJI GEMS</h5>
                             </center>
 
                             <center><a href="/EKLINGJI" class="btn btn111">Explore<i

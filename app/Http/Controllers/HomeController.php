@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
     public function SecondUser()
     {
-        session(['c_id' => '2', 'c_name' => 'EKLINGJI JEWELS', 'dashboard' => 'EKLINGJI', 'c_img_url' => 'assets/images/company_logo/Eklingi_jewel.jpeg']);
+        session(['c_id' => '2', 'c_name' => ' EKLINGJI GEMS', 'dashboard' => 'EKLINGJI', 'c_img_url' => 'assets/images/company_logo/Eklingi_jewel.jpeg']);
         $data = array();
         $data['totalManager'] = Count(Manager_Details::where('c_id', '2')->get());
         $data['totalSupplier'] = Count(Supplier_Details::where('c_id', '2')->get());

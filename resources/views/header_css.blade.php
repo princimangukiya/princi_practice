@@ -9,7 +9,7 @@
     <meta content="VM Jewels Private Limited" name="author">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords"
-        content="vm jewels, eklingji jewels, VM JEWELS, EKLINGJI JEWELS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
+        content="vm jewels,  EKLINGJI GEMS, VM JEWELS,  EKLINGJI GEMS, Inventory Management System, VM Jewels Billing, VM Jewels Billing & Inventory Management System," />
 
     <!-- Title -->
     <title>VM Jewels Billing & Inventory Management System</title>

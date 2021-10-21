@@ -4,15 +4,14 @@
 <!-- Bootstrap4 js-->
 <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-
-<!--Othercharts js-->
+{{-- <!--Othercharts js-->
 <script src="{{ asset('assets/plugins/othercharts/jquery.sparkline.min.js') }}"></script>
 
 <!-- Circle-progress js-->
 <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
 
 <!-- Jquery-rating js-->
-<script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script>
+<script src="{{ asset('assets/plugins/rating/jquery.rating-stars.js') }}"></script> --}}
 
 <!--Sidemenu js-->
 <script src="{{ asset('assets/plugins/sidemenu/sidemenu.js') }}"></script>
@@ -110,7 +109,7 @@
 <script src="{{ asset('assets/plugins/notify/js/sample.js') }}"></script>
 <script src="{{ asset('assets/plugins/notify/js/notifIt.js') }}"></script>
 <!-- Simplebar JS -->
-<script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script> --}}
 <!-- Custom js-->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 

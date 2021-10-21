@@ -59,17 +59,17 @@
                             Diamond</b></td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="1" style="text-align: center;"><b> FLAT NO-A/203, SUNDAY AVENUE,WING-A,
-                            AMBATALAVADI ROAD, KATARGAM, Surat, Gujarat, 395004</b></td>
+                    <td colspan="8" rowspan="1" style="text-align: center;"><b>{{ $company_detail['c_adress'] }}</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="1">GST NO. :- 24DHCPM9189L1ZN</td>
+                    <td colspan="8" rowspan="1">GST NO. :-{{ $company_detail['c_gstin'] }}</td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="1">PAN :- DHCPM9189L</td>
+                    <td colspan="8" rowspan="1">PAN :- {{ $company_detail['c_pan'] }}</td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="1">State :- 24-GUJARAT</td>
+                    <td colspan="8" rowspan="1">State :- {{ $company_detail['c_state'] }}</td>
                 </tr>
                 <tr>
                     <td colspan="8" rowspan="1" class="box-title" style="text-align: center;">TAX INVOICE</td>
@@ -272,8 +272,7 @@
                         <div class="box-content">SUBJECT TO SURAT JURISDICTION</div>
                     </td>
                     <td colspan="4" rowspan="3">
-                        <div class="text-right">
-                            <br>For, {{ $c_id }}<br><br><br><br><br><br>Authorise Signature
+                        <div class="text-right">For, {{ $c_id }}<br><br><br><br><br><br>Authorise Signature
                         </div>
                     </td>
 
@@ -293,7 +292,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="7" class="text-left"> <br> <br> <br>Receiver Signature and Stamp<br>
+                    <td colspan="8" rowspan="7" class="text-left"><br><br>Receiver Signature and Stamp<br>
                     </td>
                 </tr>
             </table>
@@ -327,13 +326,13 @@
                                 $here_digits[$counter] .
                                 $add_plural .
                                 ' 
-                                                                                                                                                                                                                                                                                                                                                                               ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
                                 $amt_hundred
                             : $change_words[floor($amount / 10) * 10] .
                                 ' ' .
                                 $change_words[$amount % 10] .
                                 ' 
-                                                                                                                                                                                                                                                                                                                                                                               ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
                                 $here_digits[$counter] .
                                 $add_plural .
                                 ' ' .
@@ -348,7 +347,7 @@
                     ? 'And ' .
                         ($change_words[$amount_after_decimal / 10] .
                             " 
-                                                                                                                                                                                                                                                                                                                                                                           " .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                           " .
                             $change_words[$amount_after_decimal % 10]) .
                         ' Paise'
                     : '';
