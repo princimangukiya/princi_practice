@@ -36,46 +36,42 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
 
+
+        $validator = Validator::make($request->all(), [
+            's_name' => 'required',
+            's_address' => 'required',
+            's_gst' => 'required|min:15',
+
+        ]);
+        //dd($request);
+        if ($validator->fails()) {
+            return Response::json(array('success' => false));
+        }
         try {
-            $validator = Validator::make($request->all(), [
-                's_name' => 'required',
-                's_address' => 'required',
-                's_gst' => 'required|unique:supplier_details,s_gst',
+            $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
 
-            ]);
-            //dd($request);
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            if ($suppilerData == null) {
+                $c_id = session()->get('c_id');
+                $newitem = new Supplier_Details();
+                $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
+                $newitem->c_id = $c_id;
+                $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
+                $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
+                $newitem->status = 1;
+                $newitem->save();
+
+                return Response::json(array('success' => 200));
+                // return Response::json(array('success' => true));
+            } else {
+                return Response::json(array('success' => 312));
             }
-
-            // if ($validator->fails()) {
-            //     return Response::json(array('success' => false));
-            // }
-
-            // $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
-
-            // if ($suppilerData == null) {
-            $c_id = session()->get('c_id');
-            $newitem = new Supplier_Details();
-            $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
-            $newitem->c_id = $c_id;
-            $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
-            $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
-            $newitem->status = 1;
-            $newitem->save();
-
-            return Redirect::to('/supplier');
-            // return Response::json(array('success' => true));
-            // } else {
-            //     return Response::json(array('success' => 200));
-            // }
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Add!',
                 'alert-type' => 'success'
             );
 
-            return Redirect::to('/supplier');
+            return Response::json(array('success' => 320));
             // return Response::json(array('success' => false));
         }
     }
@@ -93,18 +89,18 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
 
+
+        $validator = Validator::make($request->all(), [
+            's_name' => 'required',
+            's_address' => 'required',
+            's_gst' => 'required|min:15',
+
+        ]);
+        //dd($request);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
         try {
-            $validator = Validator::make($request->all(), [
-                's_name' => 'required',
-                's_address' => 'required',
-                's_gst' => 'required',
-
-            ]);
-            //dd($request);
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all());
-            }
-
             $newitem = array();
             $newitem['s_name'] = !empty($request->s_name) ? $request->s_name : '';
             $newitem['s_address'] = !empty($request->s_address) ? $request->s_address : '';

@@ -36,35 +36,36 @@ class ManagerController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'm_name' => 'required',
+            'm_address' => 'required',
+            'm_email' => 'required|email',
+            'm_phone' => 'required|min:11|numeric',
+
+        ]);
+        if ($validator->fails()) {
+            return Response::json(array('success' => false));
+        }
         try {
-            $validator = Validator::make($request->all(), [
-                'm_name' => 'required',
-                'm_address' => 'required',
-                'm_email' => 'required|email|unique:Manager_Details,m_email',
-                'm_phone' => 'required',
-
-            ]);
-            // if ($validator->fails()) {
-            //     return redirect()->back()->withErrors($validator)->withInput($request->all());
-            // }
-
+            $email = $request->m_email;
             $c_id = session()->get('c_id');
-            $newitem = new Manager_Details();
-            $newitem->c_id = $c_id;
-            $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
-            $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
-            $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
-            $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
-            $newitem->status = 1;
-            $newitem->save();
-            return Redirect::to('/manager');
+            $manager = Manager_Details::where('m_email', $email)->first();
+            if (empty($manager)) {
+                $newitem = new Manager_Details();
+                $newitem->c_id = $c_id;
+                $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
+                $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
+                $newitem->m_email = !empty($request->m_email) ? $request->m_email : '';
+                $newitem->m_phone = !empty($request->m_phone) ? $request->m_phone : '';
+                $newitem->status = 1;
+                $newitem->save();
+                return Response::json(array('success' => 200));
+            } else {
+                return Response::json(array('success' => 314));
+            }
         } catch (\Throwable $th) {
-            $notification = array(
-                'message' => 'Suppiler can`t Add!',
-                'alert-type' => 'success'
-            );
-
-            return Redirect::to('/manager');
+            return Response::json(array('success' => 312));
         }
     }
 
@@ -81,23 +82,26 @@ class ManagerController extends Controller
     public function update(Request $request, $id)
     {
 
+
         try {
             $validator = Validator::make($request->all(), [
                 'm_name' => 'required',
                 'm_address' => 'required',
                 'm_email' => 'required|email',
-                'm_phone' => 'required|m_phone',
+                'm_phone' =>  'required|min:11|numeric',
 
             ]);            //dd($request);
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all());
-            }
+            // if ($validator->fails()) {
+            //     return redirect()->back()->withErrors($validator)->withInput($request->all());
+            // }
+            // dd("hello");
 
             $newitem = array();
             $newitem['m_name'] = !empty($request->m_name) ? $request->m_name : '';
             $newitem['m_address'] = !empty($request->m_address) ? $request->m_address : '';
             $newitem['m_email'] = !empty($request->m_email) ? $request->m_email : '';
             $newitem['m_phone'] = !empty($request->m_phone) ? $request->m_phone : '';
+
 
             Manager_Details::where('m_id', $id)->update($newitem);
 
