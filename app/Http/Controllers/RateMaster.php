@@ -78,12 +78,13 @@ class RateMaster extends Controller
     }
     public function rates_store(Request $request)
     {
-
-
         $rate = new rate();
-        $rate->wt_category = $request->Rates;
-        $rate->save();
-        return Redirect::to('/rate_master/create');
+        $first_range = $request->firstRange;
+        $last_range = $request->lastRange;
+        echo $first_range;
+        echo $last_range;
+        // $rate->save();
+        // return Redirect::to('/rate_master/create');
     }
     public function edit($id)
     {
