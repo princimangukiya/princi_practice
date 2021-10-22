@@ -151,6 +151,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'add_dia_pkt' => 'Add New Diamond Packet',
+    ],
 
 ];

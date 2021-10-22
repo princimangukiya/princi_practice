@@ -86,4 +86,5 @@
 
     <link rel="stylesheet" href="{{ asset('assets/switcher/css/switcher.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/switcher/demo.css') }}">
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
 </head>
