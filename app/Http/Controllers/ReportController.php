@@ -209,7 +209,7 @@ class ReportController extends Controller
         $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->where('sell_stock.c_id', $c_id)
+            ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
             ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
         // echo $data['inward'];
         $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
@@ -241,7 +241,7 @@ class ReportController extends Controller
             $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where('sell_stock.c_id', $c_id)
+                ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // dd($data);
@@ -256,7 +256,7 @@ class ReportController extends Controller
             $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id]])
+                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id], ['d_purchase.satus', 1]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // return Response::json(array('success' => $data));
@@ -336,7 +336,7 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where('sell_stock.c_id', $c_id)
+                ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // dd($data);
@@ -351,7 +351,7 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id]])
+                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id], ['d_purchase.status', 1]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             return Response::json(array('success' => $data));
@@ -403,7 +403,12 @@ class ReportController extends Controller
     {
         $data = array();
 
-        // $rates = array();
+        $rates = array();
+        $daimond_data = array();
+        $issueCuts = array();
+        $outCuts = array();
+        $price = array();
+        $labour = array();
         $c_id = session()->get('c_id');
         $data['supplier'] = Supplier_Details::where([['c_id', $c_id]])->get();
         foreach ($data['supplier'] as $key => $supplier) {
