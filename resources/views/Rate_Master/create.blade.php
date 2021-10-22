@@ -38,12 +38,26 @@
                      @csrf
                      <div class="card-body" style="display: none;" id="myDIV">
                          <div class="card-title font-weight-bold">Weight Category info:</div>
-                         <div class="row">
+                         <div class="row" style="padding:20px;">
                              <div class="col-sm-6 col-md-6">
                                  <div class="form-group">
-                                     <label class="form-label">Add Weight Category :-</label>
-                                     <input placeholder="Enter Your Weight Category" class="form-control" id="price"
-                                         type="text" name="Rates" value="{{ old('Rates') }}" required>
+                                     <label class="form-label">Add First Range :-</label>
+                                     <input placeholder="Enter Your First Range" class="form-control" id="price"
+                                         type="text" name="firstRange" value="{{ old('Rates') }}" required>
+                                     @error('price')
+                                         <small class="errorTxt1">
+                                             <div id="title-error" class="error" style="margin-left:3rem">
+                                                 {{ $message }}
+                                             </div>
+                                         </small>
+                                     @enderror
+                                 </div>
+                             </div>
+                             <div class="col-sm-6 col-md-6">
+                                 <div class="form-group">
+                                     <label class="form-label">Add Last Range :-</label>
+                                     <input placeholder="Enter Your last Range" class="form-control" id="price"
+                                         type="text" name="lastRange" value="{{ old('Rates') }}" required>
                                      @error('price')
                                          <small class="errorTxt1">
                                              <div id="title-error" class="error" style="margin-left:3rem">
@@ -75,7 +89,7 @@
                              @endphp
                              <div class="col-md-6">
                                  <div class="form-group">
-                                     <label class="form-label">packet Supplier</label>
+                                     <label class="form-label">Supplier Name</label>
                                      <select id="s_id" name="s_id" required class="form-control select2">
                                          <optgroup label="Supplier">
                                              <option value="" disabled selected>Choose Supplier</option>
@@ -103,10 +117,10 @@
                              @endphp
                              <div class="col-md-6">
                                  <div class="form-group">
-                                     <h4><label class="form-label">Select Rate :-</label></h4>
+                                     <h4><label class="form-label">Select Weight Categorey </label></h4>
                                      <select id="r_id" name="r_id" required class="form-control select2">
                                          <optgroup label="Rate">
-                                             <option value="" disabled selected>Choose Rate</option>
+                                             <option value="" disabled selected>Choose Weight Category</option>
                                              @if (count($rates) > 0)
                                                  @foreach ($rates as $value)
                                                      <option value="{{ $value->r_id }}">{{ $value->wt_category }}
@@ -126,22 +140,22 @@
                                      @enderror
                                  </div>
                              </div>
-                         </div>
-                         <div class="col-sm-6 col-md-6">
-                             <div class="form-group">
-                                 <label class="form-label">Labour :-</label>
-                                 <input placeholder="Enter Your price" class="form-control inputField" id="price"
-                                     type="text" name="price" value="{{ old('price') }}" required>
-                                 @error('price')
-                                     <small class="errorTxt1">
-                                         <div id="title-error" class="error" style="margin-left:3rem">
-                                             {{ $message }}
-                                         </div>
-                                     </small>
-                                 @enderror
+
+                             <div class="col-sm-6 col-md-6">
+                                 <div class="form-group">
+                                     <label class="form-label">Price</label>
+                                     <input placeholder="Enter Your price" class="form-control inputField" id="price"
+                                         type="text" name="price" value="{{ old('price') }}" required>
+                                     @error('price')
+                                         <small class="errorTxt1">
+                                             <div id="title-error" class="error" style="margin-left:3rem">
+                                                 {{ $message }}
+                                             </div>
+                                         </small>
+                                     @enderror
+                                 </div>
                              </div>
                          </div>
-
                      </div>
                      <div class="card-footer text-right">
                          <button type="submit" name="action" class="btn  btn-primary">Submit</button>

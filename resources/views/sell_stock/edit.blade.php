@@ -36,10 +36,10 @@
                              $c_id = session()->get('c_id');
                              $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
                          @endphp
-                         <div class="row">
+                         <div class="row" style="padding: 20px;">
                              <div class="col-sm-6 col-md-6">
                                  <div class="form-group">
-                                     <label class="form-label">Enter Date :-</label>
+                                     <label class="form-label">Enter Date </label>
                                      <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
                                          name="bill_date" value="{{ $Diamond->return_date }}" required>
                                      @error('date')
@@ -53,7 +53,7 @@
                              </div>
                              <div class="col-md-6 col-sm-6">
                                  <div class="form-group">
-                                     <h4><label class="form-label">Select Company :-</label></h4>
+                                     <h4><label class="form-label">Select Company </label></h4>
                                      <select id="s_id" name="s_id" required class="form-control select2">
                                          <optgroup label="Company">
                                              <option value="" disabled selected>Choose Company</option>

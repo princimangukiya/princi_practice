@@ -24,11 +24,11 @@
          @csrf
          <div class="row">
 
-             <div class="card" style="padding: 20px;">
+             <div class="card">
                  <div class="card-header">
                      <div class="card-title">Edit ReadyStock Details</div>
                  </div>
-                 <div class="row">
+                 <div class="row" style="padding: 20px;">
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
                              <label class="form-label" style="padding-top: 10px">Enter Date :-</label>
@@ -67,8 +67,6 @@
                              @enderror
                          </div>
                      </div>
-                 </div>
-                 <div class="row">
                      <div class="col-sm-6 col-md-6">
                          <div class=" form-group">
                              <label class="form-label">BarCode Value</label>
@@ -103,8 +101,6 @@
                              </div>
                          </div>
                      </div>
-                 </div>
-                 <div class="row">
                      <div class="col-sm-6  col-md-6">
                          <div class="form-group">
                              <label class="form-label">Price </label>

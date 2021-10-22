@@ -24171,6 +24171,7 @@ input[type=time].form-control:hover {
 
 .custom-switch-indicator {
     display: inline-block;
+    cursor: pointer;
     height: 1.25rem;
     width: 2.25rem;
     background: #f0f0f2;

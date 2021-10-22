@@ -1,4 +1,3 @@
-@include('header_css')
 @extends('app')
 @section('page-title')
     Defective Pcs
@@ -148,4 +147,3 @@
         {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
     @endsection
-    @include('footerjs')

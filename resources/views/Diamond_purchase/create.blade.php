@@ -57,7 +57,7 @@
                      <div class="row">
                          <div class="col-sm-6 col-md-6">
                              <div class="form-group">
-                                 <label class="form-label">Enter Bill Date :-</label>
+                                 <label class="form-label">Enter Bill Date</label>
                                  <input placeholder="Enter Date:-" class="form-control" id="Bill_date" type="date"
                                      name="bill_date" value="" required>
                                  @error('bill_date')
@@ -132,19 +132,20 @@
                                  @enderror
                              </div>
                          </div>
-                     </div>
-                     <div class="col-sm-6 col-md-6">
-                         <div class="form-group">
-                             <label class="form-label">Packet Weight :-</label>
-                             <input placeholder="Enter Packet Wt" class="form-control inputField" id="d_wt" type="text"
-                                 name="d_wt" value="0." required>
-                             @error('d_wt')
-                                 <small class="errorTxt1">
-                                     <div id="title-error" class="error" style="margin-left:3rem">
-                                         {{ $message }}
-                                     </div>
-                                 </small>
-                             @enderror
+
+                         <div class="col-sm-6 col-md-6">
+                             <div class="form-group">
+                                 <label class="form-label">Packet Weight </label>
+                                 <input placeholder="Enter Packet Wt" class="form-control inputField" id="d_wt" type="text"
+                                     name="d_wt" value="0." required>
+                                 @error('d_wt')
+                                     <small class="errorTxt1">
+                                         <div id="title-error" class="error" style="margin-left:3rem">
+                                             {{ $message }}
+                                         </div>
+                                     </small>
+                                 @enderror
+                             </div>
                          </div>
                      </div>
                      <div class="card-footer text-right">
@@ -187,7 +188,6 @@
              </div>
          </div>
      </div>
-     <button onclick="not1()" class="btn btn-primary">Default</button>
      {{-- <div id="growls-default">
         <div class="growl growl-notice growl-medium">
             <div class="growl-close">x</div>
@@ -208,6 +208,10 @@
                  "info": true,
                  "autoWidth": false,
                  "sDom": 'lfrtip',
+                 columnDefs: [{
+                     className: "hide",
+                     "targets": [0]
+                 }, ],
                  // ajax: "{{ route('diamond.store') }}",
                  // "columns": [{
                  //         "data": "s_name",
@@ -269,6 +273,7 @@
              }
          });
 
+         //FUNCTION FOR DIAMOND ADD
          function addData() {
              // alert(id);
              var barcode = $('#bar_code').val();
@@ -298,11 +303,11 @@
                  dataType: 'json',
 
                  success: function(response_msg) {
-                     // alert(bill_date);
-                     if (response_msg.success == 200) {
+                     //  alert(response_msg.success);
+                     if (response_msg.success == 312) {
                          alert("Barcode already exist!");
                          //location.reload();
-                     } else if (response_msg.success == true) {
+                     } else if (response_msg.success == 200) {
                          mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
                          mytable.draw();
                          // $('#s_id').val('');
@@ -310,18 +315,17 @@
                          $('#d_wt').val('0.');
                          // $('#shape_id').val('');
                          $('#bill_date').focus();
-                         notif({
-                             msg: "<b>Success:</b> Well done Diamond Added Successfully",
-                             type: "success"
-                         });
-                         // $(this).addClass('growls-default');
+                         var msg = "<b>Success:</b> Well done Diamond Added Successfully";
+                         var type = "success";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 311) {
+                         var msg = "<b>Please,</b> First Enter Rates in Rate Master!";
+                         var type = "error";
+                         alertShow(msg, type);
                      } else {
-                         // alert('Please, Fill all the fields!');
-                         notif({
-                             msg: "<b>Please,</b> Fill all the fields!",
-                             type: "error"
-                             // position: "center"   
-                         });
+                         var msg = "<b>Please,</b> Fill all the fields!";
+                         var type = "error";
+                         alertShow(msg, type);
                      }
 
                  }

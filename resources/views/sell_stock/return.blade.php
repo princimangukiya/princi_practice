@@ -23,10 +23,10 @@
              $c_id = session()->get('c_id');
              $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
          @endphp
-         <div class="row">
-             <div class="col-sm-6 col-md-6" style="padding: 20px;">
+         <div class="row" style="padding: 20px;">
+             <div class="col-sm-6 col-md-6">
                  <div class="form-group">
-                     <label class="form-label">Enter Date :-</label>
+                     <label class="form-label">Enter Date </label>
                      <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date" value=""
                          required>
                      @error('date')
@@ -39,8 +39,8 @@
                  </div>
              </div>
              <div class="col-md-6 col-sm-6">
-                 <div class="form-group" style="padding: 20px">
-                     <h4><label class="form-label">Select Company :-</label></h4>
+                 <div class="form-group">
+                     <h4><label class="form-label">Select Company </label></h4>
                      <select id="s_id" name="s_id" required class="form-control select2">
                          <optgroup label="Company">
                              <option value="" disabled selected>Choose Company</option>
@@ -60,8 +60,8 @@
                      @enderror
                  </div>
              </div>
-             <div class="col-sm-6 col-md-6" style="display: flex;">
-                 <div class="form-group col-md-12 col-sm-12" style="padding:0 20px;">
+             <div class="col-sm-6 col-md-6">
+                 <div class="form-group">
                      <label class="form-label">BarCode Value </label>
                      <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                          value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>

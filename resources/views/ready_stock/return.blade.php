@@ -20,10 +20,10 @@
          <div class="card-header">
              <div class="card-title">Return From Manager</div>
          </div>
-         <div class="row">
+         <div class="row" style="padding: 20px;">
              <div class="col-sm-6 col-md-6">
                  <div class="form-group">
-                     <label class="form-label" style="padding-top: 10px">Enter Date :-</label>
+                     <label class="form-label" style="padding-top: 10px">Enter Date </label>
                      <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date" value=""
                          required>
                      @error('date')
@@ -37,7 +37,7 @@
              </div>
              <div class="col-md-6 col-sm-6">
                  <div class="form-group">
-                     <h4><label class="form-label" style="padding-top: 10px">Select Manager :-</label></h4>
+                     <h4><label class="form-label" style="padding-top: 10px">Select Manager </label></h4>
                      <select id="m_id" name="m_id" required class="form-control select2">
                          <optgroup label="Managers">
                              <option value="" disabled selected>Choose Manager</option>
@@ -57,8 +57,8 @@
                      @enderror
                  </div>
              </div>
-         </div>
-         <div class="row">
+             {{-- </div>
+         <div class="row"> --}}
              <div class="col-sm-6 col-md-6">
                  <div class=" form-group">
                      <label class="form-label">BarCode Value</label>
@@ -90,8 +90,8 @@
                      </div>
                  </div>
              </div>
-         </div>
-         <div class="row">
+             {{-- </div>
+         <div class="row"> --}}
              <div class="col-sm-6  col-md-6">
                  <div class="form-group">
                      <label class="form-label">Price </label>
@@ -109,10 +109,9 @@
                      </div>
                  </div>
              </div>
-
              <div class="col-sm-6 col-md-6">
                  <div class="form-group">
-                     <label class="form-label">Enter New Weight :- </label>
+                     <label class="form-label">Enter New Weight </label>
                      <div style="display: flex;">
                          <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField" value="0."
                              placeholder="Enter New Weight">
@@ -127,23 +126,6 @@
                      </div>
                  </div>
              </div>
-             {{-- <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label">Date :- </label>
-                    <div style="display: flex;">
-                        <input id="date" type="text" name="date" class="form-control" value="{{ old('date') }}"
-                            placeholder="Date">
-                        @error('bar_code')
-                            <small class="errorTxt1">
-                                <div id="title-error" class="error" style="margin-left:3rem">
-                                    {{ $message }}
-                                </div>
-                            </small>
-                        @enderror
-
-                    </div>
-                </div>
-            </div> --}}
          </div>
          <div class="card-footer text-right" style="padding-right: 10% ">
              <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
