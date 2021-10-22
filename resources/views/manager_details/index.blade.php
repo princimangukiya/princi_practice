@@ -237,7 +237,7 @@
      </div>
      </div><!-- end app-content-->
      </div>
-     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+     {{-- <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script> --}}
 
      <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
      {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
