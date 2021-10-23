@@ -155,7 +155,7 @@
                  </div>
                  <div class="card-footer text-right">
                      <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                     <a href="/manager" class="btn btn-danger">Cancle</a>
+                     <a href="/ready_stock" class="btn btn-danger">Cancle</a>
                  </div>
 
              </div>

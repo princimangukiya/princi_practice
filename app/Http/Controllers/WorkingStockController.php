@@ -40,37 +40,48 @@ class WorkingStockController extends Controller
     public function store(Request $request)
     {
 
-        try {
-            $validator = Validator::make($request->all(), [
-                'bar_code' => 'required',
-                'm_id' => 'required',
-                'date' => 'required'
+        $validator = Validator::make($request->all(), [
+            'bar_code' => 'required',
+            'm_id' => 'required',
+            'date' => 'required'
 
-            ]);            //dd($request);
-            if ($validator->fails()) {
-                return Response::json(array('success' => false));
-            }
-            //dd($request);
+        ]);            //dd($request);
+        if ($validator->fails()) {
+            return Response::json(array('success' => false));
+        }
+        //dd($request);
+        try {
             $c_id = session()->get('c_id');
-            $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
+
+            // $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
             $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
-            // dd($Diamond);
-            $D_C_Id = $Diamond['c_id'];
-            // return Response::json(array('success' => ));
+            // return Response::json(array('success' => json_encode($Diamond)));
+
             if ($Diamond == null) {
-                return Response::json(array('success' => 500));
-            } else if ($D_C_Id != $c_id) {
-                if ('c_id' == 1) {
+                return Response::json(array('success' => 314));
+            } else if ($Diamond->c_id != $c_id) {
+                if ($c_id == 1) {
                     $data = 1;
                 } else {
                     $data = 2;
                 }
-                return Response::json(array('successs' => $data));
-            } else if ($DiamondData->doReady != null) {
+                return Response::json(array('success' => 318));
+            }
+            $workingStockData = Working_Stock::withTrashed()->where('d_id', $Diamond->d_id)->first();
+            if ($workingStockData != null) {
+                $newitem = array();
+                $newitem['m_id'] = $request->m_id;
+                $newitem['bill_date'] = $request->bill_date;
+                $newitem['c_id'] = $c_id;
+                $newitem['status'] = 1;
+                $newitem['deleted_at'] = null;
+                Working_Stock::withTrashed()->where('d_id', $Diamond->d_id)->update($newitem);
                 return Response::json(array('success' => 200));
+            } else if ($Diamond->doReady != null) {
+                return Response::json(array('success' => 320));
             } else {
                 $newitem = new Working_Stock();
-                $newitem->d_id = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
+                $newitem->d_id = !empty($Diamond->d_id) ? $Diamond->d_id : '';
                 $newitem->m_id = !empty($request->m_id) ? $request->m_id : '';
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
@@ -78,11 +89,11 @@ class WorkingStockController extends Controller
                 // $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
                 $newitem->save();
 
-                D_Purchase::where('d_id', $DiamondData->d_id)->update(['doReady' => $request->m_id]);
-                return Response::json(array('success' => true));
+                D_Purchase::where('d_id', $Diamond->d_id)->update(['doReady' => $request->m_id]);
+                return Response::json(array('success' => 200));
             }
         } catch (\Throwable $th) {
-            return Response::json(array('success' => false));
+            return Response::json(array('success' => 408));
         }
     }
     public function edit($id)

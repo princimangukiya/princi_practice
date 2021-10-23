@@ -162,7 +162,7 @@
          });
 
          function addSupplier() {
-             alert("calling");
+             //  alert("calling");
              var sName = $('#s_name').val();
              var sAddress = $('#s_address').val();
              var sGst = $('#s_gst').val();
@@ -182,15 +182,15 @@
                  },
                  dataType: 'json',
                  success: function(response_msg) {
-                     alert(response_msg.success);
+                     //  alert(response_msg.success);
                      if (response_msg.success == 200) {
                          window.location.replace('/supplier');
                      } else if (response_msg.success == 312) {
                          var msg = "S_GST No. Already Exits..!!";
                          var type = "error";
                          alertShow(msg, type);
-                     } else if (response_msg.success == 320) {
-                         var msg = "Supplier Does Not Added!!";
+                     } else if (response_msg.success == 408) {
+                         var msg = "Something Went Wrong!!";
                          var type = "error";
                          alertShow(msg, type);
                      } else {

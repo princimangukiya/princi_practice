@@ -62,10 +62,10 @@ class ManagerController extends Controller
                 $newitem->save();
                 return Response::json(array('success' => 200));
             } else {
-                return Response::json(array('success' => 314));
+                return Response::json(array('success' => 312));
             }
         } catch (\Throwable $th) {
-            return Response::json(array('success' => 312));
+            return Response::json(array('success' => 408));
         }
     }
 

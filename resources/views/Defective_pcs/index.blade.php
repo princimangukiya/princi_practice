@@ -62,17 +62,12 @@
                                                                 class="fe fe-edit-2"></i></button>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('Defective_Pcs.destroy', $value->df_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div class="btn-group align-top">
-                                                        <a data-toggle="modal" id="smallButton" data-target="#smallModal"
-                                                            data-attr="{{ route('Defective_Pcs.destroy', $value->df_id) }}"
-                                                            title="Delete Diamond">
-                                                            <button class="btn btn-sm btn-danger">Delete <i
-                                                                    class="fe fe-trash-2"></i></button></a>
-                                                    </div>
-                                                </form>
+                                                <div class="btn-group align-top">
+                                                    <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
+                                                        id="smallButton" data-target="#smallModal"
+                                                        data-href="{{ route('Defective_Pcs.destroy', $value->df_id) }}">Delete
+                                                        <i class="fe fe-trash-2"></i></button>
+                                                </div>
 
                                             </td>
                                         </tr>
@@ -94,17 +89,13 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <h6>Are You Sure To Delete Defective Diamond ?</h6>
-                                                    {{-- <div style="display: flex;">
-                                                               <p style="color: red;">Note:- </p>
-                                                               <p> This Diamond Show To Diamond Purchase</p>
-                                                            </div> --}}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('Defective_Pcs.destroy', $value->df_id) }}"
-                                                        method="post">
+                                                    <form id="diaDeleteModalForm" method="post">
                                                         @csrf
-                                                        <button class="btn btn-indigo" type="submit">Delete
-                                                            Defective Diamond</button>
+                                                        <button class="btn btn-indigo" type="submit" value='success alert'
+                                                            id='click'>Delete
+                                                            Diamond</button>
                                                         <button class="btn btn-secondary" type="button"
                                                             data-dismiss="modal">Close</button>
                                                     </form>
@@ -139,11 +130,15 @@
                     ]
                 });
             });
+            $(".diaDeleteBtn").on('click', function() {
+                var deleteUrl = $(this).data("href");
+                $('#diaDeleteModalForm').attr('action', deleteUrl);
+            });
         </script>
-        <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
-        <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script> --}}
         {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
     @endsection

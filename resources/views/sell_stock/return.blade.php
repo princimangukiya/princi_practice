@@ -148,8 +148,8 @@
              var s_id = $('#s_id').val();
              var supplier_name = $('#s_id').find(":selected").text();
              var date = $('#Date').val();
-             // alert(barcode);
-             //  alert(s_id);
+             var c_id = '{{ Session::get('c_id') }}';
+
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -165,25 +165,46 @@
                  },
                  dataType: 'json',
                  success: function(response_msg) {
-                     // console.log(s_id);
-                     if (response_msg.success == 200) {
-                         alert("Please, choose the right company!");
-                         //location.reload();
-                     } else if (response_msg.success == true) {
+                     if (response_msg.success == 320) {
+                         var msg = "<b>Please,</b> choose the right Supllier!!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 200) {
                          mytable.row.add([supplier_name, barcode, date]);
                          mytable.draw();
                          $('#bar_code').val('');
                          $('#bar_code').focus();
-                         notif({
-                             msg: "<b>Success:</b> Well done Diamond Added Successfully",
-                             type: "success"
-                         });
-                     } else if (response_msg.success == 403) {
-                         alert('Something Went Wrong!');
-                     } else if (response_msg.success == 404) {
-                         alert('Your Barcode is not valid!');
+                         var msg = "<b>Success:</b> Well done Diamond Added Successfully";
+                         var type = "success";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 318) {
+                         if (c_id == 1) {
+                             $('#bar_code').focus();
+                             var msg = "You can not assign EKLINGJI GEMS Barcode to VmJewles!!";
+                             var type = "error";
+                             alertShow(msg, type);
+                         } else {
+                             $('#bar_code').focus();
+                             var msg = "You can not assign VmJewles Barcode to EKLINGJI GEMS!!";
+                             var type = "error";
+                             alertShow(msg, type);
+                         }
+                     } else if (response_msg.success == 314) {
+                         var msg = "Your Barcode is not valid!!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 408) {
+                         var msg = "Something Went Wrong !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 325) {
+                         var msg = "Your Barcode Not Valid Please Check Sell Stock!!";
+                         var type = "error";
+                         alertShow(msg, type);
                      } else {
-                         alert('Please, Fill all the fields!');
+                         var msg = "Please, Fill all the fields!!";
+                         var type = "error";
+                         alertShow(msg, type);
                      }
 
                  }

@@ -102,36 +102,32 @@
                                                      <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
                                                          style="margin-right: 5px;">
                                                          <div class="btn-group align-top">
-                                                             <button class="btn btn-sm btn-success" type="button"
-                                                                 data-toggle="modal"
-                                                                 data-target="#user-form-modal">Edit</button>
-                                                             <button class="btn btn-sm btn-success" type="button"><i
+                                                             <button class="btn btn-sm btn-success" type="button">Edit<i
                                                                      class="fe fe-edit-2"></i></button>
                                                          </div>
                                                      </a>
 
-                                                     <form action="{{ route('diamond.destroy', $value->d_id) }}"
+                                                     {{-- <form action="{{ route('diamond.destroy', $value->d_id) }}"
                                                          method="post">
-                                                         @csrf
-                                                         <div class="btn-group align-top" style="margin-left: 5px;">
-                                                             <a data-toggle="modal" id="smallButton"
-                                                                 data-target="#smallModal"
-                                                                 data-attr="{{ route('diamond.destroy', $value->d_id) }}"
-                                                                 title="Delete Diamond">
-                                                                 <button class="btn btn-sm btn-danger">Delete <i
-                                                                         class="fe fe-trash-2"></i></button></a>
-                                                         </div>
-                                                     </form>
+                                                         @csrf --}}
+                                                     <div class="btn-group align-top" style="margin-left: 5px;">
+                                                         <button class="btn btn-sm btn-danger diaDeleteBtn"
+                                                             data-toggle="modal" data-target="#smallModal"
+                                                             data-href="{{ route('diamond.destroy', $value->d_id) }}">Delete
+                                                             <i class="fe fe-trash-2"></i></button>
+                                                     </div>
+                                                     {{-- </form> --}}
                                                  </td>
                                              @else
-                                                 <td>-</td>
+                                                 <td class="text-center"> <button class="btn btn-sm btn-info"
+                                                         type="button">View<i class="fe fe-edit-2"></i></button></td>
                                              @endif
 
                                          </tr>
                                      @endforeach
                                      @if (!$diamond->isEmpty())
-                                         <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
-                                             role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+                                         <div class="modal fade" id="smallModal" role="dialog"
+                                             aria-labelledby="smallModalLabel" aria-hidden="true">
                                              <div class="modal d-block pos-static">
                                                  <div class="modal-dialog" role="document">
                                                      <div class="modal-content modal-content-demo">
@@ -143,19 +139,13 @@
                                                          </div>
                                                          <div class="modal-body">
                                                              <h6>Are You Sure To permanent Delete Diamond ?</h6>
-                                                             {{-- <div style="display: flex;">
-                                                    <p style="color: red;">Note:- </p>
-                                                    <p> This Diamond Show To Diamond Purchase</p>
-                                                </div> --}}
                                                          </div>
                                                          <div class="modal-footer">
-                                                             <form action="{{ route('diamond.destroy', $value->d_id) }}"
-                                                                 method="post">
+                                                             <form id="diaDeleteModalForm" method="post">
                                                                  @csrf
                                                                  <button class="btn btn-indigo" type="submit"
                                                                      value='success alert' id='click'>Delete
                                                                      Diamond</button>
-                                                                 {{-- <input type='button' class="btn btn-success mt-2"> --}}
                                                                  <button class="btn btn-secondary" type="button"
                                                                      data-dismiss="modal">Close</button>
                                                              </form>
@@ -193,11 +183,16 @@
                  ]
              });
          });
+
+         $(".diaDeleteBtn").on('click', function() {
+             var deleteUrl = $(this).data("href");
+             $('#diaDeleteModalForm').attr('action', deleteUrl);
+         });
      </script>
-     <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
+     {{-- <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
      <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
      <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
-     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script> --}}
      {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
 
  @endsection

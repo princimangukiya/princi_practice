@@ -33,7 +33,7 @@
 
                          <div class="card-title font-weight-bold">Manager info:</div>
                          <div class="row">
-                             <div class="col-sm-6 col-md-6" style="padding: 20px;">
+                             <div class="col-sm-6 col-md-6">
                                  <div class="form-group">
                                      <label class="form-label">Enter Date :-</label>
                                      <input placeholder="Enter Date:-" class="form-control" id="Date" type="date"
@@ -48,7 +48,7 @@
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <div class="form-group" style="padding: 20px;">
+                                 <div class="form-group">
                                      <h4><label class="form-label">Select Manager :-</label></h4>
                                      <select id="m_id" name="m_id" required class="form-control select2 inputField" required
                                          autofocus>
@@ -73,7 +73,7 @@
                                  </div>
                              </div>
                              <div class="col-sm-6 col-md-6">
-                                 <div class="form-group" style="padding:20px 0px">
+                                 <div class="form-group">
                                      <label class="form-label">BarCode Value</label>
 
                                      {{-- <div class="col-8"> --}}
@@ -90,16 +90,16 @@
                                  </div>
                              </div>
                          </div>
-
                      </div>
-                     <div class="card-footer text-right">
-                         <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                         <a href="/manager" class="btn btn-danger">Cancle</a>
-                     </div>
-
                  </div>
+                 <div class="card-footer text-right">
+                     <button type="submit" name="action" class="btn  btn-primary">Submit</button>
+                     <a href="/manager" class="btn btn-danger">Cancle</a>
+                 </div>
+
              </div>
          </div>
+
          <!-- End Row-->
      </form>
      <script src="{{ asset('assets/js/quagga.min.js') }}"></script>

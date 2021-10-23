@@ -77,8 +77,8 @@
                  <div class="form-group">
                      <label class="form-label">Old Weight </label>
                      <div style="display: flex;">
-                         <input id="d_wt" type="text" name="d_wt" class="form-control" value=""
-                             placeholder="Enter New Weight" readonly="readonly">
+                         <input id="d_wt" type="text" name="d_wt" class="form-control" value="" placeholder="Old Weight"
+                             readonly="readonly">
                          @error('bar_code')
                              <small class="errorTxt1">
                                  <div id="title-error" class="error" style="margin-left:3rem">
@@ -96,8 +96,7 @@
                  <div class="form-group">
                      <label class="form-label">Price </label>
                      <div style="display: flex;">
-                         <input id="price" type="text" name="price" class="form-control" value=""
-                             placeholder="Enter New Weight">
+                         <input id="price" type="text" name="price" class="form-control" value="" placeholder="Price">
                          @error('bar_code')
                              <small class="errorTxt1">
                                  <div id="title-error" class="error" style="margin-left:3rem">
@@ -206,6 +205,8 @@
                  var d_n_wt = $('#d_n_wt').val();
                  var manager_name = $('#m_id').find(":selected").text();
                  var date = $('#Date').val();
+                 var c_id = '{{ Session::get('c_id') }}';
+
                  // alert(barcode);
                  // alert(m_id);
                  $.ajaxSetup({
@@ -226,28 +227,57 @@
                      },
                      dataType: 'json',
                      success: function(response_msg) {
-                         // console.log(date);
-                         if (response_msg.success == 200) {
-                             alert("Please, choose the right manager!");
-                             //location.reload();
-                         } else if (response_msg.success == true) {
+                         //  alert(response_msg.success);
+                         if (response_msg.success == 314) {
+                             var msg = "<b>check your barcode,</b> Your Barcode Is Not Valid !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
+                         } else if (response_msg.success == 318) {
+                             if (c_id == 1) {
+                                 var msg = "You can not assign EKLINGJI GEMS Barcode to VmJewles !!";
+                                 var type = "error";
+                                 alertShow(msg, type);
+                                 $('#bar_code').focus();
+
+                             } else {
+                                 var msg = "You can not assign VmJewles Barcode to EKLINGJI GEMS !!";
+                                 var type = "error";
+                                 alertShow(msg, type);
+                                 $('#bar_code').focus();
+                             }
+                         } else if (response_msg.success == 325) {
+                             var msg = "Barocode Not Valid Please Check Working Stock !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
+                         } else if (response_msg.success == 320) {
+                             var msg = "<b>Please,</b>choose the right manager !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
+                         } else if (response_msg.success == 408) {
+                             var msg = "Something Went Wrong!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
+                         } else if (response_msg.success == 200) {
                              mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt, date]);
                              mytable.draw();
                              $('#bar_code').val('');
                              $('#price').val('');
                              $('#d_wt').val('');
-                             $('#d_n_wt').val('');
+                             $('#d_n_wt').val('0.');
                              $('#bar_code').focus();
-                             notif({
-                                 msg: "<b>Success:</b> Well done Diamond Added Successfully",
-                                 type: "success"
-                             });
-                         } else if (response_msg.success == 403) {
-                             alert('Something Went Wrong!');
-                         } else if (response_msg.success == 404) {
-                             alert('Your Barcode is not valid!');
+                             var msg = "<b>Success:</b> Well done Diamond Added Successfully";
+                             var type = "success";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
                          } else {
-                             alert('Please, Fill all the fields!');
+                             var msg = "<b>Please, </b>Fill all the fields !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
                          }
 
                      }
@@ -260,8 +290,6 @@
                  var m_id = $('#m_id').val();
                  var d_n_wt = $('#d_n_wt').val();
                  var manager_name = $('#m_id').find(":selected").text();
-                 // alert(barcode);
-                 // alert(m_id);
                  $.ajaxSetup({
                      headers: {
                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -275,16 +303,16 @@
                      },
                      dataType: 'json',
                      success: function(response_msg) {
-                         // alert(response_msg.success);
-                         // console.log(response_msg);
-
                          if (response_msg.success) {
                              console.log(response_msg.success.d_wt);
                              console.log(response_msg.success.price);
                              $('#d_wt').val(response_msg.success.d_wt);
                              $('#price').val(response_msg.success.price);
                          } else {
-                             alert("Please, Enter Valid Barcode Number");
+                             var msg = "<b>check your barcode,</b> Your Barcode Is Not Valid !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
                          }
 
                      }

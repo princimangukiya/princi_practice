@@ -47,7 +47,7 @@ class DiamondController extends Controller
 
         $s_id = $request->s_id;
         $d_wt = $request->d_wt;
-
+        $count = 0;
         $validator = Validator::make($request->all(), [
             'bar_code' => 'required',
             'd_wt' => 'required',
@@ -60,21 +60,17 @@ class DiamondController extends Controller
             return Response::json(array('success' => false));
         }
         try {
+            $c_id = session()->get('c_id');
             $barcodeExist = D_Purchase::where('d_barcode', $request->bar_code)->first();
-
             if ($barcodeExist == null) {
-                //dd($request);
-                $c_id = session()->get('c_id');
                 $newitem = new D_Purchase();
-                $newitem->d_barcode = !empty($request->bar_code) ? $request->bar_code : '';
-                $newitem->d_wt = !empty($request->d_wt) ? $request->d_wt : '';
-                $newitem->s_id = !empty($request->s_id) ? $request->s_id : '';
+                $newitem->d_barcode = $request->bar_code;
+                $newitem->d_wt =  $request->d_wt;
+                $newitem->s_id =  $request->s_id;
                 $newitem->c_id = $c_id;
                 $newitem->status = 1;
-                $newitem->bill_date =  !empty($request->bill_date) ? $request->bill_date : '';
-                //$newitem->d_col = !empty($request->d_col) ? $request->d_col : '';
-                //$newitem->d_pc = !empty($request->d_pc) ? $request->d_pc : '';
-                $newitem->shape_id = !empty($request->shape_id) ? $request->shape_id : '';
+                $newitem->bill_date = $request->bill_date;
+                $newitem->shape_id = $request->shape_id;
                 try {
                     $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
                     $json_decoded = json_decode($json_data['json_price']);
@@ -83,25 +79,28 @@ class DiamondController extends Controller
                         $wt_category = rate::where('rates.r_id', $r_id)->first();
                         $wt_category = $wt_category['wt_category'];
                         $value = explode('-', $wt_category);
-                        // $first_value = substr($wt_category, 0, 5);
-                        // $last_value = substr($wt_category, -5);
                         if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
                             $newitem->d_wt_category = $key;
                             $newitem->price = $val;
+                            $count = 1;
                             break;
                         }
+                    }
+                    if ($count == 0) {
+                        return Response::json(array('success' => 311));
                     }
                 } catch (\Throwable $th) {
                     return Response::json(array('success' => 311));
                 }
-                //$newitem->d_cla = !empty($request->d_cla) ? $request->d_cla : '';
-                //$newitem->d_exp_pr = !empty($request->d_exp_pr) ? $request->d_exp_pr : '';
-                //$newitem->d_exp = !empty($request->d_exp) ? $request->d_exp : '';
                 $newitem->save();
                 // dd($newitem);
                 return Response::json(array('success' => 200));
             } else {
-                return Response::json(array('success' => 312));
+                if ($barcodeExist['s_id'] ==  $request->s_id) {
+                    return Response::json(array('success' => 320));
+                } else {
+                    return Response::json(array('success' => 312));
+                }
             }
         } catch (\Throwable $th) {
             return Response::json(array('success' => 408));

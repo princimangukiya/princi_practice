@@ -283,8 +283,8 @@
              var bill_date = $('#Bill_date').val();
              var shapevalue = $('#shape_id').find(":selected").text();
              var partyName = $('#s_id').find(":selected").text();
-             // alert(barcode);
-             // alert(m_id);
+             var c_id = '{{ Session::get('c_id') }}';
+
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -305,25 +305,33 @@
                  success: function(response_msg) {
                      //  alert(response_msg.success);
                      if (response_msg.success == 312) {
-                         alert("Barcode already exist!");
-                         //location.reload();
+                         var msg = "<b></b> Barcode already exist";
+                         var type = "error";
+                         alertShow(msg, type);
                      } else if (response_msg.success == 200) {
                          mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
                          mytable.draw();
-                         // $('#s_id').val('');
+
                          $('#bar_code').val('');
                          $('#d_wt').val('0.');
-                         // $('#shape_id').val('');
                          $('#bill_date').focus();
                          var msg = "<b>Success:</b> Well done Diamond Added Successfully";
                          var type = "success";
                          alertShow(msg, type);
                      } else if (response_msg.success == 311) {
-                         var msg = "<b>Please,</b> First Enter Rates in Rate Master!";
+                         var msg = "<b>Please :</b> First Enter Rates in Rate Master!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 320) {
+                         var msg = "<b>Daimond :</b>Already Assign Other Supplier!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 408) {
+                         var msg = "Something Went Wrong !!";
                          var type = "error";
                          alertShow(msg, type);
                      } else {
-                         var msg = "<b>Please,</b> Fill all the fields!";
+                         var msg = "<b>Please :</b> Fill all the fields!";
                          var type = "error";
                          alertShow(msg, type);
                      }

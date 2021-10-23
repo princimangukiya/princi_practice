@@ -104,27 +104,19 @@
                                                                  class="fe fe-edit-2"></i></button>
                                                      </div>
                                                  </a>
-                                                 <form action="{{ route('ready_stock.destroy', $value->r_id) }}"
-                                                     method="post">
-                                                     @csrf
-                                                     <div class="btn-group align-top">
-                                                         <a data-toggle="modal" id="smallButton" data-target="#smallModal"
-                                                             data-attr="{{ route('ready_stock.destroy', $value->r_id) }}"
-                                                             title="Delete Diamond" style="display: flex">
-                                                             <button class="btn btn-sm btn-danger">Delete <i
-                                                                     class="fe fe-trash-2"></i></button></a>
-                                                     </div>
-                                                 </form>
+                                                 <div class="btn-group align-top">
+                                                     <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
+                                                         id="smallButton" data-id="{{ $value->r_id }}"
+                                                         data-target="#smallModal"
+                                                         data-href="{{ route('ready_stock.destroy', $value->r_id) }}">Delete
+                                                         <i class="fe fe-trash-2"></i></button>
+                                                 </div>
                                              </td>
-                                             {{-- <td>
-                                                    <a href="{{ route('user.edit',['id'=>$user->id]) }}"><i class="fa fa-pencil">Edit</i></a>
-                                                    <a href="{{ route('user.view',['id'=>$user->id]) }}"><i class="zmdi zmdi-eye">View</i></a>
-                                                </td> --}}
                                          </tr>
                                      @endforeach
                                      @if (!$ready_stock->isEmpty())
-                                         <div class="modal fade" id="smallModal" tabindex="{{ $key + 1 }}"
-                                             role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+                                         <div class="modal fade" id="smallModal" role="dialog"
+                                             aria-labelledby="smallModalLabel" aria-hidden="true">
                                              <div class="modal d-block pos-static">
                                                  <div class="modal-dialog" role="document">
                                                      <div class="modal-content modal-content-demo">
@@ -135,18 +127,14 @@
                                                                      aria-hidden="true">&times;</span></button>
                                                          </div>
                                                          <div class="modal-body">
-                                                             <h6>Are You Sure To Delete Diamond ?</h6>
-                                                             {{-- <div style="display: flex;">
-                                                <p style="color: red;">Note:- </p>
-                                                <p> This Diamond Show To Diamond Purchase</p>
-                                            </div> --}}
+                                                             <h6>Are You Sure To Delete Diamond {{ $value->r_id }}?</h6>
+
                                                          </div>
                                                          <div class="modal-footer">
-                                                             <form
-                                                                 action="{{ route('ready_stock.destroy', $value->r_id) }}"
-                                                                 method="post">
+                                                             <form id="diaDeleteModalForm" method="post">
                                                                  @csrf
-                                                                 <button class="btn btn-indigo" type="submit">Delete
+                                                                 <button class="btn btn-indigo" type="submit"
+                                                                     value='success alert' id='click'>Delete
                                                                      Diamond</button>
                                                                  <button class="btn btn-secondary" type="button"
                                                                      data-dismiss="modal">Close</button>
@@ -191,6 +179,10 @@
                      [0, "desc"]
                  ]
              });
+         });
+         $(".diaDeleteBtn").on('click', function() {
+             var deleteUrl = $(this).data("href");
+             $('#diaDeleteModalForm').attr('action', deleteUrl);
          });
      </script>
  @endsection

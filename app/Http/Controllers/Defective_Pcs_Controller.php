@@ -35,16 +35,6 @@ class Defective_Pcs_Controller extends Controller
 
     public function create()
     {
-
-        // $data = array();
-        // $c_id = session()->get('c_id');
-        // $data['supplier'] = D_Purchase::where('c_id', $c_id)->get();
-        // // $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
-        // $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
-        //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
-
-        //     ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
-        // $data['toDaydate'] = Carbon::now()->format('D-m-Y');
         return view('Defective_Pcs.create');
     }
     public function store(Request $request)
@@ -52,27 +42,38 @@ class Defective_Pcs_Controller extends Controller
 
         // $resone = $request->resone;
         // $d_wt = $request->date;
-        try {
-            $validator = Validator::make($request->all(), [
-                'bar_code' => 'required',
-                'resone' => 'required',
-                'date' => 'required',
 
-            ]);            //dd($request);
-            if ($validator->fails()) {
-                return Response::json(array('success' => false));
-            }
+        $validator = Validator::make($request->all(), [
+            'bar_code' => 'required',
+            'resone' => 'required',
+            'date' => 'required',
+
+        ]);            //dd($request);
+        if ($validator->fails()) {
+            return Response::json(array('success' => false));
+        }
+        try {
             $c_id = session()->get('c_id');
-            $barcodeExist = D_Purchase::where([['c_id', $c_id], ['d_barcode', $request->bar_code]])->first();
+            $barcodeExist = D_Purchase::where([['d_barcode', $request->bar_code]])->first();
+            if ($barcodeExist == null) {
+                return Response::json(array('success' => 314));
+            } else if ($barcodeExist['c_id'] != $c_id) {
+                if ('c_id' == 1) {
+                    $data = 1;
+                } else {
+                    $data = 2;
+                }
+                return Response::json(array('success' => 318));
+            }
             $d_id = $barcodeExist['d_id'];
             $df_d_id = defective_pcs::where('d_id', $d_id)->first();
             if ($df_d_id == null) {
                 $c_id = session()->get('c_id');
                 $newitem = new defective_pcs;
                 $newitem->d_id = $d_id;
-                $newitem->resone = !empty($request->resone) ? $request->resone : '';
+                $newitem->resone = $request->resone;
                 $newitem->c_id = $c_id;
-                $newitem->date =  !empty($request->date) ? $request->date : '';
+                $newitem->date = $request->date;
                 $newitem->save();
                 D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
                 if ($barcodeExist['isReady'] != null) {
@@ -81,12 +82,12 @@ class Defective_Pcs_Controller extends Controller
                     Working_Stock::where('d_id', $d_id)->update(['status' => 0]);
                 }
 
-                return Response::json(array('success' => true));
-            } else {
                 return Response::json(array('success' => 200));
+            } else {
+                return Response::json(array('success' => 312));
             }
         } catch (\Throwable $th) {
-            return Response::json(array('success' => false));
+            return Response::json(array('success' => 408));
         }
     }
     public function edit(Request $request)

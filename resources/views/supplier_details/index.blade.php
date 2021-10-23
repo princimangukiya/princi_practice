@@ -157,24 +157,15 @@
                                                  $url = '/supplier/edit-data/' . $value->s_id;
                                                  // echo $value->m_id;
                                              @endphp
-                                             @if ($value->status == 0)
-                                                 <a href="javascript:;" data-toggle="tooltip"
-                                                     data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
-                                                     data-original-title="edit" data-href="{{ url($url) }}"
-                                                     class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                         class="custom-switch"><input type="checkbox"
-                                                             name="custom-switch-checkbox" class="custom-switch-input"><span
-                                                             class="custom-switch-indicator"></span></label></a>
-                                             @else
-                                                 <a href="javascript:;" data-toggle="tooltip"
-                                                     data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
-                                                     data-original-title="edit" data-href="{{ url($url) }}"
-                                                     class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
-                                                         class="custom-switch"><input type="checkbox"
-                                                             name="custom-switch-checkbox" class="custom-switch-input"
-                                                             checked><span
-                                                             class="custom-switch-indicator"></span></label></a>
-                                             @endif
+
+                                             <a href="javascript:;" data-toggle="tooltip"
+                                                 data-isactive="{{ $value->status }}" data-id="{{ $value->s_id }}"
+                                                 data-original-title="edit" data-href="{{ url($url) }}"
+                                                 class="btn btn-icon btn-hover-primary btn-sm ml-2 edit"><label
+                                                     class="custom-switch"><input type="checkbox"
+                                                         name="custom-switch-checkbox" class="custom-switch-input"
+                                                         {{ $value->status != 0 ? 'checked' : '' }}><span
+                                                         class="custom-switch-indicator"></span></label></a>
                                          </td>
                                      </tr>
                                  @endforeach

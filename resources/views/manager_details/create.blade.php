@@ -114,8 +114,8 @@
                  textboxes = $("input.inputField");
                  currentBoxNumber = textboxes.index(this);
                  console.log(textboxes.index(this));
-                 if (textboxes[currentBoxNumber + 0] != null) {
-                     nextBox = textboxes[currentBoxNumber + 0];
+                 if (textboxes[currentBoxNumber + 1] != null) {
+                     nextBox = textboxes[currentBoxNumber + 1];
                      nextBox.focus();
                      nextBox.select();
                      event.preventDefault();
@@ -164,7 +164,7 @@
                  dataType: 'json',
                  success: function(response_msg) {
                      // alert(response_msg.success);
-                     if (response_msg.success == 314) {
+                     if (response_msg.success == 312) {
                          //  alert('Please,');
                          var msg = "Email ID Already Exits..!!";
                          var type = "error";
@@ -172,8 +172,8 @@
                          //location.reload();
                      } else if (response_msg.success == 200) {
                          window.location.replace('/manager');
-                     } else if (response_msg.success == 312) {
-                         var msg = "Phone No. Already Exits..!!";
+                     } else if (response_msg.success == 408) {
+                         var msg = "Something Went Wrong !!";
                          var type = "error";
                          alertShow(msg, type);
                      } else {

@@ -4,8 +4,8 @@
  @endsection
 
  @section('content')
-     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-     <link rel="https://cdn.datatables.net/rowgroup/1.1.1/css/rowGroup.bootstrap4.min.css" />
+     {{-- <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+     <link rel="https://cdn.datatables.net/rowgroup/1.1.1/css/rowGroup.bootstrap4.min.css" /> --}}
      <div class="page-header">
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Give To Manager</h4>
@@ -72,18 +72,13 @@
                                  </div>
                              </small>
                          @enderror
-                         {{-- </div> --}}
-                         {{-- <div class="col-4">
-                            <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
-                                class="btn  btn-primary">Submit</button>
-                        </div> --}}
                      </div>
                  </div>
              </div>
          </div>
          <div class="card-footer text-right" style="padding-right: 10% ">
-             <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
-                 class="btn  btn-primary inputField">Submit</button>
+             <button type="submit" id="addTODiamond" name="addTODiamond" onClick="addTODiamond()"
+                 class="btn  btn-primary">Submit</button>
              <a href="/working_stock" class="btn btn-danger">Cancle</a>
          </div>
      </div>
@@ -109,12 +104,19 @@
      </div>
      <!--/div-->
 
-     <!-- /Row -->
-
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-
      <script>
+         var id, mytable;
+         $(document).ready(function() {
+             mytable = $('#tblItemShow').DataTable({
+                 "paging": true,
+                 "lengthChange": false,
+                 "searching": true,
+                 "ordering": true,
+                 "info": true,
+                 "autoWidth": false,
+                 "sDom": 'lfrtip'
+             });
+         });
          var currentBoxNumber = 0;
          $(".inputField").keyup(function(event) {
              if (event.keyCode == 13) {
@@ -128,86 +130,76 @@
                      event.preventDefault();
                      return false;
                  } else {
-                     addTOManager();
+                     addTODiamond();
                  }
              }
          });
-         var id, mytable;
-         $(document).ready(function() {
-             mytable = $('#tblItemShow').DataTable({
-                 "paging": true,
-                 "lengthChange": false,
-                 "searching": true,
-                 "ordering": true,
-                 "info": true,
-                 "autoWidth": false,
-                 "sDom": 'lfrtip'
-             });
-             // mytable.row.add([id, 'pkt1', '10.5']);
-             // mytable.draw();
-         });
-     </script>
 
-     <script>
-         function addTOManager(id) {
-             // alert(id);
+         function addTODiamond() {
+             //  alert(id);
              var barcode = $('#bar_code').val();
              var m_id = $('#m_id').val();
              var manager_name = $('#m_id').find(":selected").text();
              var date = $('#Date').val();
-             var c_id = '{{ Session::get('c_id') }}';
-
-             // alert(m_id);
+             var c_id = '{{ Session::get('c_id') }}';;
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                  }
              });
              $.ajax({
-                     type: 'POST',
-                     url: '{{ route('working_stock.store') }}',
-                     data: {
-                         'bar_code': barcode,
-                         'm_id': m_id,
-                         'date': date
-                     },
-                     dataType: 'json',
-                     success: function(response_msg) {
-                         console.log(response_msg.success);
-                         if (response_msg.success == 200) {
-                             alert("check your barcode, This barcode Already assign to other manager!");
-                             //location.reload();
-                         } else if (response_msg.success == true) {
-                             mytable.row.add([manager_name, barcode, date]);
-                             mytable.draw();
-                             $('#bar_code').val('');
-                             $('#bar_code').focus();
-                             notif({
-                                 msg: "<b>Success:</b> Well done Diamond Added Successfully",
-                                 type: "success"
-                             });
-                         } else if (response_msg.success == 500) {
-                             // alert(c_id);
-                             alert('Your Barcode Is Not Valid!!!');
-                             $('#bar_code').focus();
-                         });
-                 }
-                 else if (response_msg.success == response_msg.success) {
-                     if (c_id == 1) {
-                         alert('You can not assign EKLINGJI GEMS Barcode to VmJewles!');
-                         $('#bar_code').focus();
+                 type: 'POST',
+                 url: '{{ route('working_stock.store') }}',
+                 data: {
+                     'bar_code': barcode,
+                     'm_id': m_id,
+                     'date': date
+                 },
+                 dataType: 'json',
 
+                 success: function(response_msg) {
+                     //  alert(response_msg.success);
+                     if (response_msg.success == 320) {
+                         var msg = "<b>check your barcode,</b> This barcode Already assign to other manager !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 200) {
+                         mytable.row.add([manager_name, barcode, date]);
+                         mytable.draw();
+                         $('#bar_code').val('');
+                         $('#bar_code').focus();
+                         var msg = "<b>Success:</b> Well done Diamond Added Successfully";
+                         var type = "success";
+                         alertShow(msg, type);
+                     } else if (response_msg.success == 314) {
+                         var msg = "<b>check your barcode,</b> Your Barcode Is Not Valid !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                         $('#bar_code').focus();
+                     } else if (response_msg.success == 318) {
+                         if (c_id == 1) {
+                             $('#bar_code').focus();
+                             var msg = "You can not assign EKLINGJI GEMS Barcode to VmJewles!!";
+                             var type = "error";
+                             alertShow(msg, type);
+                         } else {
+                             $('#bar_code').focus();
+                             var msg = "You can not assign VmJewles Barcode to EKLINGJI GEMS!!";
+                             var type = "error";
+                             alertShow(msg, type);
+                         }
+                     } else if (response_msg.success == 408) {
+                         var msg = "Something Went Wrong !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                         $('#bar_code').focus();
                      } else {
-                         alert('You can not assign VmJewles Barcode to EKLINGJI GEMS!');
-                         $('#bar_code').focus();
-
+                         var msg = "<b>Please,</b> Fill all the fields!!";
+                         var type = "error";
+                         alertShow(msg, type);
                      }
-                 } else {
-                     alert('Please, Fill all the fields!');
                  }
-
-             }
-         });
+             });
          }
      </script>
 

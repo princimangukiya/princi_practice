@@ -12,7 +12,7 @@ class Sell_Stock extends Model
     use SoftDeletes;
     protected $table = "sell_stock";
     protected $primaryKey = "sell_id";
-    protected $fillable = ['s_id', 'd_id', 'd_barcode'];
+    protected $fillable = ['s_id', 'd_id', 'c_id', 'return_date'];
     public function Supplier()
     {
         return $this->belongsTo('App\Models\supplier_details', 's_id');

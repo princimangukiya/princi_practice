@@ -19,8 +19,8 @@
         <div class="card-header">
             <div class="card-title">Sell Diamond</div>
         </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6" style="padding: 20px;">
+        <div class="row" style="padding: 20px;">
+            <div class="col-sm-6 col-md-6">
                 <div class="form-group">
                     <label class="form-label">Enter Date :-</label>
                     <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date" value=""
@@ -34,8 +34,27 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6" style="display: flex;padding: 20px;">
-                <div class="form-group col-md-12 col-sm-12" style="padding:0 20px;">
+
+
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Enter Resone:-</label>
+                    <textarea id="resone" type="text" name="resone" class="form-control mb-4" rows="3"
+                        value="{{ old('resone') }}" placeholder="Enter Resone" required
+                        style="margin-top: 0px; margin-bottom: 16px; height: 81px;"></textarea>
+                    {{-- <input id="m_address" type="text" name="m_address" class="form-control"
+                   value="{{ old('m_address') }}" placeholder="Enter Manager Address" required> --}}
+                    @error('resone')
+                        <small class="errorTxt1">
+                            <div id="title-error" class="error" style="margin-left:3rem">
+                                {{ $message }}
+                            </div>
+                        </small>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="form-group col-md-12 col-sm-12">
                     <label class="form-label">BarCode Value </label>
                     <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                         value="{{ old('bar_code') }}" placeholder="Enter Bar Code" autofocus>
@@ -49,23 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-6">
-            <div class="form-group">
-                <label class="form-label">Enter Resone:-</label>
-                <textarea id="resone" type="text" name="resone" class="form-control mb-4 inputField" rows="3"
-                    value="{{ old('resone') }}" placeholder="Enter Resone" required
-                    style="margin-top: 0px; margin-bottom: 16px; height: 81px;"></textarea>
-                {{-- <input id="m_address" type="text" name="m_address" class="form-control inputField"
-                   value="{{ old('m_address') }}" placeholder="Enter Manager Address" required> --}}
-                @error('resone')
-                    <small class="errorTxt1">
-                        <div id="title-error" class="error" style="margin-left:3rem">
-                            {{ $message }}
-                        </div>
-                    </small>
-                @enderror
-            </div>
-        </div>
+
         <div class="card-footer text-right" style="padding-right: 10% ">
             <button id="addTODefectivePcs" name="addTODefectivePcs" onClick="addTODefectivePcs()"
                 class="btn  btn-primary">Submit</button>
@@ -138,9 +141,8 @@
             var barcode = $('#bar_code').val();
             var resone = $('#resone').val();
             var date = $('#Date').val();
-            // alert(barcode);
-            // alert(resone);
-            // alert(date);
+            var c_id = '{{ Session::get('c_id') }}';
+
 
             $.ajaxSetup({
                 headers: {
@@ -157,20 +159,42 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // console.log(s_id);
-                    if (response_msg.success == 200) {
-                        alert("Barcode already exist!");
-                        //location.reload();
-                    } else if (response_msg.success == true) {
-                        // alert("record successfully inserted");
+                    if (response_msg.success == 312) {
+                        var msg = "Barcode already exist!";
+                        var type = "error";
+                        alertShow(msg, type);
+                    } else if (response_msg.success == 318) {
+                        if (c_id == 1) {
+                            $('#bar_code').focus();
+                            var msg = "You can not add EKLINGJI GEMS Barcode to VmJewles!";
+                            var type = "error";
+                            alertShow(msg, type);
+                        } else {
+                            $('#bar_code').focus();
+                            var msg = "You can not add VmJewles Barcode to EKLINGJI GEMS!";
+                            var type = "error";
+                            alertShow(msg, type);
+                        }
+                    } else if (response_msg.success == 200) {
                         mytable.row.add([barcode, resone, date]);
                         mytable.draw();
                         $('#bar_code').val('');
                         $('#bar_code').focus();
-                        notif({
-                            msg: "<b>Success:</b> Well done Diamond Added Successfully",
-                            type: "success"
-                        });
+                        var msg = "<b>Success:</b> Well done Diamond Added Successfully";
+                        var type = "success";
+                        alertShow(msg, type);
+                    } else if (response_msg.success == 408) {
+                        var msg = "Something Went Wrong !!";
+                        var type = "error";
+                        alertShow(msg, type);
+                    } else if (response_msg.success == 314) {
+                        var msg = "<b>Please:</b> Enter Valid Barcode !!";
+                        var type = "error";
+                        alertShow(msg, type);
+                    } else {
+                        var msg = "<b>Please:</b>Feel All Field !!";
+                        var type = "error";
+                        alertShow(msg, type);
                     }
 
                 }

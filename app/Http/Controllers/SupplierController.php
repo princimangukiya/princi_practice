@@ -40,7 +40,7 @@ class SupplierController extends Controller
         $validator = Validator::make($request->all(), [
             's_name' => 'required',
             's_address' => 'required',
-            's_gst' => 'required|min:15',
+            's_gst' => 'required',
 
         ]);
         //dd($request);
@@ -71,7 +71,7 @@ class SupplierController extends Controller
                 'alert-type' => 'success'
             );
 
-            return Response::json(array('success' => 320));
+            return Response::json(array('success' => 408));
             // return Response::json(array('success' => false));
         }
     }
