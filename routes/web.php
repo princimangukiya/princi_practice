@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/working-stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
     Route::get('/working-stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
     Route::post('/working-stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
-    Route::get('/working_stock/edit/{id}', 'App\Http\Controllers\WorkingStockController@edit')->name('working_stock.edit');
+    Route::get('/working-stock/edit/{id}', 'App\Http\Controllers\WorkingStockController@edit')->name('working_stock.edit');
     Route::post('/working_stock/update/{id}', 'App\Http\Controllers\WorkingStockController@update')->name('working_stock.update');
     Route::post('/working_stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
 
