@@ -35,7 +35,10 @@
                  <li class="breadcrumb-item active" aria-current="page"><a href="#">Add Diamond</a></li>
              </ol>
          </div>
+         <a href="/rate_master/create">
+             <button id="rateMaster" class="btn  btn-primary hidden" style="float: right;">Enter Rate</button></a>
      </div>
+
      <!--End Page header-->
      <!--/div-->
 
@@ -188,15 +191,8 @@
              </div>
          </div>
      </div>
-     {{-- <div id="growls-default">
-        <div class="growl growl-notice growl-medium">
-            <div class="growl-close">x</div>
-            <div class="growl-title">Your Diamond Succefully Added</div>
-            <div class="growl-message">THank You !!</div>
-        </div>
-    </div> --}}
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
+     {{-- <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
+     <script src="{{ asset('assets/js/jquery.js') }}"></script> --}}
      <script>
          var id, mytable;
          $(document).ready(function() {
@@ -284,7 +280,7 @@
              var shapevalue = $('#shape_id').find(":selected").text();
              var partyName = $('#s_id').find(":selected").text();
              var c_id = '{{ Session::get('c_id') }}';
-
+             var button = "Rushikesh";
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -322,6 +318,7 @@
                          var msg = "<b>Please :</b> First Enter Rates in Rate Master!";
                          var type = "error";
                          alertShow(msg, type);
+                         document.getElementById("rateMaster").classList.remove('hidden');
                      } else if (response_msg.success == 320) {
                          var msg = "<b>Daimond :</b>Already Assign Other Supplier!";
                          var type = "error";

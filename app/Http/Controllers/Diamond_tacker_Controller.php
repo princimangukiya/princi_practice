@@ -34,19 +34,20 @@ class Diamond_tacker_Controller extends Controller
         $fetchdata['daimond'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->where([['d_purchase.c_id', $c_id], ['d_purchase.d_barcode', $barcode_id]])
             ->first();
+            if( $fetchdata['daimond'] == null){
+                $fetchdata = "";
+                return view('Diamond_tracker.index_status', $fetchdata);
+            }else{
+
+            
         $Diamond = $fetchdata['daimond']['d_id'];
-        // $s_id = $fetchdata['daimond']['s_id'];
-        // $fetchdata['supplier_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->first('supplier_details.s_name');
         $fetchdata['manager_name'] = Working_Stock::withTrashed()
             ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
             ->where([['working_stock.c_id', $c_id], ['working_stock.d_id', $Diamond]])->first();
         $fetchdata['date'] = Carbon::now();
         $fetchdata['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
         $fetchdata['sell_date'] = Sell_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
-        // echo $fetchdata['sell_date'];
-        // echo "<br>";
-        // echo $fetchdata['sell_date'];
-        // dd($fetchdata);
         return view('Diamond_tracker.index_status', $fetchdata);
+    }
     }
 }

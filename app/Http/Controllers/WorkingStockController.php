@@ -76,6 +76,7 @@ class WorkingStockController extends Controller
                 $newitem['status'] = 1;
                 $newitem['deleted_at'] = null;
                 Working_Stock::withTrashed()->where('d_id', $Diamond->d_id)->update($newitem);
+                D_Purchase::where('d_id', $Diamond->d_id)->update(['doReady' => $request->m_id]);
                 return Response::json(array('success' => 200));
             } else if ($Diamond->doReady != null) {
                 return Response::json(array('success' => 320));
@@ -123,13 +124,13 @@ class WorkingStockController extends Controller
             $c_id = session()->get('c_id');
             $DiamondData = Working_Stock::where('w_id', $id)->first();
             $newitem = array();
-            $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
-            $newitem['m_id'] = !empty($request->m_id) ? $request->m_id : '';
-            $newitem['bill_date'] =  !empty($request->bill_date) ? $request->bill_date : '';
+            $newitem['d_id'] =  $DiamondData->d_id;
+            $newitem['m_id'] = $request->m_id;
+            $newitem['bill_date'] =  $request->bill_date;
             $newitem['c_id'] = $c_id;
 
             Working_Stock::where('w_id', $id)->update($newitem);
-            D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code]);
+            D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code, 'doReady' => $request->m_id]);
 
             return Redirect::to('/working_stock');
         } catch (\Throwable $th) {

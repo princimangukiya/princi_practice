@@ -57,7 +57,8 @@
                                                     style="margin-right: 5px;">
                                                     <div class="btn-group align-top">
                                                         <button class="btn btn-sm btn-success" type="button"
-                                                            data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                                                            data-toggle="modal" data-target="#user-form-modal">Edit
+                                                        </button>
                                                         <button class="btn btn-sm btn-success" type="button"><i
                                                                 class="fe fe-edit-2"></i></button>
                                                     </div>

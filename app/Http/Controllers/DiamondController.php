@@ -136,12 +136,12 @@ class DiamondController extends Controller
             $d_wt = $request->d_wt;
             $c_id = session()->get('c_id');
             $newitem = array();
-            $newitem['d_barcode'] = !empty($request->bar_code) ? $request->bar_code : '';
-            $newitem['d_wt'] = !empty($request->d_wt) ? $request->d_wt : '';
+            $newitem['d_barcode'] =  $request->bar_code ;
+            $newitem['d_wt'] =  $request->d_wt ;
             $newitem['s_id'] = $s_id;
             $newitem['c_id'] = $c_id;
             $newitem['bill_date'] = $request->bill_date;
-            $newitem['shape_id'] = !empty($request->shape_id) ? $request->shape_id : '';
+            $newitem['shape_id'] = $request->shape_id ;
             $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
             $json_decoded = json_decode($json_data['json_price']);
             foreach ($json_decoded[0] as $key => $val) {

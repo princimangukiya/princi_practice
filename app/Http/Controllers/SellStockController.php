@@ -125,10 +125,10 @@ class SellStockController extends Controller
             $c_id = session()->get('c_id');
             $DiamondData = Sell_Stock::where('sell_id', $id)->first();
             $newitem = array();
-            $newitem['d_id'] = !empty($DiamondData->d_id) ? $DiamondData->d_id : '';
-            $newitem['s_id'] = !empty($request->s_id) ? $request->s_id : '';
+            $newitem['d_id'] =  $DiamondData->d_id;
+            $newitem['s_id'] = $request->s_id;
             $newitem['c_id'] = $c_id;
-            $newitem['return_date'] = !empty($request->date) ? $request->date : '';
+            $newitem['return_date'] = $request->bill_date;
             // dd($newitem);
             Sell_Stock::where('sell_id', $id)->update($newitem);
             D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code]);
