@@ -6,6 +6,9 @@ use App\Models\rate_master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\rate;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Carbon;
 
 class RateMaster extends Controller
 {
@@ -78,17 +81,23 @@ class RateMaster extends Controller
     }
     public function rates_store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'firstRange' => 'required',
+            'lastRange' => 'required',
+        ]);            //dd($request);
+        if ($validator->fails()) {
+            return Redirect::to('/rate_master/create');
+        }
         $rate = new rate();
         $first_range = $request->firstRange;
         $last_range = $request->lastRange;
-        echo $first_range;
-        echo $last_range;
-        // $rate->save();
-        // return Redirect::to('/rate_master/create');
+        $rates = $first_range . "-" . $last_range;
+        $rate->wt_category = $rates;
+        $rate->save();
+        return Redirect::to('/rate_master/create');
     }
     public function edit($id)
     {
-        //dd($id);
         $data = array();
         $data['rate_master'] = rate_master::findOrFail($id);
         $data['price'] = $data['rate_master']['json_price'];
