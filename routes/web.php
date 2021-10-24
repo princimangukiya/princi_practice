@@ -47,10 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/manager/{id}/destroy', 'App\Http\Controllers\ManagerController@destroy')->name('manager.destroy');
     Route::get('/manager/edit-data/{id}', 'App\Http\Controllers\ManagerController@edit_data')->name('manager.edit_data');
 
-    //working_stock
-    Route::get('/working_stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
-    Route::get('/working_stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
-    Route::post('/working_stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
+    //working-stock
+    Route::get('/working-stock', 'App\Http\Controllers\WorkingStockController@index')->name('working_stock');
+    Route::get('/working-stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
+    Route::post('/working-stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
     Route::get('/working_stock/edit/{id}', 'App\Http\Controllers\WorkingStockController@edit')->name('working_stock.edit');
     Route::post('/working_stock/update/{id}', 'App\Http\Controllers\WorkingStockController@update')->name('working_stock.update');
     Route::post('/working_stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
