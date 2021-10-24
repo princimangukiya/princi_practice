@@ -102,7 +102,7 @@
                                                      <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
                                                          style="margin-right: 5px;">
                                                          <div class="btn-group align-top">
-                                                             <button class="btn btn-sm btn-success" type="button">Edit<i
+                                                             <button class="btn btn-sm btn-success" type="button">Edit <i
                                                                      class="fe fe-edit-2"></i></button>
                                                          </div>
                                                      </a>
@@ -119,8 +119,25 @@
                                                      {{-- </form> --}}
                                                  </td>
                                              @else
-                                                 <td class="text-center"> <button class="btn btn-sm btn-info"
-                                                         type="button">View<i class="fe fe-edit-2"></i></button></td>
+                                                 @if ($value->isReturn != null)
+                                                     <td class="text-center">
+                                                         <a href="/sell_stock">
+                                                             <button class="btn btn-sm btn-info" type="button">View <i
+                                                                     class="zmdi zmdi-eye"></i></button></a>
+                                                     </td>
+                                                 @elseif($value->isReady != null)
+                                                     <td class="text-center">
+                                                         <a href="/ready_stock">
+                                                             <button class="btn btn-sm btn-info" type="button">View <i
+                                                                     class="zmdi zmdi-eye"></i></button></a>
+                                                     </td>
+                                                 @elseif( $value->doReady != null)
+                                                     <td class="text-center">
+                                                         <a href="/working_stock">
+                                                             <button class="btn btn-sm btn-info" type="button">View <i
+                                                                     class="zmdi zmdi-eye"></i></button></a>
+                                                     </td>
+                                                 @endif
                                              @endif
 
                                          </tr>
