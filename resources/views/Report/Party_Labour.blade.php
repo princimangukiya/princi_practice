@@ -196,7 +196,7 @@
                                                 @foreach ($rates[$s_id] as $item)
                                                     </br>{{ $item }}
                                                 @endforeach
-                                                <br><br><b> &nbsp;Total Party:-</b>
+                                                <br><br><b> &nbsp;Total :-</b>
 
                                             </td>
                                             {{-- <td style="display: flex; justify-content:center; "> --}}
