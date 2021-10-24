@@ -209,7 +209,7 @@ class ReportController extends Controller
         $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-            ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
+            ->where([['sell_stock.c_id', $c_id]])
             ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
         // echo $data['inward'];
         $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
@@ -230,7 +230,7 @@ class ReportController extends Controller
         $start_date = $request->Start_date;
         $data['s_name'] = Supplier_Details::where('s_id', $s_id)->get('s_name');
         $End_date = $request->End_date;
-        $data['date'] = $start_date;
+        $data['date'] = Carbon::now();
         if (empty($s_id)) {
             if (empty($start_date)) {
                 $start_date = new Carbon('first day of January 2000');
@@ -241,7 +241,7 @@ class ReportController extends Controller
             $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
+                ->where([['sell_stock.c_id', $c_id]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // dd($data);
@@ -278,7 +278,7 @@ class ReportController extends Controller
         $start_date = $request->Start_date;
         $data['s_name'] = Manager_Details::where('m_id', $m_id)->get('m_name');
         $End_date = $request->End_date;
-        $data['date'] = $start_date;
+        $data['date'] = Carbon::now();
         if (empty($m_id)) {
             if (empty($start_date)) {
                 $start_date = new Carbon('first day of January 2000');
@@ -336,7 +336,7 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])
+                ->where([['sell_stock.c_id', $c_id]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // dd($data);
@@ -351,7 +351,7 @@ class ReportController extends Controller
             $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id], ['d_purchase.status', 1]])
+                ->where([['sell_stock.c_id', $c_id], ['sell_stock.s_id', $s_id]])
                 ->whereBetween('sell_stock.return_date', [$start_date, $End_date])
                 ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             return Response::json(array('success' => $data));
