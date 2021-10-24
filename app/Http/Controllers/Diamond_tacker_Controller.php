@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\D_Purchase;
+use App\Models\defective_pcs;
 use App\Models\Working_Stock;
 use App\Models\Ready_Stock;
 use App\Models\Manager_Details;
@@ -33,21 +34,20 @@ class Diamond_tacker_Controller extends Controller
 
         $fetchdata['daimond'] = D_Purchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->where([['d_purchase.c_id', $c_id], ['d_purchase.d_barcode', $barcode_id]])
-            ->first();
-            if( $fetchdata['daimond'] == null){
-                $fetchdata = "";
-                return view('Diamond_tracker.index_status', $fetchdata);
-            }else{
-
-            
-        $Diamond = $fetchdata['daimond']['d_id'];
-        $fetchdata['manager_name'] = Working_Stock::withTrashed()
-            ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
-            ->where([['working_stock.c_id', $c_id], ['working_stock.d_id', $Diamond]])->first();
-        $fetchdata['date'] = Carbon::now();
-        $fetchdata['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
-        $fetchdata['sell_date'] = Sell_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
-        return view('Diamond_tracker.index_status', $fetchdata);
-    }
+            ->first(['d_purchase.*', 'supplier_details.s_name']);
+        if ($fetchdata['daimond'] == null) {
+            // $fetchdata = "";
+            return view('Diamond_tracker.index_status', $fetchdata);
+        } else {
+            $Diamond = $fetchdata['daimond']['d_id'];
+            $fetchdata['manager_name'] = Working_Stock::withTrashed()
+                ->join('manager_details', 'working_stock.m_id', '=', 'manager_details.m_id')
+                ->where([['working_stock.c_id', $c_id], ['working_stock.d_id', $Diamond]])->first();
+            $fetchdata['date'] = Carbon::now();
+            $fetchdata['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
+            $fetchdata['sell_date'] = Sell_Stock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
+            $fetchdata['dif_pcs'] = defective_pcs::where([['c_id', $c_id], ['d_id', $Diamond]])->first('date');
+            return view('Diamond_tracker.index_status', $fetchdata);
+        }
     }
 }

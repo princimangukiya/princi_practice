@@ -66,7 +66,10 @@ class WorkingStockController extends Controller
                     $data = 2;
                 }
                 return Response::json(array('success' => 318));
+            } else if ($Diamond['doReady'] != null) {
+                return Response::json(array('success' => 325));
             }
+
             $workingStockData = Working_Stock::withTrashed()->where('d_id', $Diamond->d_id)->first();
             if ($workingStockData != null) {
                 $newitem = array();
@@ -132,14 +135,14 @@ class WorkingStockController extends Controller
             Working_Stock::where('w_id', $id)->update($newitem);
             D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code, 'doReady' => $request->m_id]);
 
-            return Redirect::to('/working_stock');
+            return Redirect::to('/working-stock');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
                 'alert-type' => 'error'
             );
 
-            return Redirect::to('/working_stock')->with($notification);
+            return Redirect::to('/working-stock')->with($notification);
         }
     }
     // supplier delete
@@ -157,6 +160,6 @@ class WorkingStockController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect::to('/working_stock')->with($notification);
+        return Redirect::to('/working-stock')->with($notification);
     }
 }

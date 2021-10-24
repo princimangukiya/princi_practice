@@ -13,29 +13,17 @@
          }
 
      </style>
-     {{-- <link href="{{ asset('assets/plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet" />
-    <!-- INTERNAL Date Picker css -->
-    <link href="{{ asset('assets/plugins/date-picker/date-picker.css') }}" rel="stylesheet" />
-
-    <!-- INTERNAL Datepicker js -->
-    <script src="{{ asset('assets/plugins/date-picker/date-picker.js') }}"></script>
-    <script src="{{ asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
-    <!-- INTERNAL Timepicker js -->
-    <script src="{{ asset('assets/plugins/time-picker/jquery.timepicker.js') }}"></script>
-    <script src="{{ asset('assets/plugins/time-picker/toggles.min.js') }}"></script> --}}
-
      <!--Page header-->
      <div class="page-header">
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Add Diamond Packet</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Purchase List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Add Diamond</a></li>
+                 <li class="breadcrumb-item"><a href="/diamond"><i class="fe fe-layers mr-2 fs-14"></i>Diamond</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/diamond">Diamond Purchase List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Add Diamond</a></li>
              </ol>
          </div>
-         <a href="/rate_master/create">
+         <a href="/rate-master/create">
              <button id="rateMaster" class="btn  btn-primary hidden" style="float: right;">Enter Rate</button></a>
      </div>
 

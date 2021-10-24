@@ -44,37 +44,24 @@ class RateMaster extends Controller
             $arrValuesJson = array_values($firstTimeData);
             $new_rate->json_price = json_encode($arrValuesJson);
             $new_rate->save();
-            return Redirect::to('/rate_master');
+            return Redirect::to('/rate-master');
         } else {
             foreach ($data as $rateData) {
                 $json_data = $rateData['json_price'];
                 $someArray = json_decode($json_data, true);
                 $decodedRate = $someArray[0];
-                // $mergeArr = array_merge($decodedRate, $data1);
-                // $decodedRate
-                // array_push($decodedRate, $data1);
-                // dd($mergeArr);
                 if (empty($someArray[0][$r_id])) {
-                    // $decodedRate = [5 => "101", 6 => "103"];
-                    // $mergeArr = array_merge($decodedRate, $data1);
-                    // dd($mergeArr);
                     array_push($someArray, $data1);
-                    // $arrValuesJson = array_values($someArray);
                     $json_data2 = json_encode($someArray);
                     $newJsonData = str_replace('},{', ',', $json_data2);
-                    // dd($newJsonData);
-                    // var_dump(trim($json_data2[19]));
-                    // var_dump(trim($json_data2[21]));
-                    // echo $json_data2[0];
-
                     rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
-                    return Redirect::to('/rate_master');
+                    return Redirect::to('/rate-master');
                 } else {
                     $someArray[0][$r_id] = $price;
                     $json_data2 = json_encode($someArray);
                     $newJsonData = str_replace('},{', ',', $json_data2);
                     rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
-                    return Redirect::to('/rate_master');
+                    return Redirect::to('/rate-master');
                 }
             }
         }
@@ -86,7 +73,7 @@ class RateMaster extends Controller
             'lastRange' => 'required',
         ]);            //dd($request);
         if ($validator->fails()) {
-            return Redirect::to('/rate_master/create');
+            return Redirect::to('/rate-master/create');
         }
         $rate = new rate();
         $first_range = $request->firstRange;
@@ -94,14 +81,14 @@ class RateMaster extends Controller
         $rates = $first_range . "-" . $last_range;
         $rate->wt_category = $rates;
         $rate->save();
-        return Redirect::to('/rate_master/create');
+        return Redirect::to('/rate-master/create');
     }
     public function edit($id)
     {
         $data = array();
         $data['rate_master'] = rate_master::findOrFail($id);
         $data['price'] = $data['rate_master']['json_price'];
-        echo $data['price'];
+        // echo $data['price'];
         return view('Rate_Master.edit', $data);
     }
     public function update(Request $request, $id)
@@ -122,12 +109,12 @@ class RateMaster extends Controller
                 $arrValuesJson = array_values($someArray);
                 $json_data2 = json_encode($arrValuesJson);
                 rate_master::where([['Rate_id', $id]])->update(['json_price' => $json_data2]);
-                return Redirect::to('/rate_master');
+                return Redirect::to('/rate-master');
             } else {
                 $someArray[0][$r_id] = $price;
                 $json_data2 = json_encode($someArray);
                 rate_master::where([['Rate_id', $id]])->update(['json_price' => $json_data2]);
-                return Redirect::to('/rate_master');
+                return Redirect::to('/rate-master');
             }
         }
     }
@@ -141,6 +128,6 @@ class RateMaster extends Controller
     //         'alert-type' => 'success'
     //     );
 
-    //     return Redirect::to('/rate_master')->with($notification);
+    //     return Redirect::to('/rate-master')->with($notification);
     // }
 }

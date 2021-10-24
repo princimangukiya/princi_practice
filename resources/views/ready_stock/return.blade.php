@@ -9,8 +9,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Return From Manager</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Return From Manager List</a></li>
+                 <li class="breadcrumb-item"><a href="/ready-stock"><i class="fe fe-layout mr-2 fs-14"></i>Ready Stock</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Return From Manager List</a></li>
              </ol>
          </div>
      </div>
@@ -129,7 +129,7 @@
          <div class="card-footer text-right" style="padding-right: 10% ">
              <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
                  class="btn  btn-primary">Submit</button>
-             <a href="/manager" class="btn btn-danger">Cancle</a>
+             <a href="/ready-stock" class="btn btn-danger">Cancle</a>
          </div>
      </div>
      <div class="card">

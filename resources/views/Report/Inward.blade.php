@@ -25,8 +25,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Inward Master</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Inward List</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i> Inward Details</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Inward List</a></li>
              </ol>
          </div>
      </div>

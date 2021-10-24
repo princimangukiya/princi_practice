@@ -9,8 +9,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Purchase</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Purchase List</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Diamond</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Purchase List</a></li>
              </ol>
          </div>
          <div class="page-rightheader">
@@ -121,19 +121,19 @@
                                              @else
                                                  @if ($value->isReturn != null)
                                                      <td class="text-center">
-                                                         <a href="/sell_stock">
+                                                         <a href="/sell-stock">
                                                              <button class="btn btn-sm btn-info" type="button">View <i
                                                                      class="zmdi zmdi-eye"></i></button></a>
                                                      </td>
                                                  @elseif($value->isReady != null)
                                                      <td class="text-center">
-                                                         <a href="/ready_stock">
+                                                         <a href="/ready-stock">
                                                              <button class="btn btn-sm btn-info" type="button">View <i
                                                                      class="zmdi zmdi-eye"></i></button></a>
                                                      </td>
                                                  @elseif( $value->doReady != null)
                                                      <td class="text-center">
-                                                         <a href="/working_stock">
+                                                         <a href="/working-stock">
                                                              <button class="btn btn-sm btn-info" type="button">View <i
                                                                      class="zmdi zmdi-eye"></i></button></a>
                                                      </td>

@@ -10,8 +10,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Hi! Welcome To {{ Session::get('c_name') }}</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-home mr-2 fs-14"></i>Home</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Admin Dashboard</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-home mr-2 fs-14"></i>Home</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Admin Dashboard</a></li>
              </ol>
          </div>
 
@@ -63,7 +63,7 @@
              </a>
          </div>
          <div class="col-xl-4  col-md-12">
-             <a class="text-color" href="/working_stock">
+             <a class="text-color" href="/working-stock">
                  <div class="card">
                      <div class="card-body">
                          <div class="d-flex align-items-end justify-content-between">
@@ -85,7 +85,7 @@
      </div>
      <div class="row">
          <div class="col-xl-6  col-md-12">
-             <a class="text-color" href="/ready_stock">
+             <a class="text-color" href="/ready-stock">
                  <div class="card">
                      <div class="card-body">
                          <div class="d-flex align-items-end justify-content-between">
@@ -106,7 +106,7 @@
              </a>
          </div>
          <div class="col-xl-6  col-md-12">
-             <a class="text-color" href="/sell_stock">
+             <a class="text-color" href="/sell-stock">
                  <div class="card">
                      <div class="card-body">
                          <div class="d-flex align-items-end justify-content-between">

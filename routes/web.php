@@ -52,45 +52,45 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/working-stock/create', 'App\Http\Controllers\WorkingStockController@create')->name('working_stock.create');
     Route::post('/working-stock/store', 'App\Http\Controllers\WorkingStockController@store')->name('working_stock.store');
     Route::get('/working-stock/edit/{id}', 'App\Http\Controllers\WorkingStockController@edit')->name('working_stock.edit');
-    Route::post('/working_stock/update/{id}', 'App\Http\Controllers\WorkingStockController@update')->name('working_stock.update');
-    Route::post('/working_stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
+    Route::post('/working-stock/update/{id}', 'App\Http\Controllers\WorkingStockController@update')->name('working_stock.update');
+    Route::post('/working-stock/{id}/destroy', 'App\Http\Controllers\WorkingStockController@destroy')->name('working_stock.destroy');
 
-    //ready_stock
-    Route::get('/ready_stock', 'App\Http\Controllers\ReadyStockController@index')->name('ready_stock');
-    Route::get('/ready_stock/create', 'App\Http\Controllers\ReadyStockController@create')->name('ready_stock.create');
-    Route::post('/ready_stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
-    Route::get('/ready_stock/edit/{id}', 'App\Http\Controllers\ReadyStockController@edit')->name('ready_stock.edit');
-    Route::post('/ready_stock/update/{id}', 'App\Http\Controllers\ReadyStockController@update')->name('ready_stock.update');
-    Route::get('/ready_stock/fetchData', 'App\Http\Controllers\ReadyStockController@fetchData')->name('ready_stock.fetchData');
-    Route::post('/ready_stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
+    //ready-stock
+    Route::get('/ready-stock', 'App\Http\Controllers\ReadyStockController@index')->name('ready_stock');
+    Route::get('/ready-stock/create', 'App\Http\Controllers\ReadyStockController@create')->name('ready_stock.create');
+    Route::post('/ready-stock/store', 'App\Http\Controllers\ReadyStockController@store')->name('ready_stock.store');
+    Route::get('/ready-stock/edit/{id}', 'App\Http\Controllers\ReadyStockController@edit')->name('ready_stock.edit');
+    Route::post('/ready-stock/update/{id}', 'App\Http\Controllers\ReadyStockController@update')->name('ready_stock.update');
+    Route::get('/ready-stock/fetchData', 'App\Http\Controllers\ReadyStockController@fetchData')->name('ready_stock.fetchData');
+    Route::post('/ready-stock/{id}/destroy', 'App\Http\Controllers\ReadyStockController@destroy')->name('ready_stock.destroy');
 
 
-    //sell_stock
-    Route::get('/sell_stock', 'App\Http\Controllers\SellStockController@index')->name('sell_stock');
-    Route::get('/sell_stock/create', 'App\Http\Controllers\SellStockController@create')->name('sell_stock.create');
-    Route::post('/sell_stock/store', 'App\Http\Controllers\SellStockController@store')->name('sell_stock.store');
-    Route::get('/sell_stock/edit/{id}', 'App\Http\Controllers\SellStockController@edit')->name('sell_stock.edit');
-    Route::post('/sell_stock/update/{id}', 'App\Http\Controllers\SellStockController@update')->name('sell_stock.update');
-    Route::post('/sell_stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
+    //sell-stock
+    Route::get('/sell-stock', 'App\Http\Controllers\SellStockController@index')->name('sell_stock');
+    Route::get('/sell-stock/create', 'App\Http\Controllers\SellStockController@create')->name('sell_stock.create');
+    Route::post('/sell-stock/store', 'App\Http\Controllers\SellStockController@store')->name('sell_stock.store');
+    Route::get('/sell-stock/edit/{id}', 'App\Http\Controllers\SellStockController@edit')->name('sell_stock.edit');
+    Route::post('/sell-stock/update/{id}', 'App\Http\Controllers\SellStockController@update')->name('sell_stock.update');
+    Route::post('/sell-stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
 
-    //Defective_Pcs
-    Route::get('/Defective_Pcs', 'App\Http\Controllers\Defective_Pcs_Controller@index')->name('Defective_Pcs');
-    Route::get('/Defective_Pcs/create', 'App\Http\Controllers\Defective_Pcs_Controller@create')->name('Defective_Pcs.create');
-    Route::post('/Defective_Pcs/store', 'App\Http\Controllers\Defective_Pcs_Controller@store')->name('Defective_Pcs.store');
-    Route::get('/Defective_Pcs/edit/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@edit')->name('Defective_Pcs.edit');
-    Route::post('/Defective_Pcs/update/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@update')->name('Defective_Pcs.update');
-    Route::post('/Defective_Pcs/{id}/destroy', 'App\Http\Controllers\Defective_Pcs_Controller@destroy')->name('Defective_Pcs.destroy');
+    //defective-pcs
+    Route::get('/defective-pcs', 'App\Http\Controllers\Defective_Pcs_Controller@index')->name('Defective_Pcs');
+    Route::get('/defective-pcs/create', 'App\Http\Controllers\Defective_Pcs_Controller@create')->name('Defective_Pcs.create');
+    Route::post('/defective-pcs/store', 'App\Http\Controllers\Defective_Pcs_Controller@store')->name('Defective_Pcs.store');
+    Route::get('/defective-pcs/edit/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@edit')->name('Defective_Pcs.edit');
+    Route::post('/defective-pcs/update/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@update')->name('Defective_Pcs.update');
+    Route::post('/defective-pcs/{id}/destroy', 'App\Http\Controllers\Defective_Pcs_Controller@destroy')->name('Defective_Pcs.destroy');
 
-    //rate_master 
-    Route::get('/rate_master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
-    Route::get('/rate_master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
-    Route::post('/rate_master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
+    //rate-master 
+    Route::get('/rate-master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
+    Route::get('/rate-master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
+    Route::post('/rate-master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
 
     Route::post('/rates/rates_store', 'App\Http\Controllers\RateMaster@rates_store')->name('rate_master.rates_store');
 
-    Route::get('/rate_master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
-    Route::post('/rate_master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
-    // Route::post('/rate_master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+    Route::get('/rate-master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
+    Route::post('/rate-master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
+    // Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
 
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
@@ -108,15 +108,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/Outward/search_data_manager', 'App\Http\Controllers\ReportController@search_data_manager')->name('Outward.search_data_manager');
 
     //Party Labour
-    Route::get('/Party_Labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
-    Route::get('/Party_Labour/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Party_Labour')->name('Party_Labour.generatePDF');
-    Route::get('/Party_Labour/genrate_pdf', 'App\Http\Controllers\ReportController@genrate_pdf')->name('Party_Labour.genrate_pdf');
-    Route::post('/search_PartyLabour_data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
+    Route::get('/party-labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
+    Route::get('/party-labour/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Party_Labour')->name('Party_Labour.generatePDF');
+    Route::get('/party-labour/genrate_pdf', 'App\Http\Controllers\ReportController@genrate_pdf')->name('Party_Labour.genrate_pdf');
+    Route::post('/search-PartyLabour-data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
 
 
     //diamond Tracker
-    Route::get('/Diamond_tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
-    Route::post('/Diamond_tracker_search', 'App\Http\Controllers\diamond_tacker_Controller@Diamond_tracker_search')->name('Diamond_tracker_search');
+    Route::get('/Diamond-tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
+    Route::post('/Diamond-tracker-search', 'App\Http\Controllers\diamond_tacker_Controller@Diamond_tracker_search')->name('Diamond_tracker_search');
 
 
     //user change route

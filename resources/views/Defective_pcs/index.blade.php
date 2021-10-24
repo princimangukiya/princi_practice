@@ -9,8 +9,8 @@
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Defective Pcs</h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Defective Pcs</a></li>
+                <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Defective Pcs</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Defective Pcs List</a></li>
             </ol>
         </div>
         <div class="page-rightheader">

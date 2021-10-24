@@ -73,8 +73,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Tracker</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Tracker</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Diamond Tracker</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Search Diamond</a></li>
              </ol>
          </div>
          {{-- <div class="page-rightheader">
@@ -99,7 +99,7 @@
                      <div class="container-fluid" style="padding-bottom: 30px;">
                          <div class="d-flex">
                              <div class="mt-1">
-                                 <form class="form-inline" method="post" action="/Diamond_tracker_search">
+                                 <form class="form-inline" method="post" action="/Diamond-tracker-search">
                                      @csrf
                                      @if (empty($daimond))
                                          <div class="search-element" style="border: 1px solid #CED4DA;border-radius: 5px;">
@@ -183,12 +183,12 @@
                              @endif
                              @if (empty($daimond['isReady']))
                                  @if (empty($daimond['doReady']))
-                                     <li class="timeline-item timeline-item--pending">
+                                     {{-- <li class="timeline-item timeline-item--pending"> --}}
                                          {{-- <h4 class="timeline-item__title">Diamond Not Assign To Manager</h4>
                                     <div class="timeline-item__status">Status error</div>
                                     <p class="timeline-item__date">  <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
                                     <p class="timeline-item__desc">Whenever</p> --}}
-                                     </li>
+                                     {{-- </li> --}}
                                  @else
                                      <li class="timeline-item timeline-item--error">
                                          <h4 class="timeline-item__title">Diamond Is Hold On Manager</h4>
@@ -216,12 +216,12 @@
                              @endif
                              @if (empty($daimond['isReturn']))
                                  @if (empty($daimond['isReady']))
-                                     <li class="timeline-item timeline-item--pending">
+                                     {{-- <li class="timeline-item timeline-item--pending"> --}}
                                          {{-- <h4 class="timeline-item__title">Diamond Is Not Return To Company</h4>
                                     <div class="timeline-item__status">Status error</div>
                                     <p class="timeline-item__date">  <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
                                     <p class="timeline-item__desc">Whenever</p> --}}
-                                     </li>
+                                     {{-- </li> --}}
                                  @else
                                      <li class="timeline-item timeline-item--error">
                                          <h4 class="timeline-item__title">Diamond Is Hold On Company</h4>
@@ -247,13 +247,16 @@
                                      </p>
                                  </li>
                              @endif
+                             @if ($daimond['status'] == 0)
+                             <li class="timeline-item timeline-item--error">
+                                <h4 class="timeline-item__title">Diamond Is Add Defective Piece</h4>
+                                <div class="timeline-item__status">Status error</div>
+                                <p class="timeline-item__date">Date:-
+                                    {{ date('d-m-Y', strtotime($dif_pcs['date'])) }}
+                                </p>
+                            </li>
+                             @endif
                          @endif
-                         {{-- <li class="timeline-item timeline-item--warning">
-                            <h4 class="timeline-item__title">Order recieved</h4>
-                            <div class="timeline-item__status">Status warning</div>
-                            <p class="timeline-item__date">  <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
-                            <p class="timeline-item__desc">By the Manager</p>
-                        </li> --}}
 
                      </ol>
 

@@ -12,9 +12,9 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Add Rate Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Rate List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Add Rate</a></li>
+                 <li class="breadcrumb-item"><a href="/rate-master"><i class="fe fe-layers mr-2 fs-14"></i>Rate Master</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/rate-master">Rates List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Add Rate</a></li>
              </ol>
          </div>
      </div>
@@ -70,7 +70,7 @@
                          </div>
                          <div class="card-footer text-right">
                              <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                             <a href="/rate_master/create" class="btn btn-danger">Cancle</a>
+                             <a href="/rate-master/create" class="btn btn-danger">Cancle</a>
                          </div>
                      </div>
                  </form>
@@ -159,7 +159,7 @@
                      </div>
                      <div class="card-footer text-right">
                          <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                         <a href="/rate_master" class="btn btn-danger">Cancle</a>
+                         <a href="/rate-master" class="btn btn-danger">Cancle</a>
                      </div>
                  </form>
              </div>

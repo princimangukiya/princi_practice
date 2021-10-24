@@ -11,11 +11,11 @@
 
      <div class="page-header">
          <div class="page-leftheader">
-             <h4 class="page-title mb-0">Edit Manager Details</h4>
+             <h4 class="page-title mb-0">Edit Working Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Manager List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Edit Manager</a></li>
+                 <li class="breadcrumb-item"><a href="/working-stock"><i class="fe fe-layers mr-2 fs-14"></i>Working Stock</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/working-stock">Working Stock List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Working Stock Details</a></li>
              </ol>
          </div>
      </div>
@@ -75,8 +75,6 @@
                              <div class="col-sm-6 col-md-6">
                                  <div class="form-group">
                                      <label class="form-label">BarCode Value</label>
-
-                                     {{-- <div class="col-8"> --}}
                                      <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
                                          value="{{ $Diamond_purchase->d_barcode }}" placeholder="Enter Bar Code" autofocus
                                          required>
@@ -90,13 +88,13 @@
                                  </div>
                              </div>
                          </div>
-                     </div>
-                 </div>
                  <div class="card-footer text-right">
                      <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                     <a href="/manager" class="btn btn-danger">Cancle</a>
+                     <a href="/working-stock" class="btn btn-danger">Cancle</a>
                  </div>
 
+                </div>
+            </div>
              </div>
          </div>
 

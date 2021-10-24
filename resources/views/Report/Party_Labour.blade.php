@@ -1,6 +1,6 @@
 @extends('app')
 @section('page-title')
-    Rate Master
+Party Labour
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@
     </style>
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Party Labour Master</h4>
+            <h4 class="page-title mb-0">Party Labour</h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Party Labour List</a></li>
+                <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Party Labour</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Party Labour List</a></li>
             </ol>
         </div>
     </div>

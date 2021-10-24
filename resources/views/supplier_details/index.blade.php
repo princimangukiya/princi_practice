@@ -73,8 +73,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Supplier Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Supplier</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Supplier Details List</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Supplier</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Supplier Details List</a></li>
              </ol>
          </div>
          <div class="page-rightheader">
@@ -103,8 +103,8 @@
                                      <th class="border-bottom-0">Supplier Name</th>
                                      <th class="border-bottom-0" style="width: 20%;">Supplier Address</th>
                                      {{-- <th>Package</th> --}}
-                                     <th class="border-bottom-0">Status</th>
                                      <th class="border-bottom-0">Supplier Gst No.</th>
+                                     <th class="border-bottom-0">Status</th>
                                      <th class="border-bottom-0">Action</th>
                                  </tr>
                              </thead>

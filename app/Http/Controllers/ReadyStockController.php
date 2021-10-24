@@ -24,7 +24,7 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['ready_stock'] = Ready_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        $data['ready_stock'] = Ready_Stock::join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')->where([['ready_stock.c_id', $c_id], ['ready_stock.status', 1], ['d_purchase.status', 1]])->with('Manager')->get();
         // var_dump($data);
         // echo $data['ready_stock'];
         return view('ready_stock.index', $data);
@@ -153,14 +153,14 @@ class ReadyStockController extends Controller
             Ready_Stock::where('r_id', $id)->update($newitem);
             D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code, 'd_n_wt' => $request->d_n_wt, 'price' => $request->price]);
 
-            return Redirect::to('/ready_stock');
+            return Redirect::to('/ready-stock');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
                 'alert-type' => 'error'
             );
 
-            return Redirect::to('/ready_stock')->with($notification);
+            return Redirect::to('/ready-stock')->with($notification);
         }
     }
     // Ready Stock delete
@@ -180,6 +180,6 @@ class ReadyStockController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect::to('/ready_stock')->with($notification);
+        return Redirect::to('/ready-stock')->with($notification);
     }
 }

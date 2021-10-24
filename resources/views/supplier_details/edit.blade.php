@@ -12,9 +12,9 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Edit Supplier Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Supplier List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Edit Supplier</a></li>
+                 <li class="breadcrumb-item"><a href="/supplier"><i class="fe fe-layers mr-2 fs-14"></i>Supplier</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/supplier">Supplier List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Supplier</a></li>
              </ol>
          </div>
      </div>

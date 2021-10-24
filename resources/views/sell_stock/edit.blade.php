@@ -11,11 +11,11 @@
 
      <div class="page-header">
          <div class="page-leftheader">
-             <h4 class="page-title mb-0">Edit Manager Details</h4>
+             <h4 class="page-title mb-0">Edit Sell Stock Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Manager List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Edit Manager</a></li>
+                 <li class="breadcrumb-item"><a href="/sell-stock"><i class="fe fe-layers mr-2 fs-14"></i>Sell Stock</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/sell-stock">Sell Stock List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Sell Stock</a></li>
              </ol>
          </div>
      </div>
@@ -26,7 +26,7 @@
              <div class="col-xl-9 col-lg-8">
                  <div class="card">
                      <div class="card-header">
-                         <div class="card-title">Edit WorkingStock Details</div>
+                         <div class="card-title">Edit Sell Stock Details</div>
                      </div>
 
                      <div class="card-body">
@@ -95,7 +95,7 @@
                      </div>
                      <div class="card-footer text-right">
                          <button type="submit" name="action" class="btn  btn-primary">Submit</button>
-                         <a href="/sell_stock" class="btn btn-danger">Cancle</a>
+                         <a href="/sell-stock" class="btn btn-danger">Cancle</a>
                      </div>
 
                  </div>

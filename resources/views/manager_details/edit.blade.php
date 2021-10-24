@@ -12,9 +12,9 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Edit Manager Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Manager List</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Edit Manager</a></li>
+                 <li class="breadcrumb-item"><a href="/manager"><i class="fe fe-layers mr-2 fs-14"></i>manager</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="/manager">Manager List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Manager</a></li>
              </ol>
          </div>
      </div>

@@ -129,7 +129,7 @@ class Defective_Pcs_Controller extends Controller
             defective_pcs::where('d_id', $d_id)->update($newitem);
 
             D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 1]);
-            return redirect('/Defective_Pcs');
+            return redirect('/defective-pcs');
         } catch (\Throwable $th) {
             return Response::json(array('success' => false));
         }
@@ -157,6 +157,6 @@ class Defective_Pcs_Controller extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect::to('/Defective_Pcs')->with($notification);
+        return Redirect::to('/defective-pcs')->with($notification);
     }
 }

@@ -398,7 +398,7 @@ class ReportController extends Controller
         }
         // echo $data['inward'];
     }
-    //Party_Labour Genrate PDF
+    //party-labour Genrate PDF
     public function Party_Labour()
     {
         $data = array();

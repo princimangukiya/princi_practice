@@ -1,6 +1,6 @@
  @extends('app')
  @section('page-title')
-     Rate Master
+ Diamond Tracker
  @endsection
  @section('content')
      <style>
@@ -72,8 +72,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Tracker</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Tracker</a></li>
+                 <li class="breadcrumb-item"><a href=""><i class="fe fe-layout mr-2 fs-14"></i>Diamond Tracker</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Tracker List</a></li>
              </ol>
          </div>
          {{-- <div class="page-rightheader">
@@ -97,7 +97,7 @@
                      <div class="container-fluid" style="padding-bottom: 30px;">
                          <div class="d-flex">
                              <div class="mt-1">
-                                 <form class="form-inline" method="post" action="/Diamond_tracker_search">
+                                 <form class="form-inline" method="post" action="/Diamond-tracker-search">
                                      @csrf
                                      <div class="search-element" style="border: 1px solid #CED4DA;border-radius: 5px;">
                                          <input type="search" class="form-control header-search" name="search_value"
@@ -117,38 +117,6 @@
                              </div>
                          </div>
                      </div>
-                     {{-- <ol class="timeline">
-                        <li class="timeline-item timeline-item--complete">
-                            <h3 class="timeline-item__title">Order placed</h3>
-                            <div class="timeline-item__status">Status completed</div>
-                            <p class="timeline-item__date">Jan 22nd</p>
-                            <p class="timeline-item__desc">Placed on the Company</p>
-                        </li>
-                        <li class="timeline-item timeline-item--warning">
-                            <h3 class="timeline-item__title">Order recieved</h3>
-                            <div class="timeline-item__status">Status warning</div>
-                            <p class="timeline-item__date">Jan 22nd</p>
-                            <p class="timeline-item__desc">By the Manager</p>
-                        </li>
-                        <li class="timeline-item timeline-item--error">
-                            <h3 class="timeline-item__title">Order processed</h3>
-                            <div class="timeline-item__status">Status error</div>
-                            <p class="timeline-item__date">Jan 22nd</p>
-                            <p class="timeline-item__desc">At some point</p>
-                        </li>
-                        <li class="timeline-item timeline-item--pending">
-                            <h3 class="timeline-item__title">Order delivered</h3>
-                            <div class="timeline-item__status">Status error</div>
-                            <p class="timeline-item__date">Jan 22nd</p>
-                            <p class="timeline-item__desc">Whenever</p>
-                        </li>
-                    </ol> --}}
-
-
-
-
-
-                     {{-- </div> --}}
                  </div>
              </div>
              <!--/div-->
@@ -159,5 +127,5 @@
      </div><!-- end app-content-->
      </div>
      <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-     <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> -->
+     {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
  @endsection

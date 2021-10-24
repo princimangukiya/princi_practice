@@ -6,10 +6,10 @@
  @section('content')
      <div class="page-header">
          <div class="page-leftheader">
-             <h4 class="page-title mb-0">Sell Diamond </h4>
+             <h4 class="page-title mb-0"> Add Sell Diamond </h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Sell Diamond List</a></li>
+                 <li class="breadcrumb-item"><a href="/sell-stock"><i class="fe fe-layout mr-2 fs-14"></i>Sell Stock List</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href=""> Add Sell stock </a></li>
              </ol>
          </div>
      </div>
@@ -78,7 +78,7 @@
          <div class="card-footer text-right" style="padding-right: 10% ">
              <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
                  class="btn  btn-primary">Submit</button>
-             <a href="/manager" class="btn btn-danger">Cancle</a>
+             <a href="/sell-stock" class="btn btn-danger">Cancle</a>
          </div>
      </div>
      <div class="card">

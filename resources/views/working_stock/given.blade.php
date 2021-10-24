@@ -10,8 +10,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Give To Manager</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Diamond Give To Manager List</a></li>
+                 <li class="breadcrumb-item"><a href="/working-stock"><i class="fe fe-layout mr-2 fs-14"></i>Working Stock</a></li>
+                 <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Give To Manager List</a></li>
              </ol>
          </div>
      </div>
@@ -79,7 +79,7 @@
          <div class="card-footer text-right" style="padding-right: 10% ">
              <button type="submit" id="addTODiamond" name="addTODiamond" onClick="addTODiamond()"
                  class="btn  btn-primary">Submit</button>
-             <a href="/working_stock" class="btn btn-danger">Cancle</a>
+             <a href="/working-stock" class="btn btn-danger">Cancle</a>
          </div>
      </div>
      <div class="card">
@@ -176,15 +176,20 @@
                          var type = "error";
                          alertShow(msg, type);
                          $('#bar_code').focus();
+                     } else if (response_msg.success == 325) {
+                         var msg = "<b>Barcode,</b> Is Not Valid To Assign Manager !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                         $('#bar_code').focus();
                      } else if (response_msg.success == 318) {
                          if (c_id == 1) {
                              $('#bar_code').focus();
-                             var msg = "You can not assign EKLINGJI GEMS Barcode to VmJewles!!";
+                             var msg = "You can not assign EKLINGJI GEMS Barcode to VmJewles !!";
                              var type = "error";
                              alertShow(msg, type);
                          } else {
                              $('#bar_code').focus();
-                             var msg = "You can not assign VmJewles Barcode to EKLINGJI GEMS!!";
+                             var msg = "You can not assign VmJewles Barcode to EKLINGJI GEMS !!";
                              var type = "error";
                              alertShow(msg, type);
                          }

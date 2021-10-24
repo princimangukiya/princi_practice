@@ -92,7 +92,7 @@
                 <span class="side-menu__label">Diamond Purchase</span></a>
         </li>
         <li class="slide">
-            <a class="side-menu__item" href="/working_stock">
+            <a class="side-menu__item" href="/working-stock">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -103,7 +103,7 @@
         </li>
 
         <li class="slide">
-            <a class="side-menu__item" href="/ready_stock">
+            <a class="side-menu__item" href="/ready-stock">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -113,7 +113,7 @@
                 <span class="side-menu__label">Ready Stock</span></a>
         </li>
         <li class="slide">
-            <a class="side-menu__item" href="/sell_stock">
+            <a class="side-menu__item" href="/sell-stock">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -123,7 +123,7 @@
                 <span class="side-menu__label">Sell Stock</span></a>
         </li>
         <li class="slide">
-            <a class="side-menu__item" href="/rate_master">
+            <a class="side-menu__item" href="/rate-master">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -144,7 +144,7 @@
             <ul class="slide-menu">
                 <li><a href="/Inward" class="slide-item"> Inward</a></li>
                 <li><a href="/Outward" class="slide-item"> Outward</a></li>
-                <li><a href="/Party_Labour" class="slide-item"> Party Labour</a></li>
+                <li><a href="/party-labour" class="slide-item"> Party Labour</a></li>
             </ul>
         </li>
         {{-- <li class="slide">
@@ -168,7 +168,7 @@
                 <span class="side-menu__label">Outward</span></a>
         </li>
         <li class="slide">
-            <a class="side-menu__item" href="/Party_Labour">
+            <a class="side-menu__item" href="/party-labour">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -178,7 +178,7 @@
                 <span class="side-menu__label">Party Labour</span></a>
         </li> --}}
         <li class="slide">
-            <a class="side-menu__item" href="/Defective_Pcs">
+            <a class="side-menu__item" href="/defective-pcs">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -188,7 +188,7 @@
                 <span class="side-menu__label">Defective Pcs</span></a>
         </li>
         <li class="slide">
-            <a class="side-menu__item" href="/Diamond_tracker">
+            <a class="side-menu__item" href="/Diamond-tracker">
                 <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                     width="24">
                     <path d="M0 0h24v24H0V0z" fill="none" />

@@ -25,8 +25,8 @@ class SellStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['sell_stock'] = Sell_Stock::where('c_id', $c_id)->with('Supplier', 'Diamond')
-            ->get();
+        $data['sell_stock'] = Sell_Stock::with('Supplier')->join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
+            ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])->get();
         // echo $data['sell_stock'];
         return view('sell_stock.index', $data);
     }
@@ -132,14 +132,14 @@ class SellStockController extends Controller
             // dd($newitem);
             Sell_Stock::where('sell_id', $id)->update($newitem);
             D_Purchase::where('d_id', $DiamondData->d_id)->update(['d_barcode' => $request->bar_code]);
-            return Redirect::to('/sell_stock');
+            return Redirect::to('/sell-stock');
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'User can`t Update!',
                 'alert-type' => 'error'
             );
 
-            return Redirect::to('/sell_stock')->with($notification);
+            return Redirect::to('/sell-stock')->with($notification);
         }
     }
     // sell Stock delete
@@ -161,6 +161,6 @@ class SellStockController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect::to('/sell_stock')->with($notification);
+        return Redirect::to('/sell-stock')->with($notification);
     }
 }

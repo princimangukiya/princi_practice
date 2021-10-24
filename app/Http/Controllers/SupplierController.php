@@ -93,7 +93,7 @@ class SupplierController extends Controller
         $validator = Validator::make($request->all(), [
             's_name' => 'required',
             's_address' => 'required',
-            's_gst' => 'required|min:15',
+            's_gst' => 'required',
 
         ]);
         //dd($request);

@@ -1,15 +1,15 @@
 @extends('app')
 @section('page-title')
-    Sell Diamond
+   Edit Defective Diamond
 @endsection
 
 @section('content')
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Sell Diamond </h4>
+            <h4 class="page-title mb-0">Edit Defective-Pcs</h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Sell Diamond List</a></li>
+                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective-Pcs Lists</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Defective-Pcs</a></li>
             </ol>
         </div>
     </div>
@@ -17,15 +17,15 @@
     <!-- Row -->
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Sell Diamond</div>
+            <div class="card-title">Defective Pcs Diamond</div>
         </div>
         <form action="{{ route('Defective_Pcs.update', $Diamond->d_id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                <div class="col-sm-6 col-md-6" style="padding: 20px;">
+            <div class="row" style="padding:20px;">
+                <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="form-label">Enter Date :-</label>
-                        <input placeholder="Enter Date:-" class="form-control" id="Date" type="date" name="date"
+                        <label class="form-label">Enter Date </label>
+                        <input placeholder="Enter Date" class="form-control" id="Date" type="date" name="date"
                             value="{{ $Diamond->date }}" required>
                         @error('date')
                             <small class="errorTxt1">
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6" style="display: flex;padding: 20px;">
+                <div class="col-sm-6 col-md-6">
                     <div class="form-group col-md-12 col-sm-12" style="padding:0 20px;">
                         <label class="form-label">BarCode Value </label>
                         <input id="bar_code" type="text" name="bar_code" class="form-control inputField"
@@ -50,10 +50,10 @@
                         @enderror
                     </div>
                 </div>
-            </div>
+            
             <div class="col-sm-6 col-md-6">
                 <div class="form-group">
-                    <label class="form-label">Enter Resone:-</label>
+                    <label class="form-label">Enter Resone</label>
                     <textarea id="resone" type="text" name="resone" class="form-control mb-4 inputField" rows="3" value=""
                         placeholder="Enter Resone" required
                         style="margin-top: 0px; margin-bottom: 16px; height: 81px;">{{ $Diamond->resone }}</textarea>
@@ -68,10 +68,11 @@
                     @enderror
                 </div>
             </div>
+        </div>
             <div class="card-footer text-right" style="padding-right: 10% ">
                 <button type="submite" id="addTODefectivePcs" name="addTODefectivePcs"
                     class="btn  btn-primary">Submit</button>
-                <a href="/Defective_Pcs" class="btn btn-danger">Cancle</a>
+                <a href="/defective-pcs" class="btn btn-danger">Cancle</a>
             </div>
         </form>
     </div>

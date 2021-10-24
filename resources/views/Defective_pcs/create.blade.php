@@ -1,15 +1,15 @@
 @extends('app')
 @section('page-title')
-    Sell Diamond
+Defective Diamond
 @endsection
 
 @section('content')
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Sell Diamond </h4>
+            <h4 class="page-title mb-0">Add Defective Pcs </h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fe fe-layout mr-2 fs-14"></i>Other Features</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Sell Diamond List</a></li>
+                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective Pcs List</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Defective Pcs Add</a></li>
             </ol>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <!-- Row -->
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Sell Diamond</div>
+            <div class="card-title">Add  Defective Diamond</div>
         </div>
         <div class="row" style="padding: 20px;">
             <div class="col-sm-6 col-md-6">
@@ -72,7 +72,7 @@
         <div class="card-footer text-right" style="padding-right: 10% ">
             <button id="addTODefectivePcs" name="addTODefectivePcs" onClick="addTODefectivePcs()"
                 class="btn  btn-primary">Submit</button>
-            <a href="/Defective_Pcs" class="btn btn-danger">Cancle</a>
+            <a href="/defective-pcs" class="btn btn-danger">Cancle</a>
         </div>
     </div>
     <div class="card">
