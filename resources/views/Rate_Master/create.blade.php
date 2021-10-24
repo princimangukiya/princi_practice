@@ -43,7 +43,7 @@
                                  <div class="form-group">
                                      <label class="form-label">Add First Range :-</label>
                                      <input placeholder="Enter Your First Range" class="form-control" id="price"
-                                         type="text" name="firstRange" value="{{ old('Rates') }}" required>
+                                         type="text" name="firstRange" value="0." required>
                                      @error('price')
                                          <small class="errorTxt1">
                                              <div id="title-error" class="error" style="margin-left:3rem">
@@ -57,7 +57,7 @@
                                  <div class="form-group">
                                      <label class="form-label">Add Last Range :-</label>
                                      <input placeholder="Enter Your last Range" class="form-control" id="price"
-                                         type="text" name="lastRange" value="{{ old('Rates') }}" required>
+                                         type="text" name="lastRange" value="0." required>
                                      @error('price')
                                          <small class="errorTxt1">
                                              <div id="title-error" class="error" style="margin-left:3rem">
