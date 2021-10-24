@@ -162,7 +162,7 @@
                             {{ $value->d_n_wt }}
                         </td>
 
-                        @if ($value->status == 1)
+                        @if ($value->status == 0)
                             <td>RR</td>
 
                         @else
@@ -215,7 +215,7 @@
                         <td>
                             {{ $value->d_n_wt }}
                         </td>
-                        @if ($value->status == 1)
+                        @if ($value->status == 0)
                             <td>RR</td>
 
                         @else
@@ -267,7 +267,7 @@
                         <td>
                             {{ $value->d_n_wt }}
                         </td>
-                        @if ($value->status == 1)
+                        @if ($value->status == 0)
                             <td>RR</td>
 
                         @else
@@ -319,7 +319,7 @@
                         <td>
                             {{ $value->d_n_wt }}
                         </td>
-                        @if ($value->status == 1)
+                        @if ($value->status == 0)
                             <td>RR</td>
 
                         @else

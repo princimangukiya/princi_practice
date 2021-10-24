@@ -281,11 +281,8 @@
                                          <th class="border-bottom-0">Old_Weight</th>
                                          <th class="border-bottom-0">New_Weight</th>
                                          <th class="border-bottom-0">Price</th>
+                                         <th class="border-bottom-0">Dif Pcs</th>
                                          <th class="border-bottom-0">Buy_date</th>
-                                         {{-- <th>Package</th> --}}
-                                         {{-- <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
-
                                          <th class="border-bottom-0">Sell_Date</th>
                                      </tr>
                                  </thead>
@@ -315,6 +312,13 @@
                                              <td>
                                                  {{ $value->price }}
                                              </td>
+                                             @if ($value->status == 0)
+                                                 <td class="text-center"><span
+                                                         class="badge badge-pill badge-danger mt-2">RR</span></td>
+
+                                             @else
+                                                 <td></td>
+                                             @endif
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
@@ -602,6 +606,7 @@
              var End_date_Manager = $('#End_Date_Company').val();
              var count = 1;
              var table = $('#companyTable').DataTable();
+             var RR = "RR";
              table.clear().draw({
                  "paging": true,
                  "lengthChange": false,
@@ -637,6 +642,12 @@
 
                          response_msg.success.forEach(success => {
                              count + 1;
+                             if (success.status == 0) {
+                                 RR = '<span class="badge badge-pill badge-danger mt-2">' + "RR" +
+                                     '</span>';
+                             } else {
+                                 RR = " ";
+                             }
                              $("#companyTable").append(
                                  '<tr>' +
                                  '<td>' + count + '</td>' +
@@ -646,7 +657,9 @@
                                  '<td>' + success.d_wt + '</td>' +
                                  '<td>' + success.d_n_wt + '</td>' +
                                  '<td>' + success.price + '</td>' +
-                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
+                                 '<td class="text-center">' + RR + '</td>' +
+                                 '<td>' + moment(success.bill_date).format('DD-MM-YYYY') +
+                                 '</td>' +
                                  '<td>' + moment(success.return_date).format('DD-MM-YYYY') +
                                  '</td>' +
                                  '</tr>'

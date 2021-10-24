@@ -44,7 +44,7 @@
                     <h3>{{ $s_name[0]['m_name'] }}</h3>
                 @endif
 
-                <p>Date:-{{ $today_date }}</p>
+                <p>Date:-{{ date('d-m-Y', strtotime($today_date)) }}</p>
 
                 <div class="card-body">
                     <div class="___class_+?17___">
