@@ -130,7 +130,7 @@ Defective Diamond
                     event.preventDefault();
                     return false;
                 } else {
-                    addTOManager();
+                    addTODefectivePcs();
                 }
             }
         });

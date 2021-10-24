@@ -68,6 +68,8 @@ class ReadyStockController extends Controller
                     $data = 2;
                 }
                 return Response::json(array('success' => 318));
+            } else if ($Diamond['isReady'] != null) {
+                return Response::json(array('success' => 325));
             }
             $ready_stock = Ready_Stock::withTrashed()->where('d_id', $Diamond['d_id'])->first();
             // return Response::json(array('success' => json_encode($ready_stock)));

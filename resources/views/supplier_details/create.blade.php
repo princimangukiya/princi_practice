@@ -39,7 +39,7 @@
                  <div class="row">
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
-                             <label class="form-label">Supplier Name:- </label>
+                             <label class="form-label">Supplier Name </label>
                              <input id="s_name" type="text" name="s_name" class="form-control inputField"
                                  value="{{ old('s_name') }}" placeholder="Enter Supplier Name" autofocus>
                              @error('s_name')
@@ -53,9 +53,9 @@
                      </div>
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
-                             <label class="form-label">Supplier Gst :-</label>
+                             <label class="form-label">Supplier Gst </label>
                              <input placeholder="Enter Supplier Gst" class="form-control inputField" id="s_gst" type="text"
-                                 name="s_gst" value="{{ old('s_gst') }}" required>
+                                 name="s_gst" value="{{ old('s_gst') }}" style="text-transform:uppercase" required>
                              @error('s_gst')
                                  <small class="errorTxt1">
                                      <div id="title-error" class="error" style="margin-left:3rem">
@@ -67,7 +67,7 @@
                      </div>
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
-                             <label class="form-label">Supplier Address:-</label>
+                             <label class="form-label">Supplier Address</label>
                              <textarea id="s_address" type="text" name="s_address" class="form-control mb-4 inputField"
                                  rows="3" value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required
                                  style="margin-top: 0px; margin-bottom: 16px; height: 81px;"></textarea>
@@ -105,14 +105,14 @@
                  textboxes = $("input.inputField");
                  currentBoxNumber = textboxes.index(this);
                  console.log(textboxes.index(this));
-                 if (textboxes[currentBoxNumber + 0] != null) {
-                     nextBox = textboxes[currentBoxNumber + 0];
+                 if (textboxes[currentBoxNumber + 1] != null) {
+                     nextBox = textboxes[currentBoxNumber + 1];
                      nextBox.focus();
                      nextBox.select();
                      event.preventDefault();
                      return false;
                  } else {
-                     addData();
+                    addSupplier();
                  }
              }
          });
@@ -203,12 +203,5 @@
                  }
              });
          }
-
-         //  function addSupplier() {
-         //      notif({
-         //          msg: "<b>Success:</b> Well done Supplier Added Successfully",
-         //          type: "success"
-         //      });
-         //  }
      </script>
  @endsection

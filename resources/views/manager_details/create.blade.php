@@ -121,7 +121,7 @@
                      event.preventDefault();
                      return false;
                  } else {
-                     addData();
+                    addManager();
                  }
              }
          });

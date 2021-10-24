@@ -69,7 +69,7 @@
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
-                                             <td class="align-middle"
+                                             <td class="text-center"
                                                  style="display: flex; align-items: center;justify-content: space-evenly;">
                                                  <a href="{{ route('working_stock.edit', ['id' => $value->w_id]) }}"
                                                      style="margin-right: 5px;">

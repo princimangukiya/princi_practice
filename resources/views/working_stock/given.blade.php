@@ -77,7 +77,7 @@
              </div>
          </div>
          <div class="card-footer text-right" style="padding-right: 10% ">
-             <button type="submit" id="addTODiamond" name="addTODiamond" onClick="addTODiamond()"
+             <button type="submit" id="addTODiamond" name="addTODiamond" onClick="addTOWorkDiamond()"
                  class="btn  btn-primary">Submit</button>
              <a href="/working-stock" class="btn btn-danger">Cancle</a>
          </div>
@@ -130,12 +130,12 @@
                      event.preventDefault();
                      return false;
                  } else {
-                     addTODiamond();
+                    addTOWorkDiamond();
                  }
              }
          });
 
-         function addTODiamond() {
+         function addTOWorkDiamond() {
              //  alert(id);
              var barcode = $('#bar_code').val();
              var m_id = $('#m_id').val();

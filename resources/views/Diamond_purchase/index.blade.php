@@ -97,8 +97,7 @@
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
                                              @if (empty($value->doReady))
-                                                 <td class="align-middle"
-                                                     style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                 <td class="text-center">
                                                      <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
                                                          style="margin-right: 5px;">
                                                          <div class="btn-group align-top">
@@ -106,17 +105,12 @@
                                                                      class="fe fe-edit-2"></i></button>
                                                          </div>
                                                      </a>
-
-                                                     {{-- <form action="{{ route('diamond.destroy', $value->d_id) }}"
-                                                         method="post">
-                                                         @csrf --}}
                                                      <div class="btn-group align-top" style="margin-left: 5px;">
                                                          <button class="btn btn-sm btn-danger diaDeleteBtn"
                                                              data-toggle="modal" data-target="#smallModal"
                                                              data-href="{{ route('diamond.destroy', $value->d_id) }}">Delete
                                                              <i class="fe fe-trash-2"></i></button>
                                                      </div>
-                                                     {{-- </form> --}}
                                                  </td>
                                              @else
                                                  @if ($value->isReturn != null)

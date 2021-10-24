@@ -76,7 +76,7 @@
              </div>
          </div>
          <div class="card-footer text-right" style="padding-right: 10% ">
-             <button id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
+             <button id="addTOManager" name="addTOManager" onClick="addSellDia('hello')"
                  class="btn  btn-primary">Submit</button>
              <a href="/sell-stock" class="btn btn-danger">Cancle</a>
          </div>
@@ -136,13 +136,13 @@
                      event.preventDefault();
                      return false;
                  } else {
-                     addTOManager();
+                    addSellDia();
                  }
              }
          });
      </script>
      <script>
-         function addTOManager(id) {
+         function addSellDia(id) {
              //  alert(id);
              var barcode = $('#bar_code').val();
              var s_id = $('#s_id').val();

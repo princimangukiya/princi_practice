@@ -249,7 +249,7 @@
                              @endif
                              @if ($daimond['status'] == 0)
                              <li class="timeline-item timeline-item--error">
-                                <h4 class="timeline-item__title">Diamond Is Add Defective Piece</h4>
+                                <h4 class="timeline-item__title">Diamond Is Added To Defective Piece</h4>
                                 <div class="timeline-item__status">Status error</div>
                                 <p class="timeline-item__date">Date:-
                                     {{ date('d-m-Y', strtotime($dif_pcs['date'])) }}

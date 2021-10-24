@@ -127,7 +127,7 @@
              </div>
          </div>
          <div class="card-footer text-right" style="padding-right: 10% ">
-             <button type="submite" id="addTOManager" name="addTOManager" onClick="addTOManager('hello')"
+             <button type="submite" id="addTOManager" name="addTOManager" onClick="addReturnData('hello')"
                  class="btn  btn-primary">Submit</button>
              <a href="/ready-stock" class="btn btn-danger">Cancle</a>
          </div>
@@ -177,7 +177,7 @@
                          event.preventDefault();
                          return false;
                      } else {
-                         addTOManager();
+                        addReturnData();
                      }
                  }
              });
@@ -196,7 +196,7 @@
              });
          </script>
          <script>
-             function addTOManager(id) {
+             function addReturnData(id) {
                  // alert(id);
                  var barcode = $('#bar_code').val();
                  var m_id = $('#m_id').val();
