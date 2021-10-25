@@ -313,8 +313,8 @@
                                              </td>
                                              @if ($value->status == 0)
                                                  <td class="text-center"><span
-                                                         class="badge badge-pill badge-danger mt-2">RR</span></td>
-
+                                                         class="badge badge-pill badge-danger mt-2">RR</span>
+                                                 </td>
                                              @else
                                                  <td></td>
                                              @endif
@@ -417,9 +417,6 @@
                                              <td>
                                                  {{ $value->d_wt }}
                                              </td>
-                                             {{-- <td>
-                                                {{ $value->d_n_wt }}
-                                            </td> --}}
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
@@ -469,9 +466,6 @@
          });
      </script>
      <script>
-         // $(window).load(function() {
-         //     $("#preloaders").fadeOut(500);
-         // });
          var inputs = document.getElementsByClassName('setting'),
              setting;
 
@@ -528,12 +522,8 @@
                  ]
              });
          });
-
-         /*This makes the timeout variable global so all functions can access it.*/
          var timeout;
 
-         /*This is an example function and can be disregarded
-         This function sets the loading div to a given string.*/
          function loaded() {
              $('#loading').html('The Ajax Call Data');
          }
@@ -541,25 +531,11 @@
          function startLoad() {
              /*This is the loading gif, It will popup as soon as startLoad is called*/
              $('#loading').html('<img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader"/>');
-             /*
-             This is an example of the ajax get method, 
-             You would retrieve the html then use the results
-             to populate the container.
-             
-             $.get('example.php', function (results) {
-                 $('#loading').html(results);
-             });
-             */
-             /*This is an example and can be disregarded
-             The clearTimeout makes sure you don't overload the timeout variable
-             with multiple timout sessions.*/
              clearTimeout(timeout);
-             /*Set timeout delays a given function for given milliseconds*/
              timeout = setTimeout(loaded, 150000);
          }
          /*This binds a click event to the refresh button*/
          $('#start_call').click(startLoad);
-         /*This starts the load on page load, so you don't have to click the button*/
          startLoad();
          // var id, mytable;
 

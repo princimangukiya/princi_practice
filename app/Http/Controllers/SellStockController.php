@@ -25,8 +25,7 @@ class SellStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['sell_stock'] = Sell_Stock::with('Supplier')->join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
-            ->where([['sell_stock.c_id', $c_id], ['d_purchase.status', 1]])->get();
+        $data['sell_stock'] = Sell_Stock::where('sell_stock.c_id', $c_id)->with('Supplier', 'Diamond')->get();
         // echo $data['sell_stock'];
         return view('sell_stock.index', $data);
     }

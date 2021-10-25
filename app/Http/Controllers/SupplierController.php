@@ -41,6 +41,8 @@ class SupplierController extends Controller
             's_name' => 'required',
             's_address' => 'required',
             's_gst' => 'required',
+            's_email' => 'required|email',
+            's_phone' => 'required',
 
         ]);
         //dd($request);
@@ -53,10 +55,12 @@ class SupplierController extends Controller
             if ($suppilerData == null) {
                 $c_id = session()->get('c_id');
                 $newitem = new Supplier_Details();
-                $newitem->s_name = !empty($request->s_name) ? $request->s_name : '';
+                $newitem->s_name =  $request->s_name;
                 $newitem->c_id = $c_id;
-                $newitem->s_address = !empty($request->s_address) ? $request->s_address : '';
-                $newitem->s_gst = !empty($request->s_gst) ? $request->s_gst : '';
+                $newitem->s_address =  $request->s_address;
+                $newitem->s_gst = $request->s_gst;
+                $newitem->s_email = $request->s_email;
+                $newitem->s_phone = $request->s_phone;
                 $newitem->status = 1;
                 $newitem->save();
 
@@ -102,10 +106,11 @@ class SupplierController extends Controller
         }
         try {
             $newitem = array();
-            $newitem['s_name'] = !empty($request->s_name) ? $request->s_name : '';
-            $newitem['s_address'] = !empty($request->s_address) ? $request->s_address : '';
-            $newitem['s_gst'] = !empty($request->s_gst) ? $request->s_gst : '';
-
+            $newitem['s_name'] = $request->s_name;
+            $newitem['s_address'] = $request->s_address;
+            $newitem['s_gst'] =  $request->s_gst;
+            $newitem['s_email'] = $request->s_email;
+            $newitem['s_phone'] = $request->s_phone;
             Supplier_Details::where('s_id', $id)->update($newitem);
             $notification = array(
                 'message' => 'User Updated!',

@@ -54,7 +54,7 @@ class Defective_Pcs_Controller extends Controller
         }
         try {
             $c_id = session()->get('c_id');
-            $barcodeExist = D_Purchase::where([['d_barcode', $request->bar_code]])->first();
+            $barcodeExist = D_Purchase::where('d_barcode', $request->bar_code)->first();
             if ($barcodeExist == null) {
                 return Response::json(array('success' => 314));
             } else if ($barcodeExist['c_id'] != $c_id) {
@@ -67,6 +67,15 @@ class Defective_Pcs_Controller extends Controller
             }
             $d_id = $barcodeExist['d_id'];
             $df_d_id = defective_pcs::where('d_id', $d_id)->first();
+            if ($barcodeExist['isReturn'] != null) {
+                $fromWhere = "Sell Stock";
+            } else if ($barcodeExist['isReady'] != null) {
+                $fromWhere = "Ready Stock";
+            } else if ($barcodeExist['doReady'] != null) {
+                $fromWhere = "Working Stock";
+            } else {
+                $fromWhere = "Diamond Purchase";
+            }
             if ($df_d_id == null) {
                 $c_id = session()->get('c_id');
                 $newitem = new defective_pcs;
@@ -74,6 +83,7 @@ class Defective_Pcs_Controller extends Controller
                 $newitem->resone = $request->resone;
                 $newitem->c_id = $c_id;
                 $newitem->date = $request->date;
+                $newitem->from_where = $fromWhere;
                 $newitem->save();
                 D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
                 if ($barcodeExist['isReady'] != null) {

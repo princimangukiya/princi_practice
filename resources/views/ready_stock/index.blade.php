@@ -58,9 +58,15 @@
                                  <tbody>
                                      @foreach ($ready_stock as $key => $value)
                                          <tr>
-                                             <td>
-                                                 {{ $key + 1 }}
-                                             </td>
+                                             @if ($value->Diamond->status == 0)
+                                                 <td style="background-color: #dc0441;">
+                                                     {{ $key + 1 }}
+                                                 </td>
+                                             @else
+                                                 <td>
+                                                     {{ $key + 1 }}
+                                                 </td>
+                                             @endif
                                              <td>
                                                  {{ $value->Manager->m_name }}
                                              </td>
@@ -70,9 +76,15 @@
                                                  @endphp
                                                  {{ $s_name['s_name'] }}
                                              </td>
-                                             <td>
-                                                 {{ $value->Diamond->d_barcode }}
-                                             </td>
+                                             @if ($value->Diamond->status == 0)
+                                                 <td style="background-color: #dc0441;">
+                                                     {{ $value->Diamond->d_barcode }}
+                                                 </td>
+                                             @else
+                                                 <td>
+                                                     {{ $value->Diamond->d_barcode }}
+                                                 </td>
+                                             @endif
                                              <td>
                                                  {{ $value->Diamond->d_wt }}
                                              </td>

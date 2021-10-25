@@ -104,6 +104,8 @@
                                      <th class="border-bottom-0" style="width: 20%;">Supplier Address</th>
                                      {{-- <th>Package</th> --}}
                                      <th class="border-bottom-0">Supplier Gst No.</th>
+                                     <th class="border-bottom-0">Supplier Phone No.</th>
+                                     <th class="border-bottom-0">Supplier Email Id.</th>
                                      <th class="border-bottom-0">Status</th>
                                      <th class="border-bottom-0">Action</th>
                                  </tr>
@@ -123,6 +125,12 @@
                                          </td>
                                          <td>
                                              {{ $value->s_gst }}
+                                         </td>
+                                         <td>
+                                             {{ $value->s_phone }}
+                                         </td>
+                                         <td>
+                                             {{ $value->s_email }}
                                          </td>
                                          <td>
                                              @if ($value->status == 1)

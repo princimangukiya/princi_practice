@@ -8,22 +8,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
     <title>Inward</title>
     <style>
-        /** 
-                Set the margins of the page to 0, so the footer and the header
-                can be of the full height and width !
-             **/
         @page {
-            margin: 10px 10px;
+            margin: 20px 20px;
         }
 
         /** Define now the real margins of every page in the PDF **/
         body {
-            margin-top: 3cm;
-            margin-left: 2cm;
-            margin-right: 2cm;
+            margin-top: 4.5cm;
+            margin-left: 0cm;
+            margin-right: 0cm;
             margin-bottom: 2cm;
+            font-family: 'Poppins', sans-serif;
         }
 
         /** Define the header rules **/
@@ -42,7 +42,6 @@
             left: 0cm;
             right: 0cm;
             height: 2cm;
-            padding: 10px;
         }
 
         .tabel_style {
@@ -59,14 +58,15 @@
 
         td {
             margin: 1px !important;
-            padding: 3px 3px 3px 6px !important;
-            border-right: 1px solid lightgrey;
+            padding: 3px 3px 3px 15px !important;
+            border: 1px solid lightgrey;
         }
 
         th {
             margin: 1px !important;
-            padding: 3px 3px 3px 6px !important;
+            padding: 3px 3px 3px 15px !important;
             border-right: 1px solid lightgrey;
+            background-color: lightcyan;
         }
 
     </style>
@@ -74,17 +74,50 @@
 
 <body>
     <!-- Define header and footer blocks before your content -->
-    <header class="text-center" style="padding-top: 15px;">
-        <img class="imgresponsive" src="../public/assets/images/logo/vmJewel.jpg" width="50%" height="50%" />
+    <header style="padding: 15px 0px; 15px; 0px;">
+        <div style="display: flex;">
+            <div class="text-left">
+                @php
+                    $c_id = session()->get('c_id');
+                @endphp
+                <b>
+                    @if (empty($s_name))
+                        <h3>All Inward Company Report</h3>
+                </b><br><br>
+            @else
+                <h3>{{ $s_name['s_name'] }}</h3>
+                </b>Phone no.: {{ $s_name['s_phone'] }}<br>
+                Email: {{ $s_name['s_email'] }}<br>
+                @endif
+                Date: From {{ date('d-m-Y', strtotime($start_date)) }} To
+                {{ date('d-m-Y', strtotime($end_date)) }}
+            </div>
+            <div class="text-right">
+
+                @if ($c_id == 1)
+                    <img class="imgresponsive" src="../public/assets/images/logo/vmJewel.jpg" width="35%"
+                        height="40%" />
+                @else
+                    <img class="imgresponsive" src="../public/assets/images/logo/ekJewel.JPG" width="35%"
+                        height="40%" />
+                @endif
+
+                <p>Date: {{ date('d-m-Y', strtotime($today_date)) }}</p>
+            </div>
+            <p class="text-center" style="padding-top: 110px; font-size:24px !important;">Inward Report
+            </p>
+        </div>
+
     </header>
 
     <footer>
+
         <div style="display: flex;">
-            <div class="text-left" style="border: 1px solid lightgrey;">
+            <div class="text-left" style="border: 1px solid lightgrey; padding:0px 10px;">
                 Received the above goods as per conditions<br><br>Through Signature
                 Receiver's Signature
             </div>
-            <div class="text-right" style="border: 1px solid lightgrey;">
+            <div class="text-right" style="border: 1px solid lightgrey; padding:0px 10px;">
                 @php
                     $c_name = session()->get('c_name');
                 @endphp
@@ -98,19 +131,7 @@
     <main>
         <div class="row tabel_style">
             <div class="col-12 invoice">
-                <!--div-->
                 <div class="card1">
-                    {{-- <div class="textstyle">
-                        <h6 class="myguj">|| શ્રી ગણેશાય નામ: ||</h6>
-                    </div> --}}
-                    @if (empty($s_name))
-                        <h3>All Inward Company Report</h3>
-
-                    @else
-                        <h3>{{ $s_name['s_name'] }}</h3>
-                    @endif
-
-                    <p>Date:-{{ date('d-m-Y', strtotime($today_date)) }}</p>
                     <table class="table">
                         <thead>
                             <tr>
@@ -120,7 +141,7 @@
                                     </th>
                                 @endif
                                 <th>Barcode Id</th>
-                                <th>Old Weight</th>
+                                <th>Rough Weight</th>
                                 <th">Buy Date</th>
                             </tr>
                         </thead>

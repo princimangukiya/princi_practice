@@ -23,7 +23,7 @@ class WorkingStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['working_stock'] = Working_Stock::where([['c_id', $c_id], ['status', 1]])->with('Manager', 'Diamond')->get();
+        $data['working_stock'] = Working_Stock::where([['working_stock.c_id', $c_id], ['working_stock.status', 1]])->with('Manager', 'Diamond')->get();
         // echo $data['working_stock'];
         return view('working_stock.index', $data);
     }

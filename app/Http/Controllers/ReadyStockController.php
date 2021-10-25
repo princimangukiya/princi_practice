@@ -24,7 +24,7 @@ class ReadyStockController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['ready_stock'] = Ready_Stock::join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')->where([['ready_stock.c_id', $c_id], ['ready_stock.status', 1], ['d_purchase.status', 1]])->with('Manager')->get();
+        $data['ready_stock'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 1]])->with('Manager', 'Diamond')->get();
         // var_dump($data);
         // echo $data['ready_stock'];
         return view('ready_stock.index', $data);

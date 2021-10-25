@@ -67,6 +67,34 @@
                      </div>
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
+                             <label class="form-label">Supplier Phone No. </label>
+                             <input id="s_Phone" type="text" name="s_phone" class="form-control inputField"
+                                 value="{{ old('s_phone') }}" placeholder="Enter Supplier Phone No." autofocus>
+                             @error('s_phone')
+                                 <small class="errorTxt1">
+                                     <div id="title-error" class="error" style="margin-left:3rem">
+                                         {{ $message }}
+                                     </div>
+                                 </small>
+                             @enderror
+                         </div>
+                     </div>
+                     <div class="col-sm-6 col-md-6">
+                         <div class="form-group">
+                             <label class="form-label">Supplier Email </label>
+                             <input placeholder="Enter Supplier Email" class="form-control inputField" id="s_Email"
+                                 type="text" name="s_email" value="{{ old('s_email') }}" required>
+                             @error('s_email')
+                                 <small class="errorTxt1">
+                                     <div id="title-error" class="error" style="margin-left:3rem">
+                                         {{ $message }}
+                                     </div>
+                                 </small>
+                             @enderror
+                         </div>
+                     </div>
+                     <div class="col-sm-6 col-md-6">
+                         <div class="form-group">
                              <label class="form-label">Supplier Address</label>
                              <textarea id="s_address" type="text" name="s_address" class="form-control mb-4 inputField"
                                  rows="3" value="{{ old('s_address') }}" placeholder="Enter Supplier Address" required
@@ -112,7 +140,7 @@
                      event.preventDefault();
                      return false;
                  } else {
-                    addSupplier();
+                     addSupplier();
                  }
              }
          });
@@ -166,6 +194,10 @@
              var sName = $('#s_name').val();
              var sAddress = $('#s_address').val();
              var sGst = $('#s_gst').val();
+             var sphone = $('#s_Phone').val();
+             var semail = $('#s_Email').val();
+             alert(sphone);
+             alert(semail);
              //  var mEmail = $('#m_email').val();
              $.ajaxSetup({
                  headers: {
@@ -178,7 +210,9 @@
                  data: {
                      's_name': sName,
                      's_address': sAddress,
-                     's_gst': sGst
+                     's_gst': sGst,
+                     's_phone': sphone,
+                     's_email': semail
                  },
                  dataType: 'json',
                  success: function(response_msg) {
