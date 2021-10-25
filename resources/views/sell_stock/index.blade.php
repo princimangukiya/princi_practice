@@ -38,8 +38,8 @@
                                          <th class="border-bottom-0">#</th>
                                          <th class="border-bottom-0">Supplier Name</th>
                                          <th class="border-bottom-0">Bar Code</th>
-                                         <th class="border-bottom-0">Weight</th>
-                                         {{-- <th>Package</th> --}}
+                                         <th class="border-bottom-0">Rough Weight</th>
+                                         <th class="border-bottom-0">Polish Weight</th>
                                          <th class="border-bottom-0">Shape</th>
                                          <th class="border-bottom-0">Date</th>
                                          <th class="border-bottom-0">Action</th>
@@ -59,6 +59,9 @@
                                              </td>
                                              <td>
                                                  {{ $value->Diamond->d_wt }}
+                                             </td>
+                                             <td>
+                                                 {{ $value->Diamond->d_n_wt }}
                                              </td>
                                              @php
                                                  $shape = App\Models\Diamond_Shape::where('shape_id', $value->Diamond->shape_id)->first();

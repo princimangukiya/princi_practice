@@ -55,7 +55,7 @@ class SellStockController extends Controller
         //dd($request);
         $c_id = session()->get('c_id');
         try {
-            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code], ['d_purchase.status', 1]])->first();
             if ($Diamond == null) {
                 return Response::json(array('success' => 314));
             } else if ($Diamond['c_id'] != $c_id) {

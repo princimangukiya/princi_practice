@@ -212,7 +212,7 @@ class ReportController extends Controller
             ->where([['sell_stock.c_id', $c_id]])
             ->get(['sell_stock.*', 'd_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
         // echo $data['inward'];
-        $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 0]])
+        $data['outward_manager'] = Ready_Stock::where([['ready_stock.c_id', $c_id], ['ready_stock.status', 1]])
             ->join('manager_details', 'ready_stock.m_id', '=', 'manager_details.m_id')
             ->join('d_purchase', 'ready_stock.d_id', '=', 'd_purchase.d_id')
             ->join('working_stock', 'ready_stock.d_id', '=', 'working_stock.d_id')

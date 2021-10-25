@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Inward</title>
+    <title>Outward Manager</title>
     <style>
         .tabel_style {
             text-align: center;
@@ -92,6 +92,7 @@
                                                 {{ $value->price }}
                                             </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

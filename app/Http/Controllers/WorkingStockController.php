@@ -54,7 +54,7 @@ class WorkingStockController extends Controller
             $c_id = session()->get('c_id');
 
             // $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
-            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code], ['d_purchase.status', 1]])->first();
             // return Response::json(array('success' => json_encode($Diamond)));
 
             if ($Diamond == null) {

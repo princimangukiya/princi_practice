@@ -278,12 +278,12 @@
                                          <th class="border-bottom-0">Company Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old_Weight</th>
-                                         <th class="border-bottom-0">New_Weight</th>
+                                         <th class="border-bottom-0">Old Weight</th>
+                                         <th class="border-bottom-0">New Weight</th>
                                          <th class="border-bottom-0">Price</th>
                                          <th class="border-bottom-0">Dif Pcs</th>
-                                         <th class="border-bottom-0">Buy_date</th>
-                                         <th class="border-bottom-0">Sell_Date</th>
+                                         <th class="border-bottom-0">Buy Date</th>
+                                         <th class="border-bottom-0">Sell Date</th>
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -407,15 +407,11 @@
                                          <th class="border-bottom-0">Manager Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old_Weight</th>
-                                         <th class="border-bottom-0">New_Weight</th>
+                                         <th class="border-bottom-0">Old Weight</th>
+                                         <th class="border-bottom-0">New Weight</th>
                                          <th class="border-bottom-0">Price</th>
-                                         <th class="border-bottom-0">Buy_date</th>
-                                         {{-- <th>Package</th> --}}
-                                         {{-- <th class="border-bottom-0">0.210-0.409</th>
-                                        <th class="border-bottom-0">0.410-5.000</th> --}}
-
-                                         <th class="border-bottom-0">Sell_Date</th>
+                                         <th class="border-bottom-0">Buy Date</th>
+                                         <th class="border-bottom-0">Sell Date</th>
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -498,56 +494,6 @@
          });
      </script>
      <script>
-         // var minDate, maxDate;
-
-
-
-         // // Custom filtering function which will search data in column four between two values
-         // $.fn.dataTable.ext.search.push(
-         //     function(settings, data, dataIndex) {
-         //         alert("hellofgjfg");
-         //         var min = minDate.val();
-         //         var max = maxDate.val();
-         //         var date = new Date(data[7]);
-         //         console.log(min);
-         //         if (
-         //             (min === null && max === null) ||
-         //             (min === null && date <= max) ||
-         //             (min <= date && max === null) ||
-         //             (min <= date && date <= max)
-         //         ) {
-         //             return true;
-         //         }
-         //         return false;
-         //     }
-         // );
-
-         // $(document).ready(function() {
-         //     // Create date inputs
-         //     minDate = new DateTime($('#min'), {
-         //         format: 'MMMM Do YYYY'
-         //     });
-         //     maxDate = new DateTime($('#max'), {
-         //         format: 'MMMM Do YYYY'
-         //     });
-
-         //     // DataTables initialisation
-         //     var table = $('#companyTable').DataTable();
-
-         //     // Refilter the table
-
-         //     // $('#min, #max').change(function() {
-         //     //     alert("hello233");
-         //     //     table.draw();
-         //     // });
-         // });
-
-         // function selectMinDate() {
-         //     alert("hello");
-         //     // DataTables initialisation
-         //     var table = $('#companyTable').DataTable();
-         //     table.draw();
-         // }
          var inputs = document.getElementsByClassName('setting'),
              setting;
 

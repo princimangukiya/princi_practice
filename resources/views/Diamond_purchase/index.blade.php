@@ -50,7 +50,11 @@
                                  <tbody>
                                      @foreach ($diamond as $key => $value)
                                          <tr>
-                                             @if ($value->isReturn != null)
+                                             @if ($value->status == 0)
+                                                 <td style="background-color: #dc0441;">
+                                                     {{ $key + 1 }}
+                                                 </td>
+                                             @elseif ($value->isReturn != null)
                                                  <td style="background-color: #74c69d;">
                                                      {{ $key + 1 }}
                                                  </td>
@@ -62,6 +66,7 @@
                                                  <td style="background-color: #eae2b7;">
                                                      {{ $key + 1 }}
                                                  </td>
+
                                              @else
                                                  <td>
                                                      {{ $key + 1 }}
@@ -70,7 +75,11 @@
                                              <td>
                                                  {{ $value->supplier->s_name }}
                                              </td>
-                                             @if ($value->isReturn != null)
+                                             @if ($value->status == 0)
+                                                 <td style="background-color: #dc0441;">
+                                                     {{ $value->d_barcode }}
+                                                 </td>
+                                             @elseif ($value->isReturn != null)
                                                  <td style="background-color: #74c69d;">
                                                      {{ $value->d_barcode }}
                                                  </td>
@@ -82,6 +91,7 @@
                                                  <td style="background-color: #eae2b7;">
                                                      {{ $value->d_barcode }}
                                                  </td>
+
                                              @else
                                                  <td>
                                                      {{ $value->d_barcode }}
@@ -113,7 +123,13 @@
                                                      </div>
                                                  </td>
                                              @else
-                                                 @if ($value->isReturn != null)
+                                                 @if ($value->status == 0)
+                                                     <td class="text-center">
+                                                         <a href="/defective-pcs">
+                                                             <button class="btn btn-sm btn-info" type="button">View <i
+                                                                     class="zmdi zmdi-eye"></i></button></a>
+                                                     </td>
+                                                 @elseif ($value->isReturn != null)
                                                      <td class="text-center">
                                                          <a href="/sell-stock">
                                                              <button class="btn btn-sm btn-info" type="button">View <i

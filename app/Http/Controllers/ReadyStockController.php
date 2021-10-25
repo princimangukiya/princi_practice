@@ -56,9 +56,8 @@ class ReadyStockController extends Controller
         $c_id = session()->get('c_id');
 
         try {
-            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code], ['d_purchase.status', 1]])->first();
             // dd($Diamond);
-            $DiamondData = Working_Stock::where('d_id', $Diamond['d_id'])->first();
             if ($Diamond == null) {
                 return Response::json(array('success' => 314));
             } else if ($Diamond['c_id'] != $c_id) {
@@ -72,6 +71,8 @@ class ReadyStockController extends Controller
                 return Response::json(array('success' => 325));
             }
             $ready_stock = Ready_Stock::withTrashed()->where('d_id', $Diamond['d_id'])->first();
+            $DiamondData = Working_Stock::where('d_id', $Diamond['d_id'])->first();
+
             // return Response::json(array('success' => json_encode($ready_stock)));
             if ($ready_stock != null) {
                 $newitem = array();

@@ -288,6 +288,7 @@
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
                                          <th class="border-bottom-0">Old_Weight</th>
+                                         <th class="border-bottom-0">Dif Pcs</th>
                                          {{-- <th class="border-bottom-0">New_Weight</th> --}}
                                          <th class="border-bottom-0">Buy_date</th>
                                      </tr>
@@ -310,9 +311,13 @@
                                              <td>
                                                  {{ $value->d_wt }}
                                              </td>
-                                             {{-- <td>
-                                                {{ $value->d_n_wt }}
-                                            </td> --}}
+                                             @if ($value->status == 0)
+                                                 <td class="text-center"><span
+                                                         class="badge badge-pill badge-danger mt-2">RR</span></td>
+
+                                             @else
+                                                 <td></td>
+                                             @endif
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
@@ -597,18 +602,16 @@
                  success: function(response_msg) {
                      // alert(response_msg.success);
                      console.log(response_msg);
-                     // if (response_msg.data == null) {
-                     //     alert('controller Succesfully Called !!!!!');
-                     // }
                      if (response_msg.success) {
-
-                         // $("#p_gst_id").val(bill_no);
                          const length = Object.keys(response_msg.success).length;
-                         // console.log(response_msg.success.length);
-                         // $('#companyTabel tbody').empty();
-
                          response_msg.success.forEach(success => {
                              count + 1;
+                             if (success.status == 0) {
+                                 var RR = '<span class="badge badge-pill badge-danger mt-2">' + "RR" +
+                                     '</span>';
+                             } else {
+                                 var RR = " ";
+                             }
                              $("#companyTabel").append(
                                  '<tr>' +
                                  '<td>' + count + '</td>' +
@@ -616,7 +619,7 @@
                                  '<td>' + success.d_barcode + '</td>' +
                                  '<td>' + success.shape_name + '</td>' +
                                  '<td>' + success.d_wt + '</td>' +
-                                 // '<td>' + success.d_n_wt + '</td>' +
+                                 '<td class="text-center">' + RR + '</td>' +
                                  '<td>' + moment(success.bill_date).format('DD-MM-YYYY') + '</td>' +
                                  '</tr>'
                              );
