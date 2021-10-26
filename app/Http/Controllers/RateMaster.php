@@ -41,11 +41,23 @@ class RateMaster extends Controller
         if ($data->isEmpty()) {
             $new_rate->c_id  = $c_id;
             $new_rate->s_id = $s_id;
+            if ($request->has('wei_Cat')) {
+                $new_rate->rate_cat_pcs =  $r_id;
+            } else {
+                $new_rate->rate_cat_pcs = null;
+            }
             $arrValuesJson = array_values($firstTimeData);
             $new_rate->json_price = json_encode($arrValuesJson);
             $new_rate->save();
             return Redirect::to('/rate-master');
         } else {
+            if ($data[0]['rate_cat_pcs'] == null) {
+                if ($request->has('wei_Cat')) {
+                    $new_rate =  $r_id;
+                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['rate_cat_pcs' => $new_rate]);
+                }
+            }
+
             foreach ($data as $rateData) {
                 $json_data = $rateData['json_price'];
                 $someArray = json_decode($json_data, true);
@@ -100,6 +112,10 @@ class RateMaster extends Controller
         $s_id = $request->s_id;
         $data = rate_master::where([['Rate_id', $id]])->get();
         // var_dump($data1);
+        if ($data[0]['rate_cat_pcs'] == null) {
+            $rate_cat_pcs = $request->rate_cat_pcs;
+            rate_master::where([['Rate_id', $id]])->update(['rate_cat_pcs' => $rate_cat_pcs]);
+        }
         foreach ($data as $rateData) {
             $json_data = $rateData['json_price'];
             $someArray = json_decode($json_data, true);

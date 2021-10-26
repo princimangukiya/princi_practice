@@ -12,7 +12,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Edit Rates Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/rate-master"><i class="fe fe-layers mr-2 fs-14"></i>Rate Master</a></li>
+                 <li class="breadcrumb-item"><a href="/rate-master"><i class="fe fe-layers mr-2 fs-14"></i>Rate Master</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="/rate-master">Rates List</a></li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Rates</a></li>
              </ol>
@@ -81,8 +82,6 @@
                                                              <option value="{{ $value->r_id }}">
                                                                  {{ $value->wt_category }}
                                                              </option>
-                                                             {{-- <option value="ALOK IMPEX">ALOK IMPEX </option> --}}
-
                                                          @endforeach
                                                      @endif
                                                  </optgroup>
@@ -96,37 +95,6 @@
                                              @enderror
                                          </div>
                                      </div>
-
-
-
-                                     {{-- <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Company Name </label>
-                                    <input id="s_name" type="text" name="s_name" class="form-control"
-                                        value="{{ $supplier->c_id }}" placeholder="Enter Company Name">
-                                    @error('s_name')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Rate</label>
-                                    <input id="r_id" type="text" name="r_id" class="form-control" placeholder="Select "
-                                        required>
-                                    @error('s_address')
-                                        <small class="errorTxt1">
-                                            <div id="title-error" class="error" style="margin-left:3rem">
-                                                {{ $message }}
-                                            </div>
-                                        </small>
-                                    @enderror
-                                </div>
-                            </div> --}}
                                      <div class="col-sm-6 col-md-6">
                                          <div class="form-group">
                                              <label class="form-label">Price :-</label>
@@ -141,7 +109,45 @@
                                              @enderror
                                          </div>
                                      </div>
+                                     @php
+                                         $price = json_decode($price);
+                                         //  echo $rates;
+                                     @endphp
+                                     @if ($rate_master->rate_cat_pcs == null)
+                                         <div class="col-md-6">
+                                             <div class="form-group">
+                                                 <h4><label class="form-label">Select Rate for Rate Count With
+                                                         Pics..:-</label></h4>
+                                                 <select id="r_id" name="rate_cat_pcs" required
+                                                     class="form-control select2 inputField">
+                                                     <optgroup label="Rate" value="">
+                                                         <option value="" disabled selected>Choose Rate</option>
 
+                                                         @foreach ($price[0] as $key => $value)
+                                                             @php
+                                                                 $r_id = $key;
+                                                                 foreach ($rates as $item) {
+                                                                     if ($item->r_id == $key) {
+                                                                         $wt_category = $item->wt_category;
+                                                                     }
+                                                                 }
+                                                             @endphp
+                                                             <option value="{{ $r_id }}">
+                                                                 {{ $wt_category }}
+                                                             </option>
+                                                         @endforeach
+                                                     </optgroup>
+                                                 </select>
+                                                 @error('r_id')
+                                                     <small class="errorTxt1">
+                                                         <div id="title-error" class="error" style="margin-left:3rem">
+                                                             {{ $message }}
+                                                         </div>
+                                                     </small>
+                                                 @enderror
+                                             </div>
+                                         </div>
+                                     @endif
                                  </div>
 
                              </div>

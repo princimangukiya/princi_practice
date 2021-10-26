@@ -12,7 +12,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Add Rate Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/rate-master"><i class="fe fe-layers mr-2 fs-14"></i>Rate Master</a></li>
+                 <li class="breadcrumb-item"><a href="/rate-master"><i class="fe fe-layers mr-2 fs-14"></i>Rate Master</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="/rate-master">Rates List</a></li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="">Add Rate</a></li>
              </ol>
@@ -153,6 +154,16 @@
                                              </div>
                                          </small>
                                      @enderror
+                                 </div>
+                             </div>
+                             <div class="col-sm-9 col-md-9">
+                                 <div class="form-group">
+                                     <label class="custom-control custom-checkbox">
+                                         <input type="checkbox" class="custom-control-input" name="wei_Cat" value="option2">
+                                         <span class="custom-control-label">Select This Weight Category For Rate Count With
+                                             Pics..
+                                         </span>
+                                     </label>
                                  </div>
                              </div>
                          </div>

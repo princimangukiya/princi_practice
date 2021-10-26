@@ -80,8 +80,25 @@ class DiamondController extends Controller
                         $wt_category = $wt_category['wt_category'];
                         $value = explode('-', $wt_category);
                         if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
-                            $newitem->d_wt_category = $key;
-                            $newitem->price = $val;
+                            if ($json_data['rate_cat_pcs'] != null) {
+                                $findWtCat = $json_data['rate_cat_pcs'];
+                                if ($findWtCat == $key) {
+                                    $newitem->d_wt_category = $key;
+                                    $newitem->price = $val;
+                                } else {
+                                    $newitem->d_wt_category = $key;
+                                    $d_wt = $request->d_wt;
+                                    $price = $val * $d_wt;
+                                    $newitem->price = $price;
+                                    // return Response::json(array('success' => $price));
+                                }
+                            } else {
+                                $newitem->d_wt_category = $key;
+                                $d_wt = $request->d_wt;
+                                $price = $val * $d_wt;
+                                $newitem->price = $price;
+                            }
+
                             $count = 1;
                             break;
                         }
@@ -136,12 +153,12 @@ class DiamondController extends Controller
             $d_wt = $request->d_wt;
             $c_id = session()->get('c_id');
             $newitem = array();
-            $newitem['d_barcode'] =  $request->bar_code ;
-            $newitem['d_wt'] =  $request->d_wt ;
+            $newitem['d_barcode'] =  $request->bar_code;
+            $newitem['d_wt'] =  $request->d_wt;
             $newitem['s_id'] = $s_id;
             $newitem['c_id'] = $c_id;
             $newitem['bill_date'] = $request->bill_date;
-            $newitem['shape_id'] = $request->shape_id ;
+            $newitem['shape_id'] = $request->shape_id;
             $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
             $json_decoded = json_decode($json_data['json_price']);
             foreach ($json_decoded[0] as $key => $val) {

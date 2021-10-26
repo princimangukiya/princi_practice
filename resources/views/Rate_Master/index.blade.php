@@ -65,6 +65,23 @@
                                                  @if ($value->s_id == $item->s_id)
                                                      <td>
                                                          {{ $item->s_name }}
+                                                         @if ($value->rate_cat_pcs == null)
+                                                             {{-- <button class="btn btn-secondary" data-placement="top"
+                                                                 data-toggle="tooltip-primary" title="Tooltip on top"
+                                                                 type="button">Hover me</button> --}}
+                                                             <button class="btn" data-placement="top"
+                                                                 data-toggle="tooltip"
+                                                                 title="Not Selected Weight Category For Rate Count With Pics."
+                                                                 type="button"><i class="fa fa-warning"
+                                                                     style="color: red"></i></button>
+                                                             <div class="tooltip bs-tooltip-top" role="tooltip">
+                                                                 <div class="arrow"></div>
+                                                                 <div class="tooltip-inner">
+
+                                                                 </div>
+                                                             </div>
+
+                                                         @endif
                                                      </td>
                                                  @endif
 
@@ -74,8 +91,28 @@
                                                  $decoded_data = $decoded_data[0];
                                                  $data = json_decode(showData($decoded_data, $rate));
                                              @endphp
-                                             @foreach ($data as $item)
-                                                 <td>{{ $item }}</td>
+                                             @foreach ($data as $key => $item)
+                                                 <td>{{ $item }}
+                                                     @if ($value->rate_cat_pcs != null)
+                                                         @foreach ($rate as $wtCat)
+
+                                                             @if ($value->rate_cat_pcs == $wtCat->r_id)
+                                                                 <button class="btn" data-placement="top"
+                                                                     data-toggle="tooltip"
+                                                                     title="Not Selected Weight Category For Rate Count With Pics."
+                                                                     type="button"><i class="fa fa-warning"
+                                                                         style="color: green"></i></button>
+                                                                 <div class="tooltip bs-tooltip-top" role="tooltip">
+                                                                     <div class="arrow"></div>
+                                                                     <div class="tooltip-inner">
+
+                                                                     </div>
+                                                                 </div>
+                                                             @endif
+                                                         @endforeach
+                                                     @endif
+                                                 </td>
+
                                              @endforeach
                                              <td class="align-middle"
                                                  style="display: flex; align-items: center;justify-content: space-evenly;">
@@ -143,6 +180,9 @@
      <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
      {{-- <!-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --> --}}
      <script>
+         $(document).ready(function() {
+             $('[data-toggle="tooltip-primary"]').tooltip();
+         });
          $(document).ready(function() {
              RateTabel = $('#rate_Master').DataTable({
                  "autoWidth": false,

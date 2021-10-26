@@ -212,7 +212,6 @@ class ReportController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['inward'] = Ready_Stock::where('c_id', $c_id)->get();
         $data['inward'] = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
@@ -414,35 +413,29 @@ class ReportController extends Controller
     public function Party_Labour()
     {
         $data = array();
-
-        $rates = array();
-        $daimond_data = array();
-        $issueCuts = array();
-        $outCuts = array();
-        $price = array();
-        $labour = array();
+        // $rates = array();
         $c_id = session()->get('c_id');
-        $data['supplier'] = Supplier_Details::where([['c_id', $c_id]])->get();
+        $data['inward'] = D_Purchase::where('c_id', $c_id)->get();
+        $data['supplier'] = Supplier_Details::where('c_id', $c_id)
+            ->get();
         foreach ($data['supplier'] as $key => $supplier) {
 
 
             $s_id = $supplier->s_id;
-            $rates[$s_id] = array();
+            // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+            $sell_stock = sell_stock::where('s_id', $s_id)->get();
+            $daimond = D_Purchase::where('s_id', $s_id)->get();
+            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first('json_price');
+            $rate[$s_id] = array();
             $daimond_data[$s_id] = array();
             $issueCuts[$s_id] = array();
             $outCuts[$s_id] = array();
             $price[$s_id] = array();
             $labour[$s_id] = array();
-            // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
-            $sell_stock = sell_stock::where([['c_id', $c_id], ['s_id', $s_id]])->get();
-            $daimond = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])->get();
-            $json_data = rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->first('json_price');
-            // echo $json_data;
             if (empty($json_data)) {
                 // echo 1;
                 // echo "<br>";
             } else {
-                // echo $json_data;
                 $json_data = $json_data['json_price'];
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
@@ -451,7 +444,7 @@ class ReportController extends Controller
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);
-                    array_push($rates[$s_id], $wt_category);
+                    array_push($rate[$s_id], $wt_category);
                     $count1 = 0;
                     $total_weight = 0;
                     $d_weight = 0;
@@ -485,7 +478,7 @@ class ReportController extends Controller
                 }
             }
         }
-        $data['rates'] = $rates;
+        $data['rates'] = $rate;
         $data['counts'] = $daimond_data;
         $data['issueCuts'] = $issueCuts;
         $data['outCuts'] = $outCuts;
@@ -544,6 +537,7 @@ class ReportController extends Controller
                     $labour_price = 0;
                     $total_new_weight = 0;
                     foreach ($daimond as $r) {
+                        // if ($r->status == 1) {
                         if ($s_id == $r->s_id) {
                             foreach ($sell_stock as $value) {
                                 if ($value['d_id'] == $r->d_id) {
@@ -561,6 +555,7 @@ class ReportController extends Controller
                                 }
                             }
                         }
+                        // }
                     }
                     array_push($daimond_data[$s_id], $count1);
                     array_push($issueCuts[$s_id], $total_weight);
@@ -639,6 +634,7 @@ class ReportController extends Controller
                     $labour_price = 0;
                     $total_new_weight = 0;
                     foreach ($daimond as $r) {
+                        // if ($r->status == 0) {
                         if ($s_id == $r->s_id) {
                             foreach ($sell_stock as $value) {
                                 if ($value['d_id'] == $r->d_id) {
@@ -656,6 +652,7 @@ class ReportController extends Controller
                                 }
                             }
                         }
+                        // }
                     }
                     array_push($daimond_data[$s_id], $count1);
                     array_push($issueCuts[$s_id], $total_weight);

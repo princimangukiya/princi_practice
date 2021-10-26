@@ -218,7 +218,7 @@
                  success: function(response_msg) {
                      //  alert(response_msg.success);
                      if (response_msg.success == 200) {
-                         window.location.replace('/supplier');
+                         window.location.replace('/rate-master/create');
                      } else if (response_msg.success == 312) {
                          var msg = "S_GST No. Already Exits..!!";
                          var type = "error";

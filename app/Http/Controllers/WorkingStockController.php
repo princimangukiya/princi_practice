@@ -54,7 +54,7 @@ class WorkingStockController extends Controller
             $c_id = session()->get('c_id');
 
             // $DiamondData = D_Purchase::where('d_barcode', $request->bar_code)->where('c_id', $c_id)->first();
-            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code], ['d_purchase.status', 1]])->first();
+            $Diamond = D_Purchase::where('d_barcode', $request->bar_code)->first();
             // return Response::json(array('success' => json_encode($Diamond)));
 
             if ($Diamond == null) {
@@ -68,6 +68,8 @@ class WorkingStockController extends Controller
                 return Response::json(array('success' => 318));
             } else if ($Diamond['doReady'] != null) {
                 return Response::json(array('success' => 325));
+            } else if ($Diamond['status'] == 0) {
+                return Response::json(array('success' => 322));
             }
 
             $workingStockData = Working_Stock::withTrashed()->where('d_id', $Diamond->d_id)->first();

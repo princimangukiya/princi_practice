@@ -312,12 +312,12 @@
                                              <td>
                                                  {{ $value->price }}
                                              </td>
-                                             @if ($value->status == 0)
-                                                 <td class="text-center"><span
-                                                         class="badge badge-pill badge-danger mt-2">RR</span></td>
+                                             @if ($value->from_where == null)
+                                                 <td></td>
 
                                              @else
-                                                 <td></td>
+                                                 <td class="text-center"><span
+                                                         class="badge badge-pill badge-danger mt-2">RR</span></td>
                                              @endif
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
