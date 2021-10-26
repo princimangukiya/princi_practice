@@ -9,7 +9,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Return From Manager</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/ready-stock"><i class="fe fe-layout mr-2 fs-14"></i>Ready Stock</a></li>
+                 <li class="breadcrumb-item"><a href="/ready-stock"><i class="fe fe-layout mr-2 fs-14"></i>Ready Stock</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Return From Manager List</a></li>
              </ol>
          </div>
@@ -177,7 +178,7 @@
                          event.preventDefault();
                          return false;
                      } else {
-                        addReturnData();
+                         addReturnData();
                      }
                  }
              });
@@ -253,6 +254,11 @@
                              $('#bar_code').focus();
                          } else if (response_msg.success == 320) {
                              var msg = "<b>Please,</b>choose the right manager !!";
+                             var type = "error";
+                             alertShow(msg, type);
+                             $('#bar_code').focus();
+                         } else if (response_msg.success == 322) {
+                             var msg = "<b>This Diamond,</b> Is Added In Defective Piece !!";
                              var type = "error";
                              alertShow(msg, type);
                              $('#bar_code').focus();

@@ -54,7 +54,7 @@ class SellStockController extends Controller
         //dd($request);
         $c_id = session()->get('c_id');
         try {
-            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code], ['d_purchase.status', 1]])->first();
+            $Diamond = D_Purchase::where([['d_barcode', $request->bar_code]])->first();
             if ($Diamond == null) {
                 return Response::json(array('success' => 314));
             } else if ($Diamond['c_id'] != $c_id) {
@@ -64,35 +64,37 @@ class SellStockController extends Controller
                     $data = 2;
                 }
                 return Response::json(array('success' => 318));
+            } else if ($Diamond['isReturn'] != null) {
+                return Response::json(array('success' => 325));
+            } else if ($Diamond['status'] == 0) {
+                return Response::json(array('success' => 322));
             }
-            $DiamondData = Ready_Stock::where('d_id', $Diamond['d_id'])->first();
+            // $DiamondData = Ready_Stock::where('d_id', $Diamond['d_id'])->first();
             $sellStockData = Sell_Stock::withTrashed()->where('d_id', $Diamond['d_id'])->first();
 
             // return Response::json(array('success' => json_encode($DiamondData)));
-            if ($DiamondData == null) {
-                return Response::json(array('success' => 325));
-            } else if ($sellStockData != null) {
+            if ($sellStockData != null) {
                 $newitem = array();
-                $newitem['d_id'] =  $DiamondData->d_id;
+                $newitem['d_id'] =  $Diamond->d_id;
                 $newitem['s_id'] =  $request->s_id;
                 $newitem['return_date'] = $request->date;
                 $newitem['deleted_at'] = null;
                 Sell_Stock::withTrashed()->where('sell_id', $sellStockData->sell_id)->update($newitem);
                 D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => 1]);
-                Ready_Stock::where('r_id', $DiamondData->r_id)->update(['status' => 0]);
+                Ready_Stock::where('d_id', $Diamond->d_id)->update(['status' => 0]);
                 return Response::json(array('success' => 200));
             } else if ($Diamond->s_id != $request->s_id) {
                 return Response::json(array('success' => 320));
             } else {
                 $newitem = new Sell_Stock();
-                $newitem->d_id = $DiamondData->d_id;
+                $newitem->d_id = $Diamond->d_id;
                 $newitem->s_id = $request->s_id;
                 $newitem->c_id = $c_id;
                 $newitem->return_date = $request->date;
                 $newitem->save();
 
                 D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => 1]);
-                Ready_Stock::where('r_id', $DiamondData->r_id)->update(['status' => 0]);
+                Ready_Stock::where('d_id', $Diamond->d_id)->update(['status' => 0]);
                 return Response::json(array('success' => 200));
             }
         } catch (\Throwable $th) {

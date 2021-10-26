@@ -8,7 +8,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0"> Add Sell Diamond </h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/sell-stock"><i class="fe fe-layout mr-2 fs-14"></i>Sell Stock List</a></li>
+                 <li class="breadcrumb-item"><a href="/sell-stock"><i class="fe fe-layout mr-2 fs-14"></i>Sell Stock List</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href=""> Add Sell stock </a></li>
              </ol>
          </div>
@@ -136,7 +137,7 @@
                      event.preventDefault();
                      return false;
                  } else {
-                    addSellDia();
+                     addSellDia();
                  }
              }
          });
@@ -193,6 +194,11 @@
                          var msg = "Your Barcode is not valid!!";
                          var type = "error";
                          alertShow(msg, type);
+                     } else if (response_msg.success == 322) {
+                         var msg = "<b>This Diamond,</b> Is Added In Defective Piece !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                         $('#bar_code').focus();
                      } else if (response_msg.success == 408) {
                          var msg = "Something Went Wrong !!";
                          var type = "error";

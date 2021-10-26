@@ -10,7 +10,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Diamond Give To Manager</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/working-stock"><i class="fe fe-layout mr-2 fs-14"></i>Working Stock</a></li>
+                 <li class="breadcrumb-item"><a href="/working-stock"><i class="fe fe-layout mr-2 fs-14"></i>Working Stock</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="">Diamond Give To Manager List</a></li>
              </ol>
          </div>
@@ -130,7 +131,7 @@
                      event.preventDefault();
                      return false;
                  } else {
-                    addTOWorkDiamond();
+                     addTOWorkDiamond();
                  }
              }
          });
@@ -173,6 +174,11 @@
                          alertShow(msg, type);
                      } else if (response_msg.success == 314) {
                          var msg = "<b>check your barcode,</b> Your Barcode Is Not Valid !!";
+                         var type = "error";
+                         alertShow(msg, type);
+                         $('#bar_code').focus();
+                     } else if (response_msg.success == 322) {
+                         var msg = "<b>This Diamond,</b> Is Added In Defective Piece !!";
                          var type = "error";
                          alertShow(msg, type);
                          $('#bar_code').focus();
