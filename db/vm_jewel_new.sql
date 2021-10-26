@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2021 at 03:30 PM
+-- Generation Time: Oct 26, 2021 at 03:16 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -60,6 +60,7 @@ CREATE TABLE `defective_pcs` (
   `d_id` int(11) NOT NULL,
   `resone` varchar(255) NOT NULL,
   `date` date NOT NULL,
+  `from_where` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -69,9 +70,13 @@ CREATE TABLE `defective_pcs` (
 -- Dumping data for table `defective_pcs`
 --
 
-INSERT INTO `defective_pcs` (`df_id`, `c_id`, `d_id`, `resone`, `date`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 125, 'missing', '2021-10-23', '2021-10-23 13:24:25', '2021-10-23 07:54:25', '2021-10-23 07:54:25'),
-(2, 1, 126, 'missing', '2021-10-23', '2021-10-23 07:48:25', '2021-10-23 07:48:25', NULL);
+INSERT INTO `defective_pcs` (`df_id`, `c_id`, `d_id`, `resone`, `date`, `from_where`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 142, 'Missing', '2021-10-25', '1', '2021-10-26 05:27:20', '2021-10-25 23:57:20', '2021-10-25 23:57:20'),
+(2, 1, 135, 'Missing', '2021-10-21', '2', '2021-10-26 05:27:17', '2021-10-25 23:57:17', '2021-10-25 23:57:17'),
+(3, 1, 130, 'Missing', '2021-10-12', '3', '2021-10-26 05:27:13', '2021-10-25 23:57:13', '2021-10-25 23:57:13'),
+(4, 1, 129, 'Missing', '2021-10-26', '1', '2021-10-25 23:58:04', '2021-10-25 23:58:04', NULL),
+(5, 1, 128, 'Missing', '2021-10-26', '2', '2021-10-25 23:58:09', '2021-10-25 23:58:09', NULL),
+(6, 1, 143, 'Missing', '2021-10-26', '3', '2021-10-25 23:58:19', '2021-10-25 23:58:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -132,17 +137,31 @@ CREATE TABLE `d_purchase` (
 --
 
 INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `d_wt_category`, `price`, `bill_date`, `status`, `doReady`, `isReady`, `isReturn`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(125, 1, 20, '10001', '0.103', '0.5', NULL, NULL, NULL, NULL, NULL, 2, 1, 50, '2021-10-01', 1, 17, 1, 1, '2021-10-22 06:51:40', '2021-10-23 07:54:25', NULL),
-(126, 1, 20, '10002', '0.250', '0.120', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 0, 17, 1, 1, '2021-10-22 07:16:21', '2021-10-23 07:48:25', NULL),
-(127, 1, 20, '10003', '0.25', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 17, 1, 1, '2021-10-22 07:16:30', '2021-10-23 07:11:33', NULL),
-(128, 1, 20, '10005', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 105, '2021-10-22', 1, NULL, NULL, NULL, '2021-10-22 07:17:17', '2021-10-23 07:45:41', NULL),
-(129, 1, 20, '10006', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-10-22', 1, 17, NULL, NULL, '2021-10-22 07:17:45', '2021-10-23 06:29:53', NULL),
-(130, 1, 20, '10007', '0.101', '0.5', NULL, NULL, NULL, NULL, NULL, 3, 1, 50, '2021-10-14', 1, 17, 1, NULL, '2021-10-22 22:12:02', '2021-10-23 07:45:32', NULL),
+(125, 1, 20, '10001', '0.103', '0.5', NULL, NULL, NULL, NULL, NULL, 2, 1, 50, '2021-10-01', 1, 17, 1, NULL, '2021-10-22 06:51:40', '2021-10-24 23:00:33', NULL),
+(126, 1, 20, '10002', '0.250', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 17, 1, 1, '2021-10-22 07:16:21', '2021-10-25 00:24:08', NULL),
+(127, 1, 20, '10003', '0.25', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 31, 1, NULL, '2021-10-22 07:16:30', '2021-10-25 00:23:26', NULL),
+(128, 1, 20, '10009', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 105, '2021-10-22', 0, 17, NULL, NULL, '2021-10-22 07:17:17', '2021-10-25 23:58:09', NULL),
+(129, 1, 20, '10006', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-10-22', 0, NULL, NULL, NULL, '2021-10-22 07:17:45', '2021-10-25 23:58:04', NULL),
+(130, 1, 20, '10007', '0.101', '0.2', NULL, NULL, NULL, NULL, NULL, 3, 1, 60, '2021-10-14', 1, 17, 1, NULL, '2021-10-22 22:12:02', '2021-10-25 23:57:13', NULL),
 (131, 2, 22, '100010', '0.203', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 50, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:17', '2021-10-22 22:40:09', NULL),
 (132, 2, 22, '100011', '0.10', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 20, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:28', '2021-10-22 22:40:32', NULL),
 (133, 2, 22, '100012', '0.203', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 50, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:41', '2021-10-22 22:38:41', NULL),
-(134, 1, 20, '10004', '0.230', '0.115', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, 1, 1, '2021-10-23 05:43:58', '2021-10-23 07:11:36', NULL),
-(135, 1, 20, '100015', '0.29', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-23 05:45:39', '2021-10-23 07:16:45', NULL);
+(134, 1, 20, '10004', '0.230', '0.115', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, 1, 1, '2021-10-23 05:43:58', '2021-10-25 00:17:04', NULL),
+(135, 1, 20, '100015', '0.29', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, NULL, NULL, '2021-10-23 05:45:39', '2021-10-25 23:57:17', NULL),
+(139, 1, 20, '10005', '0.230', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-24', 1, NULL, NULL, NULL, '2021-10-24 07:41:00', '2021-10-24 07:41:00', NULL),
+(140, 1, 20, '10008', '0.20', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 80, '2021-10-24', 1, NULL, NULL, NULL, '2021-10-24 07:42:22', '2021-10-24 08:25:01', NULL),
+(141, 1, 20, '121221', '0.101', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 80, '2021-10-13', 1, NULL, NULL, NULL, '2021-10-24 08:08:07', '2021-10-25 07:30:28', NULL),
+(142, 1, 20, '1212263', '0.212', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-10-13', 1, NULL, NULL, NULL, '2021-10-24 08:08:20', '2021-10-25 23:57:20', NULL),
+(143, 1, 23, '5623', '0.2', '0.10', NULL, NULL, NULL, NULL, NULL, 3, 1, 70, '2021-10-14', 0, 17, 1, NULL, '2021-10-24 08:08:59', '2021-10-25 23:58:19', NULL),
+(144, 1, 23, '147852', '0.350', NULL, NULL, NULL, NULL, NULL, NULL, 3, 9, 450, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 06:28:36', '2021-10-26 06:28:36', NULL),
+(145, 1, 23, '142536', '0.141', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 06:28:51', '2021-10-26 06:28:51', NULL),
+(146, 1, 23, '1478596', '0.141', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2021-10-19', 1, NULL, NULL, NULL, '2021-10-26 06:30:39', '2021-10-26 06:30:39', NULL),
+(147, 1, 23, '415263', '0.141', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 10, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 06:32:38', '2021-10-26 06:32:38', NULL),
+(148, 1, 20, '12121212', '0.250', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 10, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 07:13:57', '2021-10-26 07:13:57', NULL),
+(149, 1, 26, '96853', '0.450', NULL, NULL, NULL, NULL, NULL, NULL, 2, 10, 68, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 07:15:35', '2021-10-26 07:15:35', NULL),
+(150, 1, 26, '458961', '0.405', NULL, NULL, NULL, NULL, NULL, NULL, 2, 10, 61, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 07:16:50', '2021-10-26 07:16:50', NULL),
+(151, 1, 23, '785236', '0.250', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-26', 1, 31, 1, NULL, '2021-10-26 07:18:35', '2021-10-26 07:22:07', NULL),
+(152, 1, 23, '100021', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 9, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 07:19:37', '2021-10-26 07:19:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,10 +203,11 @@ CREATE TABLE `manager_details` (
 --
 
 INSERT INTO `manager_details` (`m_id`, `c_id`, `m_name`, `m_address`, `m_phone`, `m_email`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(17, 1, 'KAMLESH', 'Hirabaugh', '9512727308', 'kamlesh@gmail.com', 1, '2021-10-21 23:46:49', '2021-10-22 06:21:43', NULL),
-(19, 1, 'RAMESH', 'HiraBaugh', '7096717096', 'ramesh@gmail.com', 0, '2021-10-22 03:39:22', '2021-10-23 07:54:11', NULL),
+(17, 1, 'Kamlesh', 'Hirabaug', '9512727309', 'kamlesh@gmail.com', 1, '2021-10-21 23:46:49', '2021-10-23 22:29:11', NULL),
+(19, 1, 'RAMESH', 'HiraBaugh', '7096717096', 'ramesh@gmail.com', 0, '2021-10-22 03:39:22', '2021-10-24 07:36:25', NULL),
 (31, 1, 'Rishikesh', 'Surat', '7096717097', 'meet@gmail.com', 1, '2021-10-22 04:54:39', '2021-10-23 07:54:07', NULL),
-(32, 2, 'Ravi', 'Surat', '6355932737', 'ravi@gmail.com', 1, '2021-10-22 22:39:51', '2021-10-22 22:39:51', NULL);
+(32, 2, 'Ravi', 'Surat', '6355932737', 'ravi@gmail.com', 1, '2021-10-22 22:39:51', '2021-10-22 22:39:51', NULL),
+(33, 1, 'rishi', 'surat', '9979966347', 'rushikeshantala@gmail.com', 0, '2021-10-24 07:40:36', '2021-10-24 08:28:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,7 +252,9 @@ CREATE TABLE `rates` (
 
 INSERT INTO `rates` (`r_id`, `wt_category`, `created_at`, `updated_at`) VALUES
 (1, '0.001-0.201', '2021-10-22 01:52:56', '2021-10-22 01:52:56'),
-(2, '0.202-0.30', '2021-10-22 01:54:59', '2021-10-22 01:54:59');
+(2, '0.202-0.30', '2021-10-22 01:54:59', '2021-10-22 01:54:59'),
+(9, '0.301-0.499', '2021-10-23 22:20:42', '2021-10-23 22:20:42'),
+(10, '0.21-0.41', '2021-10-24 09:03:55', '2021-10-24 09:03:55');
 
 -- --------------------------------------------------------
 
@@ -245,6 +267,7 @@ CREATE TABLE `rate_masters` (
   `c_id` int(11) NOT NULL,
   `s_id` int(11) NOT NULL,
   `json_price` text DEFAULT NULL,
+  `rate_cat_pcs` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -253,9 +276,11 @@ CREATE TABLE `rate_masters` (
 -- Dumping data for table `rate_masters`
 --
 
-INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `created_at`, `updated_at`) VALUES
-(9, 1, 20, '[{\"1\":\"50\",\"2\":\"90\"}]', '2021-10-22 06:50:03', '2021-10-22 06:50:21'),
-(10, 2, 22, '[{\"1\":\"20\",\"2\":\"50\"}]', '2021-10-22 22:37:38', '2021-10-22 22:37:48');
+INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `rate_cat_pcs`, `created_at`, `updated_at`) VALUES
+(9, 1, 20, '[{\"1\":\"80\",\"2\":\"40\",\"9\":\"200\",\"10\":\"150\"}]', NULL, '2021-10-22 06:50:03', '2021-10-26 05:04:44'),
+(10, 2, 22, '[{\"1\":\"20\",\"2\":\"50\"}]', NULL, '2021-10-22 22:37:38', '2021-10-22 22:37:48'),
+(11, 1, 23, '[{\"2\":\"700\",\"1\":\"70\",\"9\":\"450\"}]', 9, '2021-10-24 08:04:36', '2021-10-26 06:11:27'),
+(14, 1, 26, '[{\"10\":\"150\"}]', NULL, '2021-10-26 05:05:22', '2021-10-26 05:05:22');
 
 -- --------------------------------------------------------
 
@@ -270,6 +295,7 @@ CREATE TABLE `ready_stock` (
   `d_id` int(15) NOT NULL,
   `d_n_wt` varchar(50) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
+  `dif_pcs` tinyint(4) NOT NULL DEFAULT 1,
   `return_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -280,12 +306,14 @@ CREATE TABLE `ready_stock` (
 -- Dumping data for table `ready_stock`
 --
 
-INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `status`, `return_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 17, 125, '0.5', 1, '2021-10-23', '2021-10-23 06:32:40', '2021-10-23 07:54:25', NULL),
-(2, 1, 17, 126, '0.120', 0, '2021-10-23', '2021-10-23 06:48:07', '2021-10-23 07:48:25', NULL),
-(3, 1, 17, 127, '0.125', 0, '2021-10-23', '2021-10-23 06:48:27', '2021-10-23 07:11:33', NULL),
-(4, 1, 17, 134, '0.115', 0, '2021-10-23', '2021-10-23 06:48:56', '2021-10-23 07:11:36', NULL),
-(5, 1, 17, 130, '0.5', 1, '2021-10-23', '2021-10-23 07:17:10', '2021-10-23 07:45:32', NULL);
+INSERT INTO `ready_stock` (`r_id`, `c_id`, `m_id`, `d_id`, `d_n_wt`, `status`, `dif_pcs`, `return_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 17, 125, '0.5', 1, 1, '2021-10-23', '2021-10-23 06:32:40', '2021-10-24 23:00:33', NULL),
+(2, 1, 31, 126, '0.1', 0, 1, '2021-10-24', '2021-10-23 06:48:07', '2021-10-25 00:24:08', NULL),
+(3, 1, 17, 127, '0.125', 1, 1, '2021-10-25', '2021-10-23 06:48:27', '2021-10-25 00:23:26', NULL),
+(4, 1, 17, 134, '0.115', 0, 1, '2021-10-23', '2021-10-23 06:48:56', '2021-10-25 00:17:04', NULL),
+(5, 1, 31, 130, '0.2', 1, 1, '2021-10-24', '2021-10-23 07:17:10', '2021-10-25 23:57:13', NULL),
+(6, 1, 17, 143, '0.10', 1, 0, '2021-10-21', '2021-10-24 08:14:18', '2021-10-25 23:58:19', NULL),
+(7, 1, 31, 151, '0.125', 1, 1, '2021-10-26', '2021-10-26 07:21:22', '2021-10-26 07:22:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -298,6 +326,7 @@ CREATE TABLE `sell_stock` (
   `c_id` int(15) DEFAULT NULL,
   `s_id` int(15) NOT NULL,
   `d_id` int(15) NOT NULL,
+  `dif_pcs` tinyint(4) NOT NULL DEFAULT 1,
   `return_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -308,11 +337,11 @@ CREATE TABLE `sell_stock` (
 -- Dumping data for table `sell_stock`
 --
 
-INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `return_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 20, 125, '2021-10-23', '2021-10-23 07:11:28', '2021-10-23 07:45:03', NULL),
-(2, 1, 20, 126, '2021-10-23', '2021-10-23 07:11:31', '2021-10-23 07:11:31', NULL),
-(3, 1, 20, 127, '2021-10-23', '2021-10-23 07:11:33', '2021-10-23 07:11:33', NULL),
-(4, 1, 20, 134, '2021-10-23', '2021-10-23 07:11:35', '2021-10-23 07:11:35', NULL);
+INSERT INTO `sell_stock` (`sell_id`, `c_id`, `s_id`, `d_id`, `dif_pcs`, `return_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 20, 125, 1, '2021-10-21', '2021-10-23 07:11:28', '2021-10-24 07:19:07', '2021-10-24 07:19:07'),
+(2, 1, 20, 126, 1, '2021-10-25', '2021-10-23 07:11:31', '2021-10-25 00:24:08', NULL),
+(3, 1, 20, 127, 1, '2021-10-23', '2021-10-23 07:11:33', '2021-10-24 08:25:57', '2021-10-24 08:25:57'),
+(4, 1, 20, 134, 1, '2021-10-12', '2021-10-23 07:11:35', '2021-10-24 08:42:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -326,6 +355,8 @@ CREATE TABLE `supplier_details` (
   `s_name` varchar(150) NOT NULL,
   `s_address` varchar(200) DEFAULT NULL,
   `s_gst` varchar(150) DEFAULT NULL,
+  `s_phone` varchar(255) NOT NULL,
+  `s_email` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -336,10 +367,11 @@ CREATE TABLE `supplier_details` (
 -- Dumping data for table `supplier_details`
 --
 
-INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(20, 1, 'ALOK IMPEX', 'surat', '24AAACA1033E1Z', 1, '2021-10-22 05:19:36', '2021-10-22 06:26:59', NULL),
-(22, 2, 'Kikani Gems', 'Surat', '24AAACA1033E1R', 1, '2021-10-22 22:36:34', '2021-10-22 22:36:34', NULL),
-(23, 1, 'GAJERA', 'Surat', '24AAACA1033E1S', 1, '2021-10-22 23:34:47', '2021-10-22 23:34:47', NULL);
+INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `s_phone`, `s_email`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(20, 1, 'supplier1', 'SURAT', '24AAACA1033E1Z', '9512727308', 'supplier1@gmail.com', 1, '2021-10-22 05:19:36', '2021-10-24 07:08:29', NULL),
+(22, 2, 'Supplier 3', 'Surat', '24AAACA1033E1R', '7096717095', 'supplier2@gmail.com', 1, '2021-10-22 22:36:34', '2021-10-24 07:08:49', NULL),
+(23, 1, 'supplier2', 'Surat', '24AAACA1033E1ZL', '1234567890', 'supplier3@gmail.com', 1, '2021-10-22 23:34:47', '2021-10-24 23:21:26', NULL),
+(26, 1, 'supplier 4', 'Surat', 'dmmbmdkbdfb', '7894561231', 'supplier04@gmail.com', 1, '2021-10-25 06:10:46', '2021-10-25 06:16:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -377,6 +409,7 @@ CREATE TABLE `working_stock` (
   `m_id` int(15) NOT NULL,
   `d_id` int(15) NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
+  `dif_pcs` tinyint(4) NOT NULL DEFAULT 1,
   `bill_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -387,14 +420,19 @@ CREATE TABLE `working_stock` (
 -- Dumping data for table `working_stock`
 --
 
-INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `status`, `bill_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 17, 125, 0, '2021-10-23', '2021-10-23 06:29:34', '2021-10-23 06:47:56', NULL),
-(2, 1, 17, 126, 0, '2021-10-23', '2021-10-23 06:29:41', '2021-10-23 06:48:09', NULL),
-(3, 1, 17, 127, 0, '2021-10-23', '2021-10-23 06:29:44', '2021-10-23 06:48:27', NULL),
-(4, 1, 17, 134, 0, '2021-10-23', '2021-10-23 06:29:47', '2021-10-23 06:48:56', NULL),
-(5, 1, 17, 128, 1, NULL, '2021-10-23 06:29:49', '2021-10-23 07:45:59', NULL),
-(6, 1, 17, 129, 1, '2021-10-23', '2021-10-23 06:29:53', '2021-10-23 06:29:53', NULL),
-(7, 1, 17, 130, 0, '2021-10-23', '2021-10-23 06:29:56', '2021-10-23 07:45:32', NULL);
+INSERT INTO `working_stock` (`w_id`, `c_id`, `m_id`, `d_id`, `status`, `dif_pcs`, `bill_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 17, 125, 0, 1, '2021-10-23', '2021-10-23 06:29:34', '2021-10-23 06:47:56', NULL),
+(2, 1, 17, 126, 0, 1, '2021-10-23', '2021-10-23 06:29:41', '2021-10-24 07:43:57', NULL),
+(3, 1, 31, 127, 0, 1, '2021-10-23', '2021-10-23 06:29:44', '2021-10-25 00:23:26', NULL),
+(4, 1, 17, 134, 0, 1, '2021-10-23', '2021-10-23 06:29:47', '2021-10-23 06:48:56', NULL),
+(5, 1, 17, 128, 1, 0, '2021-10-20', '2021-10-23 06:29:49', '2021-10-25 23:58:09', NULL),
+(6, 1, 17, 129, 0, 1, '2021-10-23', '2021-10-23 06:29:53', '2021-10-24 08:23:22', '2021-10-24 08:23:22'),
+(7, 1, 17, 130, 0, 1, '2021-10-23', '2021-10-23 06:29:56', '2021-10-24 07:44:07', NULL),
+(8, 1, 33, 140, 0, 1, '2021-10-24', '2021-10-24 07:43:17', '2021-10-24 08:25:01', '2021-10-24 08:25:01'),
+(9, 1, 17, 143, 0, 1, '2021-10-08', '2021-10-24 08:12:04', '2021-10-24 08:14:19', NULL),
+(10, 1, 17, 135, 1, 1, '2021-10-25', '2021-10-25 00:24:50', '2021-10-25 23:57:17', NULL),
+(11, 1, 17, 142, 0, 1, '2021-10-26', '2021-10-25 23:52:10', '2021-10-25 23:55:16', '2021-10-25 23:55:16'),
+(12, 1, 31, 151, 0, 1, '2021-10-26', '2021-10-26 07:21:02', '2021-10-26 07:22:07', NULL);
 
 --
 -- Indexes for dumped tables
@@ -528,7 +566,7 @@ ALTER TABLE `company_details`
 -- AUTO_INCREMENT for table `defective_pcs`
 --
 ALTER TABLE `defective_pcs`
-  MODIFY `df_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `df_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `diamond_shape`
@@ -540,7 +578,7 @@ ALTER TABLE `diamond_shape`
 -- AUTO_INCREMENT for table `d_purchase`
 --
 ALTER TABLE `d_purchase`
-  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `d_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -552,7 +590,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `manager_details`
 --
 ALTER TABLE `manager_details`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -564,19 +602,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rate_masters`
 --
 ALTER TABLE `rate_masters`
-  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `ready_stock`
 --
 ALTER TABLE `ready_stock`
-  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `r_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sell_stock`
@@ -588,7 +626,7 @@ ALTER TABLE `sell_stock`
 -- AUTO_INCREMENT for table `supplier_details`
 --
 ALTER TABLE `supplier_details`
-  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `s_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -600,7 +638,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_stock`
 --
 ALTER TABLE `working_stock`
-  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `w_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
