@@ -67,14 +67,19 @@ class Defective_Pcs_Controller extends Controller
             }
             $d_id = $barcodeExist['d_id'];
             $df_d_id = defective_pcs::where('d_id', $d_id)->first();
+
             if ($barcodeExist['isReturn'] != null) {
-                $fromWhere = "Sell Stock";
+                //Sell Stock = 4
+                $fromWhere = 4;
             } else if ($barcodeExist['isReady'] != null) {
-                $fromWhere = "Ready Stock";
+                //Ready Stock = 3
+                $fromWhere = 3;
             } else if ($barcodeExist['doReady'] != null) {
-                $fromWhere = "Working Stock";
+                // Working Stock = 2
+                $fromWhere = 2;
             } else {
-                $fromWhere = "Diamond Purchase";
+                // Diamond Purchase = 1
+                $fromWhere = 1;
             }
             if ($df_d_id == null) {
                 $c_id = session()->get('c_id');
@@ -87,9 +92,9 @@ class Defective_Pcs_Controller extends Controller
                 $newitem->save();
                 D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
                 if ($barcodeExist['isReady'] != null) {
-                    Ready_Stock::where('d_id', $d_id)->update(['status' => 0]);
+                    Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
                 } else {
-                    Working_Stock::where('d_id', $d_id)->update(['status' => 0]);
+                    Working_Stock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
                 }
 
                 return Response::json(array('success' => 200));
@@ -138,7 +143,7 @@ class Defective_Pcs_Controller extends Controller
 
             defective_pcs::where('d_id', $d_id)->update($newitem);
 
-            D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 1]);
+            D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
             return redirect('/defective-pcs');
         } catch (\Throwable $th) {
             return Response::json(array('success' => false));
@@ -158,9 +163,9 @@ class Defective_Pcs_Controller extends Controller
         $diamond = D_Purchase::where('d_id', $d_id)->first();
         D_Purchase::where('d_id', $d_id)->update(['status' => 1]);
         if ($diamond['isReady'] != null) {
-            Ready_Stock::where('d_id', $d_id)->update(['status' => 1]);
+            Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
         } else {
-            Working_Stock::where('d_id', $d_id)->update(['status' => 1]);
+            Working_Stock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
         }
         $notification = array(
             'message' => 'User Deleted!',

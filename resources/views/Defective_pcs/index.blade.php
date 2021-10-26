@@ -48,7 +48,18 @@
                                     @foreach ($diamond as $key => $value)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $value->d_barcode }} </td>
+                                            <td>{{ $value->d_barcode }}
+                                                @if ($value->from_where == 4)
+                                                    <span class="badge badge-gradient-success">Sell</span>
+                                                @elseif($value->from_where == 3)
+                                                    <span class="badge badge-gradient-info">Ready</span>
+                                                @elseif($value->from_where == 2)
+                                                    <span class="badge badge-gradient-warning">Working</span>
+                                                @else
+                                                    <span class="badge badge-gradient-primary">Purchase</span>
+                                                @endif
+
+                                            </td>
                                             <td>{{ $value->resone }}</td>
                                             <td>{{ date('d-m-Y', strtotime($value->date)) }}</td>
                                             <td class="align-middle"
