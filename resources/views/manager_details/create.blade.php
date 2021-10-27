@@ -104,8 +104,6 @@
      </div>
      <!-- End Row-->
      {{-- </form> --}}
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
      <script>
          var currentBoxNumber = 0;
@@ -121,7 +119,7 @@
                      event.preventDefault();
                      return false;
                  } else {
-                    addManager();
+                     addManager();
                  }
              }
          });

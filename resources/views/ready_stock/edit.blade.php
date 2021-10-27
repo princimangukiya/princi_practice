@@ -13,7 +13,8 @@
          <div class="page-leftheader">
              <h4 class="page-title mb-0">Edit Manager Details</h4>
              <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="/ready-stock"><i class="fe fe-layers mr-2 fs-14"></i>Ready Stock</a></li>
+                 <li class="breadcrumb-item"><a href="/ready-stock"><i class="fe fe-layers mr-2 fs-14"></i>Ready Stock</a>
+                 </li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="/ready-stock">Ready Stock List</a></li>
                  <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Ready Stock Details</a></li>
              </ol>
@@ -162,8 +163,6 @@
          </div>
          <!-- End Row-->
      </form>
-     {{-- <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script> --}}
 
      <script>
          var currentBoxNumber = 0;
@@ -226,5 +225,5 @@
              // mytable.row.add([id, 'pkt1', '10.5']);
              // mytable.draw();
          });
-         </script>
-     @endsection
+     </script>
+ @endsection

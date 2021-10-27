@@ -181,8 +181,6 @@
      </div>
      <!-- End Row-->
 
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
      <script>
          var currentBoxNumber = 0;

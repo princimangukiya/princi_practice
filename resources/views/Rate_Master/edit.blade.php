@@ -182,7 +182,5 @@
              }
          });
      </script>
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
  @endsection

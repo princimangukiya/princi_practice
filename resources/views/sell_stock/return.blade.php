@@ -94,6 +94,8 @@
                              <th class="border-bottom-0">Company Name</th>
                              <th class="border-bottom-0">Bar Code</th>
                              <th class="border-bottom-0">Date</th>
+                             <th class="border-bottom-0">Hidden Date</th>
+
                          </tr>
                      </thead>
                  </table>
@@ -104,12 +106,6 @@
 
      <!-- /Row -->
 
-
-
-
-     <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-
      <script>
          $(document).ready(function() {
              mytable = $('#tblItemShow').DataTable({
@@ -119,10 +115,12 @@
                  "ordering": true,
                  "info": true,
                  "autoWidth": false,
-                 "sDom": 'lfrtip'
+                 "sDom": 'lfrtip',
+                 "order": [
+                     [5, "desc"]
+                 ]
              });
-             // mytable.row.add([id, 'pkt1', '10.5']);
-             // mytable.draw();
+             mytable.columns(5).visible(false);
          });
          var currentBoxNumber = 0;
          $(".inputField").keyup(function(event) {
@@ -150,6 +148,7 @@
              var supplier_name = $('#s_id').find(":selected").text();
              var date = $('#Date').val();
              var c_id = '{{ Session::get('c_id') }}';
+             var today = new Date();
 
              $.ajaxSetup({
                  headers: {
@@ -171,7 +170,7 @@
                          var type = "error";
                          alertShow(msg, type);
                      } else if (response_msg.success == 200) {
-                         mytable.row.add([supplier_name, barcode, date]);
+                         mytable.row.add([supplier_name, barcode, date, today]);
                          mytable.draw();
                          $('#bar_code').val('');
                          $('#bar_code').focus();

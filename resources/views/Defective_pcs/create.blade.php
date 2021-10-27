@@ -1,6 +1,6 @@
 @extends('app')
 @section('page-title')
-Defective Diamond
+    Defective Diamond
 @endsection
 
 @section('content')
@@ -8,7 +8,8 @@ Defective Diamond
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Add Defective Pcs </h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective Pcs List</a></li>
+                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective Pcs
+                        List</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="">Defective Pcs Add</a></li>
             </ol>
         </div>
@@ -17,7 +18,7 @@ Defective Diamond
     <!-- Row -->
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Add  Defective Diamond</div>
+            <div class="card-title">Add Defective Diamond</div>
         </div>
         <div class="row" style="padding: 20px;">
             <div class="col-sm-6 col-md-6">
@@ -94,14 +95,7 @@ Defective Diamond
         </div>
     </div>
     <!--/div-->
-
     <!-- /Row -->
-
-
-
-
-    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -112,10 +106,13 @@ Defective Diamond
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
-                "sDom": 'lfrtip'
+                "sDom": 'lfrtip',
+                "order": [
+                    [5, "desc"]
+                ]
             });
-            // mytable.row.add([id, 'pkt1', '10.5']);
-            // mytable.draw();
+            mytable.columns(5).visible(false);
+
         });
         var currentBoxNumber = 0;
         $(".inputField").keyup(function(event) {
@@ -142,8 +139,7 @@ Defective Diamond
             var resone = $('#resone').val();
             var date = $('#Date').val();
             var c_id = '{{ Session::get('c_id') }}';
-
-
+            var today = new Date();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -176,7 +172,7 @@ Defective Diamond
                             alertShow(msg, type);
                         }
                     } else if (response_msg.success == 200) {
-                        mytable.row.add([barcode, resone, date]);
+                        mytable.row.add([barcode, resone, date, today]);
                         mytable.draw();
                         $('#bar_code').val('');
                         $('#bar_code').focus();

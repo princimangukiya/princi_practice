@@ -1,6 +1,6 @@
 @extends('app')
 @section('page-title')
-   Edit Defective Diamond
+    Edit Defective Diamond
 @endsection
 
 @section('content')
@@ -8,7 +8,8 @@
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Edit Defective-Pcs</h4>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective-Pcs Lists</a></li>
+                <li class="breadcrumb-item"><a href="/defective-pcs"><i class="fe fe-layout mr-2 fs-14"></i>Defective-Pcs
+                        Lists</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Defective-Pcs</a></li>
             </ol>
         </div>
@@ -50,25 +51,25 @@
                         @enderror
                     </div>
                 </div>
-            
-            <div class="col-sm-6 col-md-6">
-                <div class="form-group">
-                    <label class="form-label">Enter Resone</label>
-                    <textarea id="resone" type="text" name="resone" class="form-control mb-4 inputField" rows="3" value=""
-                        placeholder="Enter Resone" required
-                        style="margin-top: 0px; margin-bottom: 16px; height: 81px;">{{ $Diamond->resone }}</textarea>
-                    {{-- <input id="m_address" type="text" name="m_address" class="form-control inputField"
+
+                <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Enter Resone</label>
+                        <textarea id="resone" type="text" name="resone" class="form-control mb-4 inputField" rows="3"
+                            value="" placeholder="Enter Resone" required
+                            style="margin-top: 0px; margin-bottom: 16px; height: 81px;">{{ $Diamond->resone }}</textarea>
+                        {{-- <input id="m_address" type="text" name="m_address" class="form-control inputField"
                    value="{{ old('m_address') }}" placeholder="Enter Manager Address" required> --}}
-                    @error('resone')
-                        <small class="errorTxt1">
-                            <div id="title-error" class="error" style="margin-left:3rem">
-                                {{ $message }}
-                            </div>
-                        </small>
-                    @enderror
+                        @error('resone')
+                            <small class="errorTxt1">
+                                <div id="title-error" class="error" style="margin-left:3rem">
+                                    {{ $message }}
+                                </div>
+                            </small>
+                        @enderror
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="card-footer text-right" style="padding-right: 10% ">
                 <button type="submite" id="addTODefectivePcs" name="addTODefectivePcs"
                     class="btn  btn-primary">Submit</button>
@@ -80,13 +81,6 @@
     <!--/div-->
 
     <!-- /Row -->
-
-
-
-
-    <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             mytable = $('#tblItemShow').DataTable({

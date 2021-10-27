@@ -139,6 +139,12 @@
                              </div>
                          </div>
                      </div>
+                     {{-- @php
+                         $time = Carbon\Carbon::now();
+                         //  echo $time;
+                     @endphp
+                     <input class="form-control" id="time" type="hidden" name="d_wt" value="{{ $time }}"
+                         required> --}}
                      <div class="card-footer text-right">
                          <button type="submit" id="addData" name="addData" onClick="addData()"
                              class="btn  btn-primary">Submit</button>
@@ -165,6 +171,7 @@
                                      {{-- <th>Package</th> --}}
                                      <th class="border-bottom-0">Shape</th>
                                      <th class="border-bottom-0">Buy Date</th>
+                                     <th class="border-bottom-0">Hidden Date</th>
                                      {{-- <th class="border-bottom-0">Action</th> --}}
 
 
@@ -192,51 +199,16 @@
                  "info": true,
                  "autoWidth": false,
                  "sDom": 'lfrtip',
+
                  columnDefs: [{
                      className: "hide",
                      "targets": [0]
                  }, ],
-                 // ajax: "{{ route('diamond.store') }}",
-                 // "columns": [{
-                 //         "data": "s_name",
-                 //         "name": "s_name",
-                 //         "searchable": false
-                 //     },
-                 //     {
-                 //         "data": "d_barcode",
-                 //         "name": "bar_code",
-                 //         "searchable": true
-                 //     },
-                 //     {
-                 //         "data": "d_wt",
-                 //         "name": "d_wt",
-                 //         "searchable": true
-                 //     },
-                 //     {
-                 //         "data": "shape_name",
-                 //         "name": "shape_id",
-                 //         "searchable": true
-                 //     },
-                 //     {
-                 //         "data": "bill_date",
-                 //         "name": "bill_date",
-                 //         "searchable": true
-                 //     }, {
-
-                 //         "mRender": function(data, type, row) {
-                 //             return '<a href = "javascript:void(0)" data-toggle = "tooltip" onClick = "editFunc($id)" data-original-title = "Edit" class = "edit btn btn-success edit">Edit </a> <a href = "javascript:void(0);" id = "delete-compnay" onClick = "deleteFunc($id)" data-toggle = "tooltip" data-original-title = "Delete" class = "delete btn btn-danger"> Delete </a>'
-                 //         }
-                 //     }
-                 // ]
+                 "order": [
+                     [5, "desc"]
+                 ]
              });
-
-             // function fnCreatedRow(nRow) {
-             //     $('td:eq(0)', nRow).append(
-             //         "<div class='col1d'><button class='editBut'><img >src=''></button></div>"
-             //     );
-             // }
-             // mytable.row.add([id, 'pkt1', '10.5']);
-             // mytable.draw();
+             mytable.columns(5).visible(false);
          });
 
          var currentBoxNumber = 0;
@@ -268,7 +240,8 @@
              var shapevalue = $('#shape_id').find(":selected").text();
              var partyName = $('#s_id').find(":selected").text();
              var c_id = '{{ Session::get('c_id') }}';
-             var button = "Rushikesh";
+             var today = new Date();
+             //  alert(today);
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -293,9 +266,9 @@
                          var type = "error";
                          alertShow(msg, type);
                      } else if (response_msg.success == 200) {
-                         mytable.row.add([partyName, barcode, weight, shapevalue, bill_date]);
-                         mytable.draw();
 
+                         mytable.row.add([partyName, barcode, weight, shapevalue, bill_date, today]);
+                         mytable.draw();
                          $('#bar_code').val('');
                          $('#d_wt').val('0.');
                          $('#bill_date').focus();

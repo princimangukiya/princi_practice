@@ -51,7 +51,7 @@
                                      @foreach ($diamond as $key => $value)
                                          <tr>
                                              @if ($value->status == 0)
-                                                 <td style="background-color: #dc0441;">
+                                                 <td style="background-color: #EF4B4B;color:white;">
                                                      {{ $key + 1 }}
                                                  </td>
                                              @elseif ($value->isReturn != null)
@@ -76,7 +76,7 @@
                                                  {{ $value->supplier->s_name }}
                                              </td>
                                              @if ($value->status == 0)
-                                                 <td style="background-color: #dc0441;">
+                                                 <td style="background-color: #EF4B4B; color:white;">
                                                      {{ $value->d_barcode }}
                                                  </td>
                                              @elseif ($value->isReturn != null)
@@ -106,7 +106,13 @@
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
-                                             @if (empty($value->doReady))
+                                             @if ($value->status == 0)
+                                                 <td class="text-center">
+                                                     <a href="/defective-pcs">
+                                                         <button class="btn btn-sm btn-info" type="button">View <i
+                                                                 class="zmdi zmdi-eye"></i></button></a>
+                                                 </td>
+                                             @elseif (empty($value->doReady))
                                                  <td class="text-center">
                                                      <a href="{{ route('diamond.edit', ['id' => $value->d_id]) }}"
                                                          style="margin-right: 5px;">
@@ -123,13 +129,7 @@
                                                      </div>
                                                  </td>
                                              @else
-                                                 @if ($value->status == 0)
-                                                     <td class="text-center">
-                                                         <a href="/defective-pcs">
-                                                             <button class="btn btn-sm btn-info" type="button">View <i
-                                                                     class="zmdi zmdi-eye"></i></button></a>
-                                                     </td>
-                                                 @elseif ($value->isReturn != null)
+                                                 @if ($value->isReturn != null)
                                                      <td class="text-center">
                                                          <a href="/sell-stock">
                                                              <button class="btn btn-sm btn-info" type="button">View <i
@@ -216,10 +216,4 @@
              $('#diaDeleteModalForm').attr('action', deleteUrl);
          });
      </script>
-     {{-- <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.js') }}"></script>
-     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-     <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
-     <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script> --}}
-     {{-- <script src="{{ asset('assets/js/scripts/advance-ui-modals.min.js') }}"></script> --}}
-
  @endsection
