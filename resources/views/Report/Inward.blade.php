@@ -130,7 +130,7 @@
                                          <label class="form-label" for="&nbsp;">&nbsp;</label>
                                          <a class="supplier_button">
                                              <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
-                                                 <i class="fa fa-download mr-1"></i>Downloade PDF
+                                                 <i class="fe fe-printer mr-2"></i>Downloade PDF
                                              </button></a>
                                          <div id="annimation" class="spinner4 hidden">
                                              <div class="bounce1"></div>
@@ -203,7 +203,7 @@
                                          <a class="manager_button">
                                              <button type="submit" id="textMnager" class="btn btn-info"
                                                  style="padding: 5px;">
-                                                 <i class="fa fa-download mr-1"></i>Downloade PDF
+                                                 <i class="fe fe-printer mr-2"></i>Downloade PDF
                                              </button></a>
                                          <div id="annimationManager" class="spinner4 hidden">
                                              <div class="bounce1"></div>
@@ -287,7 +287,7 @@
                                          <th class="border-bottom-0">Company Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old_Weight</th>
+                                         <th class="border-bottom-0">Rough Weight</th>
                                          <th class="border-bottom-0">Dif Pcs</th>
                                          {{-- <th class="border-bottom-0">New_Weight</th> --}}
                                          <th class="border-bottom-0">Buy_date</th>
@@ -394,7 +394,7 @@
                                          <th class="border-bottom-0">Manager Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old_Weight</th>
+                                         <th class="border-bottom-0">Rough Weight</th>
                                          {{-- <th class="border-bottom-0">New_Weight</th> --}}
                                          <th class="border-bottom-0">Buy_date</th>
                                      </tr>

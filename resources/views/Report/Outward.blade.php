@@ -119,7 +119,7 @@
                                          <label class="form-label" for="&nbsp;">&nbsp;</label>
                                          <a class="supplier_button">
                                              <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
-                                                 <i class="fa fa-download mr-1"></i>Print
+                                                 <i class="fe fe-printer mr-2"></i>Print
                                              </button></a>
                                          <div id="annimation" class="spinner4 hidden">
                                              <div class="bounce1"></div>
@@ -190,7 +190,7 @@
                                      <label class="form-label" for="&nbsp;">&nbsp;</label>
                                      <a class="manager_button">
                                          <button type="submit" id="textMnager" class="btn btn-info" style="padding: 5px;">
-                                             <i class="fa fa-download mr-1"></i>Print
+                                             <i class="fe fe-printer mr-2"></i>Print
                                          </button></a>
                                      <div id="annimationManager" class="spinner4 hidden">
                                          <div class="bounce1"></div>
@@ -278,8 +278,8 @@
                                          <th class="border-bottom-0">Company Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old Weight</th>
-                                         <th class="border-bottom-0">New Weight</th>
+                                         <th class="border-bottom-0">Rough Weight</th>
+                                         <th class="border-bottom-0">Polish Weight</th>
                                          <th class="border-bottom-0">Price</th>
                                          <th class="border-bottom-0">Dif Pcs</th>
                                          <th class="border-bottom-0">Buy Date</th>
@@ -312,12 +312,11 @@
                                              <td>
                                                  {{ $value->price }}
                                              </td>
-                                             @if ($value->from_where == null)
-                                                 <td></td>
-
-                                             @else
+                                             @if ($value->status == 0)
                                                  <td class="text-center"><span
                                                          class="badge badge-pill badge-danger mt-2">RR</span></td>
+                                             @else
+                                                 <td></td>
                                              @endif
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
@@ -407,8 +406,8 @@
                                          <th class="border-bottom-0">Manager Name</th>
                                          <th class="border-bottom-0">Barcode_Id</th>
                                          <th class="border-bottom-0">Shape</th>
-                                         <th class="border-bottom-0">Old Weight</th>
-                                         <th class="border-bottom-0">New Weight</th>
+                                         <th class="border-bottom-0">Rough Weight</th>
+                                         <th class="border-bottom-0">Polish Weight</th>
                                          <th class="border-bottom-0">Price</th>
                                          <th class="border-bottom-0">Buy Date</th>
                                          <th class="border-bottom-0">Sell Date</th>
@@ -529,6 +528,9 @@
                  "info": true,
                  "autoWidth": false,
                  "sDom": 'lfrtip',
+                 "order": [
+                     [8, "desc"]
+                 ]
              });
          });
 

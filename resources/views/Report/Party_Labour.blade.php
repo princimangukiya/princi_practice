@@ -29,7 +29,7 @@
                     <div class="card-title">Party Labour Generate Pdf</div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('Party_Labour.generatePDF') }}" method="get" target="_blank">
+                    <form action="{{ route('Party_Labour.generatePDF') }}" method="get">
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
@@ -84,7 +84,7 @@
                                         <label class="form-label" for="&nbsp;">&nbsp;</label>
                                         <a class="supplier_button">
                                             <button type="submit" id="text" class="btn btn-info" style="padding: 5px;">
-                                                <i class="fa fa-download mr-1"></i>Downloade PDF
+                                                <i class="fe fe-printer mr-2"></i>Downloade PDF
                                             </button></a>
                                         <div id="annimation" class="spinner4 hidden">
                                             <div class="bounce1"></div>
