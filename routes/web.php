@@ -110,7 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Party Labour
     Route::get('/party-labour', 'App\Http\Controllers\ReportController@Party_Labour')->name('Party_Labour');
     Route::get('/party-labour/generatePDF', 'App\Http\Controllers\ReportController@generatePDF_Party_Labour')->name('Party_Labour.generatePDF');
-    Route::get('/party-labour/genrate_pdf', 'App\Http\Controllers\ReportController@genrate_pdf')->name('Party_Labour.genrate_pdf');
+    // Route::get('/party-labour/genrate_pdf', 'App\Http\Controllers\ReportController@genrate_pdf')->name('Party_Labour.genrate_pdf');
     Route::post('/search-PartyLabour-data', 'App\Http\Controllers\ReportController@search_data_Party_Labour')->name('Party_Labour.search_data');
 
 
