@@ -76,9 +76,9 @@
              </div>
              <div class="col-sm-6 col-md-6">
                  <div class="form-group">
-                     <label class="form-label">Old Weight </label>
+                     <label class="form-label">Rough Weight </label>
                      <div style="display: flex;">
-                         <input id="d_wt" type="text" name="d_wt" class="form-control" value="" placeholder="Old Weight"
+                         <input id="d_wt" type="text" name="d_wt" class="form-control" value="" placeholder="Rough Weight"
                              readonly="readonly">
                          @error('bar_code')
                              <small class="errorTxt1">
@@ -111,10 +111,10 @@
              </div>
              <div class="col-sm-6 col-md-6">
                  <div class="form-group">
-                     <label class="form-label">Enter New Weight </label>
+                     <label class="form-label">Enter Polish Weight </label>
                      <div style="display: flex;">
                          <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField" value="0."
-                             placeholder="Enter New Weight">
+                             placeholder="Enter Polish Weight">
                          @error('bar_code')
                              <small class="errorTxt1">
                                  <div id="title-error" class="error" style="margin-left:3rem">
@@ -144,9 +144,9 @@
                          <tr>
                              <th class="border-bottom-0">Manager Name</th>
                              <th class="border-bottom-0">Bar Code</th>
-                             <th class="border-bottom-0">Old Weight</th>
+                             <th class="border-bottom-0">Rough Weight</th>
                              <th class="border-bottom-0">Price</th>
-                             <th class="border-bottom-0">New Weight</th>
+                             <th class="border-bottom-0">Polish Weight</th>
                              <th class="border-bottom-0">Date</th>
                              <th class="border-bottom-0">Hidden Date</th>
                          </tr>

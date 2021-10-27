@@ -73,10 +73,10 @@
                                      @endphp
                                      <div class="col-md-6">
                                          <div class="form-group">
-                                             <h4><label class="form-label">Select Rate :-</label></h4>
+                                             <h4><label class="form-label">Select Weight Category :-</label></h4>
                                              <select id="r_id" name="r_id" required class="form-control select2 inputField">
                                                  <optgroup label="Rate" value="{{ $rate_master->r_id }}">
-                                                     <option value="" disabled selected>Choose Rate</option>
+                                                     <option value="" disabled selected>Select Weight Category</option>
                                                      @if (count($rates) > 0)
                                                          @foreach ($rates as $value)
                                                              <option value="{{ $value->r_id }}">
@@ -113,41 +113,42 @@
                                          $price = json_decode($price);
                                          //  echo $rates;
                                      @endphp
-                                     @if ($rate_master->rate_cat_pcs == null)
-                                         <div class="col-md-6">
-                                             <div class="form-group">
-                                                 <h4><label class="form-label">Select Rate for Rate Count With
-                                                         Pics..:-</label></h4>
-                                                 <select id="r_id" name="rate_cat_pcs" required
-                                                     class="form-control select2 inputField">
-                                                     <optgroup label="Rate" value="">
-                                                         <option value="" disabled selected>Choose Rate</option>
+                                     {{-- @if ($rate_master->rate_cat_pcs == null) --}}
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <h4><label class="form-label">Select Weight Category for Rate Count
+                                                     With Pcs:-</label></h4>
+                                             <select id="r_id" name="rate_cat_pcs" required
+                                                 class="form-control select2 inputField">
+                                                 <optgroup label="Rate" value="">
+                                                     <option value="" disabled selected>Select Weight Category</option>
 
-                                                         @foreach ($price[0] as $key => $value)
-                                                             @php
-                                                                 $r_id = $key;
-                                                                 foreach ($rates as $item) {
-                                                                     if ($item->r_id == $key) {
-                                                                         $wt_category = $item->wt_category;
-                                                                     }
+                                                     @foreach ($price[0] as $key => $value)
+                                                         @php
+                                                             $r_id = $key;
+                                                             foreach ($rates as $item) {
+                                                                 if ($item->r_id == $key) {
+                                                                     $wt_category = $item->wt_category;
                                                                  }
-                                                             @endphp
-                                                             <option value="{{ $r_id }}">
-                                                                 {{ $wt_category }}
-                                                             </option>
-                                                         @endforeach
-                                                     </optgroup>
-                                                 </select>
-                                                 @error('r_id')
-                                                     <small class="errorTxt1">
-                                                         <div id="title-error" class="error" style="margin-left:3rem">
-                                                             {{ $message }}
-                                                         </div>
-                                                     </small>
-                                                 @enderror
-                                             </div>
+                                                             }
+                                                         @endphp
+                                                         <option value="{{ $r_id }}"
+                                                             {{ $rate_master->rate_cat_pcs == $r_id ? 'selected="selected"' : '' }}>
+                                                             {{ $wt_category }}
+                                                         </option>
+                                                     @endforeach
+                                                 </optgroup>
+                                             </select>
+                                             @error('r_id')
+                                                 <small class="errorTxt1">
+                                                     <div id="title-error" class="error" style="margin-left:3rem">
+                                                         {{ $message }}
+                                                     </div>
+                                                 </small>
+                                             @enderror
                                          </div>
-                                     @endif
+                                     </div>
+                                     {{-- @endif --}}
                                  </div>
 
                              </div>

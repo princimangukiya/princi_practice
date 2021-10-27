@@ -86,10 +86,10 @@
 
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
-                             <label class="form-label">Old Weight </label>
+                             <label class="form-label">Rough Weight </label>
                              <div style="display: flex;">
                                  <input id="d_wt" type="text" name="d_wt" class="form-control"
-                                     value="{{ $Diamond_purchase->d_wt }}" placeholder="Enter New Weight"
+                                     value="{{ $Diamond_purchase->d_wt }}" placeholder="Enter Polish Weight"
                                      readonly="readonly">
                                  @error('bar_code')
                                      <small class="errorTxt1">
@@ -107,7 +107,7 @@
                              <label class="form-label">Price </label>
                              <div style="display: flex;">
                                  <input id="price" type="text" name="price" class="form-control"
-                                     value="{{ $Diamond_purchase->price }}" placeholder="Enter New Weight">
+                                     value="{{ $Diamond_purchase->price }}" placeholder="Enter Polish Weight">
                                  @error('bar_code')
                                      <small class="errorTxt1">
                                          <div id="title-error" class="error" style="margin-left:3rem">
@@ -121,10 +121,10 @@
                      </div>
                      <div class="col-sm-6 col-md-6">
                          <div class="form-group">
-                             <label class="form-label">Enter New Weight :- </label>
+                             <label class="form-label">Enter Polish Weight :- </label>
                              <div style="display: flex;">
                                  <input id="d_n_wt" type="text" name="d_n_wt" class="form-control inputField"
-                                     value="{{ $Diamond->d_n_wt }}" placeholder="Enter New Weight">
+                                     value="{{ $Diamond->d_n_wt }}" placeholder="Enter Polish Weight">
                                  @error('bar_code')
                                      <small class="errorTxt1">
                                          <div id="title-error" class="error" style="margin-left:3rem">

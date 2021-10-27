@@ -46,8 +46,8 @@
                                          <th class="border-bottom-0">Manager Name</th>
                                          <th class="border-bottom-0">Party Supplier</th>
                                          <th class="border-bottom-0">Bar Code</th>
-                                         <th class="border-bottom-0">Old Weight</th>
-                                         <th class="border-bottom-0">New Weight</th>
+                                         <th class="border-bottom-0">Rough Weight</th>
+                                         <th class="border-bottom-0">Polish Weight</th>
                                          {{-- <th>Package</th> --}}
                                          <th class="border-bottom-0">Shape</th>
                                          <th class="border-bottom-0">Price</th>
