@@ -148,6 +148,7 @@
                              <th class="border-bottom-0">Price</th>
                              <th class="border-bottom-0">New Weight</th>
                              <th class="border-bottom-0">Date</th>
+                             <th class="border-bottom-0">Hidden Date</th>
                          </tr>
                      </thead>
                  </table>
@@ -190,10 +191,13 @@
                      "ordering": true,
                      "info": true,
                      "autoWidth": false,
-                     "sDom": 'lfrtip'
+                     "sDom": 'lfrtip',
+                     "order": [
+                         [5, "desc"]
+                     ]
                  });
-                 // mytable.row.add([id, 'pkt1', '10.5']);
-                 // mytable.draw();
+                 mytable.columns(5).visible(false);
+
              });
          </script>
          <script>
@@ -207,6 +211,7 @@
                  var manager_name = $('#m_id').find(":selected").text();
                  var date = $('#Date').val();
                  var c_id = '{{ Session::get('c_id') }}';
+                 var today = new Date();
 
                  // alert(barcode);
                  // alert(m_id);
@@ -268,7 +273,7 @@
                              alertShow(msg, type);
                              $('#bar_code').focus();
                          } else if (response_msg.success == 200) {
-                             mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt, date]);
+                             mytable.row.add([manager_name, barcode, d_wt, price, d_n_wt, date, today]);
                              mytable.draw();
                              $('#bar_code').val('');
                              $('#price').val('');

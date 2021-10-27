@@ -103,27 +103,35 @@
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->return_date)) }}
                                              </td>
-
-                                             <td class="align-middle"
-                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                 <a href="{{ route('ready_stock.edit', ['id' => $value->r_id]) }}"
-                                                     style="margin-right: 5px;">
-                                                     <div class="btn-group align-top">
-                                                         <button class="btn btn-sm btn-success" type="button"
-                                                             data-toggle="modal"
-                                                             data-target="#user-form-modal">Edit</button>
-                                                         <button class="btn btn-sm btn-success" type="button"><i
-                                                                 class="fe fe-edit-2"></i></button>
-                                                     </div>
-                                                 </a>
-                                                 <div class="btn-group align-top">
-                                                     <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
-                                                         id="smallButton" data-id="{{ $value->r_id }}"
-                                                         data-target="#smallModal"
-                                                         data-href="{{ route('ready_stock.destroy', $value->r_id) }}">Delete
-                                                         <i class="fe fe-trash-2"></i></button>
-                                                 </div>
                                              </td>
+                                             @if ($value->dif_pcs == 0)
+                                                 <td class="text-center">
+                                                     <a href="/defective-pcs">
+                                                         <button class="btn btn-sm btn-info" type="button">View <i
+                                                                 class="zmdi zmdi-eye"></i></button></a>
+                                                 </td>
+                                             @else
+                                                 <td class="align-middle"
+                                                     style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                     <a href="{{ route('ready_stock.edit', ['id' => $value->r_id]) }}"
+                                                         style="margin-right: 5px;">
+                                                         <div class="btn-group align-top">
+                                                             <button class="btn btn-sm btn-success" type="button"
+                                                                 data-toggle="modal"
+                                                                 data-target="#user-form-modal">Edit</button>
+                                                             <button class="btn btn-sm btn-success" type="button"><i
+                                                                     class="fe fe-edit-2"></i></button>
+                                                         </div>
+                                                     </a>
+                                                     <div class="btn-group align-top">
+                                                         <button class="btn btn-sm btn-danger diaDeleteBtn"
+                                                             data-toggle="modal" id="smallButton"
+                                                             data-id="{{ $value->r_id }}" data-target="#smallModal"
+                                                             data-href="{{ route('ready_stock.destroy', $value->r_id) }}">Delete
+                                                             <i class="fe fe-trash-2"></i></button>
+                                                     </div>
+                                                 </td>
+                                             @endif
                                          </tr>
                                      @endforeach
                                      @if (!$ready_stock->isEmpty())

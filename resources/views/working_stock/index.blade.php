@@ -81,25 +81,33 @@
                                              <td>
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
-                                             <td class="text-center"
-                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                 <a href="{{ route('working_stock.edit', ['id' => $value->w_id]) }}"
-                                                     style="margin-right: 5px;">
+                                             @if ($value->dif_pcs == 0)
+                                                 <td class="text-center">
+                                                     <a href="/defective-pcs">
+                                                         <button class="btn btn-sm btn-info" type="button">View <i
+                                                                 class="zmdi zmdi-eye"></i></button></a>
+                                                 </td>
+                                             @else
+                                                 <td class="text-center"
+                                                     style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                     <a href="{{ route('working_stock.edit', ['id' => $value->w_id]) }}"
+                                                         style="margin-right: 5px;">
+                                                         <div class="btn-group align-top">
+                                                             <button class="btn btn-sm btn-success" type="button"
+                                                                 data-toggle="modal"
+                                                                 data-target="#user-form-modal">Edit</button>
+                                                             <button class="btn btn-sm btn-success" type="button"><i
+                                                                     class="fe fe-edit-2"></i></button>
+                                                         </div>
+                                                     </a>
                                                      <div class="btn-group align-top">
-                                                         <button class="btn btn-sm btn-success" type="button"
-                                                             data-toggle="modal"
-                                                             data-target="#user-form-modal">Edit</button>
-                                                         <button class="btn btn-sm btn-success" type="button"><i
-                                                                 class="fe fe-edit-2"></i></button>
+                                                         <button class="btn btn-sm btn-danger diaDeleteBtn"
+                                                             data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                                             data-href="{{ route('working_stock.destroy', $value->w_id) }}">Delete
+                                                             <i class="fe fe-trash-2"></i></button>
                                                      </div>
-                                                 </a>
-                                                 <div class="btn-group align-top">
-                                                     <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
-                                                         id="smallButton" data-target="#smallModal"
-                                                         data-href="{{ route('working_stock.destroy', $value->w_id) }}">Delete
-                                                         <i class="fe fe-trash-2"></i></button>
-                                                 </div>
-                                             </td>
+                                                 </td>
+                                             @endif
                                          </tr>
 
                                      @endforeach
