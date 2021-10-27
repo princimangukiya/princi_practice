@@ -1,6 +1,6 @@
 @extends('app')
 @section('page-title')
-Party Labour
+    Party Labour
 @endsection
 
 @section('content')
@@ -278,9 +278,6 @@ Party Labour
         </div>
     </div>
     <!-- /Row -->
-    <div id="global-loader">
-        <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
-    </div>
     </div>
     </div><!-- end app-content-->
     </div>
