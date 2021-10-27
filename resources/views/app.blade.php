@@ -140,7 +140,11 @@
                     @include('T3_layout.header')
                     <!--/app header-->
                     <!--Page header-->
+                    <div id="global-loader">
+                        <img src="{{ asset('assets/images/svgs/loader.svg') }}" alt="loader">
+                    </div>
                     @yield('content')
+
                 </div>
             </div>
             <!-- End app-content-->
