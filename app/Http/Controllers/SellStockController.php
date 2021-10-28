@@ -80,7 +80,7 @@ class SellStockController extends Controller
                 $newitem['return_date'] = $request->date;
                 $newitem['deleted_at'] = null;
                 Sell_Stock::withTrashed()->where('sell_id', $sellStockData->sell_id)->update($newitem);
-                D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => 1]);
+                D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => $request->date]);
                 Ready_Stock::where('d_id', $Diamond->d_id)->update(['status' => 0]);
                 return Response::json(array('success' => 200));
             } else if ($Diamond->s_id != $request->s_id) {
@@ -93,7 +93,7 @@ class SellStockController extends Controller
                 $newitem->return_date = $request->date;
                 $newitem->save();
 
-                D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => 1]);
+                D_Purchase::where('d_id', $Diamond->d_id)->update(['isReturn' => $request->date]);
                 Ready_Stock::where('d_id', $Diamond->d_id)->update(['status' => 0]);
                 return Response::json(array('success' => 200));
             }

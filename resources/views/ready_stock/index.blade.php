@@ -59,7 +59,7 @@
                                      @foreach ($ready_stock as $key => $value)
                                          <tr>
                                              @if ($value->Diamond->status == 0)
-                                                 <td style="background-color: #dc0441;">
+                                                 <td style="background-color: #EF4B4B; color:white;">
                                                      {{ $key + 1 }}
                                                  </td>
                                              @else
@@ -77,7 +77,7 @@
                                                  {{ $s_name['s_name'] }}
                                              </td>
                                              @if ($value->Diamond->status == 0)
-                                                 <td style="background-color: #dc0441;">
+                                                 <td style="background-color: #EF4B4B; color:white;">
                                                      {{ $value->Diamond->d_barcode }}
                                                  </td>
                                              @else

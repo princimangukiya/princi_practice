@@ -68,7 +68,7 @@
                 <tr>
                     <td colspan="7" class="text-center">
 
-                        <p>{{ $company_detail['c_adress'] }}<br>Mo.{{ $company_detail['c_mobile'] }} | Email
+                        <p>{{ $company_detail['c_address'] }}<br>Mo.{{ $company_detail['c_mobile'] }} | Email
                             :{{ $company_detail['c_email'] }}<br><b>GSTIN
                                 :{{ $company_detail['c_gstin'] }}</b><br>Date:{{ date('d-m-Y', strtotime($start_date)) }}
                             &nbsp; To:

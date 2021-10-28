@@ -213,8 +213,7 @@ class ReportController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', 1]])
-            ->orWhere('d_purchase.status', 0)
+        $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', '<>', '']])
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->get(['d_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
@@ -245,8 +244,7 @@ class ReportController extends Controller
             if (empty($End_date)) {
                 $End_date = Carbon::now()->format('Y-m-d');
             }
-            $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', 1]])
-                ->orWhere('d_purchase.status', 0)
+            $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', '<>', '']])
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
@@ -268,8 +266,7 @@ class ReportController extends Controller
             if (empty($End_date)) {
                 $End_date = Carbon::now()->format('Y-m-d');
             }
-            $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id], ['d_purchase.isReturn', 1]])
-                ->orWhere([['d_purchase.status', 0], ['d_purchase.s_id', $s_id]])
+            $data['inward'] = D_Purchase::where([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id], ['d_purchase.isReturn', '<>', '']])
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
@@ -361,10 +358,9 @@ class ReportController extends Controller
             }
             $data = D_Purchase::join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where('d_purchase.status', 0)
-                ->orWhere([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', 1]])
+                ->orWhere([['d_purchase.c_id', $c_id], ['d_purchase.isReturn', '<>', '']])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
-                ->orderBy('d_purchase.bill_date', 'ASC')
+                ->orderBy('d_purchase.bill_date', 'DESC')
                 ->get(['d_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
@@ -383,10 +379,9 @@ class ReportController extends Controller
             }
             $data = D_Purchase::join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
-                ->where([['d_purchase.status', 0], ['d_purchase.s_id', $s_id]])
-                ->orWhere([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id], ['d_purchase.isReturn', 1]])
+                ->orWhere([['d_purchase.c_id', $c_id], ['d_purchase.s_id', $s_id], ['d_purchase.isReturn', '<>', '']])
                 ->whereBetween('d_purchase.bill_date', [$start_date, $End_date])
-                ->orderBy('d_purchase.bill_date', 'ASC')
+                ->orderBy('d_purchase.bill_date', 'DESC')
                 ->get(['d_purchase.*', 'diamond_shape.shape_name', 'supplier_details.s_name']);
             // $data = sell_stock::join('d_purchase', 'sell_stock.d_id', '=', 'd_purchase.d_id')
             //     ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
@@ -518,38 +513,40 @@ class ReportController extends Controller
     }
     public function generatePDF_Party_Labour(Request $request)
     {
-        $s_id = $request->s_id;
         $data = array();
-        $c_id = session()->get('c_id');
+        $s_id = $request->s_id;
         $start_date = $request->Start_date;
         $End_date = $request->End_date;
-        $data['s_name'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+        $c_id = session()->get('c_id');
         $data['today_date'] = Carbon::now();
+        // $data['supplier'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])
+        //     ->get();
         if (empty($start_date)) {
             $start_date = new Carbon('first day of January 2000');
         }
         if (empty($End_date)) {
             $End_date = Carbon::now()->format('Y-m-d');
         }
-        $data['supplier'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
-        foreach ($data['supplier'] as $key => $supplier) {
-            $s_id = $supplier->s_id;
-            $rate[$s_id] = array();
-            $daimond_data[$s_id] = array();
-            $issueCuts[$s_id] = array();
-            $outCuts[$s_id] = array();
-            $price[$s_id] = array();
-            $labour[$s_id] = array();
-            $sell_stock = sell_stock::where('s_id', $s_id)->get();
-            $daimond = D_Purchase::where('s_id', $s_id)
-                ->whereBetween('bill_date', [$start_date, $End_date])
-                ->get();
-            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first('json_price');
-            if (empty($json_data)) {
-                // echo 1;
-                // echo "<br>";
-            } else {
-                $json_data = $json_data['json_price'];
+        if (empty($s_id)) {
+
+            $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
+            foreach ($data['supplier'] as $key => $supplier) {
+
+
+                $s_id = $supplier->s_id;
+                // $data['diamond'] = D_Purchase::where('s_id', $s_id)->get();
+                $sell_stock = sell_stock::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+                $daimond = D_Purchase::where([['c_id', $c_id], ['s_id', $s_id]])
+                    ->whereBetween('bill_date', [$start_date, $End_date])
+                    ->get();
+                $json_data = rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->get('json_price');
+                $rate[$s_id] = array();
+                $daimond_data[$s_id] = array();
+                $issueCuts[$s_id] = array();
+                $outCuts[$s_id] = array();
+                $price[$s_id] = array();
+                $labour[$s_id] = array();
+                $json_data = $json_data[0]['json_price'];
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
@@ -566,7 +563,7 @@ class ReportController extends Controller
                     $labour_price = 0;
                     $total_new_weight = 0;
                     foreach ($daimond as $r) {
-                        // if ($r->status == 1) {
+                        // if ($r->status == 0) {
                         if ($s_id == $r->s_id) {
                             foreach ($sell_stock as $value) {
                                 if ($value['d_id'] == $r->d_id) {
@@ -602,16 +599,79 @@ class ReportController extends Controller
             $data['end_date'] = $End_date;
             $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
             // return view('Report.party_Labour_formate', $data);
+            $pdf = PDF::loadView('Report.Party_Labour_Formate_all', $data);
+            return $pdf->download('Party_Labour_all.pdf');
+        } else {
+            $data['supplier'] = Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+            foreach ($data['supplier'] as $key => $supplier) {
+                $s_id = $supplier->s_id;
+                $sell_stock = sell_stock::where('s_id', $s_id)->get();
+                $daimond = D_Purchase::where('s_id', $s_id)
+                    ->whereBetween('bill_date', [$start_date, $End_date])
+                    ->get();
+                $json_data = rate_master::where('rate_masters.s_id', $s_id)->get('json_price');
+                $rate[$s_id] = array();
+                $daimond_data[$s_id] = array();
+                $issueCuts[$s_id] = array();
+                $outCuts[$s_id] = array();
+                $price[$s_id] = array();
+                $labour[$s_id] = array();
+                $json_data = $json_data[0]['json_price'];
+                $json_decoded = json_decode($json_data);
+                foreach ($json_decoded[0] as $key => $val) {
+                    $r_id = $key;
+                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = $wt_category[0]['wt_category'];
+                    $fetchPrice = $val;
+                    array_push($price[$s_id], $fetchPrice);
+                    array_push($rate[$s_id], $wt_category);
+                    $count1 = 0;
+                    $total_weight = 0;
+                    $d_weight = 0;
+                    $d_n_wt = 0;
+                    $count = 0;
+                    $labour_price = 0;
+                    $total_new_weight = 0;
+                    foreach ($daimond as $r) {
+                        if ($s_id == $r->s_id) {
+                            foreach ($sell_stock as $value) {
+                                if ($value['d_id'] == $r->d_id) {
+                                    $daimond_categorie_id = $r->d_wt_category;
+
+                                    if ($r_id == $daimond_categorie_id) {
+                                        $count1 = $count1 + 1;
+                                        $d_weight = $total_weight + $r->d_wt;
+                                        $total_weight = $d_weight;
+                                        $d_n_wt = $total_new_weight + $r->d_n_wt;
+                                        $total_new_weight = $d_n_wt;
+                                        $count = $labour_price + $r->price;
+                                        $labour_price = $count;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    array_push($daimond_data[$s_id], $count1);
+                    array_push($issueCuts[$s_id], $total_weight);
+                    array_push($outCuts[$s_id], $total_new_weight);
+                    array_push($labour[$s_id], $labour_price);
+                }
+            }
+            $data['rates'] = $rate;
+            $data['counts'] = $daimond_data;
+            $data['issueCuts'] = $issueCuts;
+            $data['outCuts'] = $outCuts;
+            $data['price'] = $price;
+            $data['labour'] = $labour;
+            $data['start_date'] = $start_date;
+            $data['end_date'] = $End_date;
+            $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
+            // return view('Report.party_Labour_formate', $data);
             $pdf = PDF::loadView('Report.party_Labour_formate', $data);
             return $pdf->download('Party_Labour.pdf');
         }
     }
-    // public function genrate_pdf($data)
-    // {
-    //     $data = $data;
 
-    //     echo $data;
-    // }
     public function search_data_Party_Labour(Request $request)
     {
         $data = array();

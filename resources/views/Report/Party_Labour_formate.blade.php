@@ -59,7 +59,7 @@
                             Diamond</b></td>
                 </tr>
                 <tr>
-                    <td colspan="8" rowspan="1" style="text-align: center;"><b>{{ $company_detail['c_adress'] }}</b>
+                    <td colspan="8" rowspan="1" style="text-align: center;"><b>{{ $company_detail['c_address'] }}</b>
                     </td>
                 </tr>
                 <tr>
@@ -80,9 +80,9 @@
                 <tr>
                     <td colspan="5" rowspan="4">
                         <div class="box-title">To,</div>
-                        <div class="box-content title-name">Name :- {{ $s_name[0]['s_name'] }}</div>
-                        <div class="box-content title-name">Address :- {{ $s_name[0]['s_address'] }}</div>
-                        <div class="box-content title-name">GSTIN :- {{ $s_name[0]['s_gst'] }}</div>
+                        <div class="box-content title-name">Name :- {{ $supplier[0]['s_name'] }}</div>
+                        <div class="box-content title-name">Address :- {{ $supplier[0]['s_address'] }}</div>
+                        <div class="box-content title-name">GSTIN :- {{ $supplier[0]['s_gst'] }}</div>
                         <div class="box-content title-name">PAN :- AALFR9869B</div>
                         <div class="box-content title-name">State :- GUJARAT CODE : 24</div>
                     </td>
@@ -326,13 +326,13 @@
                                 $here_digits[$counter] .
                                 $add_plural .
                                 ' 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
                                 $amt_hundred
                             : $change_words[floor($amount / 10) * 10] .
                                 ' ' .
                                 $change_words[$amount % 10] .
                                 ' 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ' .
                                 $here_digits[$counter] .
                                 $add_plural .
                                 ' ' .
@@ -347,7 +347,7 @@
                     ? 'And ' .
                         ($change_words[$amount_after_decimal / 10] .
                             " 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           " .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           " .
                             $change_words[$amount_after_decimal % 10]) .
                         ' Paise'
                     : '';

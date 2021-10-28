@@ -10,6 +10,13 @@
         }
 
     </style>
+    <script>
+        if (empty($error)) {
+
+        } else {
+            alert($error);
+        }
+    </script>
     <div class="page-header">
         <div class="page-leftheader">
             <h4 class="page-title mb-0">Party Labour</h4>
@@ -161,9 +168,6 @@
                     </div>
                     {{-- </form> --}}
                 </div>
-                {{-- @php
-                    echo $Pay_Labour;
-                @endphp --}}
                 <div class="card-body">
                     <div>
 
@@ -327,9 +331,6 @@
                 "autoWidth": false,
                 "sDom": 'lfrtip',
             });
-            // alert(s_id);
-            // alert(Start_date);
-            // alert(End_date);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -346,22 +347,11 @@
                 },
                 dataType: 'json',
                 success: function(response_msg) {
-                    // // alert(response_msg.success);
-                    // console.log(response_msg.success);
-                    // console.log(response_msg.success.supplier);
-                    // console.log(response_msg.success.rates);
                     console.log(response_msg.success.counts);
-                    // console.log(response_msg.success.issueCuts);
-                    // console.log(response_msg.success.outCuts);
-                    // console.log(response_msg.success.price);
-                    // console.log(response_msg.success.labour);
                     if (response_msg == null) {
                         alert('controller Succesfully Called !!!!!');
                     }
                     if (response_msg.success) {
-
-                        // $("#p_gst_id").val(bill_no);
-                        // const length = Object.keys(response_msg.success).length;
                         console.log(response_msg.success.supplier);
                         $('#Party_Tabel tbody').empty();
 

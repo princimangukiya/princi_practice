@@ -106,17 +106,7 @@
                                                  <td>{{ $item }}
                                                      @if ($value->rate_cat_pcs != null)
                                                          @if ($key == $count)
-                                                             <button class="btn" data-placement="top"
-                                                                 data-toggle="tooltip"
-                                                                 title="This Rate Selected For Rate Count With Pics."
-                                                                 type="button"><i class="fa fa-check"
-                                                                     style="color: green"></i></button>
-                                                             <div class="tooltip bs-tooltip-top" role="tooltip">
-                                                                 <div class="arrow"></div>
-                                                                 <div class="tooltip-inner">
-
-                                                                 </div>
-                                                             </div>
+                                                             <span class="badge badge-pill badge-success mt-2">Pcs..</span>
                                                          @endif
                                                      @endif
                                                  </td>

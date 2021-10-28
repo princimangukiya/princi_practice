@@ -322,7 +322,7 @@
                                                  {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                              </td>
                                              <td>
-                                                 {{ date('d-m-Y', strtotime($value->return_date)) }}
+                                                 {{ date('d-m-Y', strtotime($value->isReturn)) }}
                                              </td>
 
                                          </tr>

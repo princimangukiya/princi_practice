@@ -186,8 +186,6 @@
              </div>
          </div>
      </div>
-     {{-- <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-     <script src="{{ asset('assets/js/jquery.js') }}"></script> --}}
      <script>
          var id, mytable;
          $(document).ready(function() {

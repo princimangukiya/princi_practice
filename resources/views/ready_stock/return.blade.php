@@ -160,11 +160,6 @@
      <!-- /Row -->
      <div class="row">
 
-
-
-         <script src="{{ asset('assets/js/quagga.min.js') }}"></script>
-         <script src="{{ asset('assets/js/jquery.js') }}"></script>
-
          <script>
              var currentBoxNumber = 0;
              $(".inputField").keyup(function(event) {

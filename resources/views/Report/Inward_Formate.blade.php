@@ -153,8 +153,6 @@
                                 $i = 1;
                             @endphp
                             @foreach ($inward as $key => $value)
-                                {{-- @if ($value->s_id == 8) --}}
-
                                 @php
                                     $count = $count + 1;
                                 @endphp
@@ -170,17 +168,10 @@
                                     <td>
                                         {{ $value->d_barcode }}
                                     </td>
-                                    {{-- <td class="myguj" style="border: 1px solid lightgrey">
-                                                    {{ $value->shape_name }}
-                                                </td> --}}
                                     <td>
                                         {{ $value->d_wt }}
-                                    </td>
-                                    {{-- <td style="border: 1px solid lightgrey">
-                                                    {{ $value->d_n_wt }}
-                                                </td> --}}
-                                    <td>
-                                        {{ date('d-m-Y', strtotime($value->bill_date)) }}
+                                    </td <td>
+                                    {{ date('d-m-Y', strtotime($value->bill_date)) }}
                                     </td>
                                 </tr>
                                 {{-- @endif --}}

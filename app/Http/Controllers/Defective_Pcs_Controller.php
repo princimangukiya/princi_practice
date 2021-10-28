@@ -90,7 +90,7 @@ class Defective_Pcs_Controller extends Controller
                 $newitem->date = $request->date;
                 $newitem->from_where = $fromWhere;
                 $newitem->save();
-                D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
+                D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
                 if ($barcodeExist['isReady'] != null) {
                     Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
                 } else {
@@ -143,7 +143,7 @@ class Defective_Pcs_Controller extends Controller
 
             defective_pcs::where('d_id', $d_id)->update($newitem);
 
-            D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0]);
+            D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
             return redirect('/defective-pcs');
         } catch (\Throwable $th) {
             return Response::json(array('success' => false));
@@ -161,7 +161,7 @@ class Defective_Pcs_Controller extends Controller
         $time = Carbon::now();
         defective_pcs::where('df_id', $id)->update(['deleted_at' => $time]);
         $diamond = D_Purchase::where('d_id', $d_id)->first();
-        D_Purchase::where('d_id', $d_id)->update(['status' => 1]);
+        D_Purchase::where('d_id', $d_id)->update(['status' => 1, 'isReturn' => null]);
         if ($diamond['isReady'] != null) {
             Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
         } else {
