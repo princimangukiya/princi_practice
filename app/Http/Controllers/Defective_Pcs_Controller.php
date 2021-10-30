@@ -30,7 +30,7 @@ class Defective_Pcs_Controller extends Controller
             ->where('defective_pcs.c_id', $c_id)
             ->get(['defective_pcs.*', 'd_purchase.*']);
 
-        return view('Defective_Pcs.index', $data);
+        return view('Defective_pcs.index', $data);
     }
 
     public function create()

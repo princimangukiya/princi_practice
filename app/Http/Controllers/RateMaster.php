@@ -21,6 +21,7 @@ class RateMaster extends Controller
         $data['supplier_name'] = rate_master::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
             ->where('supplier_details.c_id', $c_id)
             ->get(['supplier_details.*']);
+
         return view('Rate_Master.index', $data);
     }
     public function create()
@@ -148,16 +149,9 @@ class RateMaster extends Controller
 
         return Redirect::to('/rate-master');
     }
-    // public function destroy($id)
-    // {
-    //     //
-    //     $suplier = rate_master::find($id);
-    //     $suplier->delete();
-    //     $notification = array(
-    //         'message' => 'User Deleted!',
-    //         'alert-type' => 'success'
-    //     );
-
-    //     return Redirect::to('/rate-master')->with($notification);
-    // }
+    public function destroy($id)
+    {
+        $rates = rate_master::where('rate_id', $id)->first('json_price');
+        echo $rates;
+    }
 }

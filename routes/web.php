@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/rate-master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
     Route::get('/rate-master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
     Route::post('/rate-master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
-    // Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+    Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
 
     //Weight-category
     Route::get('/weight-category', 'App\Http\Controllers\WeightCategoryController@index')->name('Weight-Category');
