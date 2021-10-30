@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 
-class Defective_Pcs_Controller extends Controller
+class DefectivePcsController extends Controller
 {
     public function index()
     {

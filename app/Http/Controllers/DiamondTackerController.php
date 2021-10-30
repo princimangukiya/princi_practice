@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 
-class Diamond_tacker_Controller extends Controller
+class DiamondTackerController extends Controller
 {
     public function index()
     {

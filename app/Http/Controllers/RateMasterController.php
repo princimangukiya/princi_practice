@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
 
-class RateMaster extends Controller
+class RateMasterController extends Controller
 {
     public function index()
     {

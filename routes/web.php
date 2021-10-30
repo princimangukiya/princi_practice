@@ -74,25 +74,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/sell-stock/{id}/destroy', 'App\Http\Controllers\SellStockController@destroy')->name('sell_stock.destroy');
 
     //defective-pcs
-    Route::get('/defective-pcs', 'App\Http\Controllers\Defective_Pcs_Controller@index')->name('Defective_Pcs');
-    Route::get('/defective-pcs/create', 'App\Http\Controllers\Defective_Pcs_Controller@create')->name('Defective_Pcs.create');
-    Route::post('/defective-pcs/store', 'App\Http\Controllers\Defective_Pcs_Controller@store')->name('Defective_Pcs.store');
-    Route::get('/defective-pcs/edit/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@edit')->name('Defective_Pcs.edit');
-    Route::post('/defective-pcs/update/{id}', 'App\Http\Controllers\Defective_Pcs_Controller@update')->name('Defective_Pcs.update');
-    Route::post('/defective-pcs/{id}/destroy', 'App\Http\Controllers\Defective_Pcs_Controller@destroy')->name('Defective_Pcs.destroy');
+    Route::get('/defective-pcs', 'App\Http\Controllers\DefectivePcsController@index')->name('Defective_Pcs');
+    Route::get('/defective-pcs/create', 'App\Http\Controllers\DefectivePcsController@create')->name('Defective_Pcs.create');
+    Route::post('/defective-pcs/store', 'App\Http\Controllers\DefectivePcsController@store')->name('Defective_Pcs.store');
+    Route::get('/defective-pcs/edit/{id}', 'App\Http\Controllers\DefectivePcsController@edit')->name('Defective_Pcs.edit');
+    Route::post('/defective-pcs/update/{id}', 'App\Http\Controllers\DefectivePcsController@update')->name('Defective_Pcs.update');
+    Route::post('/defective-pcs/{id}/destroy', 'App\Http\Controllers\DefectivePcsController@destroy')->name('Defective_Pcs.destroy');
 
     //rate-master 
-    Route::get('/rate-master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
-    Route::get('/rate-master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
-    Route::post('/rate-master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
-    Route::get('/rate-master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
-    Route::post('/rate-master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
-    Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+    Route::get('/rate-master', 'App\Http\Controllers\RateMasterController@index')->name('rate_master');
+    Route::get('/rate-master/create', 'App\Http\Controllers\RateMasterController@create')->name('rate_master.create');
+    Route::post('/rate-master/store', 'App\Http\Controllers\RateMasterController@store')->name('rate_master.store');
+    Route::get('/rate-master/edit/{id}', 'App\Http\Controllers\RateMasterController@edit')->name('rate_master.edit');
+    Route::post('/rate-master/update/{id}', 'App\Http\Controllers\RateMasterController@update')->name('rate_master.update');
+    Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMasterController@destroy')->name('rate_master.destroy');
 
     //Weight-category
     Route::get('/weight-category', 'App\Http\Controllers\WeightCategoryController@index')->name('Weight-Category');
     Route::get('/weight-category/create', 'App\Http\Controllers\WeightCategoryController@create')->name('Weight-Category.create');
-    Route::post('/rates/rates-store', 'App\Http\Controllers\RateMaster@rates_store')->name('rate_master.rates_store');
+    Route::post('/rates/rates-store', 'App\Http\Controllers\RateMasterController@rates_store')->name('rate_master.rates_store');
     Route::post('/weight-category/{id}/destroy', 'App\Http\Controllers\WeightCategoryController@destroy')->name('weight-category.destroy');
 
 
@@ -119,8 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //diamond Tracker
-    Route::get('/Diamond-tracker', 'App\Http\Controllers\diamond_tacker_Controller@index')->name('diamond_tracker');
-    Route::post('/Diamond-tracker-search', 'App\Http\Controllers\diamond_tacker_Controller@Diamond_tracker_search')->name('Diamond_tracker_search');
+    Route::get('/Diamond-tracker', 'App\Http\Controllers\DiamondTackerController@index')->name('diamond_tracker');
+    Route::post('/Diamond-tracker-search', 'App\Http\Controllers\DiamondTackerController@Diamond_tracker_search')->name('Diamond_tracker_search');
 
 
     //user change route
