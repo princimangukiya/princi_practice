@@ -24,7 +24,15 @@
     <div class="row">
         <div class="col-12">
             <!--div-->
+            @if (session()->has('message'))
+                {{-- <div class="alert alert-success">
 
+                </div> --}}
+                <div class="alert alert-danger col-6" style="float: right;" role="alert"><i class="fa fa-frown-o mr-2"
+                        aria-hidden="true"></i>{{ session()->get('message') }}<button type="button" class="close"
+                        data-dismiss="alert" aria-hidden="true">×</button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Weight Category Details</div>

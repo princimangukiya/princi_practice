@@ -53,11 +53,7 @@ class WeightCategoryController extends Controller
             return redirect('/weight-category')->with($notification);
         } else {
             rate::where('r_id', $id)->delete();
-            $notification = array(
-                'message' => 'Weight Category Is Deleted !',
-                'alert-type' => 'Success'
-            );
-            return redirect('/weight-category')->with($notification);
+            return redirect('/weight-category');
         }
     }
 }
