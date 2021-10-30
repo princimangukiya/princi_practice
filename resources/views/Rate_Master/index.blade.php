@@ -70,12 +70,12 @@
                                                                  class="fe fe-edit-2"></i></button>
                                                      </div>
                                                  </a>
-                                                 <div class="btn-group align-top">
+                                                 {{-- <div class="btn-group align-top">
                                                      <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
                                                          id="smallButton" data-target="#smallModal"
                                                          data-href="{{ route('rate_master.destroy', $value->Rate_id) }}">Delete
                                                          <i class="fe fe-trash-2"></i></button>
-                                                 </div>
+                                                 </div> --}}
                                                  {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
                                                      method="post">
                                                      @csrf
