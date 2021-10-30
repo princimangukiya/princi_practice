@@ -70,12 +70,12 @@
                                                                  class="fe fe-edit-2"></i></button>
                                                      </div>
                                                  </a>
-                                                 {{-- <div class="btn-group align-top">
+                                                 <div class="btn-group align-top">
                                                      <button class="btn btn-sm btn-danger diaDeleteBtn" data-toggle="modal"
                                                          id="smallButton" data-target="#smallModal"
                                                          data-href="{{ route('rate_master.destroy', $value->Rate_id) }}">Delete
                                                          <i class="fe fe-trash-2"></i></button>
-                                                 </div> --}}
+                                                 </div>
                                                  {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
                                                      method="post">
                                                      @csrf
@@ -157,47 +157,26 @@
                                                              <div class="modal-body">
 
                                                                  <h6>Are You Sure To Delete Weight Category price ?</h6>
-                                                                 <div style="display: flex;">
-                                                                     <div class="col-6">
-                                                                         <label class="form-label">Supplier Name</label>
-                                                                         <select id="s_id" name="s_id" required
-                                                                             class="form-control select2">
-                                                                             <optgroup label="Supplier">
-                                                                                 <option value="" disabled selected>Choose
-                                                                                     Supplier
-                                                                                 </option>
-                                                                                 @if (count($supplier_name) > 0)
-                                                                                     @foreach ($supplier_name as $value)
-                                                                                         <option
-                                                                                             value="{{ $value->s_id }}">
-                                                                                             {{ $value->s_name }}
-                                                                                         </option>
-                                                                                     @endforeach
-                                                                                 @endif
-                                                                             </optgroup>
-                                                                         </select>
-                                                                     </div>
-                                                                     <div class="col-6">
-                                                                         <h4><label class="form-label">Select Weight
-                                                                                 Categorey
-                                                                             </label></h4>
-                                                                         <select id="r_id" name="r_id" required
-                                                                             class="form-control select2">
-                                                                             <optgroup label="Rate">
-                                                                                 <option value="" disabled selected>Choose
-                                                                                     Weight
-                                                                                     Category</option>
-                                                                                 @if (count($rate) > 0)
-                                                                                     @foreach ($rate as $value)
-                                                                                         <option
-                                                                                             value="{{ $value->r_id }}">
-                                                                                             {{ $value->wt_category }}
-                                                                                         </option>
-                                                                                     @endforeach
-                                                                                 @endif
-                                                                             </optgroup>
-                                                                         </select>
-                                                                     </div>
+
+                                                                 <div class="col-10">
+                                                                     <h4><label class="form-label">Select Weight
+                                                                             Categorey
+                                                                         </label></h4>
+                                                                     <select id="r_id" name="r_id" required
+                                                                         class="form-control select2">
+                                                                         <optgroup label="Rate">
+                                                                             <option value="" disabled selected>Choose
+                                                                                 Weight
+                                                                                 Category</option>
+                                                                             @if (count($rate) > 0)
+                                                                                 @foreach ($rate as $value)
+                                                                                     <option value="{{ $value->r_id }}">
+                                                                                         {{ $value->wt_category }}
+                                                                                     </option>
+                                                                                 @endforeach
+                                                                             @endif
+                                                                         </optgroup>
+                                                                     </select>
                                                                  </div>
                                                              </div>
                                                              <div class="modal-footer">

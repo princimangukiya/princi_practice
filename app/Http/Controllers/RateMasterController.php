@@ -149,9 +149,11 @@ class RateMasterController extends Controller
 
         return Redirect::to('/rate-master');
     }
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $rates = RateMaster::where('rate_id', $id)->first('json_price');
-        echo $rates;
+        // echo $rates;
+        $r_id = $request->r_id;
+        echo $r_id;
     }
 }
