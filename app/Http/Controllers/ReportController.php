@@ -464,7 +464,7 @@ class ReportController extends Controller
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);
@@ -550,7 +550,7 @@ class ReportController extends Controller
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);
@@ -620,7 +620,7 @@ class ReportController extends Controller
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);
@@ -710,7 +710,7 @@ class ReportController extends Controller
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);
@@ -779,7 +779,7 @@ class ReportController extends Controller
                 $json_decoded = json_decode($json_data);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->get();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                     $wt_category = $wt_category[0]['wt_category'];
                     $fetchPrice = $val;
                     array_push($price[$s_id], $fetchPrice);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2021 at 03:21 PM
+-- Generation Time: Oct 30, 2021 at 09:13 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `company_details` (
   `c_id` int(15) NOT NULL,
   `c_name` varchar(250) NOT NULL,
-  `c_adress` varchar(255) DEFAULT NULL,
+  `c_address` varchar(255) DEFAULT NULL,
   `c_mobile` varchar(255) DEFAULT NULL,
   `c_email` varchar(255) DEFAULT NULL,
   `c_gstin` varchar(255) DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `company_details` (
 -- Dumping data for table `company_details`
 --
 
-INSERT INTO `company_details` (`c_id`, `c_name`, `c_adress`, `c_mobile`, `c_email`, `c_gstin`, `c_pan`, `c_state`, `created_at`, `updated_at`) VALUES
+INSERT INTO `company_details` (`c_id`, `c_name`, `c_address`, `c_mobile`, `c_email`, `c_gstin`, `c_pan`, `c_state`, `created_at`, `updated_at`) VALUES
 (1, 'VM JEWEL', '4TH FLOOR,PLOT NO. 39/40, GOPINATH COMPLEX, KAPUR VADI,KHODIYAR VADI, KHODIYAR NAGAR ROAD\nVARCHHA ROAD, SURAT. ', '98797 52799', 'vmjewel1001@gmail.com', '24AMKPP5226H1ZZ', '', '', NULL, NULL),
 (2, 'EKLINGJI GEMS', 'FLAT NO-A/203, SUNDAY AVENUE,WING-A, AMBATALAVADI ROAD, KATARGAM, SURAT, GUJARAT,\n395004', NULL, NULL, '24DHCPM9189L1ZN', 'DHCPM9189L', '24-GUJARAT', NULL, NULL);
 
@@ -126,7 +126,7 @@ CREATE TABLE `d_purchase` (
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `doReady` int(15) DEFAULT NULL,
   `isReady` tinyint(1) DEFAULT NULL,
-  `isReturn` tinyint(1) DEFAULT NULL,
+  `isReturn` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -138,23 +138,23 @@ CREATE TABLE `d_purchase` (
 
 INSERT INTO `d_purchase` (`d_id`, `c_id`, `s_id`, `d_barcode`, `d_wt`, `d_n_wt`, `d_col`, `d_pc`, `d_exp_pr`, `d_exp`, `d_cla`, `shape_id`, `d_wt_category`, `price`, `bill_date`, `status`, `doReady`, `isReady`, `isReturn`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (125, 1, 20, '10001', '0.103', '0.5', NULL, NULL, NULL, NULL, NULL, 2, 1, 50, '2021-10-01', 1, 17, 1, NULL, '2021-10-22 06:51:40', '2021-10-24 23:00:33', NULL),
-(126, 1, 20, '10002', '0.250', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 17, 1, 1, '2021-10-22 07:16:21', '2021-10-25 00:24:08', NULL),
+(126, 1, 20, '10002', '0.250', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 17, 1, '2021-10-25', '2021-10-22 07:16:21', '2021-10-25 00:24:08', NULL),
 (127, 1, 20, '10003', '0.25', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-22', 1, 31, 1, NULL, '2021-10-22 07:16:30', '2021-10-25 00:23:26', NULL),
-(128, 1, 20, '10009', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 105, '2021-10-22', 0, 17, NULL, NULL, '2021-10-22 07:17:17', '2021-10-25 23:58:09', NULL),
-(129, 1, 20, '10006', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-10-22', 0, NULL, NULL, NULL, '2021-10-22 07:17:45', '2021-10-25 23:58:04', NULL),
+(128, 1, 20, '10009', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 105, '2021-10-22', 0, 17, NULL, '2021-10-26', '2021-10-22 07:17:17', '2021-10-25 23:58:09', NULL),
+(129, 1, 20, '10006', '0.25', NULL, NULL, NULL, NULL, NULL, NULL, 3, 2, 90, '2021-10-22', 0, NULL, NULL, '2021-10-26', '2021-10-22 07:17:45', '2021-10-25 23:58:04', NULL),
 (130, 1, 20, '10007', '0.101', '0.2', NULL, NULL, NULL, NULL, NULL, 3, 1, 60, '2021-10-14', 1, 17, 1, NULL, '2021-10-22 22:12:02', '2021-10-25 23:57:13', NULL),
 (131, 2, 22, '100010', '0.203', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 50, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:17', '2021-10-22 22:40:09', NULL),
 (132, 2, 22, '100011', '0.10', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 20, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:28', '2021-10-22 22:40:32', NULL),
 (133, 2, 22, '100012', '0.203', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 50, '2021-10-23', 1, NULL, NULL, NULL, '2021-10-22 22:38:41', '2021-10-22 22:38:41', NULL),
-(134, 1, 20, '10004', '0.230', '0.115', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, 1, 1, '2021-10-23 05:43:58', '2021-10-25 00:17:04', NULL),
+(134, 1, 20, '10004', '0.230', '0.115', NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, 1, '2021-10-12', '2021-10-23 05:43:58', '2021-10-25 00:17:04', NULL),
 (135, 1, 20, '100015', '0.29', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 90, '2021-10-23', 1, 17, NULL, NULL, '2021-10-23 05:45:39', '2021-10-25 23:57:17', NULL),
 (139, 1, 23, '10005', '0.460', NULL, NULL, NULL, NULL, NULL, NULL, 2, 9, 450, '2021-10-27', 1, NULL, NULL, NULL, '2021-10-24 07:41:00', '2021-10-26 22:53:12', NULL),
 (140, 1, 23, '10008', '0.105', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 7.35, '2021-10-27', 1, NULL, NULL, NULL, '2021-10-24 07:42:22', '2021-10-26 22:53:24', NULL),
 (141, 1, 23, '121221', '0.125', NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, 8.75, '2021-10-27', 1, NULL, NULL, NULL, '2021-10-24 08:08:07', '2021-10-26 23:01:15', NULL),
 (142, 1, 23, '1212263', '0.260', NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, 182, '2021-10-27', 1, NULL, NULL, NULL, '2021-10-24 08:08:20', '2021-10-26 22:52:48', NULL),
-(143, 1, 23, '5623', '0.2', '0.10', NULL, NULL, NULL, NULL, NULL, 3, 1, 70, '2021-10-14', 0, 17, 1, NULL, '2021-10-24 08:08:59', '2021-10-25 23:58:19', NULL),
+(143, 1, 23, '5623', '0.2', '0.10', NULL, NULL, NULL, NULL, NULL, 3, 1, 70, '2021-10-14', 0, 17, 1, '2021-10-26', '2021-10-24 08:08:59', '2021-10-25 23:58:19', NULL),
 (151, 1, 23, '785236', '0.250', '0.125', NULL, NULL, NULL, NULL, NULL, 2, 2, 100, '2021-10-26', 1, 31, 1, NULL, '2021-10-26 07:18:35', '2021-10-26 07:22:07', NULL),
-(152, 1, 23, '100021', '0.125', '0.7', NULL, NULL, NULL, NULL, NULL, 2, 1, 8.75, '2021-10-27', 1, 31, 1, 1, '2021-10-26 07:19:37', '2021-10-26 22:48:50', NULL),
+(152, 1, 23, '100021', '0.125', '0.7', NULL, NULL, NULL, NULL, NULL, 2, 1, 8.75, '2021-10-27', 1, 31, 1, '2021-10-27', '2021-10-26 07:19:37', '2021-10-26 22:48:50', NULL),
 (161, 1, 20, '362514', '0.303', NULL, NULL, NULL, NULL, NULL, NULL, 2, 10, 45.45, '2021-10-27', 1, NULL, NULL, NULL, '2021-10-26 23:18:39', '2021-10-26 23:18:45', NULL),
 (162, 1, 20, '36295', '0.320', NULL, NULL, NULL, NULL, NULL, NULL, 2, 9, 64, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 23:19:14', '2021-10-26 23:19:14', NULL),
 (163, 1, 20, '362540', '0.320', NULL, NULL, NULL, NULL, NULL, NULL, 2, 9, 64, '2021-10-26', 1, NULL, NULL, NULL, '2021-10-26 23:19:27', '2021-10-26 23:19:27', NULL),
@@ -247,20 +247,24 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `rates` (
   `r_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
   `wt_category` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rates`
 --
 
-INSERT INTO `rates` (`r_id`, `wt_category`, `created_at`, `updated_at`) VALUES
-(1, '0.001-0.201', '2021-10-22 01:52:56', '2021-10-22 01:52:56'),
-(2, '0.202-0.30', '2021-10-22 01:54:59', '2021-10-22 01:54:59'),
-(9, '0.301-0.499', '2021-10-23 22:20:42', '2021-10-23 22:20:42'),
-(10, '0.21-0.41', '2021-10-24 09:03:55', '2021-10-24 09:03:55');
+INSERT INTO `rates` (`r_id`, `c_id`, `wt_category`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '0.001-0.201', '2021-10-22 01:52:56', '2021-10-22 01:52:56', NULL),
+(2, 1, '0.202-0.30', '2021-10-22 01:54:59', '2021-10-22 01:54:59', NULL),
+(9, 1, '0.301-0.499', '2021-10-23 22:20:42', '2021-10-23 22:20:42', NULL),
+(10, 1, '0.21-0.41', '2021-10-24 09:03:55', '2021-10-24 09:03:55', NULL),
+(11, 1, '0.501-0.601', '2021-10-30 00:43:41', '2021-10-30 00:43:41', NULL),
+(12, 1, '1.50-1.60', '2021-10-30 01:15:18', '2021-10-30 01:25:09', '2021-10-30 01:25:09');
 
 -- --------------------------------------------------------
 
@@ -283,10 +287,10 @@ CREATE TABLE `rate_masters` (
 --
 
 INSERT INTO `rate_masters` (`Rate_id`, `c_id`, `s_id`, `json_price`, `rate_cat_pcs`, `created_at`, `updated_at`) VALUES
-(9, 1, 20, '[{\"1\":\"80\",\"2\":\"40\",\"9\":\"500\",\"10\":\"150\"}]', 2, '2021-10-22 06:50:03', '2021-10-27 05:22:45'),
+(9, 1, 20, '[{\"1\":\"80\",\"2\":\"40\",\"9\":\"500\",\"10\":\"150\"}]', 10, '2021-10-22 06:50:03', '2021-10-29 23:50:26'),
 (10, 2, 22, '[{\"1\":\"20\",\"2\":\"50\"}]', NULL, '2021-10-22 22:37:38', '2021-10-22 22:37:48'),
-(11, 1, 23, '[{\"2\":\"700\",\"1\":\"70\",\"9\":\"450\"}]', 9, '2021-10-24 08:04:36', '2021-10-26 06:11:27'),
-(14, 1, 26, '[{\"10\":\"150\"},{\"2\":\"600\"}]', NULL, '2021-10-26 05:05:22', '2021-10-27 05:22:21');
+(11, 1, 23, '[{\"2\":\"700\",\"1\":\"70\",\"9\":\"450\"}]', 2, '2021-10-24 08:04:36', '2021-10-29 23:50:16'),
+(14, 1, 26, '[{\"10\":\"150\",\"2\":\"400\",\"9\":\"300\"}]', 2, '2021-10-26 05:05:22', '2021-10-30 00:08:03');
 
 -- --------------------------------------------------------
 
@@ -378,7 +382,7 @@ CREATE TABLE `supplier_details` (
 INSERT INTO `supplier_details` (`s_id`, `c_id`, `s_name`, `s_address`, `s_gst`, `s_phone`, `s_email`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (20, 1, 'supplier1', 'SURAT', '24AAACA1033E1Z', '9512727308', 'supplier1@gmail.com', 1, '2021-10-22 05:19:36', '2021-10-24 07:08:29', NULL),
 (22, 2, 'Supplier 3', 'Surat', '24AAACA1033E1R', '7096717095', 'supplier2@gmail.com', 1, '2021-10-22 22:36:34', '2021-10-24 07:08:49', NULL),
-(23, 1, 'supplier2', 'Surat', '24AAACA1033E1ZL', '1234567890', 'supplier3@gmail.com', 1, '2021-10-22 23:34:47', '2021-10-24 23:21:26', NULL),
+(23, 1, 'supplier2', 'Surat', '24AAACA1033E1ZL', '1234567890', 'supplier3@gmail.com', 0, '2021-10-22 23:34:47', '2021-10-28 01:05:36', NULL),
 (26, 1, 'supplier 4', 'Surat', 'dmmbmdkbdfb', '7894561231', 'supplier04@gmail.com', 1, '2021-10-25 06:10:46', '2021-10-25 06:16:14', NULL);
 
 -- --------------------------------------------------------
@@ -611,7 +615,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `rate_masters`

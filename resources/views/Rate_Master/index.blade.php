@@ -32,19 +32,21 @@
                  <div class="card-body">
                      <div>
                          <div class="table-responsive">
-                             <table id="rate_Master" class="table table-bordered text-wrap key-buttons">
+                             <table id="rate_Master" class="table table-bordered text-nowrap key-buttons">
                                  <thead>
                                      <tr>
                                          @php
-                                             $rate = App\Models\rate::get();
+                                             $c_id = session()->get('c_id');
+                                             $rate = App\Models\rate::where('c_id', $c_id)->get();
                                              // echo $rate;
                                          @endphp
+                                         <th class="border-bottom-0">Action</th>
                                          <th class="border-bottom-0">#</th>
                                          <th class="border-bottom-0">Company Name</th>
                                          @foreach ($rate as $value)
                                              <th class="border-bottom-0">{{ $value->wt_category }}</th>
                                          @endforeach
-                                         <th class="border-bottom-0">Action</th>
+
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -54,6 +56,27 @@
 
                                      @foreach ($rates as $key => $value)
                                          <tr>
+                                             <td class="align-middle"
+                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
+                                                 <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
+                                                     <div class="btn-group align-top">
+                                                         <button class="btn btn-sm btn-success" type="button"
+                                                             data-toggle="modal"
+                                                             data-target="#user-form-modal">Edit</button>
+                                                         <button class="btn btn-sm btn-success" type="button"><i
+                                                                 class="fe fe-edit-2"></i></button>
+                                                     </div>
+                                                 </a>
+                                                 {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
+                                               method="post">
+                                               @csrf
+                                               <div class="btn-group align-top">
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-danger"><i
+                                                           class="fe fe-trash-2"></i></button>
+                                               </div>
+                                           </form> --}}
+                                             </td>
 
                                              <td>
                                                  {{ $key + 1 }}
@@ -106,32 +129,11 @@
                                                  <td>{{ $item }}
                                                      @if ($value->rate_cat_pcs != null)
                                                          @if ($key == $count)
-                                                             <span class="badge badge-pill badge-success mt-2">Pcs..</span>
+                                                             <span class="badge badge-pill badge-danger mt-2">Pcs</span>
                                                          @endif
                                                      @endif
                                                  </td>
                                              @endforeach
-                                             <td class="align-middle"
-                                                 style="display: flex; align-items: center;justify-content: space-evenly;">
-                                                 <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
-                                                     <div class="btn-group align-top">
-                                                         <button class="btn btn-sm btn-success" type="button"
-                                                             data-toggle="modal"
-                                                             data-target="#user-form-modal">Edit</button>
-                                                         <button class="btn btn-sm btn-success" type="button"><i
-                                                                 class="fe fe-edit-2"></i></button>
-                                                     </div>
-                                                 </a>
-                                                 {{-- <form action="{{ route('rate_master.destroy', $value->Rate_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div class="btn-group align-top">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                        <button class="btn btn-sm btn-danger"><i
-                                                                class="fe fe-trash-2"></i></button>
-                                                    </div>
-                                                </form> --}}
-                                             </td>
 
 
                                          </tr>
@@ -191,7 +193,7 @@
                  "ordering": true,
                  "searching": true,
                  "order": [
-                     [0, "desc"]
+                     [1, "desc"]
                  ]
              });
          });

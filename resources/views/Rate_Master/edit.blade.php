@@ -69,7 +69,8 @@
                                          </div>
                                      </div>
                                      @php
-                                         $rates = App\Models\rate::get();
+                                         $c_id = Session()->get('c_id');
+                                         $rates = App\Models\rate::where('c_id', $c_id)->get();
                                      @endphp
                                      <div class="col-md-6">
                                          <div class="form-group">
@@ -98,8 +99,8 @@
                                      <div class="col-sm-6 col-md-6">
                                          <div class="form-group">
                                              <label class="form-label">Price :-</label>
-                                             <input placeholder="Enter Price:- " class="form-control inputField" id="s_gst"
-                                                 type="text" name="Price" value="{{ $rate_master->json_Price }}" required>
+                                             <input placeholder="Enter Price " class="form-control inputField" id="s_gst"
+                                                 type="text" name="Price" value="{{ $rate_master->json_Price }}">
                                              @error('s_gst')
                                                  <small class="errorTxt1">
                                                      <div id="title-error" class="error" style="margin-left:3rem">
@@ -137,6 +138,7 @@
                                                              {{ $wt_category }}
                                                          </option>
                                                      @endforeach
+                                                     <option value="0">None Of Above</option>
                                                  </optgroup>
                                              </select>
                                              @error('r_id')

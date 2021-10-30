@@ -114,7 +114,8 @@
                                  </div>
                              </div>
                              @php
-                                 $rates = App\Models\rate::get();
+                                 $c_id = session()->get('c_id');
+                                 $rates = App\Models\rate::where('c_id', $c_id)->get();
                              @endphp
                              <div class="col-md-6">
                                  <div class="form-group">

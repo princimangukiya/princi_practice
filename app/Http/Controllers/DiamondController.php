@@ -77,7 +77,7 @@ class DiamondController extends Controller
                 $json_decoded = json_decode($json_data['json_price']);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where('rates.r_id', $r_id)->first();
+                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->first();
                     $wt_category = $wt_category['wt_category'];
                     $value = explode('-', $wt_category);
                     if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
@@ -122,7 +122,7 @@ class DiamondController extends Controller
                     $json_decoded = json_decode($json_data['json_price']);
                     foreach ($json_decoded[0] as $key => $val) {
                         $r_id = $key;
-                        $wt_category = rate::where('rates.r_id', $r_id)->first();
+                        $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->first();
                         $wt_category = $wt_category['wt_category'];
                         $value = explode('-', $wt_category);
                         if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
@@ -208,7 +208,7 @@ class DiamondController extends Controller
             $json_decoded = json_decode($json_data['json_price']);
             foreach ($json_decoded[0] as $key => $val) {
                 $r_id = $key;
-                $wt_category = rate::where('rates.r_id', $r_id)->get();
+                $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                 $wt_category = $wt_category[0]['wt_category'];
                 $value = explode('-', $wt_category);
                 // $first_value = substr($wt_category, 0, 5);

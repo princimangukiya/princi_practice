@@ -85,12 +85,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/rate-master', 'App\Http\Controllers\RateMaster@index')->name('rate_master');
     Route::get('/rate-master/create', 'App\Http\Controllers\RateMaster@create')->name('rate_master.create');
     Route::post('/rate-master/store', 'App\Http\Controllers\RateMaster@store')->name('rate_master.store');
-
-    Route::post('/rates/rates_store', 'App\Http\Controllers\RateMaster@rates_store')->name('rate_master.rates_store');
-
     Route::get('/rate-master/edit/{id}', 'App\Http\Controllers\RateMaster@edit')->name('rate_master.edit');
     Route::post('/rate-master/update/{id}', 'App\Http\Controllers\RateMaster@update')->name('rate_master.update');
     // Route::post('/rate-master/{id}/destroy', 'App\Http\Controllers\RateMaster@destroy')->name('rate_master.destroy');
+
+    //Weight-category
+    Route::get('/weight-category', 'App\Http\Controllers\WeightCategoryController@index')->name('Weight-Category');
+    Route::get('/weight-category/create', 'App\Http\Controllers\WeightCategoryController@create')->name('Weight-Category.create');
+    Route::post('/rates/rates-store', 'App\Http\Controllers\RateMaster@rates_store')->name('rate_master.rates_store');
+    Route::post('/weight-category/{id}/destroy', 'App\Http\Controllers\WeightCategoryController@destroy')->name('weight-category.destroy');
+
 
     //Inward
     Route::get('/Inward', 'App\Http\Controllers\ReportController@Inward')->name('Inward');
