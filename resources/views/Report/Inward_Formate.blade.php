@@ -95,10 +95,10 @@
             <div class="text-right">
 
                 @if ($c_id == 1)
-                    <img class="imgresponsive" src="{{ assets('assets/images/logo/vmJewel.jpg') }}" width=" 35%"
+                    <img class="imgresponsive" src="{{ asset('assets/images/logo/vmJewel.jpg') }}" width=" 35%"
                         height="40%" />
                 @else
-                    <img class="imgresponsive" src="{{ assets('assets/images/logo/ekJewel.JPG') }}" width="35%"
+                    <img class="imgresponsive" src="{{ asset('assets/images/logo/ekJewel.JPG') }}" width="35%"
                         height="40%" />
                 @endif
 
