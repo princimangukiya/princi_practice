@@ -24,14 +24,14 @@ class WeightCategoryController extends Controller
         $c_id = session()->get('c_id');
         $data['weightCategory'] = Rate::where('c_id', $c_id)->get();
         // echo $data['WorkingStock'];
-        return view('Weight_Category.index', $data);
+        return view('weight_category.index', $data);
     }
     //Weight Category Store
     public function create()
     {
         $c_id =  session()->get('c_id');
         $data = array();
-        return view('Weight_Category.create', $data);
+        return view('weight_category.create', $data);
     }
     // Weight Category delete
     public function destroy($id)

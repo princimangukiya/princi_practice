@@ -194,8 +194,6 @@
              var sGst = $('#s_gst').val();
              var sphone = $('#s_Phone').val();
              var semail = $('#s_Email').val();
-             alert(sphone);
-             alert(semail);
              //  var mEmail = $('#m_email').val();
              $.ajaxSetup({
                  headers: {

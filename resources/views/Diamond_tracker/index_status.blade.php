@@ -172,7 +172,7 @@
                                  </li>
                              @else
                                  <li class="timeline-item timeline-item--complete">
-                                     <h4 class="timeline-item__title">Diamond Are Assign In Manager</h4>
+                                     <h4 class="timeline-item__title">Diamond Are Assign To Manager</h4>
                                      <div class="timeline-item__status">Status completed</div>
                                      <p class="timeline-item__date">Date:-
                                          {{ date('d-m-Y', strtotime($manager_name['bill_date'])) }}
@@ -184,7 +184,7 @@
                              @if (empty($daimond['isReady']))
                                  @if (empty($daimond['doReady']))
                                      {{-- <li class="timeline-item timeline-item--pending"> --}}
-                                         {{-- <h4 class="timeline-item__title">Diamond Not Assign To Manager</h4>
+                                     {{-- <h4 class="timeline-item__title">Diamond Not Assign To Manager</h4>
                                     <div class="timeline-item__status">Status error</div>
                                     <p class="timeline-item__date">  <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
                                     <p class="timeline-item__desc">Whenever</p> --}}
@@ -217,7 +217,7 @@
                              @if (empty($daimond['isReturn']))
                                  @if (empty($daimond['isReady']))
                                      {{-- <li class="timeline-item timeline-item--pending"> --}}
-                                         {{-- <h4 class="timeline-item__title">Diamond Is Not Return To Company</h4>
+                                     {{-- <h4 class="timeline-item__title">Diamond Is Not Return To Company</h4>
                                     <div class="timeline-item__status">Status error</div>
                                     <p class="timeline-item__date">  <b>{{ date('d-m-Y', strtotime($date)) }}</b></p>
                                     <p class="timeline-item__desc">Whenever</p> --}}
@@ -236,25 +236,27 @@
                                  @endif
 
                              @else
-                                 <li class="timeline-item timeline-item--complete">
-                                     <h4 class="timeline-item__title">Diamond Are Return To The Supplier</h4>
-                                     <div class="timeline-item__status">Status completed</div>
-                                     <p class="timeline-item__date">Date:-
-                                         {{ date('d-m-Y', strtotime($sell_date['return_date'])) }}
-                                     </p>
-                                     <p class="timeline-item__desc">Supplier Name:-
-                                         {{ $daimond['s_name'] }}
-                                     </p>
-                                 </li>
+                                 @if (!empty($sell_stock))
+                                     <li class="timeline-item timeline-item--complete">
+                                         <h4 class="timeline-item__title">Diamond is Return To The Supplier</h4>
+                                         <div class="timeline-item__status">Status completed</div>
+                                         <p class="timeline-item__date">Date:-
+                                             {{ date('d-m-Y', strtotime($sell_date['return_date'])) }}
+                                         </p>
+                                         <p class="timeline-item__desc">Supplier Name:-
+                                             {{ $daimond['s_name'] }}
+                                         </p>
+                                     </li>
+                                 @endif
                              @endif
                              @if ($daimond['status'] == 0)
-                             <li class="timeline-item timeline-item--error">
-                                <h4 class="timeline-item__title">Diamond Is Added To Defective Piece</h4>
-                                <div class="timeline-item__status">Status error</div>
-                                <p class="timeline-item__date">Date:-
-                                    {{ date('d-m-Y', strtotime($dif_pcs['date'])) }}
-                                </p>
-                            </li>
+                                 <li class="timeline-item timeline-item--error">
+                                     <h4 class="timeline-item__title">Diamond Is Added To Defective Piece</h4>
+                                     <div class="timeline-item__status">Status error</div>
+                                     <p class="timeline-item__date">Date:-
+                                         {{ date('d-m-Y', strtotime($dif_pcs['date'])) }}
+                                     </p>
+                                 </li>
                              @endif
                          @endif
 

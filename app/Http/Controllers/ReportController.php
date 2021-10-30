@@ -12,7 +12,7 @@ use App\Models\ReadyStock;
 use App\Models\SellStock;
 use App\Models\SupplierDetails;
 use App\Models\User;
-use App\Models\company_detail;
+use App\Models\CompanyDetail;
 use App\Models\WorkingStock;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
@@ -36,7 +36,7 @@ class ReportController extends Controller
             ->where([['working_stock.c_id', $c_id], ['working_stock.status', 1]])
             ->get(['d_purchase.*', 'manager_details.m_name', 'working_stock.*', 'diamond_shape.shape_name']);
         // echo $data['manager'];
-        return view('Report.Inward', $data);
+        return view('report.Inward', $data);
     }
     public function generatePDF_Inward(Request $request)
     {
@@ -82,7 +82,7 @@ class ReportController extends Controller
         $data['start_date'] = $start_date;
         $data['end_date'] = $End_date;
         // dd($data);
-        $pdf = PDF::loadView('Report.Inward_formate', $data);
+        $pdf = PDF::loadView('report.Inward_formate', $data);
         // return $pdf->render();
         // return $pdf->stream('Inward_Company.pdf');
         return $pdf->download('Inward_Company.pdf');
@@ -130,7 +130,7 @@ class ReportController extends Controller
         $data['start_date'] = $start_date;
         $data['end_date'] = $End_date;
         // echo $s_id;
-        $pdf = PDF::loadView('Report.Inward_formate_manager', $data);
+        $pdf = PDF::loadView('report.Inward_formate_manager', $data);
 
         return $pdf->download('Inward_manager.pdf');
     }
@@ -225,7 +225,7 @@ class ReportController extends Controller
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
             ->get(['ready_stock.*', 'd_purchase.*', 'working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
         // echo $data['outward_manager'];
-        return view('Report.Outward', $data);
+        return view('report.Outward', $data);
     }
     public function generatePDF_Outward(Request $request)
     {
@@ -283,12 +283,12 @@ class ReportController extends Controller
         }
         $data['start_date'] = $start_date;
         $data['end_date'] = $End_date;
-        $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
+        $data['company_detail'] = CompanyDetail::where('c_id', $c_id)->first();
         // echo $data['company_detail'];
-        $pdf = PDF::loadView('Report.Outward_formate', $data);
+        $pdf = PDF::loadView('report.Outward_formate', $data);
 
         return $pdf->download('Outward.pdf');
-        // return view('Report.Outward_formate', $data);
+        // return view('report.Outward_formate', $data);
     }
     public function generateManagerPDF_outward(Request $request)
     {
@@ -335,7 +335,7 @@ class ReportController extends Controller
         }
         $data['start_date'] = $start_date;
         $data['end_date'] = $End_date;
-        $pdf = PDF::loadView('Report.Outward_manager_formate', $data);
+        $pdf = PDF::loadView('report.Outward_manager_formate', $data);
 
         return $pdf->download('Outward_manager.pdf');
         // return response::json(array('success' => true));
@@ -509,7 +509,7 @@ class ReportController extends Controller
         $data['price'] = $price;
         $data['labour'] = $labour;
         // echo $data['count'];
-        return view('Report.Party_Labour', $data);
+        return view('report.Party_Labour', $data);
     }
     public function generatePDF_Party_Labour(Request $request)
     {
@@ -597,9 +597,9 @@ class ReportController extends Controller
             $data['labour'] = $labour;
             $data['start_date'] = $start_date;
             $data['end_date'] = $End_date;
-            $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
-            // return view('Report.party_Labour_formate', $data);
-            $pdf = PDF::loadView('Report.Party_Labour_Formate_all', $data);
+            $data['company_detail'] = CompanyDetail::where('c_id', $c_id)->first();
+            // return view('report.party_Labour_formate', $data);
+            $pdf = PDF::loadView('report.Party_Labour_Formate_all', $data);
             return $pdf->download('Party_Labour_all.pdf');
         } else {
             $data['supplier'] = SupplierDetails::where([['c_id', $c_id], ['s_id', $s_id]])->get();
@@ -665,9 +665,9 @@ class ReportController extends Controller
             $data['labour'] = $labour;
             $data['start_date'] = $start_date;
             $data['end_date'] = $End_date;
-            $data['company_detail'] = company_detail::where('c_id', $c_id)->first();
-            // return view('Report.party_Labour_formate', $data);
-            $pdf = PDF::loadView('Report.party_Labour_formate', $data);
+            $data['company_detail'] = CompanyDetail::where('c_id', $c_id)->first();
+            // return view('report.party_Labour_formate', $data);
+            $pdf = PDF::loadView('report.party_Labour_formate', $data);
             return $pdf->download('Party_Labour.pdf');
         }
     }
@@ -756,7 +756,7 @@ class ReportController extends Controller
             $data['price'] = $price;
             $data['labour'] = $labour;
             // echo $data['count'];
-            // return view('Report.Party_Labour', $data);
+            // return view('report.Party_Labour', $data);
             // dd($data);
             // echo  $daimond;
             return Response::json(array('success' => $data));

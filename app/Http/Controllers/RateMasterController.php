@@ -22,11 +22,11 @@ class RateMasterController extends Controller
             ->where('supplier_details.c_id', $c_id)
             ->get(['supplier_details.*']);
 
-        return view('RateMaster.index', $data);
+        return view('rate_master.index', $data);
     }
     public function create()
     {
-        return view('RateMaster.create');
+        return view('rate_master.create');
     }
     public function store(Request $request)
     {
@@ -104,7 +104,7 @@ class RateMasterController extends Controller
         $data['rate_master'] = RateMaster::findOrFail($id);
         $data['price'] = $data['rate_master']['json_price'];
         // echo $data['price'];
-        return view('Rate_Master.edit', $data);
+        return view('rate_master.edit', $data);
     }
     public function update(Request $request, $id)
     {

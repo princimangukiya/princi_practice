@@ -25,7 +25,7 @@ class DiamondController extends Controller
         $c_id = session()->get('c_id');
         $data['diamond'] = DPurchase::where('c_id', $c_id)->with('shapeDate')->get();
 
-        return view('Diamond_purchase.index', $data);
+        return view('diamond_purchase.index', $data);
     }
 
     public function create()
@@ -40,7 +40,7 @@ class DiamondController extends Controller
 
             ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         $data['toDaydate'] = Carbon::now()->format('D-m-Y');
-        return view('Diamond_purchase.create', $data);
+        return view('diamond_purchase.create', $data);
     }
     public function store(Request $request)
     {
@@ -178,7 +178,7 @@ class DiamondController extends Controller
         // $data = array();
         // $data['supplier'] = DPurchase::findOrFail($id);
         // return Response::json(array('success' => $data));
-        return view('Diamond_Purchase.edit', $data);
+        return view('diamond_purchase.edit', $data);
     }
     public function update(Request $request, $id)
     {

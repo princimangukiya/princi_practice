@@ -30,12 +30,12 @@ class DefectivePcsController extends Controller
             ->where('defective_pcs.c_id', $c_id)
             ->get(['defective_pcs.*', 'd_purchase.*']);
 
-        return view('Defective_pcs.index', $data);
+        return view('defective_pcs.index', $data);
     }
 
     public function create()
     {
-        return view('Defective_Pcs.create');
+        return view('defective_pcs.create');
     }
     public function store(Request $request)
     {
@@ -117,7 +117,7 @@ class DefectivePcsController extends Controller
         // $data['supplier'] = D_Purchase::findOrFail($id);
         // return Response::json(array('success' => $data));
         // echo $data['Diamond'];
-        return view('Defective_Pcs.edit', $data);
+        return view('defective_pcs.edit', $data);
     }
     public function update(Request $request, $id)
     {

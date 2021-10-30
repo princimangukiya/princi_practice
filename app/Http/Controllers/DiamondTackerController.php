@@ -24,7 +24,7 @@ class DiamondTackerController extends Controller
 {
     public function index()
     {
-        return view('Diamond_tracker.index');
+        return view('diamond_tracker.index');
     }
     public function Diamond_tracker_search(Request $request)
     {
@@ -37,7 +37,7 @@ class DiamondTackerController extends Controller
             ->first(['d_purchase.*', 'supplier_details.s_name']);
         if ($fetchdata['daimond'] == null) {
             // $fetchdata = "";
-            return view('Diamond_tracker.index_status', $fetchdata);
+            return view('diamond_tracker.index_status', $fetchdata);
         } else {
             $Diamond = $fetchdata['daimond']['d_id'];
             $fetchdata['manager_name'] = WorkingStock::withTrashed()
@@ -45,9 +45,11 @@ class DiamondTackerController extends Controller
                 ->where([['working_stock.c_id', $c_id], ['working_stock.d_id', $Diamond]])->first();
             $fetchdata['date'] = Carbon::now();
             $fetchdata['ready_stock'] = ReadyStock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
-            $fetchdata['sell_date'] = SellStock::where([['c_id', $c_id], ['d_id', $Diamond]])->first('return_date');
+            $fetchdata['sell_date'] = DPurchase::where([['c_id', $c_id], ['d_id', $Diamond]])->first('isReturn');
+            $fetchdata['sell_stock'] = SellStock::where([['c_id', $c_id], ['d_id', $Diamond]])->first();
+            // echo $fetchdata['sell_date'];
             $fetchdata['dif_pcs'] = DefectivePcs::where([['c_id', $c_id], ['d_id', $Diamond]])->first('date');
-            return view('Diamond_tracker.index_status', $fetchdata);
+            return view('diamond_tracker.index_status', $fetchdata);
         }
     }
 }
