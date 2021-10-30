@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class D_Purchase extends Model
+class DPurchase extends Model
 {
     use SoftDeletes;
     protected $table = "d_purchase";
@@ -16,11 +16,11 @@ class D_Purchase extends Model
 
     public function shapeDate()
     {
-        return $this->belongsTo('App\Models\Diamond_Shape', 'shape_id');
+        return $this->belongsTo('App\Models\DiamondShape', 'shape_id');
     }
 
     public function supplier()
     {
-        return $this->belongsTo('App\Models\Supplier_Details', 's_id');
+        return $this->belongsTo('App\Models\SupplierDetails', 's_id');
     }
 }

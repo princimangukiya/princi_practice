@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class company_detail extends Model
+class DefectivePcs extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 }

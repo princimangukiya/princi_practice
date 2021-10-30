@@ -31,7 +31,7 @@
                      <div class="card-body">
                          @php
                              $c_id = session()->get('c_id');
-                             $supplier1 = App\Models\supplier_details::where('c_id', $c_id)->get();
+                             $supplier1 = App\Models\SupplierDetails::where('c_id', $c_id)->get();
                          @endphp
                          <div class="card-title font-weight-bold">Packet info:</div>
                          <div class="row">
@@ -103,7 +103,7 @@
                                  </div>
                              </div>
                              @php
-                                 $shape = App\Models\Diamond_Shape::get();
+                                 $shape = App\Models\DiamondShape::get();
                              @endphp
                              <div class="col-md-6">
                                  <div class="form-group">

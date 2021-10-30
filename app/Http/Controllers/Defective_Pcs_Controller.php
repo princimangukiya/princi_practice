@@ -3,12 +3,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\D_Purchase;
-use App\Models\Working_Stock;
-use App\Models\Supplier_Details;
-use App\Models\Ready_Stock;
-use App\Models\Sell_Stock;
-use App\Models\defective_pcs;
+use App\Models\DPurchase;
+use App\Models\WorkingStock;
+use App\Models\SupplierDetails;
+use App\Models\ReadyStock;
+use App\Models\SellStock;
+use App\Models\DefectivePcs;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +26,7 @@ class Defective_Pcs_Controller extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['diamond'] = defective_pcs::join('d_purchase', 'defective_pcs.d_id', '=', 'd_purchase.d_id')
+        $data['diamond'] = DefectivePcs::join('d_purchase', 'defective_pcs.d_id', '=', 'd_purchase.d_id')
             ->where('defective_pcs.c_id', $c_id)
             ->get(['defective_pcs.*', 'd_purchase.*']);
 
@@ -54,7 +54,7 @@ class Defective_Pcs_Controller extends Controller
         }
         try {
             $c_id = session()->get('c_id');
-            $barcodeExist = D_Purchase::where('d_barcode', $request->bar_code)->first();
+            $barcodeExist = DPurchase::where('d_barcode', $request->bar_code)->first();
             if ($barcodeExist == null) {
                 return Response::json(array('success' => 314));
             } else if ($barcodeExist['c_id'] != $c_id) {
@@ -66,7 +66,7 @@ class Defective_Pcs_Controller extends Controller
                 return Response::json(array('success' => 318));
             }
             $d_id = $barcodeExist['d_id'];
-            $df_d_id = defective_pcs::where('d_id', $d_id)->first();
+            $df_d_id = DefectivePcs::where('d_id', $d_id)->first();
 
             if ($barcodeExist['isReturn'] != null) {
                 //Sell Stock = 4
@@ -83,18 +83,18 @@ class Defective_Pcs_Controller extends Controller
             }
             if ($df_d_id == null) {
                 $c_id = session()->get('c_id');
-                $newitem = new defective_pcs;
+                $newitem = new DefectivePcs;
                 $newitem->d_id = $d_id;
                 $newitem->resone = $request->resone;
                 $newitem->c_id = $c_id;
                 $newitem->date = $request->date;
                 $newitem->from_where = $fromWhere;
                 $newitem->save();
-                D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
+                DPurchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
                 if ($barcodeExist['isReady'] != null) {
-                    Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
+                    ReadyStock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
                 } else {
-                    Working_Stock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
+                    WorkingStock::where('d_id', $d_id)->update(['dif_pcs' => 0]);
                 }
 
                 return Response::json(array('success' => 200));
@@ -108,7 +108,7 @@ class Defective_Pcs_Controller extends Controller
     public function edit(Request $request)
     {
         $where = array('df_id' => $request->id);
-        $data['Diamond']  = defective_pcs::join('d_purchase', 'defective_pcs.d_id', '=', 'd_purchase.d_id')
+        $data['Diamond']  = DefectivePcs::join('d_purchase', 'defective_pcs.d_id', '=', 'd_purchase.d_id')
             ->where($where)->first();
 
         // return Response()->json($Diamond);
@@ -132,7 +132,7 @@ class Defective_Pcs_Controller extends Controller
                 return Response::json(array('success' => false));
             }
             $c_id = session()->get('c_id');
-            $barcodeExist = D_Purchase::where([['c_id', $c_id], ['d_barcode', $request->bar_code]])->first();
+            $barcodeExist = DPurchase::where([['c_id', $c_id], ['d_barcode', $request->bar_code]])->first();
             $d_id = $barcodeExist['d_id'];
             $c_id = session()->get('c_id');
             $newitem = array();
@@ -141,9 +141,9 @@ class Defective_Pcs_Controller extends Controller
             $newitem['c_id'] = $c_id;
             $newitem['date'] =  !empty($request->date) ? $request->date : '';
 
-            defective_pcs::where('d_id', $d_id)->update($newitem);
+            DefectivePcs::where('d_id', $d_id)->update($newitem);
 
-            D_Purchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
+            DPurchase::where('d_barcode', $request->bar_code)->update(['status' => 0, 'isReturn' => $request->date]);
             return redirect('/defective-pcs');
         } catch (\Throwable $th) {
             return Response::json(array('success' => false));
@@ -155,17 +155,17 @@ class Defective_Pcs_Controller extends Controller
 
         echo $id;
         //
-        $dimond = defective_pcs::where('df_id', $id)->first();
+        $dimond = DefectivePcs::where('df_id', $id)->first();
         $d_id = $dimond['d_id'];
         // echo $d_id;
         $time = Carbon::now();
-        defective_pcs::where('df_id', $id)->update(['deleted_at' => $time]);
-        $diamond = D_Purchase::where('d_id', $d_id)->first();
-        D_Purchase::where('d_id', $d_id)->update(['status' => 1, 'isReturn' => null]);
+        DefectivePcs::where('df_id', $id)->update(['deleted_at' => $time]);
+        $diamond = DPurchase::where('d_id', $d_id)->first();
+        DPurchase::where('d_id', $d_id)->update(['status' => 1, 'isReturn' => null]);
         if ($diamond['isReady'] != null) {
-            Ready_Stock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
+            ReadyStock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
         } else {
-            Working_Stock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
+            WorkingStock::where('d_id', $d_id)->update(['dif_pcs' => 1]);
         }
         $notification = array(
             'message' => 'User Deleted!',

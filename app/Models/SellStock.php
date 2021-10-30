@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Sell_Stock extends Model
+class SellStock extends Model
 {
 
     use SoftDeletes;
@@ -15,11 +15,11 @@ class Sell_Stock extends Model
     protected $fillable = ['s_id', 'd_id', 'c_id', 'return_date'];
     public function Supplier()
     {
-        return $this->belongsTo('App\Models\supplier_details', 's_id');
+        return $this->belongsTo('App\Models\SupplierDetails', 's_id');
     }
 
     public function Diamond()
     {
-        return $this->belongsTo('App\Models\D_Purchase', 'd_id');
+        return $this->belongsTo('App\Models\DPurchase', 'd_id');
     }
 }

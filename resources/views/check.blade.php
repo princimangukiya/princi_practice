@@ -55,7 +55,7 @@
                                 </div>
                                 @php
                                     $c_id = session()->get('c_id');
-                                    $supplier = App\Models\Supplier_Details::where('c_id', $c_id)->get();
+                                    $supplier = App\Models\SupplierDetails::where('c_id', $c_id)->get();
                                 @endphp
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -98,7 +98,7 @@
 
 
                                 @php
-                                    $shape = App\Models\diamond_shape::get();
+                                    $shape = App\Models\DiamondShape::get();
                                 @endphp
                                 <div class="col-md-6">
                                     <div class="form-group">

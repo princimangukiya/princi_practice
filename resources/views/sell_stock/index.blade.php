@@ -76,7 +76,7 @@
                                                  {{ $value->Diamond->d_n_wt }}
                                              </td>
                                              @php
-                                                 $shape = App\Models\Diamond_Shape::where('shape_id', $value->Diamond->shape_id)->first();
+                                                 $shape = App\Models\DiamondShape::where('shape_id', $value->Diamond->shape_id)->first();
                                              @endphp
                                              <td>
                                                  {{ $shape->shape_name }}

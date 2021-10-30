@@ -5,7 +5,7 @@
          
          $avatar = 'assets/images/users/2.jpg';
          $c_id = session()->get('c_id');
-         $manager = App\Models\Manager_Details::where('c_id', $c_id)->get();
+         $manager = App\Models\ManagerDetails::where('c_id', $c_id)->get();
      @endphp
      <!--Page header-->
 
@@ -34,7 +34,7 @@
                          <div class="card-title font-weight-bold">Manager info:</div>
                          @php
                              $c_id = session()->get('c_id');
-                             $supplier = App\Models\supplier_details::where('c_id', $c_id)->get();
+                             $supplier = App\Models\SupplierDetails::where('c_id', $c_id)->get();
                          @endphp
                          <div class="row" style="padding: 20px;">
                              <div class="col-sm-6 col-md-6">

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\D_Purchase;
-use App\Models\Supplier_Details;
+use App\Models\DPurchase;
+use App\Models\SupplierDetails;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ class SupplierController extends Controller
         $data = array();
         $c_id = session()->get('c_id');
         //dd($c_id);
-        $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
+        $data['supplier'] = SupplierDetails::where('c_id', $c_id)->get();
         return view('supplier_details.index', $data);
     }
 
@@ -50,11 +50,11 @@ class SupplierController extends Controller
             return Response::json(array('success' => false));
         }
         try {
-            $suppilerData = Supplier_Details::where('s_gst', $request->s_gst)->first();
+            $suppilerData = SupplierDetails::where('s_gst', $request->s_gst)->first();
 
             if ($suppilerData == null) {
                 $c_id = session()->get('c_id');
-                $newitem = new Supplier_Details();
+                $newitem = new SupplierDetails();
                 $newitem->s_name =  $request->s_name;
                 $newitem->c_id = $c_id;
                 $newitem->s_address =  $request->s_address;
@@ -85,7 +85,7 @@ class SupplierController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['supplier'] = Supplier_Details::findOrFail($id);
+        $data['supplier'] = SupplierDetails::findOrFail($id);
         return view('supplier_details.edit', $data);
     }
 
@@ -111,7 +111,7 @@ class SupplierController extends Controller
             $newitem['s_gst'] =  $request->s_gst;
             $newitem['s_email'] = $request->s_email;
             $newitem['s_phone'] = $request->s_phone;
-            Supplier_Details::where('s_id', $id)->update($newitem);
+            SupplierDetails::where('s_id', $id)->update($newitem);
             $notification = array(
                 'message' => 'User Updated!',
                 'alert-type' => 'success'
@@ -132,7 +132,7 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
-        $suplier = Supplier_Details::withTrashed()->find($id);
+        $suplier = SupplierDetails::withTrashed()->find($id);
         $suplier->delete();
         // dd($suplier);
         // $time = Carbon::now();
@@ -153,9 +153,9 @@ class SupplierController extends Controller
         // $m_id = $_GET['m_id'];
         $s_id = $id;
         if ($isActive == 1) {
-            Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 0]);
+            SupplierDetails::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 0]);
         } else {
-            Supplier_Details::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 1]);
+            SupplierDetails::where([['c_id', $c_id], ['s_id', $s_id]])->update(['status' => 1]);
         }
 
         // dd("hello");

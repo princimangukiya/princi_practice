@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rate_master;
+use App\Models\RateMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\rate;
+use App\Models\Rate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
@@ -17,16 +17,16 @@ class RateMaster extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['rates'] = rate_master::where('c_id', $c_id)->get();
-        $data['supplier_name'] = rate_master::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
+        $data['rates'] = RateMaster::where('c_id', $c_id)->get();
+        $data['supplier_name'] = RateMaster::join('supplier_details', 'rate_masters.s_id', '=', 'supplier_details.s_id')
             ->where('supplier_details.c_id', $c_id)
             ->get(['supplier_details.*']);
 
-        return view('Rate_Master.index', $data);
+        return view('RateMaster.index', $data);
     }
     public function create()
     {
-        return view('Rate_Master.create');
+        return view('RateMaster.create');
     }
     public function store(Request $request)
     {
@@ -37,8 +37,8 @@ class RateMaster extends Controller
 
         $c_id = session()->get('c_id');
         $s_id = $request->s_id;
-        $data = rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->get();
-        $new_rate = new rate_master();
+        $data = RateMaster::where([['c_id', $c_id], ['s_id', $s_id]])->get();
+        $new_rate = new RateMaster();
         if ($data->isEmpty()) {
             $new_rate->c_id  = $c_id;
             $new_rate->s_id = $s_id;
@@ -55,7 +55,7 @@ class RateMaster extends Controller
             if ($data[0]['rate_cat_pcs'] == null) {
                 if ($request->has('wei_Cat')) {
                     $new_rate =  $r_id;
-                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['rate_cat_pcs' => $new_rate]);
+                    RateMaster::where([['c_id', $c_id], ['s_id', $s_id]])->update(['rate_cat_pcs' => $new_rate]);
                 }
             }
 
@@ -67,13 +67,13 @@ class RateMaster extends Controller
                     array_push($someArray, $data1);
                     $json_data2 = json_encode($someArray);
                     $newJsonData = str_replace('},{', ',', $json_data2);
-                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
+                    RateMaster::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
                     return Redirect::to('/rate-master');
                 } else {
                     $someArray[0][$r_id] = $price;
                     $json_data2 = json_encode($someArray);
                     $newJsonData = str_replace('},{', ',', $json_data2);
-                    rate_master::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
+                    RateMaster::where([['c_id', $c_id], ['s_id', $s_id]])->update(['json_price' => $newJsonData]);
                     return Redirect::to('/rate-master');
                 }
             }
@@ -89,7 +89,7 @@ class RateMaster extends Controller
             return Redirect::to('/rate-master/create');
         }
         $c_id = session()->get('c_id');
-        $rate = new rate();
+        $rate = new Rate();
         $rate->c_id = $c_id;
         $first_range = $request->firstRange;
         $last_range = $request->lastRange;
@@ -101,7 +101,7 @@ class RateMaster extends Controller
     public function edit($id)
     {
         $data = array();
-        $data['rate_master'] = rate_master::findOrFail($id);
+        $data['rate_master'] = RateMaster::findOrFail($id);
         $data['price'] = $data['rate_master']['json_price'];
         // echo $data['price'];
         return view('Rate_Master.edit', $data);
@@ -113,14 +113,14 @@ class RateMaster extends Controller
         $data1 = [$r_id => $price];
         $c_id = session()->get('c_id');
         $s_id = $request->s_id;
-        $data = rate_master::where('Rate_id', $id)->get();
+        $data = RateMaster::where('Rate_id', $id)->get();
         // var_dump($data1);
         if ($request->rate_cat_pcs != null) {
             if ($request->rate_cat_pcs == 0) {
-                rate_master::where('Rate_id', $id)->update(['rate_cat_pcs' => null]);
+                RateMaster::where('Rate_id', $id)->update(['rate_cat_pcs' => null]);
             } else {
                 $rate_cat_pcs = $request->rate_cat_pcs;
-                rate_master::where('Rate_id', $id)->update(['rate_cat_pcs' => $rate_cat_pcs]);
+                RateMaster::where('Rate_id', $id)->update(['rate_cat_pcs' => $rate_cat_pcs]);
             }
         }
         if (!empty($r_id)) {
@@ -134,14 +134,14 @@ class RateMaster extends Controller
                         $arrValuesJson = array_values($someArray);
                         $json_data2 = json_encode($arrValuesJson);
                         $newJsonData = str_replace('},{', ',', $json_data2);
-                        rate_master::where([['Rate_id', $id]])->update(['json_price' => $newJsonData]);
+                        RateMaster::where([['Rate_id', $id]])->update(['json_price' => $newJsonData]);
                     }
                 } else {
 
                     if (!empty($r_id)) {
                         $someArray[0][$r_id] = $price;
                         $json_data2 = json_encode($someArray);
-                        rate_master::where([['Rate_id', $id]])->update(['json_price' => $json_data2]);
+                        RateMaster::where([['Rate_id', $id]])->update(['json_price' => $json_data2]);
                     }
                 }
             }
@@ -151,7 +151,7 @@ class RateMaster extends Controller
     }
     public function destroy($id)
     {
-        $rates = rate_master::where('rate_id', $id)->first('json_price');
+        $rates = RateMaster::where('rate_id', $id)->first('json_price');
         echo $rates;
     }
 }

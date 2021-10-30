@@ -37,7 +37,7 @@
                                      <tr>
                                          @php
                                              $c_id = session()->get('c_id');
-                                             $rate = App\Models\rate::where('c_id', $c_id)->get();
+                                             $rate = App\Models\Rate::where('c_id', $c_id)->get();
                                              // echo $rate;
                                          @endphp
                                          <th class="border-bottom-0">#</th>

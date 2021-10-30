@@ -5,7 +5,7 @@
          
          $avatar = 'assets/images/users/2.jpg';
          $c_id = session()->get('c_id');
-         $manager = App\Models\Manager_Details::where([['c_id', $c_id], ['status', 1]])->get();
+         $manager = App\Models\ManagerDetails::where([['c_id', $c_id], ['status', 1]])->get();
      @endphp
      <!--Page header-->
 

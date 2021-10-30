@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\D_Purchase;
-use App\Models\Supplier_Details;
-use App\Models\Manager_Details;
-use App\Models\Ready_Stock;
-use App\Models\Working_Stock;
+use App\Models\DPurchase;
+use App\Models\SupplierDetails;
+use App\Models\ManagerDetails;
+use App\Models\ReadyStock;
+use App\Models\WorkingStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -25,7 +25,7 @@ class ManagerController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['manager'] = Manager_Details::where('c_id', $c_id)->get();
+        $data['manager'] = ManagerDetails::where('c_id', $c_id)->get();
         return view('manager_details.index', $data);
     }
 
@@ -50,9 +50,9 @@ class ManagerController extends Controller
         try {
             $email = $request->m_email;
             $c_id = session()->get('c_id');
-            $manager = Manager_Details::where('m_email', $email)->first();
+            $manager = ManagerDetails::where('m_email', $email)->first();
             if (empty($manager)) {
-                $newitem = new Manager_Details();
+                $newitem = new ManagerDetails();
                 $newitem->c_id = $c_id;
                 $newitem->m_name = !empty($request->m_name) ? $request->m_name : '';
                 $newitem->m_address = !empty($request->m_address) ? $request->m_address : '';
@@ -74,7 +74,7 @@ class ManagerController extends Controller
     {
         //dd($id);
         $data = array();
-        $data['manager'] = Manager_Details::findOrFail($id);
+        $data['manager'] = ManagerDetails::findOrFail($id);
         return view('manager_details.edit', $data);
     }
 
@@ -103,7 +103,7 @@ class ManagerController extends Controller
             $newitem['m_phone'] = !empty($request->m_phone) ? $request->m_phone : '';
 
 
-            Manager_Details::where('m_id', $id)->update($newitem);
+            ManagerDetails::where('m_id', $id)->update($newitem);
 
             return Redirect::to('/manager');
         } catch (\Throwable $th) {
@@ -120,13 +120,13 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //
-        $suplier = Manager_Details::find($id);
+        $suplier = ManagerDetails::find($id);
         $suplier->delete();
-        // $ready_stock = Ready_Stock::where('m_id', $id)->get();
-        // foreach ($ready_stock as $value) {
+        // $ReadyStock = ReadyStock::where('m_id', $id)->get();
+        // foreach ($ReadyStock as $value) {
         //     $value->delete();
         // }
-        // // $ready_stock->delete();
+        // // $ReadyStock->delete();
         // $working_stock = Working_Stock::where('m_id', $id)->get();
         // foreach ($working_stock as $value) {
         //     $value->delete();
@@ -147,9 +147,9 @@ class ManagerController extends Controller
         // $m_id = $_GET['m_id'];
         $m_id = $id;
         if ($isActive == 1) {
-            Manager_Details::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 0]);
+            ManagerDetails::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 0]);
         } else {
-            Manager_Details::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 1]);
+            ManagerDetails::where([['c_id', $c_id], ['m_id', $m_id]])->update(['status' => 1]);
         }
 
         // dd("hello");

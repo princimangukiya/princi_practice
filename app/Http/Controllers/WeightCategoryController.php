@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rate;
-use App\Models\rate_master;
+use App\Models\Rate;
+use App\Models\RateMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -22,8 +22,8 @@ class WeightCategoryController extends Controller
     {
         $data = array();
         $c_id = session()->get('c_id');
-        $data['weightCategory'] = rate::where('c_id', $c_id)->get();
-        // echo $data['working_stock'];
+        $data['weightCategory'] = Rate::where('c_id', $c_id)->get();
+        // echo $data['WorkingStock'];
         return view('Weight_Category.index', $data);
     }
     //Weight Category Store
@@ -37,7 +37,7 @@ class WeightCategoryController extends Controller
     public function destroy($id)
     {
         $c_id = session()->get('c_id');
-        $rates = rate_master::where('c_id', $c_id)->get();
+        $rates = RateMaster::where('c_id', $c_id)->get();
         $jsonArr = "";
         foreach ($rates as $value) {
             $jsonArr .= $value->json_price;
@@ -52,7 +52,7 @@ class WeightCategoryController extends Controller
             );
             return redirect('/weight-category')->with($notification);
         } else {
-            rate::where('r_id', $id)->delete();
+            Rate::where('r_id', $id)->delete();
             return redirect('/weight-category');
         }
     }

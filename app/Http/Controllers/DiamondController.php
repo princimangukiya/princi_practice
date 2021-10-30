@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\D_Purchase;
-use App\Models\rate_master;
-use App\Models\Supplier_Details;
-use App\Models\rate;
+use App\Models\DPurchase;
+use App\Models\RateMaster;
+use App\Models\SupplierDetails;
+use App\Models\Rate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['diamond'] = D_Purchase::where('c_id', $c_id)->with('shapeDate')->get();
+        $data['diamond'] = DPurchase::where('c_id', $c_id)->with('shapeDate')->get();
 
         return view('Diamond_purchase.index', $data);
     }
@@ -33,12 +33,12 @@ class DiamondController extends Controller
 
         $data = array();
         $c_id = session()->get('c_id');
-        $data['supplier'] = D_Purchase::where('c_id', $c_id)->get();
-        // $data['supplier'] = Supplier_Details::where('c_id', $c_id)->get();
-        $data['supplier'] = D_Purchase::join('supplier_details', 'D_Purchase.s_id', '=', 'supplier_details.s_id')
+        $data['supplier'] = DPurchase::where('c_id', $c_id)->get();
+        // $data['supplier'] = SupplierDetails::where('c_id', $c_id)->get();
+        $data['supplier'] = DPurchase::join('supplier_details', 'd_purchase.s_id', '=', 'supplier_details.s_id')
             ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
 
-            ->get(['D_Purchase.*', 'supplier_details.*', 'diamond_shape.*']);
+            ->get(['d_purchase.*', 'supplier_details.*', 'diamond_shape.*']);
         $data['toDaydate'] = Carbon::now()->format('D-m-Y');
         return view('Diamond_purchase.create', $data);
     }
@@ -61,7 +61,7 @@ class DiamondController extends Controller
         }
         try {
             $c_id = session()->get('c_id');
-            $barcodeExist = D_Purchase::withTrashed()->where('d_barcode', $request->bar_code)->first();
+            $barcodeExist = DPurchase::withTrashed()->where('d_barcode', $request->bar_code)->first();
             // return Response::json(array('success' => json_encode($barcodeExist)));
             // return Response::json(array('success' => json_encode($DiamondData)));
             if ($barcodeExist != null) {
@@ -73,11 +73,11 @@ class DiamondController extends Controller
                 $newitem['bill_date'] = $request->bill_date;
                 $newitem['shape_id'] = $request->shape_id;
                 $newitem['deleted_at'] = null;
-                $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
+                $json_data = RateMaster::where('rate_masters.s_id', $s_id)->first();
                 $json_decoded = json_decode($json_data['json_price']);
                 foreach ($json_decoded[0] as $key => $val) {
                     $r_id = $key;
-                    $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->first();
+                    $wt_category = Rate::where([['c_id', $c_id], ['r_id', $r_id]])->first();
                     $wt_category = $wt_category['wt_category'];
                     $value = explode('-', $wt_category);
                     if ($value[0] <= $d_wt && $value[1] >= $d_wt) {
@@ -106,10 +106,10 @@ class DiamondController extends Controller
                     return Response::json(array('success' => 311));
                 }
                 // dd($newitem);
-                D_Purchase::withTrashed()->where('d_barcode', $request->bar_code)->update($newitem);
+                DPurchase::withTrashed()->where('d_barcode', $request->bar_code)->update($newitem);
                 return Response::json(array('success' => 200));
             } elseif ($barcodeExist == null) {
-                $newitem = new D_Purchase();
+                $newitem = new DPurchase();
                 $newitem->d_barcode = $request->bar_code;
                 $newitem->d_wt =  $request->d_wt;
                 $newitem->s_id =  $request->s_id;
@@ -118,7 +118,7 @@ class DiamondController extends Controller
                 $newitem->bill_date = $request->bill_date;
                 $newitem->shape_id = $request->shape_id;
                 try {
-                    $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
+                    $json_data = RateMaster::where('rate_masters.s_id', $s_id)->first();
                     $json_decoded = json_decode($json_data['json_price']);
                     foreach ($json_decoded[0] as $key => $val) {
                         $r_id = $key;
@@ -171,12 +171,12 @@ class DiamondController extends Controller
     public function edit(Request $request)
     {
         $where = array('d_id' => $request->id);
-        $data['Diamond']  = D_Purchase::where($where)->first();
+        $data['Diamond']  = DPurchase::where($where)->first();
 
         // return Response()->json($Diamond);
         //dd($id);
         // $data = array();
-        // $data['supplier'] = D_Purchase::findOrFail($id);
+        // $data['supplier'] = DPurchase::findOrFail($id);
         // return Response::json(array('success' => $data));
         return view('Diamond_Purchase.edit', $data);
     }
@@ -204,11 +204,11 @@ class DiamondController extends Controller
             $newitem['c_id'] = $c_id;
             $newitem['bill_date'] = $request->bill_date;
             $newitem['shape_id'] = $request->shape_id;
-            $json_data = rate_master::where('rate_masters.s_id', $s_id)->first();
+            $json_data = RateMaster::where('rate_masters.s_id', $s_id)->first();
             $json_decoded = json_decode($json_data['json_price']);
             foreach ($json_decoded[0] as $key => $val) {
                 $r_id = $key;
-                $wt_category = rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
+                $wt_category = Rate::where([['c_id', $c_id], ['r_id', $r_id]])->get();
                 $wt_category = $wt_category[0]['wt_category'];
                 $value = explode('-', $wt_category);
                 // $first_value = substr($wt_category, 0, 5);
@@ -219,7 +219,7 @@ class DiamondController extends Controller
                 }
             }
             // dd($newitem);
-            D_Purchase::where('d_id', $id)->update($newitem);
+            DPurchase::where('d_id', $id)->update($newitem);
 
             return Redirect::to('/diamond');
         } catch (\Throwable $th) {
@@ -234,7 +234,7 @@ class DiamondController extends Controller
     public function destroy($id)
     {
         //
-        $dimond = D_Purchase::find($id);
+        $dimond = DPurchase::find($id);
         $dimond->delete();
         $notification = array(
             'message' => 'User Deleted!',

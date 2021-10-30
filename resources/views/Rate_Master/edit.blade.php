@@ -38,7 +38,7 @@
                                  <div class="row">
                                      @php
                                          $c_id = session()->get('c_id');
-                                         $rate = App\Models\supplier_details::where('c_id', $c_id)->get();
+                                         $rate = App\Models\SupplierDetails::where('c_id', $c_id)->get();
                                      @endphp
                                      <div class="col-md-6">
                                          <div class="form-group">
@@ -70,7 +70,7 @@
                                      </div>
                                      @php
                                          $c_id = Session()->get('c_id');
-                                         $rates = App\Models\rate::where('c_id', $c_id)->get();
+                                         $rates = App\Models\Rate::where('c_id', $c_id)->get();
                                      @endphp
                                      <div class="col-md-6">
                                          <div class="form-group">

@@ -80,7 +80,7 @@
                              <div class="col-md-3" style="padding-right: 0px;">
                                  @php
                                      $c_id = session()->get('c_id');
-                                     $rate = App\Models\supplier_details::where([['c_id', $c_id], ['status', 1]])->get();
+                                     $rate = App\Models\SupplierDetails::where([['c_id', $c_id], ['status', 1]])->get();
                                  @endphp
                                  <div class="form-group">
                                      <h4><label class="form-label">Select Company :-</label></h4>
@@ -156,7 +156,7 @@
                              <div class="col-md-3">
                                  @php
                                      $c_id = session()->get('c_id');
-                                     $manager = App\Models\manager_details::where('c_id', $c_id)->get();
+                                     $manager = App\Models\ManagerDetails::where('c_id', $c_id)->get();
                                  @endphp
                                  <div class="form-group">
                                      <h4><label class="form-label">Select Manager :-</label></h4>
