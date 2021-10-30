@@ -47,7 +47,7 @@ class WeightCategoryController extends Controller
         // echo $matchStr;
         if (preg_match("/$matchStr/i", $jsonArr)) {
             $notification = array(
-                'message' => 'This Weight Category Alredy Use..',
+                'message' => 'This Weight Category Alredy Used..',
                 'alert-type' => 'danger'
             );
             return redirect('/weight-category')->with($notification);

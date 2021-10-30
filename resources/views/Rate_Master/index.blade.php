@@ -40,8 +40,8 @@
                                              $rate = App\Models\rate::where('c_id', $c_id)->get();
                                              // echo $rate;
                                          @endphp
-                                         <th class="border-bottom-0">Action</th>
                                          <th class="border-bottom-0">#</th>
+                                         <th class="border-bottom-0">Action</th>
                                          <th class="border-bottom-0">Company Name</th>
                                          @foreach ($rate as $value)
                                              <th class="border-bottom-0">{{ $value->wt_category }}</th>
@@ -56,6 +56,9 @@
 
                                      @foreach ($rates as $key => $value)
                                          <tr>
+                                            <td>
+                                                {{ $key + 1 }}
+                                            </td>
                                              <td class="align-middle"
                                                  style="display: flex; align-items: center;justify-content: space-evenly;">
                                                  <a href="{{ route('rate_master.edit', ['id' => $value->Rate_id]) }}">
@@ -76,10 +79,6 @@
                                                            class="fe fe-trash-2"></i></button>
                                                </div>
                                            </form> --}}
-                                             </td>
-
-                                             <td>
-                                                 {{ $key + 1 }}
                                              </td>
                                              @php
                                                  // echo $supplier_name[1]['s_name'];
@@ -192,9 +191,6 @@
                  "sDom": 'lfrtip',
                  "ordering": true,
                  "searching": true,
-                 "order": [
-                     [1, "desc"]
-                 ]
              });
          });
      </script>
