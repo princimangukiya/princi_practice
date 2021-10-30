@@ -32,7 +32,7 @@
 
                              </div>
                              <span class="text-primary fs-35 dash1-iocns bg-primary-transparent border-primary"><i
-                                     class="las la-users"></i></span>
+                                     class="las la-user-tie"></i></span>
                          </div>
                          <div class="d-flex mt-4">
 
@@ -53,7 +53,8 @@
                                                  class="fa fa-caret-up"></i></span></span></h2>
                              </div>
                              <span class="text-secondary fs-35 dash1-iocns bg-secondary-transparent border-secondary"><i
-                                     class="las la-hand-holding-usd"></i></span>
+                                     class="las la-users"></i></span>
+
                          </div>
                          <div class="d-flex mt-4">
 
@@ -72,8 +73,9 @@
                                  <h2 class="mb-0"><span class="number-font1"> </span>{{ $totalWorkingStock }}
                                  </h2>
                              </div>
-                             <span class="text-info fs-35 bg-info-transparent border-info dash1-iocns"><i
-                                     class="las la-thumbs-up"></i></span>
+                             <span class="text-warning fs-35 dash1-iocns bg-warning-transparent border-warning"><i
+                                     class="las la-hand-holding-usd"></i></span>
+
                          </div>
                          <div class="d-flex mt-4">
 
@@ -95,8 +97,8 @@
                                  </h2>
 
                              </div>
-                             <span class="text-primary fs-35 dash1-iocns bg-primary-transparent border-primary"><i
-                                     class="las la-users"></i></span>
+                             <span class="text-info fs-35 dash1-iocns bg-info-transparent border-info"><i
+                                     class="las la-gem"></i></span>
                          </div>
                          <div class="d-flex mt-4">
 
@@ -116,8 +118,8 @@
                                          class="ml-2 text-muted fs-11"><span class="text-success"><i
                                                  class="fa fa-caret-up"></i></span></span></h2>
                              </div>
-                             <span class="text-secondary fs-35 dash1-iocns bg-secondary-transparent border-secondary"><i
-                                     class="las la-hand-holding-usd"></i></span>
+                             <span class="text-success fs-35 bg-success-transparent border-success dash1-iocns"><i
+                                     class="las la-thumbs-up"></i></span>
                          </div>
                          <div class="d-flex mt-4">
 

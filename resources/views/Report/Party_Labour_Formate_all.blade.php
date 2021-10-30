@@ -81,7 +81,7 @@
 <body>
     @php
         $c_id = session()->get('c_id');
-        $c_name = App\Models\company_detail::where('c_id', $c_id)->first();
+        $c_name = App\Models\CompanyDetail::where('c_id', $c_id)->first();
     @endphp
     <!-- Define header and footer blocks before your content -->
     <header style="padding: 15px 0px; 15px; 0px;">

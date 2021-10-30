@@ -53,10 +53,10 @@
                             @endphp
                             @if ($c_id == 1)
                                 <br><br><img style="width:600px; height: 100px;"
-                                    src="../public/assets/images/logo/vmJewel.jpg" alt="logo"><br><br>
+                                    src="{{ assets('assets/images/logo/vmJewel.jpg') }}" alt=" logo"><br><br>
                             @else
                                 <br><br><img style="width:600px; height: 100px;"
-                                    src="../public/assets/images/logo/ekJewel.JPG" alt="logo"><br><br>
+                                    src="{{ assets('assets/images/logo/ekJewel.JPG') }}" alt=" logo"><br><br>
                             @endif
 
                         </div>

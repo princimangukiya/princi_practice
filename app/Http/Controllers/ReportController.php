@@ -82,7 +82,7 @@ class ReportController extends Controller
         $data['start_date'] = $start_date;
         $data['end_date'] = $End_date;
         // dd($data);
-        $pdf = PDF::loadView('report.Inward_formate', $data);
+        $pdf = PDF::loadView('report.Inward_Formate', $data);
         // return $pdf->render();
         // return $pdf->stream('Inward_Company.pdf');
         return $pdf->download('Inward_Company.pdf');
@@ -285,7 +285,7 @@ class ReportController extends Controller
         $data['end_date'] = $End_date;
         $data['company_detail'] = CompanyDetail::where('c_id', $c_id)->first();
         // echo $data['company_detail'];
-        $pdf = PDF::loadView('report.Outward_formate', $data);
+        $pdf = PDF::loadView('report.Outward_Formate', $data);
 
         return $pdf->download('Outward.pdf');
         // return view('report.Outward_formate', $data);
@@ -313,7 +313,7 @@ class ReportController extends Controller
                 ->join('diamond_shape', 'd_purchase.shape_id', '=', 'diamond_shape.shape_id')
                 ->whereBetween('ready_stock.return_date', [$start_date, $End_date])
                 ->orderBy('ready_stock.return_date', 'ASC')
-                ->get(['ready_stock.*', 'd_purchase.*', 'Working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
+                ->get(['ready_stock.*', 'd_purchase.*', 'working_stock.bill_date', 'manager_details.m_name', 'diamond_shape.shape_name']);
             // dd($data);
             // return Response::json(array('success' => $data));
         } else {
@@ -667,7 +667,7 @@ class ReportController extends Controller
             $data['end_date'] = $End_date;
             $data['company_detail'] = CompanyDetail::where('c_id', $c_id)->first();
             // return view('report.party_Labour_formate', $data);
-            $pdf = PDF::loadView('report.party_Labour_formate', $data);
+            $pdf = PDF::loadView('report.Party_Labour_formate', $data);
             return $pdf->download('Party_Labour.pdf');
         }
     }

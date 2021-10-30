@@ -606,7 +606,7 @@
                                  '<td class="text-center">' + RR + '</td>' +
                                  '<td>' + moment(success.bill_date).format('DD-MM-YYYY') +
                                  '</td>' +
-                                 '<td>' + moment(success.return_date).format('DD-MM-YYYY') +
+                                 '<td>' + moment(success.isReturn).format('DD-MM-YYYY') +
                                  '</td>' +
                                  '</tr>'
                              );
